@@ -1,0 +1,7 @@
+*.py[oc]
+
+/log/
+/static/
+/media/
+/src/static/bower_components
+node_modules

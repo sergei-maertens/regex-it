@@ -1,0 +1,19 @@
+{
+  "name": "regex-it",
+  "description": "Regex IT website",
+  "version": "0.0.1",
+  "private": true,
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "src/"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.4.0",
+    "normalize.css": "~3.0.3"
+  },
+  "devDependencies": {
+    "neat": "~1.7.2",
+    "bourbon": "~4.2.3"
+  }
+}

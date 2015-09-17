@@ -1,0 +1,39 @@
+body {
+  background-color: $base-background-color;
+}
+
+.page-wrapper {
+
+  @include outer-container;
+
+  header {
+    @include row;
+    padding-top: $base-font-size;
+    border-bottom: solid 1px red;
+
+    .branding {
+      @include span-columns(3);
+    }
+
+    nav {
+      @include span-columns(9);
+    }
+  }
+}
+
+
+ul[role="menu"] {
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(space-between);
+
+  > li {
+    @include flex(1);
+    text-align: center;
+  }
+}
+
+
+main {
+  text-align: center;
+}
