@@ -136,6 +136,7 @@ INSTALLED_APPS = [
     'sniplates',
 
     # Project applications.
+    'regex.accounts',
 ]
 
 LOGGING_DIR = ROOT_DIR / 'log'
@@ -257,3 +258,8 @@ AXES_COOLOFF_TIME = 1  # One hour
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
+
+#
+#
+#
+AUTH_USER_MODEL = 'accounts.User'
