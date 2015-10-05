@@ -4,5 +4,6 @@ __pycache__
 /log/
 /static/
 /media/
+/src/static/css
 /src/static/bower_components
 node_modules

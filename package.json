@@ -1,0 +1,12 @@
+{
+  "name": "Regex-IT",
+  "description": "Front-end code for Regex-IT's client portal",
+  "license": "MIT",
+  "repository": "https://github.com/sergei-maertens/regex-it.git",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-sass": "^1.0.0"
+  }
+}
