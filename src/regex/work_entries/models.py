@@ -43,5 +43,5 @@ class WorkEntry(models.Model):
                 total_minutes += (15 - remainder)
             else:
                 total_minutes -= remainder
-        total_hours = total_minutes * 60
+        total_hours = total_minutes / 60
         return Decimal(str(total_hours))

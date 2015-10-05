@@ -1,6 +1,7 @@
 from datetime import datetime, time, timedelta
 
 from django.db import models
+from django.db.models import Count, F, Sum
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -47,6 +48,22 @@ class Invoice(models.Model):
                 source_object=entry,
                 remarks=entry.notes
             )
+
+    def get_totals(self):
+        totals = self.invoiceitem_set.annotate(
+            base=F('rate')*F('amount'),
+            tax=F('rate')*F('amount')*F('tax_rate')
+        ).aggregate(Sum('base'), Sum('tax'))
+        return totals
+
+    @property
+    def total_no_vat(self):
+        return self.get_totals()['base__sum']
+
+    @property
+    def total_with_vat(self):
+        totals = self.get_totals()
+        return totals['base__sum'] + totals['tax__sum']
 
 
 class InvoiceItem(models.Model):

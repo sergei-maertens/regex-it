@@ -1,4 +1,5 @@
 from datetime import datetime, date
+from decimal import Decimal
 
 from django.test import TestCase
 from django.utils import timezone
@@ -62,6 +63,14 @@ class InvoiceTests(TestCase):
         # generate the invoices and check that the correct number of lines are created
         invoice1.generate()
         self.assertEqual(InvoiceItem.objects.count(), 3)
+
+        # check the financial data
+        for item in InvoiceItem.objects.all():
+            self.assertEqual(item.rate, item.project.base_rate)
+
+        expected_vat_free_total = project1.base_rate * 4 + project2.base_rate * 5
+        self.assertEqual(invoice1.total_no_vat, expected_vat_free_total)
+        self.assertEqual(invoice1.total_with_vat, expected_vat_free_total * Decimal('1.21'))
 
         invoice2.generate()
         self.assertEqual(InvoiceItem.objects.count(), 4)
