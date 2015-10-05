@@ -62,6 +62,7 @@ class InvoiceTests(TestCase):
 
         # generate the invoices and check that the correct number of lines are created
         invoice1.generate()
+        self.assertIsNotNone(invoice1.generated)
         self.assertEqual(InvoiceItem.objects.count(), 3)
 
         # check the financial data
@@ -74,3 +75,22 @@ class InvoiceTests(TestCase):
 
         invoice2.generate()
         self.assertEqual(InvoiceItem.objects.count(), 4)
+
+    @freeze_time('2015-10-02')
+    def test_multiple_generate_idempotent(self):
+        client = ClientFactory.create()
+        WorkEntryFactory.create(
+            project__client=client,
+            start=datetime(2015, 9, 14, 8, 0).replace(tzinfo=timezone.utc),
+            end=datetime(2015, 9, 14, 12, 0).replace(tzinfo=timezone.utc)
+        )
+
+        invoice = InvoiceFactory.create(client=client, date=date(2015, 9, 30))
+        invoice.generate()
+
+        items = InvoiceItem.objects.all()
+        self.assertEqual(items.count(), 1)
+
+        # second call may not generate new items
+        invoice.generate()
+        self.assertEqual(items.count(), 1)

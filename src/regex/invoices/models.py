@@ -1,7 +1,8 @@
+import logging
 from datetime import datetime, time, timedelta
 
-from django.db import models
-from django.db.models import Count, F, Sum
+from django.db import models, transaction
+from django.db.models import F, Sum
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -10,9 +11,14 @@ from regex.crm.models import TaxRates
 from regex.work_entries.models import WorkEntry
 
 
+logger = logging.getLogger(__name__)
+
+
 class Invoice(models.Model):
     client = models.ForeignKey('crm.Client')
     date = models.DateField(_('date'), help_text=_('Include work up to (including) this day.'))
+
+    generated = models.DateTimeField(editable=False, null=True)
     due_date = models.DateTimeField(_('due date'), null=True, blank=True)
 
     received = models.DateTimeField(_('received'), null=True, blank=True)
@@ -24,6 +30,9 @@ class Invoice(models.Model):
         return '{client} - {date}'.format(client=self.client, date=self.date)
 
     def generate(self):
+        if self.generated is not None:
+            return
+
         # collect the work entries
         try:
             previous = self.get_previous_by_date()
@@ -38,16 +47,32 @@ class Invoice(models.Model):
             project__client=self.client, start__range=[lower, upper]
         ).select_related('project')
 
-        for entry in work_entries:
-            InvoiceItem.objects.create(
-                invoice=self,
-                project=entry.project,
-                rate=entry.project.base_rate if not entry.project.flat_fee else 0,
-                amount=entry.delta_to_decimal(),
-                tax_rate=entry.project.tax_rate,
-                source_object=entry,
-                remarks=entry.notes
-            )
+        with transaction.atomic():
+            for entry in work_entries:
+                InvoiceItem.objects.create(
+                    invoice=self,
+                    project=entry.project,
+                    rate=entry.project.base_rate if not entry.project.flat_fee else 0,
+                    amount=entry.delta_to_decimal(),
+                    tax_rate=entry.project.tax_rate,
+                    source_object=entry,
+                    remarks=entry.notes
+                )
+
+            if work_entries:
+                self.generated = timezone.now()
+                self.save()
+
+    def regenerate(self):
+        if self.received is not None:
+            logger.info('Not regenerating paid invoice %d, fix this manually', self.pk)
+            return
+
+        if self.generated is not None:
+            self.invoiceitem_set.all().delete()
+            self.generated = None
+            logger.info('Regenerating invoice %d, potentially rewriting sent-out invoices.', self.pk)
+        self.generate()
 
     def get_totals(self):
         totals = self.invoiceitem_set.annotate(
