@@ -18,8 +18,10 @@ class InvoiceItemInline(admin.TabularInline):
 
 @admin.register(Invoice)
 class InvoiceAdmin(admin.ModelAdmin):
-    list_display = ('client', 'date', 'due_date', 'received', 'created', 'n_items', 'generated')
+    list_display = ('client', 'date', 'due_date', 'received', 'invoice_number',
+                    'created', 'n_items', 'generated')
     list_filter = ('client', 'date', 'due_date', 'received')
+    search_fields = ('invoice_number',)
     inlines = [InvoiceItemInline]
     actions = [generate_invoices]
 

@@ -63,6 +63,7 @@ class InvoiceTests(TestCase):
         # generate the invoices and check that the correct number of lines are created
         invoice1.generate()
         self.assertIsNotNone(invoice1.generated)
+        self.assertEqual(invoice1.invoice_number, '201500001')
         self.assertEqual(InvoiceItem.objects.count(), 3)
 
         # check the financial data
@@ -94,3 +95,27 @@ class InvoiceTests(TestCase):
         # second call may not generate new items
         invoice.generate()
         self.assertEqual(items.count(), 1)
+
+    def test_incrementing_invoice_number(self):
+        client1, client2 = ClientFactory.create_batch(2)
+
+        with freeze_time('2015-10-02'):
+            invoice1 = InvoiceFactory.create(client=client1, date=date(2015, 9, 30))
+            invoice1bis = InvoiceFactory.create(client=client1, date=date(2015, 9, 30))
+            invoice1bis.delete()
+            invoice2 = InvoiceFactory.create(client=client2, date=date(2015, 10, 31))
+
+            self.assertGreater(invoice2.pk-1, invoice1.pk)
+
+            invoice1.generate_invoice_number()
+            invoice2.generate_invoice_number()
+
+            this_year = str(timezone.now().year)
+
+        self.assertEqual(invoice1.invoice_number, '201500001'.format(this_year))
+        self.assertEqual(invoice2.invoice_number, '201500002'.format(this_year))
+
+        with freeze_time('2016-02-23'):
+            invoice3 = InvoiceFactory.create(client=client2, date=date(2016, 2, 15))
+            invoice3.generate_invoice_number()
+        self.assertEqual(invoice3.invoice_number, '201600003'.format(this_year))

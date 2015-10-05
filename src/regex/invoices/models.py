@@ -1,8 +1,10 @@
 import logging
+import re
 from datetime import datetime, time, timedelta
 
+from django.core import validators
 from django.db import models, transaction
-from django.db.models import F, Sum
+from django.db.models import F, Sum, Max
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -14,11 +16,19 @@ from regex.work_entries.models import WorkEntry
 logger = logging.getLogger(__name__)
 
 
+RE_INVOICE_NUMBER = re.compile(r'(?P<year>20\d{2})\d{5}$')
+
+
 class Invoice(models.Model):
     client = models.ForeignKey('crm.Client')
     date = models.DateField(_('date'), help_text=_('Include work up to (including) this day.'))
 
     generated = models.DateTimeField(editable=False, null=True)
+    invoice_number = models.CharField(
+        _('invoice number'), max_length=50, blank=True,
+        unique=True, default=None, null=True,
+        validators=[validators.RegexValidator(RE_INVOICE_NUMBER)]
+    )
     due_date = models.DateTimeField(_('due date'), null=True, blank=True)
 
     received = models.DateTimeField(_('received'), null=True, blank=True)
@@ -28,6 +38,25 @@ class Invoice(models.Model):
 
     def __str__(self):
         return '{client} - {date}'.format(client=self.client, date=self.date)
+
+    def generate_invoice_number(self, save=True):
+        """
+        Invoice numbers must increment according to the Dutch legislation.
+
+        We choose here to prefix the year that the invoice object was created,
+        and number incrementingly (+1) across the years.
+        """
+        prefix = self.created.year
+        agg = self.__class__.objects.aggregate(Max('invoice_number'))
+        max_number = agg['invoice_number__max'] or '201500000'
+        match = RE_INVOICE_NUMBER.match(max_number)
+        if not match:
+            raise ValueError('Invalid invoice number for invoice %d', self.pk)
+        max_number = int(max_number[4:])
+        next_number = '{:05d}'.format(max_number + 1)
+        self.invoice_number = '{prefix}{number}'.format(prefix=prefix, number=next_number)
+        if save:
+            self.save()
 
     def generate(self):
         if self.generated is not None:
@@ -61,6 +90,7 @@ class Invoice(models.Model):
 
             if work_entries:
                 self.generated = timezone.now()
+                self.generate_invoice_number(save=False)
                 self.save()
 
     def regenerate(self):
