@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -5,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from autoslug.fields import AutoSlugField
 from phonenumber_field.modelfields import PhoneNumberField
 from django_countries.fields import CountryField
+from djchoices import DjangoChoices, ChoiceItem
 
 
 class Contact(models.Model):
@@ -61,3 +64,37 @@ class Client(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class TaxRates(DjangoChoices):
+    low = ChoiceItem(Decimal('0.06'), _('low'))
+    high = ChoiceItem(Decimal('0.21'), _('high'))
+
+
+class Project(models.Model):
+
+    """
+    Logical entity to group work entities under.
+
+    Clients can have multiple projects going on.
+    """
+
+    client = models.ForeignKey(Client)
+    name = models.CharField(max_length=50)
+    slug = AutoSlugField(populate_from='name')
+
+    # base financial information
+    base_rate = models.DecimalField(_('hourly base rate'), max_digits=8, decimal_places=2)
+    flat_fee = models.DecimalField(_('flat fee'), max_digits=10, decimal_places=2, null=True, blank=True)
+    tax_rate = models.DecimalField(
+        _('tax rate'), max_digits=4, decimal_places=2,
+        choices=TaxRates.choices, default=TaxRates.high
+    )
+
+    class Meta:
+        unique_together = (
+            ('client', 'slug'),
+        )
+
+    def __str__(self):
+        return '{client} - {name}'.format(name=self.name, client=self.client)

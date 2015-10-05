@@ -2,3 +2,4 @@ WebTest
 django-webtest
 factory-boy
 pyquery
+freezegun

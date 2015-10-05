@@ -141,6 +141,8 @@ INSTALLED_APPS = [
     # Project applications.
     'regex.accounts',
     'regex.crm',
+    'regex.invoices',
+    'regex.work_entries',
 ]
 
 LOGGING_DIR = ROOT_DIR / 'log'
