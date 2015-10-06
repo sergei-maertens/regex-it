@@ -116,6 +116,10 @@ class Invoice(models.Model):
         return self.get_totals()['base__sum']
 
     @property
+    def total_vat(self):
+        return self.get_totals()['tax__sum']
+
+    @property
     def total_with_vat(self):
         totals = self.get_totals()
         return totals['base__sum'] + totals['tax__sum']
@@ -136,3 +140,7 @@ class InvoiceItem(models.Model):
     object_id = models.IntegerField(blank=True, null=True)
     source_object = GenericForeignKey()
     remarks = models.TextField(_('remarks'), blank=True)
+
+    class Meta:
+        verbose_name = _('invoice item')
+        verbose_name_plural = _('invoice items')

@@ -1,0 +1,9 @@
+@media print {
+    body.pdf {
+
+      .page-break {
+        page-break-before: always;
+      }
+
+    }
+}

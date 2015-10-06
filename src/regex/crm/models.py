@@ -46,6 +46,7 @@ class Client(models.Model):
     # global company contact details
     email = models.EmailField(_('email'))
     phone = PhoneNumberField()
+    address = models.CharField(_('address'), max_length=255)
     city = models.CharField(_('city'), max_length=255)
     country = CountryField(default=settings.DEFAULT_COUNTRY, verbose_name=_('Country'))
 

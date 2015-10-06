@@ -64,7 +64,7 @@ MIDDLEWARE_CLASSES += [
 INTERNAL_IPS = ('127.0.0.1',)
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
-    # 'JQUERY_URL': '',
+    'JQUERY_URL': '',
 }
 
 #

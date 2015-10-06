@@ -1,0 +1,28 @@
+body > header {
+  @include row;
+  @include display(flex);
+  @include align-items(center);
+
+  border-bottom: solid 1px $light-gray;
+
+  figure {
+    @include span-columns(2);
+    @include shift(2);
+  }
+
+  nav {
+    @include span-columns(6);
+  }
+}
+
+
+ul[role="menu"] {
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(space-between);
+
+  > li {
+    @include flex(1);
+    text-align: center;
+  }
+}

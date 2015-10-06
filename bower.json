@@ -10,7 +10,8 @@
   ],
   "dependencies": {
     "font-awesome": "~4.4.0",
-    "normalize.css": "~3.0.3"
+    "normalize.css": "~3.0.3",
+    "jquery": "~2.1.4"
   },
   "devDependencies": {
     "neat": "~1.7.2",

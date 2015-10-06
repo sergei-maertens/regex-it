@@ -1,0 +1,19 @@
+<address>
+<p><strong>{{ company_name }}</strong></p>
+<p>{{ company_address|join:'<br>' }}</p>
+
+{% if client %}
+<p>{{ client.phone }}
+    {% if company_tax_identifier %}
+        <br> {{ company_tax_identifier }}
+    {% endif %}
+</p>
+{% else %}
+<p>
+    {{ company_kvk }}<br>
+    {{ company_tax_identifier }}<br>
+    {{ company_iban }}
+</p>
+{% endif %}
+
+</address>

@@ -10,3 +10,8 @@
 @import "lists";
 @import "tables";
 @import "typography";
+
+
+html, body {
+    min-height: 100%;
+}

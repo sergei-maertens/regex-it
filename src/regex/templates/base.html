@@ -1,15 +1,42 @@
-<!DOCTYPE html>{% load i18n staticfiles %}
+<!DOCTYPE html>{% load i18n staticfiles compress %}
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>{% trans "Regex-IT portal" %}</title>
 
-        <link href="{% static "normalize.css/normalize.css" %}">
-        <link href="{% static "font-awesome/css/font-awesome.min.css" %}">
-        <link href="{% static "css/screen.css" %}">
+        {% compress css %}
+        <link href="{% static "normalize.css/normalize.css" %}" media="screen, projection, print" rel="stylesheet">
+        <link href="{% static "font-awesome/css/font-awesome.min.css" %}" media="screen, projection, print" rel="stylesheet">
+        <link href="{% static "css/screen.css" %}" media="screen, projection, print" rel="stylesheet">
+        {% endcompress %}
+        {% block extrastyle %}{% endblock %}
     </head>
 
-    <body>
-        {% block content %}
+    <body class="{% block body-class %}{% endblock %}">
+        <header>
+            {% block header %}
+            <figure>logo</figure>
+            <nav>
+                <ul role="menu">
+                    <li>home</li>
+                    <li>portfolio</li>
+                    <li>contact</li>
+                    <li><i class="fa fa-lock"></i> login</li>
+                </ul>
+            </nav>
+            {% endblock %}
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer></footer>
+
+        {% block scripts %}
+        <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
         {% endblock %}
     </body>
 </html>

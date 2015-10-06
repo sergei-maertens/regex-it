@@ -1,0 +1,106 @@
+{% extends "base.html" %}{% load i18n math invoices %}
+
+{% block body-class %}pdf invoice{% endblock %}
+
+{% block header %}
+    {% company_details invoice.client %}
+    {% company_details %}
+{% endblock %}
+
+
+{% block content %}
+<article>
+    <header>
+        <h2>{% blocktrans with number=invoice.invoice_number date=invoice.date %}
+        Invoice {{ number }} <small class="pull-right">{{ date }}</small>
+        {% endblocktrans %}</h2>
+    </header>
+
+    <summary>
+        {% blocktrans count n_items=invoice.n_items with date=invoice.date prev=invoice.get_previous_by_date.date|default:_('start') %}
+            Invoice for 1 item, spanning {{ prev }} until {{ date }}.
+        {% plural %}
+            Invoice for {{ n_items }} items, spanning {{ prev }} until {{ date }}.
+        {% endblocktrans %}
+
+        <section>
+            {# Tax rates #}
+            <h3>{% trans "Applied tax rates" %}</h3>
+            <div><table>
+                <tr>
+                    <th>{% trans "rate" %}</th>
+                    <th>{% trans "number of times applied" %}</th>
+                </tr>
+
+                {% for tax_rate in tax_rates %}
+                <tr>
+                    <td>{{ tax_rate.tax_rate|percentage }}</td>
+                    <td>{{ tax_rate.num }}</td>
+                </tr>
+                {% endfor %}
+            </table></div>
+        </section>
+
+        <hr>
+
+        <section class="highlight">
+            <h3>{% trans "Totals" %}</h3>
+            <div><table>
+                <tr>
+                    <th>{% trans "total (excl. tax)" %}</th>
+                    <th>{% trans "total tax" %}</th>
+                    <th>{% trans "total (incl. tax)" %}</th>
+                </tr>
+                <tr>
+                    <td>&euro; {{ invoice.total_no_vat|floatformat:2 }}</td>
+                    <td>&euro; {{ invoice.total_vat|floatformat:2 }}</td>
+                    <td><span class="total">&euro; <strong>{{ invoice.total_with_vat|floatformat:2 }}</strong></span></td>
+                </tr>
+            </table></div>
+        </section>
+
+        <p>{% blocktrans with due_date=invoice.due_date|date:"d/m/Y" %}Please transfer the total sum by {{ due_date }}.{% endblocktrans %}</p>
+    </summary>
+</article>
+
+<section class="page-break">
+    <h2>{% trans "Invoice details" %}</h2>
+    <table class="details">
+        <thead>
+            <tr>
+                <th>{% trans "project" %}</th>
+                <th>{% trans "remarks" %}</th>
+                <th>{% trans "amount" %}</th>
+                <th>{% trans "rate (€ / hour)" %}</th>
+                <th>{% trans "tax rate" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{% ifchanged item.project %}{{ item.project.name }}{% endifchanged %}</td>
+                    <td>{{ item.remarks }}</td>
+                    <td>{{ item.amount }}</td>
+                    <td>{{ item.rate }}</td>
+                    <td>{{ item.tax_rate|percentage }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section><hr> <p class="pull-right">{% trans "End of invoice" %}</p> </section>
+{% endblock %}
+
+
+{% block extrastyle %}
+<style>
+@page {
+    @bottom-right {
+        content: "{% blocktrans with date=invoice.date number=invoice.invoice_number %}Invoice {{ number }} - {{ date }} - Page " counter(page) " of " counter(pages){% endblocktrans %};
+        font-size: 0.75em;
+        margin-bottom: 3mm;
+    }
+}
+</style>
+{% endblock %}

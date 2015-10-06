@@ -1,0 +1,70 @@
+body.invoice {
+
+    header {
+        margin-top: $base-spacing;
+        @include outer-container;
+        @include align-items(flex-start);
+        border-bottom: none;
+
+        address {
+            @include span-columns(6);
+
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+
+    h2 {
+        margin-top: $base-spacing;
+        border-bottom: solid 2px $medium-gray;
+    }
+
+    summary {
+        section {
+            @include margin($base-spacing null);
+            @include row;
+
+            > h3, > div {
+                @include span-columns(6);
+            }
+        }
+
+        table {
+            th, td {
+                text-align: right;
+            }
+
+            td {
+                border-bottom: none;
+            }
+        }
+    }
+
+    main > footer {
+        @include position(fixed, 100% null null null);
+    }
+
+    .highlight {
+        background-color: $light-gray;
+        @include margin($base-spacing (-$base-spacing));
+        @include padding(null $base-spacing);
+    }
+
+    span.total {
+        @include padding(0.5em);
+        border: solid 1px $medium-gray;
+        background-color: $medium-gray;
+    }
+
+    .details {
+        td,
+        th {
+            text-align: right;
+
+            &:first-child {
+                text-align: left;
+            }
+        }
+    }
+}

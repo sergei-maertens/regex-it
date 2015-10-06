@@ -33,6 +33,7 @@ class WorkEntry(models.Model):
 
         Durations are optionally rounded to the nearest quarter.
         """
+
         timedelta = self.end - self.start
         delta = relativedelta(seconds=timedelta.total_seconds())
 

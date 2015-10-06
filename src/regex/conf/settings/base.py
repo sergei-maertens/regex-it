@@ -67,8 +67,7 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     str(SRC_DIR / 'static'),
     str(SRC_DIR / 'sass'),
-    str(SRC_DIR / 'static' / 'bower_components' / 'bourbon' / 'app' / 'assets' / 'stylesheets'),
-    str(SRC_DIR / 'static' / 'bower_components' / 'neat' / 'app' / 'assets' / 'stylesheets'),
+    str(SRC_DIR / 'static' / 'bower_components'),
 )
 
 # List of finder classes that know how to find static files in
@@ -136,6 +135,7 @@ INSTALLED_APPS = [
     # External applications.
     'compressor',
     'django_countries',
+    'import_export',
     'sniplates',
 
     # Project applications.
@@ -143,6 +143,7 @@ INSTALLED_APPS = [
     'regex.crm',
     'regex.invoices',
     'regex.work_entries',
+    'regex.utils',
 ]
 
 LOGGING_DIR = ROOT_DIR / 'log'
@@ -266,6 +267,6 @@ COMPRESS_PRECOMPILERS = (
 )
 
 #
-#
+# Auth
 #
 AUTH_USER_MODEL = 'accounts.User'
