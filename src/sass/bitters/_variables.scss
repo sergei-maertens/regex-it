@@ -16,15 +16,23 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$blue: #477dca;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 
+/* Coolors Exported Palette - coolors.co/f1be65-2d728f-8c0d32-3c1518-69140e */
+
+$palette-light: #f1be65; //rgba(241, 190, 101, 100)
+$palette-action: #2d728f; //rgba(45, 114, 143, 100)
+$palette-action2: #8c0d32; //rgba(140, 13, 50, 100)
+$palette-darkest: #3c1518; //rgba(60, 21, 24, 100)
+$palette-dark: #69140e; //rgba(105, 20, 14, 100)
+
 // Font Colors
 $base-background-color: #FFF;
 $base-font-color: $dark-gray;
-$action-color: $blue;
+$action-color: $palette-action;
+$light-font-color: #FFF;
 
 // Border
 $base-border-color: $light-gray;

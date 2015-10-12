@@ -1,0 +1,4 @@
+---
+
+- include: folders.yml
+- include: create_config.yml

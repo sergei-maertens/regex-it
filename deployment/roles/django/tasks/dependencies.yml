@@ -1,0 +1,12 @@
+---
+# Make sure the virtualenv is created and requirements are installed
+
+- name: Install requirements
+  pip: virtualenv={{ venv }}
+       chdir={{ project_home }}
+       requirements=requirements/{{ deploy_env }}.txt
+       virtualenv_command={{ venv_command }}
+  environment:
+    PATH: /usr/pgsql-9.1/bin/:{{ ansible_env.PATH }}
+  notify:
+    - restart uwsgi

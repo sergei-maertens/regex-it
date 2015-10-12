@@ -1,0 +1,16 @@
+---
+
+- name: Cron - send e-mails
+  cron: name="send e-mails"
+        minute="*/2"
+        job="cd {{ project_home }} && source env/bin/activate &&  python src/manage.py send_mail --settings={{ settings_module }} >> log/send_mail.log 2>&1"
+
+- name: Cron - retry deferred emails
+  cron: name="retry deferred e-mails"
+        minute="0,20,40"
+        job="cd {{ project_home }} && source env/bin/activate && python src/manage.py retry_deferred --settings={{ settings_module }} >> log/retry_deferred.log 2>&1"
+
+- name: Cron - update elastic search index
+  cron: name="update elastic search index"
+        minute="10,30,50"
+        job="cd {{ project_home }} && source env/bin/activate && python src/manage.py update_index --settings={{ settings_module }} >> log/update_index.log 2>&1"

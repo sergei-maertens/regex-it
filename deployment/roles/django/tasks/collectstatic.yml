@@ -1,0 +1,8 @@
+---
+
+- name: Run collectstatic
+  django_manage: app_path={{ project_home }}/src/
+                 command=collectstatic
+                 link=yes
+                 settings={{ settings_module }}
+                 virtualenv={{ venv }}

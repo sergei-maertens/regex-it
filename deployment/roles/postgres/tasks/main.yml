@@ -1,0 +1,18 @@
+---
+# Creates the database for the application
+
+- name: Create application database user
+  postgresql_user: name={{ db_user }}
+                   password="{{ db_password }}"
+                   role_attr_flags=NOCREATEDB,NOSUPERUSER,NOCREATEROLE
+  remote_user: root
+  su: yes
+  su_user: postgres
+
+- name: Create application database
+  postgresql_db: name={{ db_name }}
+                 encoding='UTF-8'
+                 owner={{ db_user }}
+  remote_user: root
+  su: yes
+  su_user: postgres

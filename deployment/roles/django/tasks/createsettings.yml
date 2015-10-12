@@ -1,0 +1,6 @@
+---
+
+- name: Create the secret settings file
+  template: src=settings_local.py.j2
+            dest={{ project_home }}/src/langerak_gkv/conf/settings_local.py
+            mode=0600

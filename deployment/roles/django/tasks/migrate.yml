@@ -1,0 +1,13 @@
+---
+
+- name: Create non-south managed db tables
+  django_manage: app_path={{ project_home }}/src/
+                 command=syncdb
+                 settings={{ settings_module }}
+                 virtualenv={{ venv }}
+
+- name: Run database migrations
+  django_manage: app_path={{ project_home }}/src/
+                 command=migrate
+                 settings={{ settings_module }}
+                 virtualenv={{ venv }}

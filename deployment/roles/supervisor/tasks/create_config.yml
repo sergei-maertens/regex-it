@@ -1,0 +1,12 @@
+---
+
+- name: Create the supervisor config file
+  template: src=program.j2
+            dest=/etc/supervisor.d/koningskerk-{{ deploy_env }}.ini
+            owner=root
+            group=root
+            mode=0644
+  remote_user: root
+
+- name: Ensure the supervisor config file is loaded
+  supervisorctl: name=uwsgi-koningskerk-{{ deploy_env }} state=present

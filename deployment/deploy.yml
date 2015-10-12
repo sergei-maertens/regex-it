@@ -1,0 +1,22 @@
+---
+
+- name: Provision the server with all required packages
+  hosts: "{{ target|default('staging') }}"
+
+- name: Update the application to the latest version
+  hosts: "{{ target|default('staging') }}"
+  vars:
+    deploy_env: "{{ target|default('staging') }}"
+    release: "{{ release_tag|default('master') }}"
+    repository: https://github.com/sergei-maertens/regex-it.git
+    settings_module: regex.conf.settings.{{ deploy_env }}
+    project_home: "{{ ansible_env.HOME }}/django/{{ deploy_env }}"
+    venv: "{{ project_home }}/env"
+    ports: {staging: 8010, production: 8011}
+  remote_user: regex
+  roles:
+    - git
+    - postgres
+    - supervisor
+    - nginx
+    - django

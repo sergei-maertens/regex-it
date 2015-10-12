@@ -1,0 +1,10 @@
+---
+# Main tasks file to distribute the subtasks
+
+- include: makedirs.yml
+- include: dependencies.yml
+- include: createsettings.yml
+- include: migrate.yml
+- include: frontend.yml
+- include: collectstatic.yml
+- include: cronjobs.yml

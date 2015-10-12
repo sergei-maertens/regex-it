@@ -7,7 +7,7 @@ from .models import Invoice
 
 class InvoiceDetailView(DetailView):
     model = Invoice
-    queryset = Invoice.objects.annotate(n_items=Count('invoiceitem'))
+    queryset = Invoice.objects.select_related('client').annotate(n_items=Count('invoiceitem'))
     slug_field = 'invoice_number'
     slug_url_kwarg = 'invoice_number'
     context_object_name = 'invoice'

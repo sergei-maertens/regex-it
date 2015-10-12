@@ -1,1 +1,23 @@
-$example_color: #ff0000;
+.bg-light {
+    background-color: $palette-light;
+}
+
+.bg-action {
+    background-color: $palette-action;
+    color: $light-font-color;
+}
+
+.bg-action2 {
+    background-color: $palette-action2;
+    color: $light-font-color;
+}
+
+.bg-darkest {
+    background-color: $palette-darkest;
+    color: $light-font-color;
+}
+
+.bg-dark {
+    background-color: $palette-dark;
+    color: $light-font-color;
+}

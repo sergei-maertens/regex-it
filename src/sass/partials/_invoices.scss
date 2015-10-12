@@ -1,8 +1,12 @@
 body.invoice {
 
+    header,
+    main {
+        @include outer-container(52em);
+    }
+
     header {
         margin-top: $base-spacing;
-        @include outer-container;
         @include align-items(flex-start);
         border-bottom: none;
 
@@ -17,7 +21,8 @@ body.invoice {
 
     h2 {
         margin-top: $base-spacing;
-        border-bottom: solid 2px $medium-gray;
+        color: $palette-darkest;
+        border-bottom: solid 1px $palette-action2;
     }
 
     summary {
@@ -29,15 +34,15 @@ body.invoice {
                 @include span-columns(6);
             }
         }
+    }
 
-        table {
-            th, td {
-                text-align: right;
-            }
+    table {
+        th, td {
+            text-align: right;
+        }
 
-            td {
-                border-bottom: none;
-            }
+        td {
+            border-bottom: none;
         }
     }
 
@@ -53,15 +58,13 @@ body.invoice {
 
     span.total {
         @include padding(0.5em);
-        border: solid 1px $medium-gray;
-        background-color: $medium-gray;
+        background-color: $palette-action;
+        color: #FFF;
     }
 
     .details {
         td,
         th {
-            text-align: right;
-
             &:first-child {
                 text-align: left;
             }

@@ -1,0 +1,4 @@
+---
+
+- name: Reread config file
+  supervisorctl: name=uwsgi-koningskerk-{{ deploy_env }} state=restarted
