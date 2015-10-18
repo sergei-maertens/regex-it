@@ -30,4 +30,5 @@
     # front-end
     - npm
 
-
+- name: Symlink node because other packages depend on it
+  file: src=/usr/bin/nodejs dest=/usr/bin/node
