@@ -6,5 +6,10 @@
        version="{{ release }}"
        force=yes
        depth=1
-  notify:
-    - restart uwsgi
+  # notify:
+  #   - restart uwsgi
+  #   - npm install
+  #   - bower install
+  #   - jspm install
+  #   - compile sass
+  #   - do collectstatic

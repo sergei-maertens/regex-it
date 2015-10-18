@@ -5,8 +5,6 @@
   remote_user: regex
   roles:
     - env
-    - git
-    # - postgres
+    - django
     # - supervisor
     # - nginx
-    # - django

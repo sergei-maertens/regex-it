@@ -1,8 +1,0 @@
----
-# Check out the repo, fast forward and create the necesary dirs
-
-- name: Ensure log dir exists
-  file: path={{ project_home }}/log state=directory
-
-- name: Ensure media dir exists
-  file: path={{ project_home }}/media state=directory

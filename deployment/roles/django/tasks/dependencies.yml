@@ -4,9 +4,7 @@
 - name: Install requirements
   pip: virtualenv={{ venv }}
        chdir={{ project_home }}
-       requirements=requirements/{{ deploy_env }}.txt
-       virtualenv_command={{ venv_command }}
-  environment:
-    PATH: /usr/pgsql-9.1/bin/:{{ ansible_env.PATH }}
-  notify:
-    - restart uwsgi
+       requirements=requirements/{{ target_env }}.txt
+       executable=pip3
+  # notify:
+  #   - restart uwsgi
