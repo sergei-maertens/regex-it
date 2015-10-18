@@ -3,7 +3,7 @@ Django==1.8.5
 Pillow
 psycopg2
 python-magic==0.4.6
-dateutil
+python-dateutil==2.4.2
 
 django-appconf==1.0.1
 django-autoslug
