@@ -1,0 +1,4 @@
+---
+
+- name: Create log directory
+  file: name="{{ project_home }}/log" state=directory

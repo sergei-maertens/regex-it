@@ -5,3 +5,4 @@
                  command=migrate
                  settings={{ settings_module }}
                  virtualenv={{ venv }}
+  environment: "{{ django_env }}"
