@@ -6,5 +6,6 @@
        chdir={{ project_home }}
        requirements=requirements/{{ target_env }}.txt
        executable=pip3
+       virtualenv_python=python3
   # notify:
   #   - restart uwsgi
