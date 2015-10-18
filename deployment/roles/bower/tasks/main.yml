@@ -1,0 +1,4 @@
+---
+
+- name: Install bower dependencies
+  bower: offline=yes path={{ project_home }}

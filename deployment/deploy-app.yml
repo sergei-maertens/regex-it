@@ -5,6 +5,8 @@
   remote_user: regex
   roles:
     - env
+    - npm
+    - bower
     - django
     # - supervisor
     # - nginx

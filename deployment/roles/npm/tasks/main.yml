@@ -1,0 +1,4 @@
+---
+
+- name: install NPM dependencies
+  npm: path={{ project_home }} production=no # we need the build tools

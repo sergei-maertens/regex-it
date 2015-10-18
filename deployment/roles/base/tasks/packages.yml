@@ -27,4 +27,7 @@
     - libffi-dev
     - shared-mime-info
 
+    # front-end
+    - npm
+
 
