@@ -260,13 +260,6 @@ AXES_USE_USER_AGENT = False  # Default: False
 AXES_COOLOFF_TIME = 1  # One hour
 
 #
-# Compressor
-#
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
-
-#
 # Auth
 #
 AUTH_USER_MODEL = 'accounts.User'
