@@ -1,29 +1,28 @@
-upstream konkerk_production_django {
-    server 127.0.0.1:8010;
+upstream {{ prefix }}_django {
+    server 127.0.0.1:{{ uwsgi_port }};
 }
 
-upstream konkerk_staging_django {
-    server 127.0.0.1:8011;
-}
-
+# redirect non-ssl to ssl
 # server {
 #     listen 80;
-#     server_name koningskerk.nu www.koningskerk.nu;
-#     return 301 https://koningskerk.nu$request_uri;
+#     server_name {{ hostnames|join(' ') }};
+#     return 301 https://{{ hostnames[0] }}$request_uri;
 # }
 
+
+# ssl
 server {
     listen       80;
-    server_name  koningskerk.nu www.koningskerk.nu;
-    error_log /var/log/nginx/koningskerk.nu.error.log warn;
-    access_log  /var/log/nginx/koningskerk.nu.access.log main;
+    server_name  {{ hostnames|join(' ') }};
+    error_log /var/log/nginx/{{ prefix }}/error.log warn;
+    access_log  /var/log/nginx/{{ prefix }}/access.log main;
 
     charset utf-8;
-    root {{ ansible_env.HOME }}/public_html;
+    root {{ root }};
 
     # ssl on;
-    # ssl_certificate /usr/local/nginx/conf/ssl/www.koningskerk.nu/ssl-unified.crt;
-    # ssl_certificate_key /usr/local/nginx/conf/ssl/www.koningskerk.nu/ssl.key;
+    # ssl_certificate {{ ansible_env.HOME }}/.ssl/{{ prefix }}/ssl-unified.crt;
+    # ssl_certificate_key {{ ansible_env.HOME }}/.ssl/{{ prefix }}/ssl.key;
     # ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
     # ssl_dhparam /etc/ssl/certs/dhparam.pem;
     # ssl_prefer_server_ciphers on;
@@ -33,7 +32,7 @@ server {
     if (-f $document_root/maintenance.html ) {
         set $maintenance on;
     }
-    if ($remote_addr = "62.45.209.60") {
+    if ($remote_addr = "{{ home_ip }}") {
         set $maintenance off;
     }
     if ($maintenance = on) {
@@ -45,25 +44,18 @@ server {
     }
 
     location / {
-        uwsgi_pass konkerk_production_django;
+        uwsgi_pass {{ prefix }}_django;
         include uwsgi_params;
-    }
-
-    location /favicon.ico {
-        alias {{ ansible_env.HOME }}/public_html/favicon.ico;
-        expires max;
     }
 
     location /static/ {
         expires max;
-        root {{ ansible_env.HOME }}/django/production;
-        access_log  /var/log/nginx/static.koningskerk.nu.access.log;
+        access_log  /var/log/nginx/static.{{ prefix }}.access.log;
     }
 
     location /media/ {
         expires 30d;
-        root {{ ansible_env.HOME }}/django/production;
-        access_log  /var/log/nginx/media.koningskerk.nu.access.log;
+        access_log  /var/log/nginx/media.{{ prefix }}.access.log;
     }
 
     error_page 503 @maintenance;
@@ -72,66 +64,3 @@ server {
         internal;
     }
 }
-
-
-server {
-    listen       80;
-    server_name  staging.koningskerk.nu www.staging.koningskerk.nu;
-    error_log /var/log/nginx/staging.koningskerk.nu.error.log warn;
-    access_log  /var/log/nginx/staging.koningskerk.nu.access.log main;
-
-    charset utf-8;
-    root {{ ansible_env.HOME }}/public_html/staging;
-
-    # ssl on;
-    # ssl_certificate /usr/local/nginx/conf/ssl/www.koningskerk.nu/ssl-unified.crt;
-    # ssl_certificate_key /usr/local/nginx/conf/ssl/www.koningskerk.nu/ssl.key;
-    # ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
-    # ssl_dhparam /etc/ssl/certs/dhparam.pem;
-    # ssl_prefer_server_ciphers on;
-    # ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4 ";
-
-    set $maintenance off;
-    if (-f $document_root/maintenance.html ) {
-        set $maintenance on;
-    }
-    if ($remote_addr = "62.45.209.60") {
-        set $maintenance off;
-    }
-    if ($maintenance = on) {
-        return 503;
-    }
-
-    location ~ /\.ht {
-        deny all;
-    }
-
-    location / {
-        uwsgi_pass konkerk_staging_django;
-        include uwsgi_params;
-    }
-
-    location /favicon.ico {
-        alias {{ ansible_env.HOME }}/public_html/favicon.ico;
-        expires max;
-    }
-
-    location /static/ {
-        expires max;
-        root {{ ansible_env.HOME }}/django/staging;
-        access_log  /var/log/nginx/static.staging.koningskerk.nu.access.log;
-    }
-
-    location /media/ {
-        expires 30d;
-        root {{ ansible_env.HOME }}/django/staging;
-        access_log  /var/log/nginx/media.staging.koningskerk.nu.access.log;
-    }
-
-    error_page 503 @maintenance;
-    location @maintenance {
-        rewrite ^(.*)$ /maintenance.html break;
-        internal;
-    }
-}
-
