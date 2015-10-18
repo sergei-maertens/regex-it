@@ -1,0 +1,12 @@
+---
+# Create application user
+
+- name: Create the application user
+  user: name={{ application_user }}
+        group={{ application_user }}
+        shell=/bin/bash
+        password={{ crypted_password }}
+
+- name: Copy public key to authorized_keys.
+  authorized_key: user={{ application_user }}
+                  key="{{ pub_key }}"

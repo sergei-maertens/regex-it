@@ -1,0 +1,5 @@
+---
+# Set up the base system
+
+- include: packages.yml
+- include: users.yml

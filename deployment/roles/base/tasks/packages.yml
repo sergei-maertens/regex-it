@@ -1,0 +1,30 @@
+---
+
+- name: Provisioning - install the base packages
+  apt: name={{ item }} state=present
+  with_items:
+    - git
+    - nginx
+    - supervisor
+    - python3-dev
+    - python3-setuptools
+    - redis-server
+    # lxml depend on these
+    - libxml2
+    - libxml2-dev
+    - libxslt1.1
+    - libxslt1-dev
+    - swig
+    - libjpeg-dev
+
+    - python3-pip
+    - python-virtualenv
+
+    # weasyprint
+    - libcairo2
+    - libpango1.0-0
+    - libgdk-pixbuf2.0-0
+    - libffi-dev
+    - shared-mime-info
+
+

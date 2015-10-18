@@ -1,0 +1,8 @@
+---
+
+- name: Provision the server with all required packages and user accounts
+  hosts: "{{ target|default('staging') }}"
+  remote_user: root
+  roles:
+    - base
+    - postgres
