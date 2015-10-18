@@ -1,3 +1,12 @@
+repository: https://github.com/sergei-maertens/regex-it.git
+
 target_env: "{{ target|default('staging') }}"
+release: "{{ release_tag|default('master') }}"
 
 application_user: regex
+
+prefix: "{{ application_user + '_' + target_env }}"
+project_home: "/srv/sites/{{ prefix }}/"
+venv: "/srv/envs/{{ prefix }}/"
+
+settings_module: regex.conf.settings.{{ target_env }}

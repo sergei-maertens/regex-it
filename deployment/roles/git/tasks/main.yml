@@ -3,7 +3,7 @@
 - name: initial checkout of code
   git: repo={{ repository }}
        dest={{ project_home }}
-       version={{ release }}
+       version="{{ release }}"
        force=yes
        depth=1
   notify:
