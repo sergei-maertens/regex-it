@@ -11,7 +11,7 @@ django_compressor
 django-countries
 django-exportdb
 django-phonenumber-field
-django-rosetta
+# django-rosetta
 django-sniplates
 django-systemjs
 djangorestframework
