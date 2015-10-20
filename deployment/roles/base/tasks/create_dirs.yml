@@ -5,7 +5,7 @@
         state=directory
         owner={{ application_user }}
         group={{ application_user }}
-        mode=0744
+        mode=0754
   with_items:
     - "{{ project_home }}"
     - "{{ project_home }}/log"
