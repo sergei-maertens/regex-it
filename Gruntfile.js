@@ -1,12 +1,21 @@
 module.exports = function(grunt) {
+
+    var sass_files = [
+        {
+            expand: true,
+            cwd: 'src/sass/',
+            src: ['*.scss'],
+            dest: 'src/static/css/',
+            ext: '.css'
+        }
+    ];
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             sass: {
                 files: [
                     'src/sass/**/*.{scss,sass}',
-                    'src/sass/partials/**/*.{scss,sass}',
-                    'src/sass/bitters/**/*.{scss,sass}'
                 ],
                 tasks: ['sass:compile']
             },
@@ -24,17 +33,13 @@ module.exports = function(grunt) {
                 includePaths: [
                     'src/static/bower_components/bourbon/app/assets/stylesheets',
                     'src/static/bower_components/neat/app/assets/stylesheets'
-                ]
+                ],
             },
             compile: {
-                files: {
-                    'src/static/css/screen.css': 'src/sass/screen.scss'
-                },
+                files: sass_files
             },
             dist: {
-                files: {
-                    'src/static/css/screen.css': 'src/sass/screen.scss'
-                },
+                files: sass_files,
                 options: {
                     outputStyle: 'compressed',
                 }
