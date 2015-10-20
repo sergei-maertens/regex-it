@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from regex.crm.models import TaxRates
+from regex.utils.storages import PrivateMediaFileSystemStorage
 from regex.work_entries.models import WorkEntry
 
 
@@ -30,6 +31,10 @@ class Invoice(models.Model):
         validators=[validators.RegexValidator(RE_INVOICE_NUMBER)]
     )
     due_date = models.DateTimeField(_('due date'), null=True, blank=True)
+    pdf = models.FileField(
+        _('pdf'), blank=True, upload_to='invoices/%Y/%m',
+        storage=PrivateMediaFileSystemStorage()
+    )
 
     received = models.DateTimeField(_('received'), null=True, blank=True)
 
