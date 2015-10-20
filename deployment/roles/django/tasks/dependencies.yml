@@ -6,5 +6,5 @@
        chdir={{ project_home }}
        requirements=requirements/{{ target_env }}.txt
        virtualenv_python=python3
-  # notify:
-  #   - restart uwsgi
+  notify:
+    - restart uwsgi
