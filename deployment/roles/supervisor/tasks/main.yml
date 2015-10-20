@@ -1,4 +1,21 @@
 ---
 
-- include: folders.yml
-- include: create_config.yml
+- name: Ensure supervisor is installed
+  apt: name=supervisor state=present
+  remote_user: root
+
+- name: Create the supervisor config file
+  template: src=program.j2
+            dest=/etc/supervisor/conf.d/uwsgi_{{ prefix }}.ini
+            owner=root
+            group=root
+            mode=0644
+  remote_user: root
+  notify:
+    - reread uwsgi config
+    - restart uwsgi
+
+- name: Ensure the supervisor config file is loaded
+  supervisorctl: name=uwsgi_{{ prefix }} state=present
+  notify:
+    - restart uwsgi

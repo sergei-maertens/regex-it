@@ -1,4 +1,0 @@
----
-
-- name: Ensure log dir exists
-  file: path={{ project_home }}/log state=directory

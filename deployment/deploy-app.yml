@@ -7,6 +7,7 @@
     - env
     - npm
     - bower
+    - grunt
     - django
-    # - supervisor
-    # - nginx
+    - supervisor
+    - nginx

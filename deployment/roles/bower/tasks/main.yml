@@ -1,9 +1,8 @@
 ---
 
-- name: Install bower
-  npm: name=bower path={{ project_home }}
+- name: Install bower (as root)
+  npm: name=bower path={{ project_home }} global=yes
+  remote_user: root
 
 - name: Install bower dependencies
   bower: offline=yes path={{ project_home }}
-  environment:
-    PATH: ./node_modules/bower/bin/:{{ ansible_env.PATH }}

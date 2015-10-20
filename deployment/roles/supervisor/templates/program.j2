@@ -1,6 +1,6 @@
-[program:uwsgi-koningskerk-{{ deploy_env }}]
-user = konkerk
-command = {{ venv }}/bin/uwsgi --ini {{ project_home }}/src/langerak_gkv/conf/uwsgi.ini
+[program:uwsgi_{{ prefix }}]
+user = {{ application_user }}
+command = {{ venv }}/bin/uwsgi --ini {{ project_home }}/src/{{ project_name }}/conf/uwsgi.ini
 autostart = true
 autorestart = true
 stderr_logfile = {{ project_home }}/log/uwsgi_err.log
@@ -10,4 +10,5 @@ environment =
     DJANGO_SETTINGS_MODULE={{ settings_module }},
     VIRTUAL_ENV={{ venv }},
     PROJECT_ROOT={{ project_home }},
-    PROJECT_PORT={{ ports.get(deploy_env) }}
+    PROJECT_PORT={{ uwsgi_port }},
+    ENV_FILE={{ env_file_dest }}

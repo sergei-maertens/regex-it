@@ -4,6 +4,7 @@ target_env: "{{ target|default('staging') }}"
 release: "{{ release_tag|default('master') }}"
 
 application_user: regex
+project_name: "{{ application_user }}"
 
 prefix: "{{ application_user + '_' + target_env }}"
 project_home: "/srv/sites/{{ prefix }}/"

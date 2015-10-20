@@ -9,6 +9,7 @@
             owner={{ application_user }}
             group={{ application_user }}
             mode=0644
+  remote_user: root
   notify: reload nginx
 
 - name: Enable the virtual host
@@ -17,4 +18,5 @@
         owner={{ application_user }}
         group={{ application_user }}
         state=link
+  remote_user: root
   notify: reload nginx
