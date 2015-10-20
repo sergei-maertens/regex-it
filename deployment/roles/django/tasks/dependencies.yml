@@ -1,6 +1,14 @@
 ---
 # Make sure the virtualenv is created and requirements are installed
 
+- name: Create virtualenv directory with correct file permissions
+  file: name="{{ venv }}"
+        state=directory
+        owner={{ application_user }}
+        group={{ application_user }}
+        mode=0755
+  remote_user: root
+
 - name: Install requirements
   pip: virtualenv={{ venv }}
        chdir={{ project_home }}
