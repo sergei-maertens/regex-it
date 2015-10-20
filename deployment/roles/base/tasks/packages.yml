@@ -30,5 +30,10 @@
     - nodejs
     - npm
 
+- name: Check if node is available
+  stat: path=/usr/bin/nodejs
+  register: has_node
+
 - name: Symlink node because other packages depend on it
   file: src=/usr/bin/nodejs dest=/usr/bin/node
+  when: has_node.stat.exists == False

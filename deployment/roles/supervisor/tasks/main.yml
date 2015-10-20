@@ -6,7 +6,7 @@
 
 - name: Create the supervisor config file
   template: src=program.j2
-            dest=/etc/supervisor/conf.d/uwsgi_{{ prefix }}.ini
+            dest=/etc/supervisor/conf.d/uwsgi_{{ prefix }}.conf
             owner=root
             group=root
             mode=0644
@@ -17,5 +17,6 @@
 
 - name: Ensure the supervisor config file is loaded
   supervisorctl: name=uwsgi_{{ prefix }} state=present
+  remote_user: root
   notify:
     - restart uwsgi

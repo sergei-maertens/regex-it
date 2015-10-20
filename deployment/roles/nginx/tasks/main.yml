@@ -2,6 +2,7 @@
 
 - name: make sure the log dir exists
   file: path=/var/log/nginx/{{ prefix }} state=directory
+  remote_user: root
 
 - name: Create the nginx vhost
   template: src=vhost.j2
