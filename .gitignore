@@ -1,6 +1,7 @@
 *.py[oc]
 __pycache__
 
+src/regex/conf/uwsgi.ini
 /log/
 /static/
 /media/
