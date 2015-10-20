@@ -15,6 +15,15 @@
     - reread uwsgi config
     - restart uwsgi
 
+- name: Copy the uwsgi.ini file
+  template: src=uwsgi.ini.j2
+            dest={{ project_home }}/src/{{ project_name }}/conf/uwsgi.ini
+            owner={{ application_user }}
+            group={{ application_user }}
+            mode=0600
+  notify:
+    - restart uwsgi
+
 - name: Ensure the supervisor config file is loaded
   supervisorctl: name=uwsgi_{{ prefix }} state=present
   remote_user: root

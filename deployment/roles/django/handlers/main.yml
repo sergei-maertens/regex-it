@@ -1,8 +1,5 @@
 ---
 # Handlers to be run on notify
 
-- name: restart uwsgi
-  supervisorctl: name=uwsgi-koningskerk-{{ deploy_env }} state=restarted
-
 - name: touch wsgi file
-  file: path="{{ project_home }}/src/langerak_gkv/wsgi/wsgi_{{ deploy_env }}.py" state=touch
+  file: path="{{ project_home }}/src/wsgi.py" state=touch
