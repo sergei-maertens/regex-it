@@ -1,0 +1,332 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-21 09:18+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/admin.py:16
+msgid "Personal info"
+msgstr ""
+
+#: accounts/admin.py:17
+msgid "Permissions"
+msgstr ""
+
+#: accounts/admin.py:19
+msgid "Important dates"
+msgstr ""
+
+#: accounts/models.py:32
+msgid "first name"
+msgstr ""
+
+#: accounts/models.py:33
+msgid "last name"
+msgstr ""
+
+#: accounts/models.py:34
+msgid "email address"
+msgstr ""
+
+#: accounts/models.py:36
+msgid "staff status"
+msgstr ""
+
+#: accounts/models.py:37
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: accounts/models.py:40
+msgid "active"
+msgstr ""
+
+#: accounts/models.py:41
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: accounts/models.py:44
+msgid "date joined"
+msgstr ""
+
+#: accounts/models.py:52
+msgid "user"
+msgstr ""
+
+#: accounts/models.py:53
+msgid "users"
+msgstr ""
+
+#: conf/settings/base.py:50
+msgid "Dutch"
+msgstr ""
+
+#: conf/settings/base.py:51
+msgid "Dutch (Belgium)"
+msgstr ""
+
+#: crm/admin.py:17 crm/models.py:65
+msgid "clients"
+msgstr ""
+
+#: crm/admin.py:33 crm/models.py:36
+msgid "contacts"
+msgstr ""
+
+#: crm/admin.py:37
+msgid "projects"
+msgstr ""
+
+#: crm/models.py:20
+msgid "label"
+msgstr ""
+
+#: crm/models.py:21 crm/models.py:44
+msgid "name"
+msgstr ""
+
+#: crm/models.py:22 crm/models.py:48
+msgid "email"
+msgstr ""
+
+#: crm/models.py:24 crm/models.py:50
+msgid "address"
+msgstr ""
+
+#: crm/models.py:25
+msgid "postal code"
+msgstr ""
+
+#: crm/models.py:26 crm/models.py:51
+msgid "city"
+msgstr ""
+
+#: crm/models.py:27 crm/models.py:52
+msgid "Country"
+msgstr ""
+
+#: crm/models.py:31 crm/models.py:60
+msgid "created"
+msgstr ""
+
+#: crm/models.py:32 crm/models.py:61
+msgid "modified"
+msgstr ""
+
+#: crm/models.py:35
+msgid "contact"
+msgstr ""
+
+#: crm/models.py:45
+msgid "slug"
+msgstr ""
+
+#: crm/models.py:55
+msgid "registration number"
+msgstr ""
+
+#: crm/models.py:55
+msgid "KvK number"
+msgstr ""
+
+#: crm/models.py:56
+msgid "VAT number"
+msgstr ""
+
+#: crm/models.py:64
+msgid "client"
+msgstr ""
+
+#: crm/models.py:72
+msgid "low"
+msgstr ""
+
+#: crm/models.py:73
+msgid "high"
+msgstr ""
+
+#: crm/models.py:89
+msgid "hourly base rate"
+msgstr ""
+
+#: crm/models.py:90
+msgid "flat fee"
+msgstr ""
+
+#: crm/models.py:92 invoices/models.py:141
+#: invoices/templates/invoices/invoice_detail.html:75
+msgid "tax rate"
+msgstr ""
+
+#: crm/models.py:113
+msgid "Provide a base hourly rate or a flat fee."
+msgstr ""
+
+#: invoices/admin.py:12
+msgid "Generate invoice details"
+msgstr ""
+
+#: invoices/admin.py:34
+msgid "# invoice items"
+msgstr ""
+
+#: invoices/admin.py:38 invoices/admin.py:39 invoices/models.py:152
+msgid "invoice items"
+msgstr ""
+
+#: invoices/apps.py:7
+msgid "Invoices"
+msgstr ""
+
+#: invoices/models.py:25
+msgid "date"
+msgstr ""
+
+#: invoices/models.py:25
+msgid "Include work up to (including) this day."
+msgstr ""
+
+#: invoices/models.py:29
+msgid "invoice number"
+msgstr ""
+
+#: invoices/models.py:33
+msgid "due date"
+msgstr ""
+
+#: invoices/models.py:35
+msgid "pdf"
+msgstr ""
+
+#: invoices/models.py:39
+msgid "received"
+msgstr ""
+
+#: invoices/models.py:138 invoices/templates/invoices/invoice_detail.html:31
+msgid "rate"
+msgstr ""
+
+#: invoices/models.py:139 invoices/templates/invoices/invoice_detail.html:73
+msgid "amount"
+msgstr ""
+
+#: invoices/models.py:148 invoices/templates/invoices/invoice_detail.html:72
+msgid "remarks"
+msgstr ""
+
+#: invoices/models.py:151
+msgid "invoice item"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:14
+#, python-format
+msgid ""
+"\n"
+"        Invoice %(number)s <small class=\"pull-right\">%(date)s</small>\n"
+"        "
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:20 work_entries/models.py:13
+msgid "start"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:20
+#, python-format
+msgid ""
+"\n"
+"            Invoice for 1 item, spanning %(prev)s until %(date)s.\n"
+"        "
+msgid_plural ""
+"\n"
+"            Invoice for %(n_items)s items, spanning %(prev)s until "
+"%(date)s.\n"
+"        "
+msgstr[0] ""
+msgstr[1] ""
+
+#: invoices/templates/invoices/invoice_detail.html:28
+msgid "Applied tax rates"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:32
+msgid "number of times applied"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:47
+msgid "Totals"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:50
+msgid "total (excl. tax)"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:51
+msgid "total tax"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:52
+msgid "total (incl. tax)"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:62
+#, python-format
+msgid "Please transfer the total sum by %(due_date)s."
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:67
+msgid "Invoice details"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:71
+msgid "project"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:74
+msgid "rate (€ / hour)"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:94
+msgid "End of invoice"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:103
+#, python-format
+msgid ""
+"Invoice %(number)s - %(date)s - Page \" counter(page) \" of \" counter(pages)"
+msgstr ""
+
+#: templates/base.html:7
+msgid "Regex-IT portal"
+msgstr ""
+
+#: utils/templatetags/math.py:13
+#, python-brace-format
+msgid "{value} %"
+msgstr ""
+
+#: work_entries/models.py:14
+msgid "end"
+msgstr ""
+
+#: work_entries/models.py:19
+msgid "work entry"
+msgstr ""
+
+#: work_entries/models.py:20
+msgid "work entries"
+msgstr ""
