@@ -82,8 +82,8 @@
                     <td>{% ifchanged item.project %}{{ item.project.name }}{% endifchanged %}</td>
                     <td>{{ item.remarks }}</td>
                     <td>{{ item.amount }}</td>
-                    <td>{% if item.project.base_rate %}{{ item.rate }}{% endif %}</td>
-                    <td>{% if item.project.flat_fee %}{{ item.rate }}{% endif %}</td>
+                    <td>{% if item.project.base_rate %}{{ item.rate }}{% else %}{% trans "n/a" %}{% endif %}</td>
+                    <td>{% if item.project.flat_fee %}{{ item.rate }}{% else %}{% trans "n/a" %}{% endif %}</td>
                     <td>{{ item.tax_rate|percentage }}</td>
                 </tr>
             {% endfor %}

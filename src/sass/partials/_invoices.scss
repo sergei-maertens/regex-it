@@ -1,5 +1,22 @@
 body.invoice {
 
+    @media print {
+        font-size: 1em/$minor-second;
+
+        th, td {
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+
     header,
     main {
         @include outer-container(52em);
@@ -44,6 +61,10 @@ body.invoice {
     table {
         th, td {
             text-align: right;
+        }
+
+        th {
+            vertical-align: top;
         }
 
         td {
