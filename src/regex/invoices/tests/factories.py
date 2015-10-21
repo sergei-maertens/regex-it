@@ -1,7 +1,7 @@
 import factory
 
 from regex.crm.tests.factories import ClientFactory
-from ..models import Invoice
+from ..models import Invoice, InvoiceItem
 
 
 class InvoiceFactory(factory.django.DjangoModelFactory):
@@ -10,3 +10,11 @@ class InvoiceFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = Invoice
+
+
+class InvoiceItemFactory(factory.django.DjangoModelFactory):
+
+    invoice = factory.SubFactory(InvoiceFactory)
+
+    class Meta:
+        model = InvoiceItem

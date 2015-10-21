@@ -93,7 +93,8 @@ class Invoice(models.Model):
                     remarks=entry.notes
                 )
 
-            if work_entries:
+            # either created from hourly rate (work_entries) or manual invoice items
+            if work_entries or self.invoiceitem_set.exists():
                 self.generated = timezone.now()
                 self.generate_invoice_number(save=False)
                 self.save()

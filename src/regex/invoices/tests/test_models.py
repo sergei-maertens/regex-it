@@ -9,7 +9,7 @@ from freezegun import freeze_time
 from regex.crm.tests.factories import ClientFactory, ProjectFactory
 from regex.work_entries.tests.factories import WorkEntryFactory
 from ..models import InvoiceItem
-from .factories import InvoiceFactory
+from .factories import InvoiceFactory, InvoiceItemFactory
 
 
 class InvoiceTests(TestCase):
@@ -119,3 +119,21 @@ class InvoiceTests(TestCase):
             invoice3 = InvoiceFactory.create(client=client2, date=date(2016, 2, 15))
             invoice3.generate_invoice_number()
         self.assertEqual(invoice3.invoice_number, '201600003'.format(this_year))
+
+    @freeze_time('2015-10-21')
+    def test_generate_invoice_flat_fee(self):
+        project = ProjectFactory.create(flat_fee=3500)
+        invoice = InvoiceFactory.create(client=project.client, date=date(2015, 10, 15))
+        InvoiceItemFactory.create(
+            invoice=invoice, project=project,
+            rate=3500, amount=1,
+            source_object=project
+        )
+
+        self.assertFalse(invoice.invoice_number)
+        invoice.generate()
+        self.assertEqual(invoice.invoice_number, '201500001')
+        self.assertEqual(invoice.get_totals(), {
+            'base__sum': Decimal(3500),
+            'tax__sum': Decimal('735')
+        })

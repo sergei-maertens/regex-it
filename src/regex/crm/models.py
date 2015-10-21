@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -85,7 +86,7 @@ class Project(models.Model):
     slug = AutoSlugField(populate_from='name')
 
     # base financial information
-    base_rate = models.DecimalField(_('hourly base rate'), max_digits=8, decimal_places=2)
+    base_rate = models.DecimalField(_('hourly base rate'), max_digits=8, decimal_places=2, null=True, blank=True)
     flat_fee = models.DecimalField(_('flat fee'), max_digits=10, decimal_places=2, null=True, blank=True)
     tax_rate = models.DecimalField(
         _('tax rate'), max_digits=4, decimal_places=2,
@@ -99,3 +100,14 @@ class Project(models.Model):
 
     def __str__(self):
         return '{client} - {name}'.format(name=self.name, client=self.client)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def clean(self):
+        """
+        Validate that at least one rate is provided.
+        """
+        if not self.base_rate and not self.flat_fee:
+            raise ValidationError(_('Provide a base hourly rate or a flat fee.'))

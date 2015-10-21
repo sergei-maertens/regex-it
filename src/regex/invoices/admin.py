@@ -9,7 +9,7 @@ from .models import Invoice, InvoiceItem
 def generate_invoices(modeladmin, request, queryset):
     for invoice in queryset:
         invoice.generate()
-generate_invoices.short_description = _("Generate invoice items")
+generate_invoices.short_description = _("Generate invoice details")
 
 
 class InvoiceItemInline(admin.TabularInline):

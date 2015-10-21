@@ -16,3 +16,6 @@
        virtualenv_python=python3
   notify:
     - restart uwsgi
+
+- name: Automatically export environment from file on the server itself
+  lineinfile: dest={{ venv }}/bin/activate state=present line="export $(cat {{ env_file_dest }} | xargs)"
