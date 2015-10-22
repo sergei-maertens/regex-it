@@ -8,5 +8,4 @@
         mode=0754
   with_items:
     - "{{ project_home }}"
-    - "{{ project_home }}/log"
     - "{{ venv }}"
