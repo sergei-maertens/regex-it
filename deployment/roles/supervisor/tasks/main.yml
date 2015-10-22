@@ -24,6 +24,9 @@
   notify:
     - restart uwsgi
 
+- name: Ensure the log dir exists
+  file: name="{{ project_home }}/log" state=directory
+
 - name: Ensure the supervisor config file is loaded
   supervisorctl: name=uwsgi_{{ prefix }} state=present
   remote_user: root
