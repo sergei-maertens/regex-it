@@ -17,7 +17,7 @@
 
 - name: Copy the uwsgi.ini file
   template: src=uwsgi.ini.j2
-            dest={{ project_home }}/src/{{ project_name }}/conf/uwsgi.ini
+            dest={{ project_home }}src/{{ project_name }}/conf/uwsgi.ini
             owner={{ application_user }}
             group={{ application_user }}
             mode=0600

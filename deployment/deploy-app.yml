@@ -5,6 +5,7 @@
   remote_user: regex
   roles:
     - env
+    - git
     - npm
     - bower
     - grunt
