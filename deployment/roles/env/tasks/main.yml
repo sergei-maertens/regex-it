@@ -4,7 +4,7 @@
   file: name={{ env_dir }} state=directory mode=0700 owner={{ application_user }}
 
 - name: Copy the environment variables file
-  template: src="{{ target_env }}.txt.j2"
+  template: src="env.txt.j2"
             dest={{ env_file_dest }}
             owner={{ application_user }}
             group={{ application_user }}
