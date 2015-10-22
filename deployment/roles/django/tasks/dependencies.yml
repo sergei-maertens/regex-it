@@ -9,6 +9,11 @@
         mode=0755
   remote_user: root
 
+- name: Upgrade pip
+  pip: virtualenv={{ venv }}
+       name=pip
+       extra_args='--upgrade'
+
 - name: Install requirements
   pip: virtualenv={{ venv }}
        chdir={{ project_home }}
