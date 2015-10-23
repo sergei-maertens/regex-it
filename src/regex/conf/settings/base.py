@@ -21,9 +21,9 @@ DEBUG = False
 SITE_ID = 1
 PROJECT_NAME = 'Regex IT'
 
-ADMINS = (
+ADMINS = [
     ('Admin', 'info@regex-it.nl'),
-)
+]
 MANAGERS = ADMINS
 
 DEFAULT_FROM_EMAIL = 'info@regex-it.nl'
@@ -36,9 +36,9 @@ ALLOWED_HOSTS = []
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 TIME_ZONE = 'Europe/Amsterdam'
 
-LOCALE_PATHS = (
+LOCALE_PATHS = [
     str(DJANGO_PROJECT_DIR / 'locale'),
-)
+]
 
 USE_I18N = True
 
@@ -46,10 +46,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-LANGUAGES = (
+LANGUAGES = [
     ('nl', _('Dutch')),
     ('nl_BE', _('Dutch (Belgium)')),
-)
+]
 LANGUAGE_CODE = 'nl_BE'
 
 DEFAULT_COUNTRY = 'NL'
@@ -61,14 +61,14 @@ STATIC_ROOT = str(ROOT_DIR / 'static')
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     str(SRC_DIR / 'static'),
     str(SRC_DIR / 'sass'),
     str(SRC_DIR / 'static' / 'bower_components'),
-)
+]
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -97,10 +97,10 @@ TEMPLATES = [
             str(DJANGO_PROJECT_DIR / 'templates'),
         ],
         'OPTIONS': {
-            'context_processors': DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+            'context_processors': DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + [
                 'django.template.context_processors.request',
                 'regex.utils.context_processors.settings',
-            )
+            ]
         }
     },
 ]
@@ -186,7 +186,7 @@ LOGGING = {
         },
         'null': {
             'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
+            'class': 'logging.NullHandler',
         },
         'console': {
             'level': 'DEBUG',
