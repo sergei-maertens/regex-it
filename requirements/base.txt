@@ -1,25 +1,26 @@
 Django==1.8.5
 
-Pillow
-psycopg2
+Pillow==3.0.0
+psycopg2==2.6.1
 python-magic==0.4.6
 python-dateutil==2.4.2
+rules==1.0
 
 WeasyPrint==0.24
 
 django-appconf==1.0.1
-django-autoslug
-django-choices
-django_compressor
-django-countries
-django-exportdb
-django-phonenumber-field
+django-autoslug==1.9.3
+django-choices==1.4.2
+django-compressor==1.5
+django-countries==3.3
+django-exportdb==0.4.5
+django-phonenumber-field==0.7.2
 # django-rosetta
-django-sniplates
-django-systemjs
-djangorestframework
+django-sniplates==0.3.2
+django-systemjs==0.3.0
+djangorestframework==3.2.4
 
-celery
+celery==3.0.17
 pytz==2015.4
-redis
-requests
+redis==2.10.3
+requests==2.7.0
