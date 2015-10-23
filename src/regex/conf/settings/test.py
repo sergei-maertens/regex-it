@@ -1,4 +1,5 @@
 import time
+import tempfile
 
 from .base import *
 
@@ -23,7 +24,7 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
-        'TEST_NAME': 'test_mijke_fotografie_{0}'.format(time.time())
+        'TEST_NAME': 'test_regex_{0}'.format(time.time())
     }
 }
 
@@ -40,4 +41,6 @@ LOGGING['loggers'].update({
 })
 
 
-# Skip migrations in Django 1.7, see: https://gist.github.com/nealtodd/2869341f38f5b1eeb86d
+MEDIA_ROOT = tempfile.mkdtemp()
+PRIVATE_MEDIA_ROOT = tempfile.mkdtemp()
+SENDFILE_BACKEND = 'sendfile.backends.development'

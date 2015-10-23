@@ -1,4 +1,4 @@
-<address>
+<address>{% load i18n %}
 <p><strong>{{ company_name }}</strong></p>
 <p>{{ company_address|join:'<br>' }}</p>
 
@@ -10,9 +10,9 @@
 </p>
 {% else %}
 <p>
-    {{ company_kvk }}<br>
-    {{ company_tax_identifier }}<br>
-    {{ company_iban }}
+    {% blocktrans %}KVK: {{ company_kvk }}{% endblocktrans %}<br>
+    {% blocktrans %}TAX: {{ company_tax_identifier }}{% endblocktrans %}<br>
+    {% blocktrans %}IBAN: {{ company_iban }}{% endblocktrans %}
 </p>
 {% endif %}
 

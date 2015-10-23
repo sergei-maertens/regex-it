@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from regex.crm.models import TaxRates
-from regex.utils.storages import PrivateMediaFileSystemStorage
+from regex.utils.storages import private_media_storage
 from regex.work_entries.models import WorkEntry
 
 
@@ -33,7 +33,7 @@ class Invoice(models.Model):
     due_date = models.DateTimeField(_('due date'), null=True, blank=True)
     pdf = models.FileField(
         _('pdf'), blank=True, upload_to='invoices/%Y/%m',
-        storage=PrivateMediaFileSystemStorage()
+        storage=private_media_storage
     )
 
     received = models.DateTimeField(_('received'), null=True, blank=True)
@@ -43,6 +43,10 @@ class Invoice(models.Model):
 
     def __str__(self):
         return '{client} - {date}'.format(client=self.client, date=self.date)
+
+    def get_previous(self, **kwargs):
+        kwargs['client'] = self.client
+        return self.get_previous_by_date(**kwargs)
 
     def generate_invoice_number(self, save=True):
         """
@@ -69,7 +73,7 @@ class Invoice(models.Model):
 
         # collect the work entries
         try:
-            previous = self.get_previous_by_date()
+            previous = self.get_previous()
             lower = datetime.combine(previous.date, time(0, 0)) + timedelta(days=1)
         except self.__class__.DoesNotExist:
             previous = None
