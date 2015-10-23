@@ -61,7 +61,7 @@ server {
     location /protected {
         internal;
         access_log  /var/log/nginx/private.{{ prefix }}.access.log;
-        alias {{ root }}/private_media;
+        alias {{ root }}private_media;
     }
 
     error_page 503 @maintenance;
