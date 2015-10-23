@@ -1,8 +1,8 @@
 from django.db.models import Count
 from django.views.generic import DetailView
 
-from regex.utils.views.pdf import PDFTemplateResponseMixin
 from .models import Invoice
+from .utils import InvoicePDFTemplateResponseMixin
 
 
 class InvoiceDetailView(DetailView):
@@ -22,7 +22,7 @@ class InvoiceDetailView(DetailView):
         return context
 
 
-class InvoiceDetailPDFView(PDFTemplateResponseMixin, InvoiceDetailView):
+class InvoiceDetailPDFView(InvoicePDFTemplateResponseMixin, InvoiceDetailView):
 
     def get_filename(self):
         return '{}.pdf'.format(self.object.invoice_number)
