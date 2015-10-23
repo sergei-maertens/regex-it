@@ -30,7 +30,7 @@ class InvoiceItemInline(admin.TabularInline):
 
 class InvoicePrivateMediaView(PrivateMediaView):
     model = Invoice
-    permission_required = 'invoices.can_download_pdf'
+    permission_required = 'invoices.can_view_invoice'
     file_field = 'pdf'
 
 
