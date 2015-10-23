@@ -97,7 +97,7 @@ TEMPLATES = [
             str(DJANGO_PROJECT_DIR / 'templates'),
         ],
         'OPTIONS': {
-            'context_processors': DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + [
+            'context_processors': list(DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS) + [
                 'django.template.context_processors.request',
                 'regex.utils.context_processors.settings',
             ]
