@@ -1,23 +1,28 @@
 from datetime import date
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 
 from django_webtest import WebTest
 from freezegun import freeze_time
 
-from regex.crm.tests.factories import ProjectFactory
+from regex.accounts.tests.factories import UserFactory, SuperUserFactory
+from regex.crm.tests.factories import ProjectFactory, ContactFactory
 from .factories import InvoiceFactory, InvoiceItemFactory
 
 
 class InvoiceViewTests(WebTest):
 
+    def setUp(self):
+        super(InvoiceViewTests, self).setUp()
+
+        self.user = UserFactory.create()
+        self.superuser = SuperUserFactory.create()
+
     @freeze_time('2015-10-21')
     def test_invoice_pdf(self):
         """
         Test that the invoice pdf is generated and downloaded.
-
-        TODO: use X-SendFile to redirect to the private media.
-        TODO: check ACL permissions
         """
         project = ProjectFactory.create(flat_fee=3500)
         invoice = InvoiceFactory.create(client=project.client, date=date(2015, 10, 15))
@@ -27,11 +32,17 @@ class InvoiceViewTests(WebTest):
             source_object=project
         )
 
+        project.client.contacts.add(ContactFactory(user=self.user))
+
         self.assertFalse(invoice.invoice_number)
         invoice.generate()
 
         url = reverse('invoices:detail-pdf', kwargs={'invoice_number': invoice.invoice_number})
         response = self.app.get(url)
+        expected = '{}?next={}'.format(settings.LOGIN_URL, url)
+        self.assertRedirects(response, expected, fetch_redirect_response=False)
+
+        response = self.app.get(url, user=self.user)
         invoice.refresh_from_db()
 
         self.assertEqual(response.status_code, 200)

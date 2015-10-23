@@ -1,7 +1,7 @@
 import factory
 import factory.fuzzy
 
-from ..models import Client, Project
+from ..models import Client, Contact, Project
 
 
 class SimpleSequence(factory.Sequence):
@@ -32,3 +32,14 @@ class ProjectFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = Project
+
+
+class ContactFactory(factory.django.DjangoModelFactory):
+
+    label = SimpleSequence('Contact {}')
+    name = SimpleSequence('Contact {}')
+    email = SimpleSequence('contact-{}@regex-it.nl')
+    phone = '+310622391837'
+
+    class Meta:
+        model = Contact

@@ -270,3 +270,7 @@ AXES_COOLOFF_TIME = 1  # One hour
 # Auth
 #
 AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = [
+    'rules.permissions.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
