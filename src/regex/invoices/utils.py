@@ -7,6 +7,7 @@ from django.core.files import File
 from django.template import loader, RequestContext
 
 import weasyprint
+from sendfile import sendfile
 
 from regex.utils.pdf import UrlFetcher
 from regex.utils.views.pdf import PDFTemplateResponse, PDFTemplateResponseMixin
@@ -51,5 +52,11 @@ class InvoicePDFTemplateResponseMixin(PDFTemplateResponseMixin):
     response_class = InvoicePDFTemplateResponse
 
     def render_to_response(self, *args, **kwargs):
+        # if the pdf exists, use sendfile
+        if self.object.pdf:
+            return sendfile(
+                self.request, self.object.pdf.path,
+                attachment=True, attachment_filename=self.get_filename()
+            )
         kwargs['invoice'] = self.object
         return super(InvoicePDFTemplateResponseMixin, self).render_to_response(*args, **kwargs)

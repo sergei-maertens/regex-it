@@ -58,6 +58,12 @@ server {
         access_log  /var/log/nginx/media.{{ prefix }}.access.log;
     }
 
+    location /protected {
+        internal;
+        access_log  /var/log/nginx/private.{{ prefix }}.access.log;
+        alias {{ root }}/private_media;
+    }
+
     error_page 503 @maintenance;
     location @maintenance {
         rewrite ^(.*)$ /maintenance.html break;

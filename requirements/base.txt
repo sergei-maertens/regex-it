@@ -16,6 +16,7 @@ django-countries==3.3
 django-exportdb==0.4.5
 django-phonenumber-field==0.7.2
 # django-rosetta
+django-sendfile==0.3.10
 django-sniplates==0.3.2
 django-systemjs==0.3.0
 djangorestframework==3.2.4

@@ -1,6 +1,8 @@
 from django.db.models import Count
 from django.views.generic import DetailView
 
+from rules.contrib.views import PermissionRequiredMixin
+
 from .models import Invoice
 from .utils import InvoicePDFTemplateResponseMixin
 

@@ -43,3 +43,4 @@ LOGGING['loggers'].update({
 
 MEDIA_ROOT = tempfile.mkdtemp()
 PRIVATE_MEDIA_ROOT = tempfile.mkdtemp()
+SENDFILE_BACKEND = 'sendfile.backends.development'

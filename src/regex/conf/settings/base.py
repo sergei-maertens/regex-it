@@ -85,6 +85,10 @@ PRIVATE_MEDIA_ROOT = str(ROOT_DIR / 'private_media')
 MEDIA_URL = '/media/'
 PRIVATE_MEDIA_URL = '/protected/'
 
+SENDFILE_BACKEND = 'sendfile.backends.nginx'
+SENDFILE_ROOT = PRIVATE_MEDIA_ROOT
+SENDFILE_URL = PRIVATE_MEDIA_URL
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ.get('SECRET_KEY') or '2tb%e$$k)0+9zv5d!#_m_c4#x1tkk7)va+o0&#d2=pokzf287='
 

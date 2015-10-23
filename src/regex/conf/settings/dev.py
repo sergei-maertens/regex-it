@@ -66,6 +66,9 @@ DEBUG_TOOLBAR_CONFIG = {
     'JQUERY_URL': '',
 }
 
+
+SENDFILE_BACKEND = 'sendfile.backends.development'
+
 #
 # Skip migrations in Django 1.7
 #

@@ -44,6 +44,10 @@ class Invoice(models.Model):
     def __str__(self):
         return '{client} - {date}'.format(client=self.client, date=self.date)
 
+    def get_previous(self, **kwargs):
+        kwargs['client'] = self.client
+        return self.get_previous_by_date(**kwargs)
+
     def generate_invoice_number(self, save=True):
         """
         Invoice numbers must increment according to the Dutch legislation.
@@ -69,7 +73,7 @@ class Invoice(models.Model):
 
         # collect the work entries
         try:
-            previous = self.get_previous_by_date()
+            previous = self.get_previous()
             lower = datetime.combine(previous.date, time(0, 0)) + timedelta(days=1)
         except self.__class__.DoesNotExist:
             previous = None
