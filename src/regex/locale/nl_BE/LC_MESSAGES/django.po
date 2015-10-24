@@ -8,233 +8,241 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 20:06+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-10-24 20:30+0200\n"
+"PO-Revision-Date: 2015-10-24 20:31+0020\n"
+"Last-Translator: b'  <info@regex-it.nl>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.7.6\n"
 
 #: accounts/admin.py:16
 msgid "Personal info"
-msgstr ""
+msgstr "Persoonlijke informatie"
 
 #: accounts/admin.py:17
 msgid "Permissions"
-msgstr ""
+msgstr "Rechten"
 
 #: accounts/admin.py:19
 msgid "Important dates"
-msgstr ""
+msgstr "Belangrijke data"
 
 #: accounts/models.py:32
 msgid "first name"
-msgstr ""
+msgstr "voornaam"
 
 #: accounts/models.py:33
 msgid "last name"
-msgstr ""
+msgstr "familienaam"
 
 #: accounts/models.py:34
 msgid "email address"
-msgstr ""
+msgstr "e-mailadres"
 
 #: accounts/models.py:36
 msgid "staff status"
-msgstr ""
+msgstr "stafstatus"
 
 #: accounts/models.py:37
 msgid "Designates whether the user can log into this admin site."
-msgstr ""
+msgstr "Geeft aan of deze gebruiker in de admin kan inloggen."
 
 #: accounts/models.py:40
 msgid "active"
-msgstr ""
+msgstr "actief"
 
 #: accounts/models.py:41
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Geeft aan of deze gebruiker geactiveerd is. Vink dit uit in plaats van "
+"accounts te verwijderen."
 
 #: accounts/models.py:44
 msgid "date joined"
-msgstr ""
+msgstr "registratiedatum"
 
 #: accounts/models.py:52
 msgid "user"
-msgstr ""
+msgstr "gebruiker"
 
 #: accounts/models.py:53
 msgid "users"
-msgstr ""
+msgstr "gebruikers"
 
 #: conf/settings/base.py:50
 msgid "Dutch"
-msgstr ""
+msgstr "Nederlands"
 
 #: conf/settings/base.py:51
 msgid "Dutch (Belgium)"
-msgstr ""
+msgstr "Nederlands (België)"
 
 #: crm/admin.py:17 crm/models.py:65
 msgid "clients"
-msgstr ""
+msgstr "klanten"
 
 #: crm/admin.py:33 crm/models.py:36
 msgid "contacts"
-msgstr ""
+msgstr "contacten"
 
-#: crm/admin.py:37
+#: crm/admin.py:37 crm/models.py:98
 msgid "projects"
-msgstr ""
+msgstr "projecten"
 
 #: crm/models.py:20
 msgid "label"
-msgstr ""
+msgstr "label"
 
 #: crm/models.py:21 crm/models.py:44
 msgid "name"
-msgstr ""
+msgstr "naam"
 
 #: crm/models.py:22 crm/models.py:48
 msgid "email"
-msgstr ""
+msgstr "e-mail"
 
 #: crm/models.py:24 crm/models.py:50
 msgid "address"
-msgstr ""
+msgstr "adres"
 
 #: crm/models.py:25
 msgid "postal code"
-msgstr ""
+msgstr "postcode"
 
 #: crm/models.py:26 crm/models.py:51
 msgid "city"
-msgstr ""
+msgstr "stad"
 
 #: crm/models.py:27 crm/models.py:52
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: crm/models.py:31 crm/models.py:60
 msgid "created"
-msgstr ""
+msgstr "aangemaakt"
 
 #: crm/models.py:32 crm/models.py:61
 msgid "modified"
-msgstr ""
+msgstr "geüpdatet"
 
 #: crm/models.py:35
 msgid "contact"
-msgstr ""
+msgstr "contactpersoon"
 
 #: crm/models.py:45
 msgid "slug"
-msgstr ""
+msgstr "slug"
 
 #: crm/models.py:55
 msgid "registration number"
-msgstr ""
+msgstr "registratienummer"
 
 #: crm/models.py:55
 msgid "KvK number"
-msgstr ""
+msgstr "KvK nummer"
 
 #: crm/models.py:56
 msgid "VAT number"
-msgstr ""
+msgstr "BTW nummer"
 
 #: crm/models.py:64
 msgid "client"
-msgstr ""
+msgstr "klant"
 
 #: crm/models.py:72
 msgid "low"
-msgstr ""
+msgstr "laag"
 
 #: crm/models.py:73
 msgid "high"
-msgstr ""
+msgstr "hoog"
 
 #: crm/models.py:89
 msgid "hourly base rate"
-msgstr ""
+msgstr "uurtarief"
 
 #: crm/models.py:90 invoices/templates/invoices/invoice_detail.html:74
 msgid "flat fee"
-msgstr ""
+msgstr "vast bedrag"
 
 #: crm/models.py:92 invoices/models.py:145
 #: invoices/templates/invoices/invoice_detail.html:75
 msgid "tax rate"
-msgstr ""
+msgstr "BTW tarief"
 
-#: crm/models.py:113
+#: crm/models.py:97
+#| msgid "projects"
+msgid "project"
+msgstr "project"
+
+#: crm/models.py:115
 msgid "Provide a base hourly rate or a flat fee."
-msgstr ""
+msgstr "Geef een uurtarief of vast bedrag op."
 
 #: invoices/admin.py:17
 msgid "Generate invoice details"
-msgstr ""
+msgstr "Genereer factuurdetails"
 
 #: invoices/admin.py:23
 msgid "Generate invoice pdfs"
-msgstr ""
+msgstr "Genereer pdf van facturen"
 
 #: invoices/admin.py:52
 msgid "# invoice items"
-msgstr ""
+msgstr "# factuurlijnen"
 
 #: invoices/admin.py:56 invoices/admin.py:57 invoices/models.py:156
 msgid "invoice items"
-msgstr ""
+msgstr "factuurlijnen"
 
 #: invoices/apps.py:7
 msgid "Invoices"
-msgstr ""
+msgstr "Facturen"
 
 #: invoices/models.py:25
 msgid "date"
-msgstr ""
+msgstr "datum"
 
 #: invoices/models.py:25
 msgid "Include work up to (including) this day."
-msgstr ""
+msgstr "Verwerk prestaties tot (inclusief) deze datum."
 
 #: invoices/models.py:29
 msgid "invoice number"
-msgstr ""
+msgstr "factuurnummer"
 
 #: invoices/models.py:33
 msgid "due date"
-msgstr ""
+msgstr "betaaldatum"
 
 #: invoices/models.py:35
 msgid "pdf"
-msgstr ""
+msgstr "pdf"
 
 #: invoices/models.py:39
 msgid "received"
-msgstr ""
+msgstr "ontvangen"
 
 #: invoices/models.py:142 invoices/templates/invoices/invoice_detail.html:31
 msgid "rate"
-msgstr ""
+msgstr "tarief"
 
 #: invoices/models.py:143 invoices/templates/invoices/invoice_detail.html:72
 msgid "amount"
-msgstr ""
+msgstr "aantal"
 
 #: invoices/models.py:152 invoices/templates/invoices/invoice_detail.html:71
 msgid "remarks"
-msgstr ""
+msgstr "opmerkingen"
 
 #: invoices/models.py:155
 msgid "invoice item"
-msgstr ""
+msgstr "factuurlijn"
 
 #: invoices/templates/invoices/invoice_detail.html:14
 #, python-format
@@ -243,10 +251,13 @@ msgid ""
 "        Invoice %(number)s <small class=\"pull-right\">%(date)s</small>\n"
 "        "
 msgstr ""
+"\n"
+"Factuur %(number)s <small class=\"pull-right\">%(date)s</small>"
 
-#: invoices/templates/invoices/invoice_detail.html:20 work_entries/models.py:13
+#: invoices/templates/invoices/invoice_detail.html:20
+#: work_entries/models.py:13
 msgid "start"
-msgstr ""
+msgstr "begin"
 
 #: invoices/templates/invoices/invoice_detail.html:20
 #, python-format
@@ -256,101 +267,107 @@ msgid ""
 "        "
 msgid_plural ""
 "\n"
-"            Invoice for %(n_items)s items, spanning %(prev)s until "
-"%(date)s.\n"
+"            Invoice for %(n_items)s items, spanning %(prev)s until %(date)s.\n"
 "        "
 msgstr[0] ""
+"\n"
+"Factuur voor 1 item, van %(prev)s tot %(date)s."
 msgstr[1] ""
+"\n"
+"Factuur voor %(n_items)s items, van %(prev)s tot %(date)s."
 
 #: invoices/templates/invoices/invoice_detail.html:28
 msgid "Applied tax rates"
-msgstr ""
+msgstr "Toegepaste BTW tarieven"
 
 #: invoices/templates/invoices/invoice_detail.html:32
 msgid "number of times applied"
-msgstr ""
+msgstr "aantal keer toegepast"
 
 #: invoices/templates/invoices/invoice_detail.html:47
 msgid "Totals"
-msgstr ""
+msgstr "Totalen"
 
 #: invoices/templates/invoices/invoice_detail.html:50
 msgid "total (excl. tax)"
-msgstr ""
+msgstr "totaal (excl. BTW)"
 
 #: invoices/templates/invoices/invoice_detail.html:51
 msgid "total tax"
-msgstr ""
+msgstr "totaal BTW"
 
 #: invoices/templates/invoices/invoice_detail.html:52
 msgid "total (incl. tax)"
-msgstr ""
+msgstr "totaal (incl. BTW)"
 
 #: invoices/templates/invoices/invoice_detail.html:62
 #, python-format
 msgid "Please transfer the total sum by %(due_date)s."
-msgstr ""
+msgstr "Gelieve het bedrag voor %(due_date)s over te maken."
 
 #: invoices/templates/invoices/invoice_detail.html:67
 msgid "Invoice details"
-msgstr ""
+msgstr "Factuurdetails"
 
 #: invoices/templates/invoices/invoice_detail.html:73
 msgid "rate (€ / hour)"
-msgstr ""
+msgstr "tarief (€/uur)"
 
 #: invoices/templates/invoices/invoice_detail.html:82
 #, python-format
 msgid "%(proj)s"
-msgstr ""
+msgstr "%(proj)s"
 
 #: invoices/templates/invoices/invoice_detail.html:88
 #: invoices/templates/invoices/invoice_detail.html:89
 msgid "n/a"
-msgstr ""
+msgstr "n.v.t."
 
 #: invoices/templates/invoices/invoice_detail.html:99
 msgid "End of invoice"
-msgstr ""
+msgstr "Einde factuur"
 
 #: invoices/templates/invoices/invoice_detail.html:108
 #, python-format
 msgid ""
-"Invoice %(number)s - %(date)s - Page \" counter(page) \" of \" counter(pages)"
+"Invoice %(number)s - %(date)s - Page \" counter(page) \" of \" "
+"counter(pages)"
 msgstr ""
+"Factuur %(number)s - %(date)s - Pagina \" counter(page) \" van \" "
+"counter(pages)"
 
 #: invoices/templates/invoices/tags/address.html:13
 #, python-format
 msgid "KVK: %(company_kvk)s"
-msgstr ""
+msgstr "KVK: %(company_kvk)s"
 
 #: invoices/templates/invoices/tags/address.html:14
 #, python-format
 msgid "TAX: %(company_tax_identifier)s"
-msgstr ""
+msgstr "BTW: %(company_tax_identifier)s"
 
 #: invoices/templates/invoices/tags/address.html:15
 #, python-format
 msgid "IBAN: %(company_iban)s"
-msgstr ""
+msgstr "IBAN: %(company_iban)s"
 
 #: templates/base.html:7
 msgid "Regex-IT portal"
-msgstr ""
+msgstr "Regex-IT portaal"
 
 #: utils/templatetags/math.py:13
 #, python-brace-format
 msgid "{value} %"
-msgstr ""
+msgstr "{value} %"
 
 #: work_entries/models.py:14
 msgid "end"
-msgstr ""
+msgstr "einde"
 
 #: work_entries/models.py:19
 msgid "work entry"
-msgstr ""
+msgstr "werk item"
 
 #: work_entries/models.py:20
 msgid "work entries"
-msgstr ""
+msgstr "werk items"

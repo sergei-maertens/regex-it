@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 20:06+0200\n"
+"POT-Creation-Date: 2015-10-24 20:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,7 +88,7 @@ msgstr ""
 msgid "contacts"
 msgstr ""
 
-#: crm/admin.py:37
+#: crm/admin.py:37 crm/models.py:98
 msgid "projects"
 msgstr ""
 
@@ -173,7 +173,11 @@ msgstr ""
 msgid "tax rate"
 msgstr ""
 
-#: crm/models.py:113
+#: crm/models.py:97
+msgid "project"
+msgstr ""
+
+#: crm/models.py:115
 msgid "Provide a base hourly rate or a flat fee."
 msgstr ""
 
