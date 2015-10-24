@@ -89,10 +89,15 @@ body.invoice {
     }
 
     .details {
+        tr.project th:first-child {
+            text-align: center;
+        }
+
         td,
         th {
             &:first-child {
                 text-align: left;
+                width: 40%;
             }
         }
     }

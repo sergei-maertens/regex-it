@@ -68,7 +68,6 @@
     <table class="details">
         <thead>
             <tr>
-                <th>{% trans "project" %}</th>
                 <th>{% trans "remarks" %}</th>
                 <th>{% trans "amount" %}</th>
                 <th>{% trans "rate (€ / hour)" %}</th>
@@ -78,8 +77,12 @@
         </thead>
         <tbody>
             {% for item in items %}
+                {% ifchanged item.project %}
+                    <tr class="project">
+                        <th colspan="5">{% blocktrans with proj=item.project.name %}{{ proj }}{% endblocktrans %}</th>
+                    </tr>
+                {% endifchanged %}
                 <tr>
-                    <td>{% ifchanged item.project %}{{ item.project.name }}{% endifchanged %}</td>
                     <td>{{ item.remarks }}</td>
                     <td>{{ item.amount }}</td>
                     <td>{% if item.project.base_rate %}{{ item.rate }}{% else %}{% trans "n/a" %}{% endif %}</td>
