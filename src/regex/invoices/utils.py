@@ -4,6 +4,7 @@ Utility functions for invoices.
 from io import BytesIO
 
 from django.core.files import File
+from django.db.models import Count
 from django.template import loader, RequestContext
 
 import weasyprint
@@ -18,7 +19,14 @@ def render_invoice_pdf(request, invoice, template_name='invoices/invoice_detail.
         template = loader.select_template(template_name)
     else:
         template = loader.get_template(template_name)
-    html = template.render(RequestContext(request, {'invoice': invoice}))
+
+    tax_rates = invoice.invoiceitem_set.values('tax_rate').annotate(num=Count('tax_rate'))
+    context = {
+        'invoice': invoice,
+        'tax_rates': tax_rates,
+        'items': invoice.invoiceitem_set.select_related('project').order_by('project', 'tax_rate')
+    }
+    html = template.render(RequestContext(request, context))
     base_url = request.build_absolute_uri("/")
     url_fetcher = UrlFetcher(request, base_url)
     wp = weasyprint.HTML(string=html, base_url=base_url, url_fetcher=url_fetcher)

@@ -87,7 +87,7 @@ PRIVATE_MEDIA_URL = '/protected/'
 
 SENDFILE_BACKEND = 'sendfile.backends.nginx'
 SENDFILE_ROOT = PRIVATE_MEDIA_ROOT
-SENDFILE_URL = PRIVATE_MEDIA_URL
+SENDFILE_URL = PRIVATE_MEDIA_URL[:-1]
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ.get('SECRET_KEY') or '2tb%e$$k)0+9zv5d!#_m_c4#x1tkk7)va+o0&#d2=pokzf287='
@@ -110,9 +110,9 @@ TEMPLATES = [
 ]
 
 MIDDLEWARE_CLASSES = [
+    'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
