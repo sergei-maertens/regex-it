@@ -12,7 +12,7 @@ def company_details(client=None):
         return {
             'client': client,
             'company_name': client.name,
-            'company_address': [client.address, client.city, client.country],
+            'company_address': [client.address, client.city, client.get_country_display()],
             'company_tax_identifier': client.vat,
         }
 
