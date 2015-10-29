@@ -2,11 +2,13 @@ import logging
 import re
 from datetime import datetime, time, timedelta
 
+from django.conf import settings
 from django.core import validators
 from django.db import models, transaction
 from django.db.models import F, Sum, Max
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from regex.crm.models import TaxRates
@@ -133,6 +135,10 @@ class Invoice(models.Model):
     def total_with_vat(self):
         totals = self.get_totals()
         return totals['base__sum'] + totals['tax__sum']
+
+    @cached_property
+    def vat_reverse_charge(self):
+        return self.client.country != settings.SITE_COUNTRY
 
 
 class InvoiceItem(models.Model):
