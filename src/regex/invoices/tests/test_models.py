@@ -1,7 +1,7 @@
 from datetime import datetime, date
 from decimal import Decimal
 
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.utils import timezone
 
 from freezegun import freeze_time
@@ -137,3 +137,11 @@ class InvoiceTests(TestCase):
             'base__sum': Decimal(3500),
             'tax__sum': Decimal('735')
         })
+
+    @override_settings(SITE_COUNTRY='NL')
+    def test_international_vat(self):
+        invoice = InvoiceFactory.create(client__country='BE', date=date(2015, 10, 15))
+        self.assertTrue(invoice.vat_reverse_charge)
+
+        invoice2 = InvoiceFactory.create(client__country='NL', date=date(2015, 10, 15))
+        self.assertFalse(invoice2.vat_reverse_charge)
