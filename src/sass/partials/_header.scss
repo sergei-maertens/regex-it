@@ -1,13 +1,23 @@
 body > header {
-  @include row;
-  @include display(flex);
-  @include align-items(center);
 
   border-bottom: solid 1px $light-gray;
 
-  figure {
-    @include span-columns(2);
-    @include shift(2);
+  .container {
+    @include row;
+    @include display(flex);
+    @include align-items(center);
+  }
+
+  .main-logo {
+    @include margin(1em null);
+    @include span-columns(4);
+
+    > span {
+      display: block;
+      @include retina-image('../logo/logo-200x50', 200px 50px, 'png', '../logo/logo-400x100');
+      @include size(200px 50px);
+      @include hide-text;
+    }
   }
 
   nav {

@@ -16,17 +16,21 @@
 
     <body class="{% block body-class %}{% endblock %}">
         <header>
-            {% block header %}
-            <figure>logo</figure>
-            <nav>
-                <ul role="menu">
-                    <li>home</li>
-                    <li>portfolio</li>
-                    <li>contact</li>
-                    <li><i class="fa fa-lock"></i> login</li>
-                </ul>
-            </nav>
-            {% endblock %}
+            <div class="container">
+                {% block header %}
+                <div class="main-logo">
+                    <span>Regex IT</span>
+                </div>
+                <nav>
+                    <ul role="menu">
+                        <li>home</li>
+                        <li>portfolio</li>
+                        <li>contact</li>
+                        <li><i class="fa fa-lock"></i> login</li>
+                    </ul>
+                </nav>
+                {% endblock %}
+            </div>
         </header>
 
         <main>
