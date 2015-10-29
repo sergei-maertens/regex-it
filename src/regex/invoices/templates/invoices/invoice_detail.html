@@ -23,6 +23,7 @@
             Invoice for {{ n_items }} items, spanning {{ prev }} until {{ date }}.
         {% endblocktrans %}
 
+        {% if not invoice.vat_reverse_charge %}
         <section>
             {# Tax rates #}
             <h3>{% trans "Applied tax rates" %}</h3>
@@ -42,20 +43,30 @@
         </section>
 
         <hr>
+        {% endif %}
 
         <section class="highlight">
             <h3>{% trans "Totals" %}</h3>
             <div><table>
-                <tr>
-                    <th>{% trans "total (excl. tax)" %}</th>
-                    <th>{% trans "total tax" %}</th>
-                    <th>{% trans "total (incl. tax)" %}</th>
-                </tr>
-                <tr>
-                    <td>&euro; {{ invoice.total_no_vat|floatformat:2 }}</td>
-                    <td>&euro; {{ invoice.total_vat|floatformat:2 }}</td>
-                    <td><span class="total">&euro; <strong>{{ invoice.total_with_vat|floatformat:2 }}</strong></span></td>
-                </tr>
+                {% if invoice.vat_reverse_charge %}
+                    <tr>
+                        <th>{% trans "total (with VAT reverse charge)" %}</th>
+                    </tr>
+                    <tr>
+                        <td><span class="total">&euro; <strong>{{ invoice.total_no_vat|floatformat:2 }}</strong></span></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th>{% trans "total (excl. tax)" %}</th>
+                        <th>{% trans "total tax" %}</th>
+                        <th>{% trans "total (incl. tax)" %}</th>
+                    </tr>
+                    <tr>
+                        <td>&euro; {{ invoice.total_no_vat|floatformat:2 }}</td>
+                        <td>&euro; {{ invoice.total_vat|floatformat:2 }}</td>
+                        <td><span class="total">&euro; <strong>{{ invoice.total_with_vat|floatformat:2 }}</strong></span></td>
+                    </tr>
+                {% endif %}
             </table></div>
         </section>
 
@@ -72,14 +83,14 @@
                 <th>{% trans "amount" %}</th>
                 <th>{% trans "rate (€ / hour)" %}</th>
                 <th>{% trans "flat fee" %}</th>
-                <th>{% trans "tax rate" %}</th>
+                {% if not invoice.vat_reverse_charge %}<th>{% trans "tax rate" %}</th>{% endif %}
             </tr>
         </thead>
         <tbody>
             {% for item in items %}
                 {% ifchanged item.project %}
                     <tr class="project">
-                        <th colspan="5">{% blocktrans with proj=item.project.name %}{{ proj }}{% endblocktrans %}</th>
+                        <th colspan="{{ invoice.vat_reverse_charge|yesno:'4,5' }}">{% blocktrans with proj=item.project.name %}{{ proj }}{% endblocktrans %}</th>
                     </tr>
                 {% endifchanged %}
                 <tr>
@@ -87,7 +98,7 @@
                     <td>{{ item.amount }}</td>
                     <td>{% if item.project.base_rate %}{{ item.rate }}{% else %}{% trans "n/a" %}{% endif %}</td>
                     <td>{% if item.project.flat_fee %}{{ item.rate }}{% else %}{% trans "n/a" %}{% endif %}</td>
-                    <td>{{ item.tax_rate|percentage }}</td>
+                    {% if not invoice.vat_reverse_charge %}<td>{{ item.tax_rate|percentage }}</td>{% endif %}
                 </tr>
             {% endfor %}
         </tbody>
@@ -95,6 +106,10 @@
 </section>
 
 <section class="invoice-end">
+    {% if invoice.vat_reverse_charge %}
+        <hr>
+        <p>{% trans "Note: reverse-charing for the VAT is applied on this invoice." %}</p>
+    {% endif %}
     <hr>
     <p class="pull-right">{% trans "End of invoice" %}</p>
 </section>
