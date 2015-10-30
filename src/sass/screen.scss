@@ -5,9 +5,13 @@
 // base styles
 @import "bitters/base";
 
+@import "refills/bullets";
+
 // own styles
 @import "partials/base";
 @import "partials/colors";
 @import "partials/pdfs";
 @import "partials/header";
 @import "partials/invoices";
+
+@import "partials/homepage";

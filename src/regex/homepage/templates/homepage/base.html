@@ -1,1 +1,101 @@
-{% extends "base.html" %}{% load i18n %}
+{% extends "base.html" %}{% load i18n staticfiles %}
+
+
+{% block content %}
+
+<article>
+    <h1 class="vertical-center"><i class="fa fa-laptop fa-3x"></i> {% trans "Freelance web development" %}</h1>
+
+    {% blocktrans %}
+    <section class="pitch">
+        <div class="col">
+            <p><strong>Do you&hellip;</strong></p>
+            <ul>
+                <li>&hellip; need a <strong>new website</strong> for your awesome product?</li>
+                <li>&hellip; want to <strong>optimize</strong> your workflow?</li>
+                <li>&hellip; need to <strong>update</strong> your current platform?</li>
+                <li>&hellip; have a <strong>lack of time</strong> to work on your interal tooling?</li>
+            </ul>
+        </div>
+
+        <div class="col">
+            <p>
+            <strong>Feel free contact me and let me know your wishes!</strong> Even the seemingly simplest things can make your professional live more enjoyable.
+            </p>
+
+            <p>An example list of things that are possible:</p>
+
+            <ul class="fa-ul">
+                <li><i class="fa fa-li fa-calendar"></i> a reservation/calendar system</li>
+                <li><i class="fa fa-li fa-globe"></i> a website for your club/hobby community</li>
+                <li><i class="fa fa-li fa-calculator"></i> administrative applications</li>
+                <li><i class="fa fa-li fa-question-circle"></i> &hellip;you name it!</li>
+            </ul>
+        </div>
+
+    </section>
+    {% endblocktrans %}
+
+    <section>
+        <h2>{% trans "Favourite technology" %}</h2>
+
+        <ul class="bullets">
+            <li class="bullet">
+                <div class="bullet-icon">
+                    <img src="{% static "img/django_bullet.png" %}" alt="django-logo">
+                </div>
+                <div class="bullet-content">
+                    <h3>{% trans "Python/Django" %}</h3>
+                    <p>{% trans "Django is a high-level web framework written in Python, aimed on 'perfectionists with deadlines." %}</p>
+                </div>
+            </li>
+
+            <li class="bullet">
+                <div class="bullet-icon">
+                    <img src="{% static "img/postgresql_bullet.png" %}" alt="django-logo">
+                </div>
+                <div class="bullet-content">
+                    <h3>{% trans "PostgreSQL" %}</h3>
+                    <p>{% trans "PostgreSQL is an excellent, performant relational database, our choice to keep your data integrity in check." %}</p>
+                </div>
+            </li>
+
+            <li class="bullet">
+                <div class="bullet-icon">
+                    <img src="{% static "img/git_bullet.png" %}" alt="django-logo">
+                </div>
+                <div class="bullet-content">
+                    <h3>{% trans "Git" %}</h3>
+                    <p>{% trans "Every serious project needs serious tooling. Git is the preferred VCS, and Github is the popular repository hosting choice." %}</p>
+                </div>
+            </li>
+        </ul>
+
+        {% blocktrans %}
+        <p>This is the basic set of tool that would probably be used with each new project. There is a lot more though: <strong>nginx</strong> is the first choice of webserver, which proxies to <strong>uwsgi</strong> which talks to Django.</p>
+        <p>For caching, <strong>redis</strong> and <strong>memcache</strong> are viable options.</p>
+        <p>Deployment is automated with <strong>Ansible</strong>, and all passwords and other secrets are stored in an encrypted vault.
+        {% endblocktrans %}
+
+    </section>
+
+</article>
+
+<article>
+    <h1 class="vertical-center"><i class="fa fa-bug fa-3x"></i> {% trans "Consultancy" %}</h1>
+    {% blocktrans %}
+    <p>Need help figuring out <strong>performance</strong> issues? Or are there <strong>bugs</strong> that prove to be hard to squash? Need help with <strong>architecture/stack design</strong>?</p>
+    <p>These kind of issues can be tackled in consultancy sessions. The existing code is analyzed and points of improvement are pointed out, with a focus on quick wins and a roadmap for long term changes.</p>
+
+    Supported technologies:
+    <ul class="default">
+        <li>Python/Django</li>
+        <li>PHP/MySQL</li>
+        <li>Javascript</li>
+        <li>sass/scss</li>
+        <li>(continuous) deployment</li>
+    </ul>
+    {% endblocktrans %}
+
+</article>
+{% endblock %}

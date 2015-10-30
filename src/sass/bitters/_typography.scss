@@ -21,9 +21,11 @@ h6 {
 
 h1 {
   font-size: $base-font-size * 2;
+  color: $palette-dark;
 }
 h2 {
   font-size: $base-font-size * 1.5;
+  color: $palette-darkest;
 }
 h3 {
   font-size: $base-font-size * 1.21;
