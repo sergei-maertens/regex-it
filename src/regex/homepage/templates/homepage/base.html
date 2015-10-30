@@ -36,44 +36,46 @@
     </section>
     {% endblocktrans %}
 
-    <h2>{% trans "Favourite technology" %}</h2>
-    <section class="cards">
+    <section>
+        <h2>{% trans "Favourite technology" %}</h2>
 
-        <div class="card">
-            <div class="card-image">
-                <img src="{% static "img/django_badge.png" %}" alt="django-logo">
-            </div>
-            <div class="card-header">
-                <h4>{% trans "Python/Django" %}</h4>
-            </div>
-            <div class="card-copy">
-                <p>{% trans "Django is a high-level web framework written in Python, aimed on 'perfectionists with deadlines." %}</p>
-            </div>
-        </div>
+        <ul class="bullets">
+            <li class="bullet">
+                <div class="bullet-icon">
+                    <img src="{% static "img/django_bullet.png" %}" alt="django-logo">
+                </div>
+                <div class="bullet-content">
+                    <h3>{% trans "Python/Django" %}</h3>
+                    <p>{% trans "Django is a high-level web framework written in Python, aimed on 'perfectionists with deadlines." %}</p>
+                </div>
+            </li>
 
-        <div class="card">
-            <div class="card-image">
-                <img src="{% static "img/django_badge.png" %}" alt="django-logo">
-            </div>
-            <div class="card-header">
-                <h4>{% trans "Python/Django" %}</h4>
-            </div>
-            <div class="card-copy">
-                <p>{% trans "Django is a high-level web framework written in Python, aimed on 'perfectionists with deadlines." %}</p>
-            </div>
-        </div>
+            <li class="bullet">
+                <div class="bullet-icon">
+                    <img src="{% static "img/postgresql_bullet.png" %}" alt="django-logo">
+                </div>
+                <div class="bullet-content">
+                    <h3>{% trans "PostgreSQL" %}</h3>
+                    <p>{% trans "PostgreSQL is an excellent, performant relational database, our choice to keep your data integrity in check." %}</p>
+                </div>
+            </li>
 
-        <div class="card">
-            <div class="card-image">
-                <img src="{% static "img/django_badge.png" %}" alt="django-logo">
-            </div>
-            <div class="card-header">
-                <h4>{% trans "Python/Django" %}</h4>
-            </div>
-            <div class="card-copy">
-                <p>{% trans "Django is a high-level web framework written in Python, aimed on 'perfectionists with deadlines." %}</p>
-            </div>
-        </div>
+            <li class="bullet">
+                <div class="bullet-icon">
+                    <img src="{% static "img/git_bullet.png" %}" alt="django-logo">
+                </div>
+                <div class="bullet-content">
+                    <h3>{% trans "Git" %}</h3>
+                    <p>{% trans "Every serious project needs serious tooling. Git is the preferred VCS, and Github is the popular repository hosting choice." %}</p>
+                </div>
+            </li>
+        </ul>
+
+        {% blocktrans %}
+        <p>This is the basic set of tool that would probably be used with each new project. There is a lot more though: <strong>nginx</strong> is the first choice of webserver, which proxies to <strong>uwsgi</strong> which talks to Django.</p>
+        <p>For caching, <strong>redis</strong> and <strong>memcache</strong> are viable options.</p>
+        <p>Deployment is automated with <strong>Ansible</strong>, and all passwords and other secrets are stored in an encrypted vault.
+        {% endblocktrans %}
 
     </section>
 
@@ -81,7 +83,19 @@
 
 <article>
     <h1 class="vertical-center"><i class="fa fa-bug fa-3x"></i> {% trans "Consultancy" %}</h1>
-    <p>PHP/MySQL/Memcached
-    </p>
+    {% blocktrans %}
+    <p>Need help figuring out <strong>performance</strong> issues? Or are there <strong>bugs</strong> that prove to be hard to squash? Need help with <strong>architecture/stack design</strong>?</p>
+    <p>These kind of issues can be tackled in consultancy sessions. The existing code is analyzed and points of improvement are pointed out, with a focus on quick wins and a roadmap for long term changes.</p>
+
+    Supported technologies:
+    <ul class="default">
+        <li>Python/Django</li>
+        <li>PHP/MySQL</li>
+        <li>Javascript</li>
+        <li>sass/scss</li>
+        <li>(continuous) deployment</li>
+    </ul>
+    {% endblocktrans %}
+
 </article>
 {% endblock %}
