@@ -2,3 +2,34 @@ main,
 .container {
   @include outer-container;
 }
+
+.vertical-center {
+  @include display(flex);
+  @include align-items(center);
+}
+
+h1 > .fa {
+  margin-right: 0.5em;
+}
+
+.cards {
+  @include row;
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+
+  .card {
+    @include flex-basis(20em);
+    @include flex-grow(1);
+    margin: 0 1em;
+  }
+
+  .card-image {
+    max-height: 500px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+}

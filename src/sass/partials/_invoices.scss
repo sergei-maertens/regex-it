@@ -23,6 +23,7 @@ body.invoice {
     }
 
     header {
+        background-color: white;
         margin-top: $base-spacing;
         @include align-items(flex-start);
         border-bottom: none;

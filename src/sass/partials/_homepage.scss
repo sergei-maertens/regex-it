@@ -1,0 +1,8 @@
+.pitch {
+
+  @include row;
+
+  .col {
+    @include span-columns(6);
+  }
+}

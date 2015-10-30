@@ -1,5 +1,8 @@
+$header-height: 50px;
+
 body > header {
 
+  background-color: $palette-action;
   border-bottom: solid 1px $light-gray;
 
   .container {
@@ -10,18 +13,24 @@ body > header {
 
   .main-logo {
     @include margin(1em null);
-    @include span-columns(4);
+    @include span-columns(3);
 
     > span {
       display: block;
-      @include retina-image('../logo/logo-200x50', 200px 50px, 'png', '../logo/logo-400x100');
-      @include size(200px 50px);
+      @include retina-image('../logo/logo-200x50', 200px $header-height, 'png', '../logo/logo-400x100');
+      @include size(200px $header-height);
       @include hide-text;
     }
   }
 
   nav {
-    @include span-columns(6);
+    @include span-columns(8);
+    line-height: $header-height;
+    font-weight: bold;
+
+    li, a {
+      color: $light-gray;
+    }
   }
 }
 
