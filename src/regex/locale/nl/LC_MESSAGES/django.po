@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 20:30+0200\n"
+"POT-Creation-Date: 2015-11-02 08:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,12 +164,12 @@ msgstr ""
 msgid "hourly base rate"
 msgstr ""
 
-#: crm/models.py:90 invoices/templates/invoices/invoice_detail.html:74
+#: crm/models.py:90 invoices/templates/invoices/invoice_detail.html:85
 msgid "flat fee"
 msgstr ""
 
-#: crm/models.py:92 invoices/models.py:145
-#: invoices/templates/invoices/invoice_detail.html:75
+#: crm/models.py:92 invoices/models.py:151
+#: invoices/templates/invoices/invoice_detail.html:86
 msgid "tax rate"
 msgstr ""
 
@@ -179,6 +179,126 @@ msgstr ""
 
 #: crm/models.py:115
 msgid "Provide a base hourly rate or a flat fee."
+msgstr ""
+
+#: homepage/templates/homepage/base.html:7
+msgid "Freelance web development"
+msgstr ""
+
+#: homepage/templates/homepage/base.html:9
+msgid ""
+"\n"
+"    <section class=\"pitch\">\n"
+"        <div class=\"col\">\n"
+"            <p><strong>Do you&hellip;</strong></p>\n"
+"            <ul>\n"
+"                <li>&hellip; need a <strong>new website</strong> for your "
+"awesome product?</li>\n"
+"                <li>&hellip; want to <strong>optimize</strong> your workflow?"
+"</li>\n"
+"                <li>&hellip; need to <strong>update</strong> your current "
+"platform?</li>\n"
+"                <li>&hellip; have a <strong>lack of time</strong> to work on "
+"your interal tooling?</li>\n"
+"            </ul>\n"
+"        </div>\n"
+"\n"
+"        <div class=\"col\">\n"
+"            <p>\n"
+"            <strong>Feel free contact me and let me know your wishes!</"
+"strong> Even the seemingly simplest things can make your professional live "
+"more enjoyable.\n"
+"            </p>\n"
+"\n"
+"            <p>An example list of things that are possible:</p>\n"
+"\n"
+"            <ul class=\"fa-ul\">\n"
+"                <li><i class=\"fa fa-li fa-calendar\"></i> a reservation/"
+"calendar system</li>\n"
+"                <li><i class=\"fa fa-li fa-globe\"></i> a website for your "
+"club/hobby community</li>\n"
+"                <li><i class=\"fa fa-li fa-calculator\"></i> administrative "
+"applications</li>\n"
+"                <li><i class=\"fa fa-li fa-question-circle\"></i> &hellip;"
+"you name it!</li>\n"
+"            </ul>\n"
+"        </div>\n"
+"\n"
+"    </section>\n"
+"    "
+msgstr ""
+
+#: homepage/templates/homepage/base.html:40
+msgid "Favourite technology"
+msgstr ""
+
+#: homepage/templates/homepage/base.html:48
+msgid "Python/Django"
+msgstr ""
+
+#: homepage/templates/homepage/base.html:49
+msgid ""
+"Django is a high-level web framework written in Python, aimed on "
+"'perfectionists with deadlines."
+msgstr ""
+
+#: homepage/templates/homepage/base.html:58
+msgid "PostgreSQL"
+msgstr ""
+
+#: homepage/templates/homepage/base.html:59
+msgid ""
+"PostgreSQL is an excellent, performant relational database, our choice to "
+"keep your data integrity in check."
+msgstr ""
+
+#: homepage/templates/homepage/base.html:68
+msgid "Git"
+msgstr ""
+
+#: homepage/templates/homepage/base.html:69
+msgid ""
+"Every serious project needs serious tooling. Git is the preferred VCS, and "
+"Github is the popular repository hosting choice."
+msgstr ""
+
+#: homepage/templates/homepage/base.html:74
+msgid ""
+"\n"
+"        <p>This is the basic set of tool that would probably be used with "
+"each new project. There is a lot more though: <strong>nginx</strong> is the "
+"first choice of webserver, which proxies to <strong>uwsgi</strong> which "
+"talks to Django.</p>\n"
+"        <p>For caching, <strong>redis</strong> and <strong>memcache</strong> "
+"are viable options.</p>\n"
+"        <p>Deployment is automated with <strong>Ansible</strong>, and all "
+"passwords and other secrets are stored in an encrypted vault.\n"
+"        "
+msgstr ""
+
+#: homepage/templates/homepage/base.html:85
+msgid "Consultancy"
+msgstr ""
+
+#: homepage/templates/homepage/base.html:86
+msgid ""
+"\n"
+"    <p>Need help figuring out <strong>performance</strong> issues? Or are "
+"there <strong>bugs</strong> that prove to be hard to squash? Need help with "
+"<strong>architecture/stack design</strong>?</p>\n"
+"    <p>These kind of issues can be tackled in consultancy sessions. The "
+"existing code is analyzed and points of improvement are pointed out, with a "
+"focus on quick wins and a roadmap for long term changes.</p>\n"
+"\n"
+"    Supported technologies:\n"
+"    <ul class=\"default\">\n"
+"        <li>Python/Django</li>\n"
+"        <li>PHP/MySQL</li>\n"
+"        <li>Javascript</li>\n"
+"        <li>sass/scss</li>\n"
+"        <li>(continuous) deployment</li>\n"
+"    </ul>\n"
+"    "
 msgstr ""
 
 #: invoices/admin.py:17
@@ -193,7 +313,7 @@ msgstr ""
 msgid "# invoice items"
 msgstr ""
 
-#: invoices/admin.py:56 invoices/admin.py:57 invoices/models.py:156
+#: invoices/admin.py:56 invoices/admin.py:57 invoices/models.py:162
 msgid "invoice items"
 msgstr ""
 
@@ -201,43 +321,43 @@ msgstr ""
 msgid "Invoices"
 msgstr ""
 
-#: invoices/models.py:25
+#: invoices/models.py:27
 msgid "date"
 msgstr ""
 
-#: invoices/models.py:25
+#: invoices/models.py:27
 msgid "Include work up to (including) this day."
 msgstr ""
 
-#: invoices/models.py:29
+#: invoices/models.py:31
 msgid "invoice number"
 msgstr ""
 
-#: invoices/models.py:33
+#: invoices/models.py:35
 msgid "due date"
 msgstr ""
 
-#: invoices/models.py:35
+#: invoices/models.py:37
 msgid "pdf"
 msgstr ""
 
-#: invoices/models.py:39
+#: invoices/models.py:41
 msgid "received"
 msgstr ""
 
-#: invoices/models.py:142 invoices/templates/invoices/invoice_detail.html:31
+#: invoices/models.py:148 invoices/templates/invoices/invoice_detail.html:32
 msgid "rate"
 msgstr ""
 
-#: invoices/models.py:143 invoices/templates/invoices/invoice_detail.html:72
+#: invoices/models.py:149 invoices/templates/invoices/invoice_detail.html:83
 msgid "amount"
 msgstr ""
 
-#: invoices/models.py:152 invoices/templates/invoices/invoice_detail.html:71
+#: invoices/models.py:158 invoices/templates/invoices/invoice_detail.html:82
 msgid "remarks"
 msgstr ""
 
-#: invoices/models.py:155
+#: invoices/models.py:161
 msgid "invoice item"
 msgstr ""
 
@@ -267,58 +387,66 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: invoices/templates/invoices/invoice_detail.html:28
+#: invoices/templates/invoices/invoice_detail.html:29
 msgid "Applied tax rates"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:32
+#: invoices/templates/invoices/invoice_detail.html:33
 msgid "number of times applied"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:47
+#: invoices/templates/invoices/invoice_detail.html:49
 msgid "Totals"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:50
+#: invoices/templates/invoices/invoice_detail.html:53
+msgid "total (with VAT reverse charge)"
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:60
 msgid "total (excl. tax)"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:51
+#: invoices/templates/invoices/invoice_detail.html:61
 msgid "total tax"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:52
+#: invoices/templates/invoices/invoice_detail.html:62
 msgid "total (incl. tax)"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:62
+#: invoices/templates/invoices/invoice_detail.html:73
 #, python-format
 msgid "Please transfer the total sum by %(due_date)s."
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:67
+#: invoices/templates/invoices/invoice_detail.html:78
 msgid "Invoice details"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:73
+#: invoices/templates/invoices/invoice_detail.html:84
 msgid "rate (€ / hour)"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:82
+#: invoices/templates/invoices/invoice_detail.html:93
 #, python-format
 msgid "%(proj)s"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:88
-#: invoices/templates/invoices/invoice_detail.html:89
+#: invoices/templates/invoices/invoice_detail.html:99
+#: invoices/templates/invoices/invoice_detail.html:100
 msgid "n/a"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:99
+#: invoices/templates/invoices/invoice_detail.html:111
+msgid "Note: reverse-charging for the VAT is applied on this invoice."
+msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:114
 msgid "End of invoice"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:108
+#: invoices/templates/invoices/invoice_detail.html:123
 #, python-format
 msgid ""
 "Invoice %(number)s - %(date)s - Page \" counter(page) \" of \" counter(pages)"
@@ -341,6 +469,10 @@ msgstr ""
 
 #: templates/base.html:7
 msgid "Regex-IT portal"
+msgstr ""
+
+#: templates/base.html:26
+msgid "home"
 msgstr ""
 
 #: utils/templatetags/math.py:13
