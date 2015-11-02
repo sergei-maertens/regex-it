@@ -50,6 +50,7 @@ class Client(models.Model):
     address = models.CharField(_('address'), max_length=255)
     city = models.CharField(_('city'), max_length=255)
     country = CountryField(default=settings.DEFAULT_COUNTRY, verbose_name=_('Country'))
+    language = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, default='nl')
 
     # invoicing fields
     crn = models.CharField(_('registration number'), max_length=50, blank=True, help_text=_('KvK number'))
