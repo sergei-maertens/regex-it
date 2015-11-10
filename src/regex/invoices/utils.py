@@ -6,6 +6,7 @@ from io import BytesIO
 from django.core.files import File
 from django.db.models import Count
 from django.template import loader, RequestContext
+from django.utils import translation
 
 import weasyprint
 from sendfile import sendfile
@@ -15,6 +16,10 @@ from regex.utils.views.pdf import PDFTemplateResponse, PDFTemplateResponseMixin
 
 
 def render_invoice_pdf(request, invoice, template_name='invoices/invoice_detail.html'):
+    # render the invoice in the client's language
+    lang_code = invoice.client.language
+    translation.activate(lang_code)
+
     if isinstance(template_name, (list, tuple)):
         template = loader.select_template(template_name)
     else:
@@ -35,6 +40,12 @@ def render_invoice_pdf(request, invoice, template_name='invoices/invoice_detail.
     wp.write_pdf(target=buffer)
     filename = '{}.pdf'.format(invoice.invoice_number)
     invoice.pdf.save(filename, File(buffer))
+
+    # go back to the previous language
+    if hasattr(request, 'LANGUAGE_CODE'):
+        translation.activate(request.LANGUAGE_CODE)
+    else:
+        translation.deactivate()
 
 
 class InvoicePDFTemplateResponse(PDFTemplateResponse):
