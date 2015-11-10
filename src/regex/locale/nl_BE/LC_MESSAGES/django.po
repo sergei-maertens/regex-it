@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-02 08:53+0100\n"
-"PO-Revision-Date: 2015-11-02 08:55+0020\n"
+"POT-Creation-Date: 2015-11-10 09:08+0100\n"
+"PO-Revision-Date: 2015-11-10 09:10+0020\n"
 "Last-Translator: b'  <info@regex-it.nl>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "Nederlands"
 msgid "Dutch (Belgium)"
 msgstr "Nederlands (België)"
 
-#: crm/admin.py:17 crm/models.py:65
+#: crm/admin.py:17 crm/models.py:66
 msgid "clients"
 msgstr "klanten"
 
@@ -90,7 +90,7 @@ msgstr "klanten"
 msgid "contacts"
 msgstr "contacten"
 
-#: crm/admin.py:37 crm/models.py:98
+#: crm/admin.py:37 crm/models.py:99
 msgid "projects"
 msgstr "projecten"
 
@@ -122,11 +122,11 @@ msgstr "stad"
 msgid "Country"
 msgstr "Land"
 
-#: crm/models.py:31 crm/models.py:60
+#: crm/models.py:31 crm/models.py:61
 msgid "created"
 msgstr "aangemaakt"
 
-#: crm/models.py:32 crm/models.py:61
+#: crm/models.py:32 crm/models.py:62
 msgid "modified"
 msgstr "geüpdatet"
 
@@ -138,48 +138,52 @@ msgstr "contactpersoon"
 msgid "slug"
 msgstr "slug"
 
-#: crm/models.py:55
+#: crm/models.py:53
+msgid "language"
+msgstr "taal"
+
+#: crm/models.py:56
 msgid "registration number"
 msgstr "registratienummer"
 
-#: crm/models.py:55
+#: crm/models.py:56
 msgid "KvK number"
 msgstr "KvK nummer"
 
-#: crm/models.py:56
+#: crm/models.py:57
 msgid "VAT number"
 msgstr "BTW nummer"
 
-#: crm/models.py:64
+#: crm/models.py:65
 msgid "client"
 msgstr "klant"
 
-#: crm/models.py:72
+#: crm/models.py:73
 msgid "low"
 msgstr "laag"
 
-#: crm/models.py:73
+#: crm/models.py:74
 msgid "high"
 msgstr "hoog"
 
-#: crm/models.py:89
+#: crm/models.py:90
 msgid "hourly base rate"
 msgstr "uurtarief"
 
-#: crm/models.py:90 invoices/templates/invoices/invoice_detail.html:85
+#: crm/models.py:91 invoices/templates/invoices/invoice_detail.html:85
 msgid "flat fee"
 msgstr "vast bedrag"
 
-#: crm/models.py:92 invoices/models.py:151
+#: crm/models.py:93 invoices/models.py:151
 #: invoices/templates/invoices/invoice_detail.html:86
 msgid "tax rate"
 msgstr "BTW tarief"
 
-#: crm/models.py:97
+#: crm/models.py:98
 msgid "project"
 msgstr "project"
 
-#: crm/models.py:115
+#: crm/models.py:116
 msgid "Provide a base hourly rate or a flat fee."
 msgstr "Geef een uurtarief of vast bedrag op."
 

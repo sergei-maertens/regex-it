@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-02 08:53+0100\n"
+"POT-Creation-Date: 2015-11-10 09:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,7 +80,7 @@ msgstr ""
 msgid "Dutch (Belgium)"
 msgstr ""
 
-#: crm/admin.py:17 crm/models.py:65
+#: crm/admin.py:17 crm/models.py:66
 msgid "clients"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr ""
 msgid "contacts"
 msgstr ""
 
-#: crm/admin.py:37 crm/models.py:98
+#: crm/admin.py:37 crm/models.py:99
 msgid "projects"
 msgstr ""
 
@@ -120,11 +120,11 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: crm/models.py:31 crm/models.py:60
+#: crm/models.py:31 crm/models.py:61
 msgid "created"
 msgstr ""
 
-#: crm/models.py:32 crm/models.py:61
+#: crm/models.py:32 crm/models.py:62
 msgid "modified"
 msgstr ""
 
@@ -136,48 +136,52 @@ msgstr ""
 msgid "slug"
 msgstr ""
 
-#: crm/models.py:55
-msgid "registration number"
-msgstr ""
-
-#: crm/models.py:55
-msgid "KvK number"
+#: crm/models.py:53
+msgid "language"
 msgstr ""
 
 #: crm/models.py:56
+msgid "registration number"
+msgstr ""
+
+#: crm/models.py:56
+msgid "KvK number"
+msgstr ""
+
+#: crm/models.py:57
 msgid "VAT number"
 msgstr ""
 
-#: crm/models.py:64
+#: crm/models.py:65
 msgid "client"
 msgstr ""
 
-#: crm/models.py:72
+#: crm/models.py:73
 msgid "low"
 msgstr ""
 
-#: crm/models.py:73
+#: crm/models.py:74
 msgid "high"
 msgstr ""
 
-#: crm/models.py:89
+#: crm/models.py:90
 msgid "hourly base rate"
 msgstr ""
 
-#: crm/models.py:90 invoices/templates/invoices/invoice_detail.html:85
+#: crm/models.py:91 invoices/templates/invoices/invoice_detail.html:85
 msgid "flat fee"
 msgstr ""
 
-#: crm/models.py:92 invoices/models.py:151
+#: crm/models.py:93 invoices/models.py:151
 #: invoices/templates/invoices/invoice_detail.html:86
 msgid "tax rate"
 msgstr ""
 
-#: crm/models.py:97
+#: crm/models.py:98
 msgid "project"
 msgstr ""
 
-#: crm/models.py:115
+#: crm/models.py:116
 msgid "Provide a base hourly rate or a flat fee."
 msgstr ""
 
