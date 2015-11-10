@@ -2,3 +2,4 @@
 
 env_dir: "{{ ansible_env.HOME }}/env"
 env_file_dest: "{{ env_dir }}/{{ target_env }}.txt"
+env_file_dest_bash: "{{ env_dir }}/{{ target_env }}-bash.txt"

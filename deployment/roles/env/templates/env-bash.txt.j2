@@ -1,9 +1,9 @@
 {% for name, value in env_vars.items() -%}
 {% if value is mapping -%}
 {% for key, val in value.items() -%}
-{{ name|upper + '_' + key|upper }}={{ val }}
+{{ name|upper + '_' + key|upper }}="{{ val }}"
 {% endfor -%}
 {% else -%}
-{{ name|upper }}={{ value }}
+{{ name|upper }}="{{ value }}"
 {% endif -%}
 {% endfor -%}

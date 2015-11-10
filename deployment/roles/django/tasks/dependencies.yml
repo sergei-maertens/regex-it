@@ -22,5 +22,8 @@
   notify:
     - restart uwsgi
 
+- name: Remove old source-trick
+  lineinfile: dest={{ venv }}/bin/activate state=absent line="export $(cat {{ env_file_dest }} | xargs)"
+
 - name: Automatically export environment from file on the server itself
-  lineinfile: dest={{ venv }}/bin/activate state=present line="export $(cat {{ env_file_dest }} | xargs)"
+  lineinfile: dest={{ venv }}/bin/activate state=present line="source {{ env_file_dest_bash }}"
