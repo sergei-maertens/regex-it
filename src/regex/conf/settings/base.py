@@ -140,6 +140,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
 
     # External applications.
+    'adminsortable2',
     'compressor',
     'django_countries',
     'import_export',
@@ -150,6 +151,7 @@ INSTALLED_APPS = [
     'regex.crm',
     'regex.homepage',
     'regex.invoices',
+    'regex.portfolio',
     'regex.work_entries',
     'regex.utils',
 ]
