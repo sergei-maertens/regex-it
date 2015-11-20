@@ -3,7 +3,8 @@ $header-height: 50px;
 body > header {
 
   background-color: $palette-action;
-  border-bottom: solid 1px $light-gray;
+  border-bottom: solid 4px $palette-dark;
+  box-shadow: 0px 0px 15px 0px $dark-gray;
 
   .container {
     @include row;
