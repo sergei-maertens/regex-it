@@ -6,38 +6,91 @@
 <article>
     <h1 class="vertical-center"><i class="fa fa-laptop fa-3x"></i> {% trans "Freelance web development" %}</h1>
 
-    {% blocktrans %}
     <section class="pitch">
-        <div class="col">
-            <p><strong>Do you&hellip;</strong></p>
-            <ul>
-                <li>&hellip; need a <strong>new website</strong> for your awesome product?</li>
-                <li>&hellip; want to <strong>optimize</strong> your workflow?</li>
-                <li>&hellip; need to <strong>update</strong> your current platform?</li>
-                <li>&hellip; have a <strong>lack of time</strong> to work on your interal tooling?</li>
-            </ul>
-        </div>
 
-        <div class="col">
-            <p>
-            <strong>Feel free contact me and let me know your wishes!</strong> Even the seemingly simplest things can make your professional live more enjoyable.
-            </p>
 
-            <p>An example list of things that are possible:</p>
+        <div class="cards">
 
-            <ul class="fa-ul">
-                <li><i class="fa fa-li fa-calendar"></i> a reservation/calendar system</li>
-                <li><i class="fa fa-li fa-globe"></i> a website for your club/hobby community</li>
-                <li><i class="fa fa-li fa-calculator"></i> administrative applications</li>
-                <li><i class="fa fa-li fa-question-circle"></i> &hellip;you name it!</li>
-            </ul>
+            <div class="card">
+
+                <div class="card-image text-center vertical-center bg-action2">
+                    <i class="fa fa-globe fa-4x"></i>
+                </div>
+
+                <div class="card-header text-center">{% trans "Websites" %}</div>
+
+                <div class="card-copy">
+                    {% blocktrans %}
+                    <p>Your product needs a decent website, maybe even a webshop or
+                    maybe you want to keep your userbase updated through your website.
+                    </p>
+                    <p>Your custom requirements are easily met by building custom
+                    websites, starting from your needs. <strong>You</strong>
+                    control how to use and operate your website!</p>
+                    {% endblocktrans %}
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-image text-center vertical-center bg-action">
+                    <i class="fa fa-cogs fa-4x"></i>
+                </div>
+
+                <div class="card-header text-center">{% trans "Internal tooling" %}</div>
+
+                <div class="card-copy">
+                    {% blocktrans %}
+                    <p>Lots of people perform lots of repetitive tasks. Us - software
+                    developers - like to automate the bland and boring stuff.</p>
+
+                    <p>Examples that jump into mind:</p>
+
+                    <ul class="default">
+                        <li>Generating invoices</li>
+                        <li>Keeping track of orders</li>
+                        <li>Managing your staff</li>
+                        <li>Tracking room reservations</li>
+                    </ul>
+
+                    <p>Ofcourse, this list is not exclusive. Contact me to bounce
+                    your ideas and hear what's possible.</p>
+                    {% endblocktrans %}
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-image text-center vertical-center bg-light">
+                    <i class="fa fa-user-plus fa-4x"></i>
+                </div>
+
+                <div class="card-header text-center">{% trans "Extra manpower" %}</div>
+
+                <div class="card-copy">
+                    {% blocktrans %}
+                    <p>Sometimes you're just short a pair of hands to work on your
+                    existing codebase. In that case, if the requirements are met,
+                    I can work for you on an hourly base or based on a project fee.</p>
+
+                    <p>Collaboration is done on an active base - you will get pointers
+                    and hints from me how you can further improve the code structure
+                    and what optimizations are still possible.</p>
+                    {% endblocktrans %}
+                </div>
+
+            </div>
+
         </div>
 
     </section>
-    {% endblocktrans %}
 
     <section>
-        <h2>{% trans "Favourite technology" %}</h2>
+        <h2><i class="fa fa-server"></i> {% trans "Favourite technology" %}</h2>
 
         <ul class="bullets">
             <li class="bullet">
@@ -46,7 +99,7 @@
                 </div>
                 <div class="bullet-content">
                     <h3>{% trans "Python/Django" %}</h3>
-                    <p>{% trans "Django is a high-level web framework written in Python, aimed on 'perfectionists with deadlines." %}</p>
+                    <p>{% trans "Django is a high-level web framework written in Python, aimed on 'perfectionists with deadlines'." %}</p>
                 </div>
             </li>
 
@@ -56,7 +109,7 @@
                 </div>
                 <div class="bullet-content">
                     <h3>{% trans "PostgreSQL" %}</h3>
-                    <p>{% trans "PostgreSQL is an excellent, performant relational database, our choice to keep your data integrity in check." %}</p>
+                    <p>{% trans "PostgreSQL is an excellent, performant relational database, my first choice to handle your data with excellent integrity." %}</p>
                 </div>
             </li>
 

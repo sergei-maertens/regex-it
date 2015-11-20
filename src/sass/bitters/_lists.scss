@@ -33,3 +33,7 @@ dl {
 ul.default {
   @extend %default-ul;
 }
+
+ol.default {
+  @extend %default-ol;
+}

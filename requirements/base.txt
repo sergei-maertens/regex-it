@@ -8,6 +8,7 @@ rules==1.0
 
 WeasyPrint==0.24
 
+django-admin-sortable2==0.6.0
 django-appconf==1.0.1
 django-autoslug==1.9.3
 django-choices==1.4.2
