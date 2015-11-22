@@ -11,20 +11,16 @@
     dest=/etc/ssl/private/wildcard.{{ project_name }}.key
     mode=0640
   no_log: true
-  remote_user: root
 
 - name: Copy ssl keys and certs
   copy: src=wildcard.{{ project_name }}.crt dest=/etc/ssl/certs/{{ project_name }}.crt
-  remote_user: root
 
 - name: Check if custom DH cert exists
   stat: path=/etc/ssl/certs/dhparam.pem
   register: has_custom_dh_cert
-  remote_user: root
 
 - name: Generate custom DH cert
   shell: openssl dhparam -out dhparam.pem 4096
          chdir=/etc/ssl/certs/
   when:
     - has_custom_dh_cert.stat.exists == False
-  remote_user: root

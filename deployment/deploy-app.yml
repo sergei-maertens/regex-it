@@ -10,5 +10,4 @@
     - grunt
     - django
     - supervisor
-    - ssl
     - nginx
