@@ -1,4 +1,4 @@
-Django==1.8.5
+Django==1.8.6
 
 Pillow==3.0.0
 psycopg2==2.6.1
@@ -8,6 +8,7 @@ rules==1.0
 
 WeasyPrint==0.24
 
+django-admin-sortable2==0.6.0
 django-appconf==1.0.1
 django-autoslug==1.9.3
 django-choices==1.4.2

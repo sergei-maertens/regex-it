@@ -3,16 +3,16 @@ upstream {{ prefix }}_django {
 }
 
 # redirect non-ssl to ssl
-# server {
-#     listen 80;
-#     server_name {{ hostnames|join(' ') }};
-#     return 301 https://{{ hostnames[0] }}$request_uri;
-# }
+server {
+    listen 80;
+    server_name {{ hostnames|join(' ') }};
+    return 301 https://{{ hostnames[0] }}$request_uri;
+}
 
 
 # ssl
 server {
-    listen       80;
+    listen       443;
     server_name  {{ hostnames|join(' ') }};
     error_log /var/log/nginx/{{ prefix }}/error.log warn;
     access_log  /var/log/nginx/{{ prefix }}/access.log main;
@@ -20,13 +20,13 @@ server {
     charset utf-8;
     root {{ root }};
 
-    # ssl on;
-    # ssl_certificate {{ ansible_env.HOME }}/.ssl/{{ prefix }}/ssl-unified.crt;
-    # ssl_certificate_key {{ ansible_env.HOME }}/.ssl/{{ prefix }}/ssl.key;
-    # ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
-    # ssl_dhparam /etc/ssl/certs/dhparam.pem;
-    # ssl_prefer_server_ciphers on;
-    # ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4 ";
+    ssl on;
+    ssl_certificate /etc/ssl/certs/{{ project_name }}.crt;
+    ssl_certificate_key /etc/ssl/private/wildcard.{{ project_name }}.key;
+    ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
+    ssl_dhparam /etc/ssl/certs/dhparam.pem;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4 ";
 
     set $maintenance off;
     if (-f $document_root/maintenance.html ) {

@@ -6,4 +6,5 @@
   roles:
     - base
     - postgres
+    - ssl
     - nginx

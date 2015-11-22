@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-10 09:08+0100\n"
+"POT-Creation-Date: 2015-11-22 19:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,7 +96,7 @@ msgstr ""
 msgid "label"
 msgstr ""
 
-#: crm/models.py:21 crm/models.py:44
+#: crm/models.py:21 crm/models.py:44 portfolio/models.py:9
 msgid "name"
 msgstr ""
 
@@ -132,7 +132,7 @@ msgstr ""
 msgid "contact"
 msgstr ""
 
-#: crm/models.py:45
+#: crm/models.py:45 portfolio/models.py:10
 msgid "slug"
 msgstr ""
 
@@ -189,84 +189,110 @@ msgstr ""
 msgid "Freelance web development"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:9
-msgid ""
-"\n"
-"    <section class=\"pitch\">\n"
-"        <div class=\"col\">\n"
-"            <p><strong>Do you&hellip;</strong></p>\n"
-"            <ul>\n"
-"                <li>&hellip; need a <strong>new website</strong> for your "
-"awesome product?</li>\n"
-"                <li>&hellip; want to <strong>optimize</strong> your workflow?"
-"</li>\n"
-"                <li>&hellip; need to <strong>update</strong> your current "
-"platform?</li>\n"
-"                <li>&hellip; have a <strong>lack of time</strong> to work on "
-"your interal tooling?</li>\n"
-"            </ul>\n"
-"        </div>\n"
-"\n"
-"        <div class=\"col\">\n"
-"            <p>\n"
-"            <strong>Feel free contact me and let me know your wishes!</"
-"strong> Even the seemingly simplest things can make your professional live "
-"more enjoyable.\n"
-"            </p>\n"
-"\n"
-"            <p>An example list of things that are possible:</p>\n"
-"\n"
-"            <ul class=\"fa-ul\">\n"
-"                <li><i class=\"fa fa-li fa-calendar\"></i> a reservation/"
-"calendar system</li>\n"
-"                <li><i class=\"fa fa-li fa-globe\"></i> a website for your "
-"club/hobby community</li>\n"
-"                <li><i class=\"fa fa-li fa-calculator\"></i> administrative "
-"applications</li>\n"
-"                <li><i class=\"fa fa-li fa-question-circle\"></i> &hellip;"
-"you name it!</li>\n"
-"            </ul>\n"
-"        </div>\n"
-"\n"
-"    </section>\n"
-"    "
+#: homepage/templates/homepage/base.html:20
+msgid "Websites"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:40
+#: homepage/templates/homepage/base.html:23
+msgid ""
+"\n"
+"                    <p>Your product needs a decent website, maybe even a "
+"webshop or\n"
+"                    maybe you want to keep your userbase updated through "
+"your website.\n"
+"                    </p>\n"
+"                    <p>Your custom requirements are easily met by building "
+"custom\n"
+"                    websites, starting from your needs. <strong>You</"
+"strong>\n"
+"                    control how to use and operate your website!</p>\n"
+"                    "
+msgstr ""
+
+#: homepage/templates/homepage/base.html:42
+msgid "Internal tooling"
+msgstr ""
+
+#: homepage/templates/homepage/base.html:45
+msgid ""
+"\n"
+"                    <p>Lots of people perform lots of repetitive tasks. Us - "
+"software\n"
+"                    developers - like to automate the bland and boring stuff."
+"</p>\n"
+"\n"
+"                    <p>Examples that jump into mind:</p>\n"
+"\n"
+"                    <ul class=\"default\">\n"
+"                        <li>Generating invoices</li>\n"
+"                        <li>Keeping track of orders</li>\n"
+"                        <li>Managing your staff</li>\n"
+"                        <li>Tracking room reservations</li>\n"
+"                    </ul>\n"
+"\n"
+"                    <p>Ofcourse, this list is not exclusive. Contact me to "
+"bounce\n"
+"                    your ideas and hear what's possible.</p>\n"
+"                    "
+msgstr ""
+
+#: homepage/templates/homepage/base.html:72
+msgid "Extra manpower"
+msgstr ""
+
+#: homepage/templates/homepage/base.html:75
+msgid ""
+"\n"
+"                    <p>Sometimes you're just short a pair of hands to work "
+"on your\n"
+"                    existing codebase. In that case, if the requirements are "
+"met,\n"
+"                    I can work for you on an hourly base or based on a "
+"project fee.</p>\n"
+"\n"
+"                    <p>Collaboration is done on an active base - you will "
+"get pointers\n"
+"                    and hints from me how you can further improve the code "
+"structure\n"
+"                    and what optimizations are still possible.</p>\n"
+"                    "
+msgstr ""
+
+#: homepage/templates/homepage/base.html:93
 msgid "Favourite technology"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:48
+#: homepage/templates/homepage/base.html:101
 msgid "Python/Django"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:49
+#: homepage/templates/homepage/base.html:102
 msgid ""
 "Django is a high-level web framework written in Python, aimed on "
-"'perfectionists with deadlines."
+"'perfectionists with deadlines'."
 msgstr ""
 
-#: homepage/templates/homepage/base.html:58
+#: homepage/templates/homepage/base.html:111
 msgid "PostgreSQL"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:59
+#: homepage/templates/homepage/base.html:112
 msgid ""
-"PostgreSQL is an excellent, performant relational database, our choice to "
-"keep your data integrity in check."
+"PostgreSQL is an excellent, performant relational database, my first choice "
+"to handle your data with excellent integrity."
 msgstr ""
 
-#: homepage/templates/homepage/base.html:68
+#: homepage/templates/homepage/base.html:121
 msgid "Git"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:69
+#: homepage/templates/homepage/base.html:122
 msgid ""
 "Every serious project needs serious tooling. Git is the preferred VCS, and "
 "Github is the popular repository hosting choice."
 msgstr ""
 
-#: homepage/templates/homepage/base.html:74
+#: homepage/templates/homepage/base.html:127
 msgid ""
 "\n"
 "        <p>This is the basic set of tool that would probably be used with "
@@ -280,11 +306,11 @@ msgid ""
 "        "
 msgstr ""
 
-#: homepage/templates/homepage/base.html:85
+#: homepage/templates/homepage/base.html:138
 msgid "Consultancy"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:86
+#: homepage/templates/homepage/base.html:139
 msgid ""
 "\n"
 "    <p>Need help figuring out <strong>performance</strong> issues? Or are "
@@ -469,6 +495,26 @@ msgstr ""
 #: invoices/templates/invoices/tags/address.html:15
 #, python-format
 msgid "IBAN: %(company_iban)s"
+msgstr ""
+
+#: portfolio/models.py:11
+msgid "image"
+msgstr ""
+
+#: portfolio/models.py:13
+msgid "description"
+msgstr ""
+
+#: portfolio/models.py:16
+msgid "published"
+msgstr ""
+
+#: portfolio/models.py:19
+msgid "portfolio entry"
+msgstr ""
+
+#: portfolio/models.py:20
+msgid "portfolio entries"
 msgstr ""
 
 #: templates/base.html:7

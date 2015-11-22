@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-10 09:08+0100\n"
-"PO-Revision-Date: 2015-11-10 09:10+0020\n"
+"POT-Creation-Date: 2015-11-22 19:39+0100\n"
+"PO-Revision-Date: 2015-11-22 19:59+0020\n"
 "Last-Translator: b'  <info@regex-it.nl>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgstr "projecten"
 msgid "label"
 msgstr "label"
 
-#: crm/models.py:21 crm/models.py:44
+#: crm/models.py:21 crm/models.py:44 portfolio/models.py:9
 msgid "name"
 msgstr "naam"
 
@@ -134,7 +134,7 @@ msgstr "geüpdatet"
 msgid "contact"
 msgstr "contactpersoon"
 
-#: crm/models.py:45
+#: crm/models.py:45 portfolio/models.py:10
 msgid "slug"
 msgstr "slug"
 
@@ -189,76 +189,129 @@ msgstr "Geef een uurtarief of vast bedrag op."
 
 #: homepage/templates/homepage/base.html:7
 msgid "Freelance web development"
-msgstr ""
+msgstr "Freelance webdevelopment"
 
-#: homepage/templates/homepage/base.html:9
+#: homepage/templates/homepage/base.html:20
+msgid "Websites"
+msgstr "Websites"
+
+#: homepage/templates/homepage/base.html:23
 msgid ""
 "\n"
-"    <section class=\"pitch\">\n"
-"        <div class=\"col\">\n"
-"            <p><strong>Do you&hellip;</strong></p>\n"
-"            <ul>\n"
-"                <li>&hellip; need a <strong>new website</strong> for your awesome product?</li>\n"
-"                <li>&hellip; want to <strong>optimize</strong> your workflow?</li>\n"
-"                <li>&hellip; need to <strong>update</strong> your current platform?</li>\n"
-"                <li>&hellip; have a <strong>lack of time</strong> to work on your interal tooling?</li>\n"
-"            </ul>\n"
-"        </div>\n"
-"\n"
-"        <div class=\"col\">\n"
-"            <p>\n"
-"            <strong>Feel free contact me and let me know your wishes!</strong> Even the seemingly simplest things can make your professional live more enjoyable.\n"
-"            </p>\n"
-"\n"
-"            <p>An example list of things that are possible:</p>\n"
-"\n"
-"            <ul class=\"fa-ul\">\n"
-"                <li><i class=\"fa fa-li fa-calendar\"></i> a reservation/calendar system</li>\n"
-"                <li><i class=\"fa fa-li fa-globe\"></i> a website for your club/hobby community</li>\n"
-"                <li><i class=\"fa fa-li fa-calculator\"></i> administrative applications</li>\n"
-"                <li><i class=\"fa fa-li fa-question-circle\"></i> &hellip;you name it!</li>\n"
-"            </ul>\n"
-"        </div>\n"
-"\n"
-"    </section>\n"
-"    "
+"                    <p>Your product needs a decent website, maybe even a webshop or\n"
+"                    maybe you want to keep your userbase updated through your website.\n"
+"                    </p>\n"
+"                    <p>Your custom requirements are easily met by building custom\n"
+"                    websites, starting from your needs. <strong>You</strong>\n"
+"                    control how to use and operate your website!</p>\n"
+"                    "
 msgstr ""
+"\n"
+"<p>Voor je product wil je natuurlijk een nette website, of misschien zelfs een webshop, of je wil je gebruikersbestand up to date houden via je website.</p>\n"
+"<p>Specifieke wensen kunnen makkelijk vervuld worden door een website op maat te bouwen, waarbij van het begin af aan op jouw noden ingespeeld wordt. <strong>Jij</strong> controleert hoe je je website wil gebruiken en beheren!</p>"
 
-#: homepage/templates/homepage/base.html:40
+#: homepage/templates/homepage/base.html:42
+msgid "Internal tooling"
+msgstr "Interne tools"
+
+#: homepage/templates/homepage/base.html:45
+msgid ""
+"\n"
+"                    <p>Lots of people perform lots of repetitive tasks. Us - software\n"
+"                    developers - like to automate the bland and boring stuff.</p>\n"
+"\n"
+"                    <p>Examples that jump into mind:</p>\n"
+"\n"
+"                    <ul class=\"default\">\n"
+"                        <li>Generating invoices</li>\n"
+"                        <li>Keeping track of orders</li>\n"
+"                        <li>Managing your staff</li>\n"
+"                        <li>Tracking room reservations</li>\n"
+"                    </ul>\n"
+"\n"
+"                    <p>Ofcourse, this list is not exclusive. Contact me to bounce\n"
+"                    your ideas and hear what's possible.</p>\n"
+"                    "
+msgstr ""
+"\n"
+"<p>Veel mensen voeren veel repetitieve taken uit. Wij - software developers - houden ervan om de vervelende en saaie taken te automatiseren.</p>\n"
+"\n"
+"<p>Enkele voorbeelden die in de gedachten springen:<p>\n"
+"\n"
+"<ul class=\"default\">\n"
+"<li>Facturen genereren</li>\n"
+"<li>Bestellingen opvolgen</li>\n"
+"<li>Personeelsbeheer</li>\n"
+"<li>Ruimtereservaties beheren</li>\n"
+"</ul>\n"
+"\n"
+"<p>Deze lijst is natuurlijk niet compleet. Neem gerust contact op om je idee te toetsen en te horen wat de mogelijkheden zijn.</p>"
+
+#: homepage/templates/homepage/base.html:72
+msgid "Extra manpower"
+msgstr "Extra mankracht"
+
+#: homepage/templates/homepage/base.html:75
+msgid ""
+"\n"
+"                    <p>Sometimes you're just short a pair of hands to work on your\n"
+"                    existing codebase. In that case, if the requirements are met,\n"
+"                    I can work for you on an hourly base or based on a project fee.</p>\n"
+"\n"
+"                    <p>Collaboration is done on an active base - you will get pointers\n"
+"                    and hints from me how you can further improve the code structure\n"
+"                    and what optimizations are still possible.</p>\n"
+"                    "
+msgstr ""
+"\n"
+"<p>Soms kom je net een paar handen te kort om aan je bestaande codebase te werken. In dat geval - mits enkele voorwaarden - kan ik voor jou werken op uurbasis, of zelfs op projectbasis.</p>\n"
+"\n"
+"<p>Samenwerking gebeurt actief, d.w.z. dat je van mij ook feedback en hints krijgt hoe je verder je codebase kan verbeteren en wat voor optimalisaties er nog mogelijk zijn.</p>"
+
+#: homepage/templates/homepage/base.html:93
 msgid "Favourite technology"
-msgstr ""
+msgstr "Favoriete technologie"
 
-#: homepage/templates/homepage/base.html:48
+#: homepage/templates/homepage/base.html:101
 msgid "Python/Django"
-msgstr ""
+msgstr "Python/Django"
 
-#: homepage/templates/homepage/base.html:49
+#: homepage/templates/homepage/base.html:102
 msgid ""
 "Django is a high-level web framework written in Python, aimed on "
-"'perfectionists with deadlines."
+"'perfectionists with deadlines'."
 msgstr ""
+"Django is een high-level web-framework, geschreven in Python en het is "
+"gericht op 'perfectionisten met deadlines'."
 
-#: homepage/templates/homepage/base.html:58
+#: homepage/templates/homepage/base.html:111
 msgid "PostgreSQL"
-msgstr ""
+msgstr "PostgreSQL"
 
-#: homepage/templates/homepage/base.html:59
+#: homepage/templates/homepage/base.html:112
 msgid ""
-"PostgreSQL is an excellent, performant relational database, our choice to "
-"keep your data integrity in check."
+"PostgreSQL is an excellent, performant relational database, my first choice "
+"to handle your data with excellent integrity."
 msgstr ""
+"Postgres is een uitstekend, hoog-performante relationele databank. Het is "
+"mijn eerste keuze als database, omdat data-integriteit uitstekend "
+"gewaarborgd wordt, naast de vele features."
 
-#: homepage/templates/homepage/base.html:68
+#: homepage/templates/homepage/base.html:121
 msgid "Git"
-msgstr ""
+msgstr "Git"
 
-#: homepage/templates/homepage/base.html:69
+#: homepage/templates/homepage/base.html:122
 msgid ""
 "Every serious project needs serious tooling. Git is the preferred VCS, and "
 "Github is the popular repository hosting choice."
 msgstr ""
+"Voor een serieus project moet je goeie tools gebruiken. Git is daar eentje "
+"van - mijn voorkeurs versiecontrolesysteem. Github is de populaire keuze om "
+"de repository onder te brengen, maar ook BitBucket is een optie als de code "
+"niet publiek mag zijn."
 
-#: homepage/templates/homepage/base.html:74
+#: homepage/templates/homepage/base.html:127
 msgid ""
 "\n"
 "        <p>This is the basic set of tool that would probably be used with each new project. There is a lot more though: <strong>nginx</strong> is the first choice of webserver, which proxies to <strong>uwsgi</strong> which talks to Django.</p>\n"
@@ -266,12 +319,18 @@ msgid ""
 "        <p>Deployment is automated with <strong>Ansible</strong>, and all passwords and other secrets are stored in an encrypted vault.\n"
 "        "
 msgstr ""
+"\n"
+"<p>Dit is een basisset van tools die 99% zeker gebruikt gaan worden in een nieuw project. Er is echter meer: <strong>nginx</strong> is de voorkeurswebserver, die de requests proxiet naar <strong>uwsgi</strong> wat dan weer tegen Django praat.</p>\n"
+"\n"
+"<p>Voor caching zijn <strong>redis</strong> en <strong>memcached</strong> goeie kandidaten.</p>\n"
+"\n"
+"<p>Deployment (uitrollen van updates) gebeurt geautomatiseerd met <strong>Ansible</strong>, waarbij alle wachtwoorden en andere <i>secrets</i> geëncrypteerd in een <i>vault</i> opgeslagen zijn."
 
-#: homepage/templates/homepage/base.html:85
+#: homepage/templates/homepage/base.html:138
 msgid "Consultancy"
-msgstr ""
+msgstr "Consultancy"
 
-#: homepage/templates/homepage/base.html:86
+#: homepage/templates/homepage/base.html:139
 msgid ""
 "\n"
 "    <p>Need help figuring out <strong>performance</strong> issues? Or are there <strong>bugs</strong> that prove to be hard to squash? Need help with <strong>architecture/stack design</strong>?</p>\n"
@@ -287,6 +346,19 @@ msgid ""
 "    </ul>\n"
 "    "
 msgstr ""
+"\n"
+"<p>Hulp nodig bij het opsporen van <strong>performantie</strong> problemen? Of loop je tegen moeilijk op te lossen <strong>bugs</strong> aan? Hulp nodig bij het uitdenken van de <strong>architectuur</strong> van een applicatie?</p>\n"
+"\n"
+"<p>Dit soort problemen kan opgelost worden in consultancy sessies. De bestaande code wordt geanalyseerd en verbeterpunten worden aangedragen, met een focus op <i>quick wins</i> en een langetermijnplan.</p>\n"
+"\n"
+"Mogelijke technologiestacks:\n"
+"<ul class=\"default\">\n"
+"<li>Python/Django</li>\n"
+"<li>PHP/MySQL</li>\n"
+"<li>Javascript</li>\n"
+"<li>SASS/SCSS</li>\n"
+"<li>(continuous) deployment/integration</li>\n"
+"</ul>"
 
 #: invoices/admin.py:17
 msgid "Generate invoice details"
@@ -462,6 +534,28 @@ msgstr "BTW: %(company_tax_identifier)s"
 #, python-format
 msgid "IBAN: %(company_iban)s"
 msgstr "IBAN: %(company_iban)s"
+
+#: portfolio/models.py:11
+msgid "image"
+msgstr "afbeelding"
+
+#: portfolio/models.py:13
+msgid "description"
+msgstr "beschrijving"
+
+#: portfolio/models.py:16
+msgid "published"
+msgstr "gepubliceerd"
+
+#: portfolio/models.py:19
+#| msgid "work entry"
+msgid "portfolio entry"
+msgstr "portfolio item"
+
+#: portfolio/models.py:20
+#| msgid "work entries"
+msgid "portfolio entries"
+msgstr "portfolio items"
 
 #: templates/base.html:7
 msgid "Regex-IT portal"
