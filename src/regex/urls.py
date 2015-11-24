@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^typography/$', TemplateView.as_view(template_name='typography.html')),
     url(r'^invoices/', include('regex.invoices.urls', namespace='invoices')),
+    url(r'^portfolio/', include('regex.portfolio.urls', namespace='portfolio')),
     url(r'^', include('regex.homepage.urls', namespace='home')),
 ]
 
