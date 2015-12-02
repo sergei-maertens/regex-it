@@ -1,0 +1,31 @@
+{% extends "base.html" %}{% load i18n %}
+
+
+{% block body-class %}portfolio{% endblock %}
+
+
+{% block content %}
+
+<h1 class="vertical-center">
+    <i class="fa fa-book fa-3x"></i> {% trans "Portfolio" %}
+</h1>
+
+<section class="grid-container">
+
+    {% for entry in object_list %}
+
+        <article class="hover-tile-outer grid-item" style="background-image: url({{ entry.image.url }});">
+            <div class="hover-tile-container">
+                <div class="hover-tile hover-tile-visible"></div>
+                <div class="hover-tile hover-tile-hidden">
+                    <h2>{{ entry.name }}</h2>
+                    {{ entry.description|linebreaks|urlize }}
+                </div>
+            </div>
+        </article>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

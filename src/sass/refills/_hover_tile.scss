@@ -2,21 +2,21 @@
   $base-border-color: gainsboro !default;
   $base-line-height: 1.5em !default;
   $medium-screen: em(640) !default;
-  $hover-tile-height: 10em;
+  $hover-tile-height: 30em;
   $base-spacing: 1.5em;
 
-  background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png");
+  // background-image: attr(data-image url); // doesn't work yet
+  background-color: $palette-light;
   background-position: top;
   background-size: cover;
-  background-color: beige;
   border: 1px solid $base-border-color;
   cursor: pointer;
   height: $hover-tile-height;
   margin-bottom: $base-line-height;
 
-  @include media($medium-screen) {
-    width: 40%;
-  }
+  // @include media($medium-screen) {
+  //   width: 40%;
+  // }
 
   .hover-tile-container {
     height: $hover-tile-height;

@@ -47,6 +47,7 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGES = [
+    ('en', _('English')),
     ('nl', _('Dutch')),
     ('nl_BE', _('Dutch (Belgium)')),
 ]
@@ -112,7 +113,7 @@ TEMPLATES = [
 
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

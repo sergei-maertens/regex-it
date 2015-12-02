@@ -1,0 +1,30 @@
+body.portfolio {
+
+  .grid-container {
+    @include row;
+
+    margin-bottom: $base-spacing;
+  }
+
+  .grid-item {
+
+    @include span-columns(4);
+    @include omega( 3n );
+
+    .hover-tile-hidden {
+      background: transparentize($palette-dark, 0.05);
+
+      h2 {
+        color: $light-gray;
+      }
+    }
+
+    @include media($mobile) {
+      @include span-columns(12);
+      @include omega();
+      margin-bottom: $base-spacing;
+    }
+  }
+
+
+}
