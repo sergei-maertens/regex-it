@@ -5,11 +5,15 @@ python:
 addons:
   postgresql: "9.4"
 
+cache:
+  directories:
+    - $HOME/.pip-cache
+
 services:
   - postgresql
 
 install:
-  - "pip install -r requirements/travis.txt"
+  - pip install -r requirements/travis.txt --cache-dir $HOME/.pip-cache
 
 before_script:
   - mkdir log
