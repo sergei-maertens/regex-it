@@ -3,3 +3,7 @@ django-webtest
 factory-boy
 pyquery
 freezegun
+
+coverage
+coveralls
+codecov
