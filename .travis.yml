@@ -13,6 +13,7 @@ services:
   - postgresql
 
 install:
+  - pip install pip --upgrade
   - pip install -r requirements/travis.txt --cache-dir $HOME/.pip-cache
 
 before_script:
