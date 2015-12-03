@@ -1,0 +1,26 @@
+language: python
+python:
+  - "3.5"
+
+addons:
+  postgresql: "9.4"
+
+services:
+  - postgresql
+
+install:
+  - "pip install -r requirements/travis.txt"
+
+before_script:
+  - mkdir log
+  - export DJANGO_SETTINGS_MODULE=regex.conf.settings.test
+  - src/manage.py collectstatic --noinput --link
+  - npm install grunt-cli -g
+  - npm install
+
+script:
+  - coverage run src/manage.py test src -v 2
+
+after_success:
+  - codecov
+  - coveralls
