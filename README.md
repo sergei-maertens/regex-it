@@ -3,13 +3,15 @@ Regex-IT website
 
 Website for https://regex-it.nl.
 
-[![Build Status](https://travis-ci.org/sergei-maertens/regex-it.svg?branch=develop)](https://travis-ci.org/sergei-maertens/regex-it)
+[![Build Status](https://travis-ci.org/sergei-maertens/regex-it.svg?branch=develop)][build_badge]
+[![codecov.io](https://codecov.io/github/sergei-maertens/regex-it/coverage.svg?branch=develop)][codecov_badge]
+[![Coverage Status](https://coveralls.io/repos/sergei-maertens/regex-it/badge.svg?branch=develop&service=github)][coveralls_badge]
+[![Requirements Status](https://requires.io/github/sergei-maertens/regex-it/requirements.svg?branch=develop)][requires_badge]
 
-[![Build Status](https://travis-ci.org/sergei-maertens/regex-it.svg?branch=develop)](https://travis-ci.org/sergei-maertens/regex-it)
-
-[![Coverage Status](https://coveralls.io/repos/sergei-maertens/regex-it/badge.svg?branch=develop&service=github)](https://coveralls.io/github/sergei-maertens/regex-it?branch=develop)
-
-[![Requirements Status](https://requires.io/github/sergei-maertens/regex-it/requirements.svg?branch=develop)](https://requires.io/github/sergei-maertens/regex-it/requirements/?branch=develop)
+[build_badge]: https://travis-ci.org/sergei-maertens/regex-it
+[codecov_badge]: https://codecov.io/github/sergei-maertens/regex-it?branch=develop
+[coveralls_badge]: https://coveralls.io/github/sergei-maertens/regex-it?branch=develop
+[requires_badge]: https://requires.io/github/sergei-maertens/regex-it/requirements/?branch=develop
 
 
 Getting started
