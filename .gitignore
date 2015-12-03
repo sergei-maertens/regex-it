@@ -1,7 +1,10 @@
 *.py[oc]
 __pycache__
 
+# deployment
 src/regex/conf/uwsgi.ini
+
+# collection directories
 /log/
 /static/
 /media/
@@ -9,3 +12,8 @@ src/regex/conf/uwsgi.ini
 /src/static/css
 /src/static/bower_components
 node_modules
+
+# testing
+/cover
+.coverage
+.tox
