@@ -21,3 +21,9 @@ def company_details(client=None):
         name.lower(): getattr(settings, setting)
         for name, setting in config_keys
     }
+
+
+@register.simple_tag
+def company_field(prop):
+    key = 'INVOICES_COMPANY_%s' % prop
+    return getattr(settings, key)

@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load i18n staticfiles compress %}
+<!DOCTYPE html>{% load i18n staticfiles compress invoices %}
 <html>
     <head>
         <meta charset="utf-8">
@@ -37,7 +37,25 @@
             {% block content %}{% endblock %}
         </main>
 
-        <footer></footer>
+        <footer>
+
+            <div class="container">
+
+                <address>
+                Sergei Maertens
+                <br>
+                {% filter urlize %}info@regex-it.nl{% endfilter %}
+                </address>
+
+                <address>
+                KvK: {% company_field 'KVK' %}
+                <br>
+                BTW: {% company_field 'TAX_IDENTIFIER' %}
+                </address>
+
+            </div>
+
+        </footer>
 
         {% block scripts %}
         <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
