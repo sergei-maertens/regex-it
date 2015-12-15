@@ -5,7 +5,7 @@ from io import BytesIO
 
 from django.core.files import File
 from django.db.models import Count
-from django.template import loader, RequestContext
+from django.template import loader
 from django.utils import translation
 
 import weasyprint
@@ -29,9 +29,10 @@ def render_invoice_pdf(request, invoice, template_name='invoices/invoice_detail.
     context = {
         'invoice': invoice,
         'tax_rates': tax_rates,
-        'items': invoice.invoiceitem_set.select_related('project').order_by('project', 'tax_rate')
+        'items': invoice.invoiceitem_set.select_related('project').order_by('project', 'tax_rate'),
+        'request': request,
     }
-    html = template.render(RequestContext(request, context))
+    html = template.render(context)
     base_url = request.build_absolute_uri("/")
     url_fetcher = UrlFetcher(request, base_url)
     wp = weasyprint.HTML(string=html, base_url=base_url, url_fetcher=url_fetcher)
