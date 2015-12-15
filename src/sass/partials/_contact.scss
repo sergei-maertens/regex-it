@@ -1,0 +1,63 @@
+body.contact {
+
+  ul.link-blocks {
+
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+
+    margin-bottom: $base-line-height;
+
+    li {
+      @include flex-basis(10em);
+      @include flex-grow(1);
+      text-align: center;
+      margin: 0 $base-spacing $base-spacing;
+
+      &:nth-child(3n+1) > a {
+        background-color: $palette-action2;
+        color: white;
+        &:hover,
+        &:focus {
+          color: darken(white, 20%);
+        }
+      }
+      &:nth-child(3n+2) > a {
+        background-color: $palette-action;
+        color: white;
+        &:hover,
+        &:focus {
+          color: darken(white, 20%);
+        }
+      }
+      &:nth-child(3n+3) > a {
+        background-color: $palette-light;
+      }
+
+      a {
+        display: block;
+        border: solid 1px $base-border-color;
+        border-radius: 3px;
+        padding: $base-spacing 0;
+
+        color: $dark-gray;
+        box-shadow: 0 2px 4px darken($base-background-color, 10%);
+
+        @include transition( all 0.5s ease-in-out );
+
+        &:hover,
+        &:focus {
+          color: darken($dark-gray, 10%);
+          border-color: darken($base-background-color, 25%);
+          box-shadow: 0 2px 4px 2px darken($base-background-color, 25%);
+        }
+      }
+
+      i.fa {
+        display: block;
+        font-size: 4em;
+      }
+    }
+  }
+
+}

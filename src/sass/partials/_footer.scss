@@ -1,0 +1,34 @@
+$footer-height: 4em !default;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 ($footer-height + 2*$base-spacing);
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  padding: $small-spacing/1.125;
+
+  background: $palette-action;
+  border-top: solid 2px $palette-dark;
+  color: white;
+
+  address {
+    font-size: $base-font-size / 1.125;
+    display: block;
+    @include span-columns(6);
+
+    a {
+      color: white;
+    }
+  }
+}

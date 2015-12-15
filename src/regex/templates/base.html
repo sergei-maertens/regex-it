@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load i18n staticfiles compress %}
+<!DOCTYPE html>{% load i18n staticfiles compress invoices %}
 <html>
     <head>
         <meta charset="utf-8">
@@ -25,7 +25,7 @@
                     <ul role="menu">
                         <li><a href="{% url 'home:home' %}">{% trans "home" %}</a></li>
                         <li><a href="{% url 'portfolio:list' %}">{% trans "portfolio" %}</a></li>
-                        <li>contact</li>
+                        <li><a href="{% url 'home:contact' %}">{% trans "contact" context 'menu' %}</a></li>
                         <li><i class="fa fa-lock"></i> login</li>
                     </ul>
                 </nav>
@@ -37,7 +37,25 @@
             {% block content %}{% endblock %}
         </main>
 
-        <footer></footer>
+        <footer>
+
+            <div class="container">
+
+                <address>
+                Sergei Maertens
+                <br>
+                {% filter urlize %}info@regex-it.nl{% endfilter %}
+                </address>
+
+                <address>
+                KvK: {% company_field 'KVK' %}
+                <br>
+                BTW: {% company_field 'TAX_IDENTIFIER' %}
+                </address>
+
+            </div>
+
+        </footer>
 
         {% block scripts %}
         <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
