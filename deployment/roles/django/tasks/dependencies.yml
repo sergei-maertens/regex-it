@@ -13,6 +13,7 @@
   pip: virtualenv={{ venv }}
        name=pip
        extra_args='--upgrade'
+       virtualenv_python=python3
 
 - name: Install requirements
   pip: virtualenv={{ venv }}
