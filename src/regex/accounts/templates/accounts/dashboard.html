@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block content %}
+<section class="dashboard">
+{% for project in projects %}
+
+    {% ifchanged project.client %}
+        <h1 class="client">{{ project.client.name }}</h1>
+    {% endifchanged %}
+
+    <article class="dashboard__item project">
+        <h2 class="project__title">{{ project.name }}</h2>
+        <p class="project__details">
+            <i class="fa fa-eur"></i>
+            {% if project.flat_fee %}
+                {{ project.flat_fee }} {% trans "flat fee" %}
+            {% else %}
+                {{ project.base_rate }} {% trans "hourly rate" %}
+            {% endif %}
+        </p>
+        <p class="project__details">
+            <a href="#">
+            {% blocktrans with count=project.n_workentries trimmed %}
+                {{ count }} work entries logged
+            {% endblocktrans %}</a>
+        </p>
+    </article>
+
+{% endfor %}
+
+</section>
+{% endblock content %}
