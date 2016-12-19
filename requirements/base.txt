@@ -6,6 +6,7 @@ python-magic==0.4.10
 python-dateutil==2.4.2
 rules==1.0
 
+html5lib==0.9999999
 WeasyPrint==0.24
 
 django-admin-sortable2==0.6.0
