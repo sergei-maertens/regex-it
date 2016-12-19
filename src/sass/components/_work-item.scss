@@ -1,0 +1,23 @@
+.work-item {
+  border-top: solid 1px $base-border-color;
+  padding: 1em 0;
+
+  &__date {
+    font-weight: 700;
+  }
+
+  &__duration {
+    margin-left: 1em;
+  }
+
+  &__time {
+    float: right;
+  }
+
+  &__notes:not(:empty) {
+    margin-top: .5em;
+    margin-left: .5em;
+    padding-left: .5em;
+    border-left: solid 3px $palette-light;
+  }
+}
