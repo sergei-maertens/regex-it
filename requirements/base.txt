@@ -11,6 +11,7 @@ WeasyPrint==0.24
 django-admin-sortable2==0.6.0
 django-appconf==1.0.1
 django-autoslug==1.9.3
+django-allauth==0.29.0
 django-choices==1.4.2
 django-compressor==1.6
 django-countries==3.4.1

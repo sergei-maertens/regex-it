@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^typography/$', TemplateView.as_view(template_name='typography.html')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^invoices/', include('regex.invoices.urls', namespace='invoices')),
     url(r'^portfolio/', include('regex.portfolio.urls', namespace='portfolio')),
     url(r'^', include('regex.homepage.urls', namespace='home')),
@@ -17,4 +17,11 @@ urlpatterns = [
 if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += [
         url(r'^admin/rosetta/', include('rosetta.urls')),
+    ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^typography/$', TemplateView.as_view(template_name='typography.html')),
+        url(r'^__debug__/', include(debug_toolbar.urls)),
     ]

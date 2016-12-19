@@ -142,6 +142,8 @@ INSTALLED_APPS = [
 
     # External applications.
     'adminsortable2',
+    'allauth',
+    'allauth.account',
     'compressor',
     'django_countries',
     'import_export',
@@ -276,5 +278,11 @@ AXES_COOLOFF_TIME = 1  # One hour
 AUTH_USER_MODEL = 'accounts.User'
 AUTHENTICATION_BACKENDS = [
     'rules.permissions.ObjectPermissionBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False
