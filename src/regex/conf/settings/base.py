@@ -3,6 +3,7 @@ from pathlib import Path
 
 import django.conf.global_settings as DEFAULT_SETTINGS
 from django.contrib.messages import constants as message_constants
+from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 # Automatically figure out the ROOT_DIR and PROJECT_DIR.
@@ -286,3 +287,5 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
+
+LOGIN_REDIRECT_URL = reverse_lazy('accounts:dashboard')

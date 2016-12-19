@@ -9,6 +9,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('regex.accounts.urls', namespace='accounts')),
     url(r'^invoices/', include('regex.invoices.urls', namespace='invoices')),
     url(r'^portfolio/', include('regex.portfolio.urls', namespace='portfolio')),
     url(r'^', include('regex.homepage.urls', namespace='home')),
