@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^accounts/', include('regex.accounts.urls', namespace='accounts')),
     url(r'^invoices/', include('regex.invoices.urls', namespace='invoices')),
     url(r'^portfolio/', include('regex.portfolio.urls', namespace='portfolio')),
+    url(r'^work_entries/', include('regex.work_entries.urls', namespace='work_entries')),
     url(r'^', include('regex.homepage.urls', namespace='home')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)
 

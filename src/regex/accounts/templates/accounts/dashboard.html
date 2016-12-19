@@ -21,7 +21,7 @@
             {% endif %}
         </p>
         <p class="project__details">
-            <a href="#">
+            <a href="{% url 'work_entries:list' project_slug=project.slug %}">
             {% blocktrans with count=project.n_workentries trimmed %}
                 {{ count }} work entries logged
             {% endblocktrans %}</a>

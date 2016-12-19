@@ -37,7 +37,7 @@ class WorkEntry(models.Model):
         timedelta = self.end - self.start
         delta = relativedelta(seconds=timedelta.total_seconds())
 
-        total_minutes = delta.days*24*60 + delta.hours * 60 + delta.minutes + delta.seconds / 60
+        total_minutes = delta.days * 24 * 60 + delta.hours * 60 + delta.minutes + delta.seconds / 60
         if round:
             remainder = total_minutes % 15
             if remainder > 7.5:
