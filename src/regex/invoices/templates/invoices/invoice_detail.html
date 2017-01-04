@@ -50,7 +50,7 @@
             <div><table>
                 {% if invoice.vat_reverse_charge %}
                     <tr>
-                        <th>{% trans "total (with VAT reverse charge)" %}</th>
+                        <th>{% trans "total (with VAT shifted)" %}</th>
                     </tr>
                     <tr>
                         <td><span class="total">&euro; <strong>{{ invoice.total_no_vat|floatformat:2 }}</strong></span></td>
@@ -108,7 +108,7 @@
 <section class="invoice-end">
     {% if invoice.vat_reverse_charge %}
         <hr>
-        <p>{% trans "Note: reverse-charging for the VAT is applied on this invoice." %}</p>
+        <p>{% trans "Note: vat shift is applied to this invoice." %}</p>
     {% endif %}
     <hr>
     <p class="pull-right">{% trans "End of invoice" %}</p>
