@@ -15,6 +15,11 @@ body.invoice {
                 padding-right: 0;
             }
         }
+
+        > footer {
+          background: transparent;
+          color: $base-font-color;
+        }
     }
 
     header,
@@ -90,7 +95,7 @@ body.invoice {
     }
 
     .details {
-        tr.project th:first-child {
+        tr.project-row th:first-child {
             text-align: center;
         }
 

@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-22 20:49+0100\n"
+"POT-Creation-Date: 2017-01-04 09:10+0100\n"
 "PO-Revision-Date: 2015-11-22 20:49+0020\n"
 "Last-Translator: b'  <info@regex-it.nl>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.6\n"
 
 #: accounts/admin.py:16
@@ -74,11 +74,31 @@ msgstr "gebruiker"
 msgid "users"
 msgstr "gebruikers"
 
-#: conf/settings/base.py:50
+#: accounts/templates/accounts/dashboard.html:18 crm/models.py:91
+#: invoices/templates/invoices/invoice_detail.html:85
+msgid "flat fee"
+msgstr "vast bedrag"
+
+#: accounts/templates/accounts/dashboard.html:20
+#, fuzzy
+#| msgid "hourly base rate"
+msgid "hourly rate"
+msgstr "uurtarief"
+
+#: accounts/templates/accounts/dashboard.html:25
+#, python-format
+msgid "%(count)s work entries logged"
+msgstr ""
+
+#: conf/settings/base.py:51
+msgid "English"
+msgstr ""
+
+#: conf/settings/base.py:52
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: conf/settings/base.py:51
+#: conf/settings/base.py:53
 msgid "Dutch (Belgium)"
 msgstr "Nederlands (België)"
 
@@ -98,7 +118,7 @@ msgstr "projecten"
 msgid "label"
 msgstr "label"
 
-#: crm/models.py:21 crm/models.py:44 portfolio/models.py:9
+#: crm/models.py:21 crm/models.py:44 portfolio/models.py:15
 msgid "name"
 msgstr "naam"
 
@@ -134,7 +154,7 @@ msgstr "geüpdatet"
 msgid "contact"
 msgstr "contactpersoon"
 
-#: crm/models.py:45 portfolio/models.py:10
+#: crm/models.py:45 portfolio/models.py:16
 msgid "slug"
 msgstr "slug"
 
@@ -170,11 +190,7 @@ msgstr "hoog"
 msgid "hourly base rate"
 msgstr "uurtarief"
 
-#: crm/models.py:91 invoices/templates/invoices/invoice_detail.html:85
-msgid "flat fee"
-msgstr "vast bedrag"
-
-#: crm/models.py:93 invoices/models.py:151
+#: crm/models.py:93 invoices/models.py:155
 #: invoices/templates/invoices/invoice_detail.html:86
 msgid "tax rate"
 msgstr "BTW tarief"
@@ -198,17 +214,26 @@ msgstr "Websites"
 #: homepage/templates/homepage/base.html:23
 msgid ""
 "\n"
-"                    <p>Your product needs a decent website, maybe even a webshop or\n"
-"                    maybe you want to keep your userbase updated through your website.\n"
+"                    <p>Your product needs a decent website, maybe even a "
+"webshop or\n"
+"                    maybe you want to keep your userbase updated through "
+"your website.\n"
 "                    </p>\n"
-"                    <p>Your custom requirements are easily met by building custom\n"
-"                    websites, starting from your needs. <strong>You</strong>\n"
+"                    <p>Your custom requirements are easily met by building "
+"custom\n"
+"                    websites, starting from your needs. <strong>You</"
+"strong>\n"
 "                    control how to use and operate your website!</p>\n"
 "                    "
 msgstr ""
 "\n"
-"<p>Voor je product wil je natuurlijk een nette website, of misschien zelfs een webshop, of je wil je gebruikersbestand up to date houden via je website.</p>\n"
-"<p>Specifieke wensen kunnen makkelijk vervuld worden door een website op maat te bouwen, waarbij van het begin af aan op jouw noden ingespeeld wordt. <strong>Jij</strong> controleert hoe je je website wil gebruiken en beheren!</p>"
+"<p>Voor je product wil je natuurlijk een nette website, of misschien zelfs "
+"een webshop, of je wil je gebruikersbestand up to date houden via je website."
+"</p>\n"
+"<p>Specifieke wensen kunnen makkelijk vervuld worden door een website op "
+"maat te bouwen, waarbij van het begin af aan op jouw noden ingespeeld wordt. "
+"<strong>Jij</strong> controleert hoe je je website wil gebruiken en beheren!"
+"</p>"
 
 #: homepage/templates/homepage/base.html:42
 msgid "Internal tooling"
@@ -217,8 +242,10 @@ msgstr "Interne tools"
 #: homepage/templates/homepage/base.html:45
 msgid ""
 "\n"
-"                    <p>Lots of people perform lots of repetitive tasks. Us - software\n"
-"                    developers - like to automate the bland and boring stuff.</p>\n"
+"                    <p>Lots of people perform lots of repetitive tasks. Us - "
+"software\n"
+"                    developers - like to automate the bland and boring stuff."
+"</p>\n"
 "\n"
 "                    <p>Examples that jump into mind:</p>\n"
 "\n"
@@ -229,12 +256,14 @@ msgid ""
 "                        <li>Tracking room reservations</li>\n"
 "                    </ul>\n"
 "\n"
-"                    <p>Ofcourse, this list is not exclusive. Contact me to bounce\n"
+"                    <p>Ofcourse, this list is not exclusive. Contact me to "
+"bounce\n"
 "                    your ideas and hear what's possible.</p>\n"
 "                    "
 msgstr ""
 "\n"
-"<p>Veel mensen voeren veel repetitieve taken uit. Wij - software developers - houden ervan om de vervelende en saaie taken te automatiseren.</p>\n"
+"<p>Veel mensen voeren veel repetitieve taken uit. Wij - software developers "
+"- houden ervan om de vervelende en saaie taken te automatiseren.</p>\n"
 "\n"
 "<p>Enkele voorbeelden die in de gedachten springen:<p>\n"
 "\n"
@@ -245,7 +274,8 @@ msgstr ""
 "<li>Ruimtereservaties beheren</li>\n"
 "</ul>\n"
 "\n"
-"<p>Deze lijst is natuurlijk niet compleet. Neem gerust contact op om je idee te toetsen en te horen wat de mogelijkheden zijn.</p>"
+"<p>Deze lijst is natuurlijk niet compleet. Neem gerust contact op om je idee "
+"te toetsen en te horen wat de mogelijkheden zijn.</p>"
 
 #: homepage/templates/homepage/base.html:72
 msgid "Extra manpower"
@@ -254,19 +284,28 @@ msgstr "Extra mankracht"
 #: homepage/templates/homepage/base.html:75
 msgid ""
 "\n"
-"                    <p>Sometimes you're just short a pair of hands to work on your\n"
-"                    existing codebase. In that case, if the requirements are met,\n"
-"                    I can work for you on an hourly base or based on a project fee.</p>\n"
+"                    <p>Sometimes you're just short a pair of hands to work "
+"on your\n"
+"                    existing codebase. In that case, if the requirements are "
+"met,\n"
+"                    I can work for you on an hourly base or based on a "
+"project fee.</p>\n"
 "\n"
-"                    <p>Collaboration is done on an active base - you will get pointers\n"
-"                    and hints from me how you can further improve the code structure\n"
+"                    <p>Collaboration is done on an active base - you will "
+"get pointers\n"
+"                    and hints from me how you can further improve the code "
+"structure\n"
 "                    and what optimizations are still possible.</p>\n"
 "                    "
 msgstr ""
 "\n"
-"<p>Soms kom je net een paar handen te kort om aan je bestaande codebase te werken. In dat geval - mits enkele voorwaarden - kan ik voor jou werken op uurbasis, of zelfs op projectbasis.</p>\n"
+"<p>Soms kom je net een paar handen te kort om aan je bestaande codebase te "
+"werken. In dat geval - mits enkele voorwaarden - kan ik voor jou werken op "
+"uurbasis, of zelfs op projectbasis.</p>\n"
 "\n"
-"<p>Samenwerking gebeurt actief, d.w.z. dat je van mij ook feedback en hints krijgt hoe je verder je codebase kan verbeteren en wat voor optimalisaties er nog mogelijk zijn.</p>"
+"<p>Samenwerking gebeurt actief, d.w.z. dat je van mij ook feedback en hints "
+"krijgt hoe je verder je codebase kan verbeteren en wat voor optimalisaties "
+"er nog mogelijk zijn.</p>"
 
 #: homepage/templates/homepage/base.html:93
 msgid "Favourite technology"
@@ -312,25 +351,30 @@ msgstr ""
 "niet publiek mag zijn."
 
 #: homepage/templates/homepage/base.html:127
-#| msgid ""
-#| "\n"
-#| "        <p>This is the basic set of tool that would probably be used with each new project. There is a lot more though: <strong>nginx</strong> is the first choice of webserver, which proxies to <strong>uwsgi</strong> which talks to Django.</p>\n"
-#| "        <p>For caching, <strong>redis</strong> and <strong>memcache</strong> are viable options.</p>\n"
-#| "        <p>Deployment is automated with <strong>Ansible</strong>, and all passwords and other secrets are stored in an encrypted vault.\n"
-#| "        "
 msgid ""
 "\n"
-"        <p>This is the basic set of tool that would probably be used with each new project. There is a lot more though: <strong>nginx</strong> is the first choice of webserver, which proxies to <strong>uwsgi</strong> which talks to Django.</p>\n"
-"        <p>For caching, <strong>redis</strong> and <strong>memcache</strong> are viable options.</p>\n"
-"        <p>Deployment is automated with <strong>Ansible</strong>, and all passwords and other secrets are stored in an encrypted vault.</p>\n"
+"        <p>This is the basic set of tool that would probably be used with "
+"each new project. There is a lot more though: <strong>nginx</strong> is the "
+"first choice of webserver, which proxies to <strong>uwsgi</strong> which "
+"talks to Django.</p>\n"
+"        <p>For caching, <strong>redis</strong> and <strong>memcache</strong> "
+"are viable options.</p>\n"
+"        <p>Deployment is automated with <strong>Ansible</strong>, and all "
+"passwords and other secrets are stored in an encrypted vault.</p>\n"
 "        "
 msgstr ""
 "\n"
-"<p>Dit is een basisset van tools die 99% zeker gebruikt gaan worden in een nieuw project. Er is echter meer: <strong>nginx</strong> is de voorkeurswebserver, die de requests proxiet naar <strong>uwsgi</strong> wat dan weer tegen Django praat.</p>\n"
+"<p>Dit is een basisset van tools die 99% zeker gebruikt gaan worden in een "
+"nieuw project. Er is echter meer: <strong>nginx</strong> is de "
+"voorkeurswebserver, die de requests proxiet naar <strong>uwsgi</strong> wat "
+"dan weer tegen Django praat.</p>\n"
 "\n"
-"<p>Voor caching zijn <strong>redis</strong> en <strong>memcached</strong> goeie kandidaten.</p>\n"
+"<p>Voor caching zijn <strong>redis</strong> en <strong>memcached</strong> "
+"goeie kandidaten.</p>\n"
 "\n"
-"<p>Deployment (uitrollen van updates) gebeurt geautomatiseerd met <strong>Ansible</strong>, waarbij alle wachtwoorden en andere <i>secrets</i> geëncrypteerd in een <i>vault</i> opgeslagen zijn.</p>"
+"<p>Deployment (uitrollen van updates) gebeurt geautomatiseerd met "
+"<strong>Ansible</strong>, waarbij alle wachtwoorden en andere <i>secrets</i> "
+"geëncrypteerd in een <i>vault</i> opgeslagen zijn.</p>"
 
 #: homepage/templates/homepage/base.html:138
 msgid "Consultancy"
@@ -339,8 +383,12 @@ msgstr "Consultancy"
 #: homepage/templates/homepage/base.html:139
 msgid ""
 "\n"
-"    <p>Need help figuring out <strong>performance</strong> issues? Or are there <strong>bugs</strong> that prove to be hard to squash? Need help with <strong>architecture/stack design</strong>?</p>\n"
-"    <p>These kind of issues can be tackled in consultancy sessions. The existing code is analyzed and points of improvement are pointed out, with a focus on quick wins and a roadmap for long term changes.</p>\n"
+"    <p>Need help figuring out <strong>performance</strong> issues? Or are "
+"there <strong>bugs</strong> that prove to be hard to squash? Need help with "
+"<strong>architecture/stack design</strong>?</p>\n"
+"    <p>These kind of issues can be tackled in consultancy sessions. The "
+"existing code is analyzed and points of improvement are pointed out, with a "
+"focus on quick wins and a roadmap for long term changes.</p>\n"
 "\n"
 "    Supported technologies:\n"
 "    <ul class=\"default\">\n"
@@ -353,9 +401,14 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"<p>Hulp nodig bij het opsporen van <strong>performantie</strong> problemen? Of loop je tegen moeilijk op te lossen <strong>bugs</strong> aan? Hulp nodig bij het uitdenken van de <strong>architectuur</strong> van een applicatie?</p>\n"
+"<p>Hulp nodig bij het opsporen van <strong>performantie</strong> problemen? "
+"Of loop je tegen moeilijk op te lossen <strong>bugs</strong> aan? Hulp nodig "
+"bij het uitdenken van de <strong>architectuur</strong> van een applicatie?</"
+"p>\n"
 "\n"
-"<p>Dit soort problemen kan opgelost worden in consultancy sessies. De bestaande code wordt geanalyseerd en verbeterpunten worden aangedragen, met een focus op <i>quick wins</i> en een langetermijnplan.</p>\n"
+"<p>Dit soort problemen kan opgelost worden in consultancy sessies. De "
+"bestaande code wordt geanalyseerd en verbeterpunten worden aangedragen, met "
+"een focus op <i>quick wins</i> en een langetermijnplan.</p>\n"
 "\n"
 "Mogelijke technologiestacks:\n"
 "<ul class=\"default\">\n"
@@ -365,6 +418,28 @@ msgstr ""
 "<li>SASS/SCSS</li>\n"
 "<li>(continuous) deployment/integration</li>\n"
 "</ul>"
+
+#: homepage/templates/homepage/contact.html:8
+#, fuzzy
+#| msgid "Invoice details"
+msgid "Contact details"
+msgstr "Factuurdetails"
+
+#: homepage/templates/homepage/contact.html:10
+msgid ""
+"\n"
+"        The preferred way to contact me is to send an e-mail to\n"
+"        <a href=\"info@regex-it.nl\">info@regex-it.nl</a>. I will get back "
+"to you\n"
+"        as soon as possible. You can also connect with me on professional-"
+"social\n"
+"        media like GitHub, LinkedIn, Bitbucket...\n"
+"    "
+msgstr ""
+
+#: homepage/templates/homepage/contact.html:17
+msgid "On the web"
+msgstr ""
 
 #: invoices/admin.py:17
 msgid "Generate invoice details"
@@ -378,7 +453,7 @@ msgstr "Genereer pdf van facturen"
 msgid "# invoice items"
 msgstr "# factuurlijnen"
 
-#: invoices/admin.py:56 invoices/admin.py:57 invoices/models.py:162
+#: invoices/admin.py:56 invoices/admin.py:57 invoices/models.py:166
 msgid "invoice items"
 msgstr "factuurlijnen"
 
@@ -386,43 +461,43 @@ msgstr "factuurlijnen"
 msgid "Invoices"
 msgstr "Facturen"
 
-#: invoices/models.py:27
+#: invoices/models.py:28
 msgid "date"
 msgstr "datum"
 
-#: invoices/models.py:27
+#: invoices/models.py:28
 msgid "Include work up to (including) this day."
 msgstr "Verwerk prestaties tot (inclusief) deze datum."
 
-#: invoices/models.py:31
+#: invoices/models.py:32
 msgid "invoice number"
 msgstr "factuurnummer"
 
-#: invoices/models.py:35
+#: invoices/models.py:36
 msgid "due date"
 msgstr "betaaldatum"
 
-#: invoices/models.py:37
+#: invoices/models.py:38
 msgid "pdf"
 msgstr "pdf"
 
-#: invoices/models.py:41
+#: invoices/models.py:42
 msgid "received"
 msgstr "ontvangen"
 
-#: invoices/models.py:148 invoices/templates/invoices/invoice_detail.html:32
+#: invoices/models.py:152 invoices/templates/invoices/invoice_detail.html.py:32
 msgid "rate"
 msgstr "tarief"
 
-#: invoices/models.py:149 invoices/templates/invoices/invoice_detail.html:83
+#: invoices/models.py:153 invoices/templates/invoices/invoice_detail.html.py:83
 msgid "amount"
 msgstr "aantal"
 
-#: invoices/models.py:158 invoices/templates/invoices/invoice_detail.html:82
+#: invoices/models.py:162 invoices/templates/invoices/invoice_detail.html.py:82
 msgid "remarks"
 msgstr "opmerkingen"
 
-#: invoices/models.py:161
+#: invoices/models.py:165
 msgid "invoice item"
 msgstr "factuurlijn"
 
@@ -436,8 +511,7 @@ msgstr ""
 "\n"
 "Factuur %(number)s <small class=\"pull-right\">%(date)s</small>"
 
-#: invoices/templates/invoices/invoice_detail.html:20
-#: work_entries/models.py:13
+#: invoices/templates/invoices/invoice_detail.html:20 work_entries/models.py:13
 msgid "start"
 msgstr "begin"
 
@@ -449,7 +523,8 @@ msgid ""
 "        "
 msgid_plural ""
 "\n"
-"            Invoice for %(n_items)s items, spanning %(prev)s until %(date)s.\n"
+"            Invoice for %(n_items)s items, spanning %(prev)s until "
+"%(date)s.\n"
 "        "
 msgstr[0] ""
 "\n"
@@ -471,7 +546,7 @@ msgid "Totals"
 msgstr "Totalen"
 
 #: invoices/templates/invoices/invoice_detail.html:53
-msgid "total (with VAT reverse charge)"
+msgid "total (with VAT shifted)"
 msgstr "totaal (BTW verlegd)"
 
 #: invoices/templates/invoices/invoice_detail.html:60
@@ -510,8 +585,8 @@ msgid "n/a"
 msgstr "n.v.t."
 
 #: invoices/templates/invoices/invoice_detail.html:111
-msgid "Note: reverse-charging for the VAT is applied on this invoice."
-msgstr "Opmerking: voor de factuur is de BTW verlegd."
+msgid "Note: vat shift is applied to this invoice."
+msgstr "Opmerking: de BTW is verlegd voor deze factuur."
 
 #: invoices/templates/invoices/invoice_detail.html:114
 msgid "End of invoice"
@@ -520,8 +595,7 @@ msgstr "Einde factuur"
 #: invoices/templates/invoices/invoice_detail.html:123
 #, python-format
 msgid ""
-"Invoice %(number)s - %(date)s - Page \" counter(page) \" of \" "
-"counter(pages)"
+"Invoice %(number)s - %(date)s - Page \" counter(page) \" of \" counter(pages)"
 msgstr ""
 "Factuur %(number)s - %(date)s - Pagina \" counter(page) \" van \" "
 "counter(pages)"
@@ -541,25 +615,39 @@ msgstr "BTW: %(company_tax_identifier)s"
 msgid "IBAN: %(company_iban)s"
 msgstr "IBAN: %(company_iban)s"
 
-#: portfolio/models.py:11
+#: portfolio/models.py:17
 msgid "image"
 msgstr "afbeelding"
 
-#: portfolio/models.py:13
+#: portfolio/models.py:19
 msgid "description"
 msgstr "beschrijving"
 
-#: portfolio/models.py:16
+#: portfolio/models.py:22
 msgid "published"
 msgstr "gepubliceerd"
 
-#: portfolio/models.py:19
+#: portfolio/models.py:27
 msgid "portfolio entry"
 msgstr "portfolio item"
 
-#: portfolio/models.py:20
+#: portfolio/models.py:28
 msgid "portfolio entries"
 msgstr "portfolio items"
+
+#: portfolio/templates/portfolio/entry_list.html:10
+#, fuzzy
+#| msgid "portfolio entry"
+msgid "Portfolio"
+msgstr "portfolio item"
+
+#: templates/account/login.html:8
+msgid "Sign In"
+msgstr ""
+
+#: templates/account/login.html:19
+msgid "Sign in"
+msgstr ""
 
 #: templates/base.html:7
 msgid "Regex-IT portal"
@@ -568,6 +656,27 @@ msgstr "Regex-IT portaal"
 #: templates/base.html:26
 msgid "home"
 msgstr "home"
+
+#: templates/base.html:27
+#, fuzzy
+#| msgid "portfolio entry"
+msgid "portfolio"
+msgstr "portfolio item"
+
+#: templates/base.html:28
+#, fuzzy
+#| msgid "contact"
+msgctxt "menu"
+msgid "contact"
+msgstr "contactpersoon"
+
+#: templates/base.html:32
+msgid "login"
+msgstr ""
+
+#: templates/base.html:38
+msgid "dashboard"
+msgstr ""
 
 #: utils/templatetags/math.py:13
 #, python-brace-format
