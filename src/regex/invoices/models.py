@@ -4,6 +4,7 @@ from datetime import datetime, time, timedelta
 
 from django.conf import settings
 from django.core import validators
+from django.core.urlresolvers import reverse
 from django.db import models, transaction
 from django.db.models import F, Sum, Max
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -45,6 +46,9 @@ class Invoice(models.Model):
 
     def __str__(self):
         return '{client} - {date}'.format(client=self.client, date=self.date)
+
+    def get_absolute_url(self):
+        return reverse('invoices:detail', kwargs={'invoice_number': self.invoice_number})
 
     def get_previous(self, **kwargs):
         kwargs['client'] = self.client

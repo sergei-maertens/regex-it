@@ -89,7 +89,7 @@
         <tbody>
             {% for item in items %}
                 {% ifchanged item.project %}
-                    <tr class="project">
+                    <tr class="project-row">
                         <th colspan="{{ invoice.vat_reverse_charge|yesno:'4,5' }}">{% blocktrans with proj=item.project.name %}{{ proj }}{% endblocktrans %}</th>
                     </tr>
                 {% endifchanged %}
