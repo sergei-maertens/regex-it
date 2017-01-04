@@ -9,16 +9,17 @@
         mode=0755
   remote_user: root
 
-- name: Upgrade pip
-  pip: virtualenv={{ venv }}
-       name=pip
-       extra_args='--upgrade'
+- name: Create virtualenv
+  pip:
+    name: pip
+    virtualenv: "{{ venv }}"
+    virtualenv_python: python3.4
 
 - name: Install requirements
-  pip: virtualenv={{ venv }}
-       chdir={{ project_home }}
-       requirements=requirements/{{ target_env }}.txt
-       virtualenv_python=python3
+  pip:
+    chdir: "{{ project_home }}"
+    virtualenv: "{{ venv }}"
+    requirements: "requirements/{{ target_env }}.txt"
   notify:
     - restart uwsgi
 
