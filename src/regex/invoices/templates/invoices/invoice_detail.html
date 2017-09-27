@@ -17,7 +17,7 @@
     </header>
 
     <summary>
-        {% blocktrans count n_items=invoice.n_items with date=invoice.date prev=invoice.get_previous.date|default:_('start') %}
+        {% blocktrans count n_items=items|length with date=invoice.date prev=invoice.get_previous.date|default:_('start') %}
             Invoice for 1 item, spanning {{ prev }} until {{ date }}.
         {% plural %}
             Invoice for {{ n_items }} items, spanning {{ prev }} until {{ date }}.
