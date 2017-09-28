@@ -1,6 +1,7 @@
 import mimetypes
 import posixpath
 import urllib
+from io import BytesIO
 
 from django.conf import settings
 from django.contrib.staticfiles import finders
@@ -36,12 +37,12 @@ class UrlFetcher(object):
             normalized_path = posixpath.normpath(urllib.parse.unquote(path)).lstrip('/')
             absolute_path = finders.find(normalized_path)
             content_type, encoding = mimetypes.guess_type(absolute_path)
-            with open(absolute_path, 'r') as f:
-                output = f.read()
-            return dict(
-                string=output,
+            result = dict(
                 mime_type=content_type,
                 encoding=encoding,
                 redirected_url=orig_url
             )
+            with open(absolute_path, 'rb') as f:
+                result['file_obj'] = BytesIO(f.read())
+            return result
         return self.fallback(orig_url)
