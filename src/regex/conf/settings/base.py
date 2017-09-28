@@ -209,7 +209,7 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': str(LOGGING_DIR / 'django.log'),
             'formatter': 'verbose',
-            'maxBytes': 1024*1024*10,  # 10 MB
+            'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 10
         },
         'project': {
@@ -217,7 +217,7 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': str(LOGGING_DIR / 'mijke.log'),
             'formatter': 'verbose',
-            'maxBytes': 1024*1024*10,  # 10 MB
+            'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 10
         },
         'performance': {
@@ -225,7 +225,7 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': str(LOGGING_DIR / 'performance.log'),
             'formatter': 'performance',
-            'maxBytes': 1024*1024*10,  # 10 MB
+            'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 10
         },
     },
@@ -234,6 +234,11 @@ LOGGING = {
             'handlers': ['project'],
             'level': 'INFO',
             'propagate': True,
+        },
+        'weasyprint': {
+            'handlers': ['project'],
+            'level': 'ERROR',
+            'propgate': False,
         },
         'django.request': {
             'handlers': ['mail_admins'],
