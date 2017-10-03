@@ -3,6 +3,7 @@ __pycache__
 
 # deployment
 src/regex/conf/uwsgi.ini
+.vault_password
 
 # collection directories
 /log/
