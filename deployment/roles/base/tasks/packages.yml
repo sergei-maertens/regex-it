@@ -28,7 +28,7 @@
 
     # front-end
     - nodejs
-    - npm
+    # - npm  # installed through nodejs from custom repo
 
 - name: Check if node is available
   stat: path=/usr/bin/nodejs
