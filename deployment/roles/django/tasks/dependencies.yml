@@ -13,7 +13,7 @@
   pip:
     name: pip
     virtualenv: "{{ venv }}"
-    virtualenv_python: python3.4
+    virtualenv_python: python3.6
 
 - name: Install requirements
   pip:
