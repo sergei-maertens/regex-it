@@ -22,14 +22,14 @@
   become_user: postgres
 
 - name: Allow local (unix socket) password access
-  lineinfile: dest=/etc/postgresql/9.3/main/pg_hba.conf
+  lineinfile: dest=/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf
               line="local   {{ db_name }}    {{ db_user }}    md5"
               insertbefore="^# \"local\" is for Unix domain socket connections only"
   notify:
     - reload postgres
 
 - name: Allow IPv4 (tcp) password access
-  lineinfile: dest=/etc/postgresql/9.3/main/pg_hba.conf
+  lineinfile: dest=/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf
               line="host    {{ db_name }}    {{ db_user }}  127.0.0.1/32  md5"
               insertbefore="^# IPv6 local connections"
   notify:
