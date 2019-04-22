@@ -10,6 +10,8 @@
     "grunt-sass": "^1.0.0"
   },
   "dependencies": {
+    "bourbon": "^4.2.7",
+    "bourbon-neat": "^1.7.4",
     "font-awesome": "^4.4.0",
     "jquery": "^2.1.4",
     "normalize.css": "^3.0.3"

@@ -31,8 +31,8 @@ module.exports = function(grunt) {
                 sourceMap: true,
                 outputStyle: 'expanded',
                 includePaths: [
-                    'src/static/bower_components/bourbon/app/assets/stylesheets',
-                    'src/static/bower_components/neat/app/assets/stylesheets'
+                    'node_modules/bourbon/app/assets/stylesheets',
+                    'node_modules/bourbon-neat/app/assets/stylesheets'
                 ],
             },
             compile: {
