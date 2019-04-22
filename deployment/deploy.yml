@@ -1,4 +1,4 @@
 ---
 
-- include: provision.yml
-- include: deploy-app.yml
+- import_playbook: provision.yml
+- import_playbook: deploy-app.yml

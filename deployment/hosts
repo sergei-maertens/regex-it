@@ -2,7 +2,8 @@
 staging.regex-it.nl
 
 [production]
-regex-it.nl
+# regex-it.nl
+37.97.137.78
 
 [localhost]
 localhost

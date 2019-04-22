@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-import django.conf.global_settings as DEFAULT_SETTINGS
 from django.contrib.messages import constants as message_constants
 from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
@@ -70,7 +69,9 @@ STATICFILES_DIRS = [
     # Don't forget to use absolute paths, not relative paths.
     str(SRC_DIR / 'static'),
     str(SRC_DIR / 'sass'),
-    str(SRC_DIR / 'static' / 'bower_components'),
+    ('jquery', str(ROOT_DIR / 'node_modules' / 'jquery')),
+    ('normalize.css', str(ROOT_DIR / 'node_modules' / 'normalize.css')),
+    ('font-awesome', str(ROOT_DIR / 'node_modules' / 'font-awesome')),
 ]
 
 # List of finder classes that know how to find static files in

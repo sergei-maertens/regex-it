@@ -6,7 +6,6 @@
   roles:
     - env
     - npm
-    - bower
     - grunt
     - django
     - supervisor

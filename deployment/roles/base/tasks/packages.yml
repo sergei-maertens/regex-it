@@ -26,14 +26,23 @@
     - libffi-dev
     - shared-mime-info
 
-    # front-end
-    - nodejs
-    # - npm  # installed through nodejs from custom repo
+# node_Release_file: https://deb.nodesource.com/node_6.x/dists/jessie/Release
 
-- name: Check if node is available
-  stat: path=/usr/bin/nodejs
-  register: has_node
+- name: Add apt-key for (recent) NodeJS
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+  remote_user: root
 
-- name: Symlink node because other packages depend on it
-  file: src=/usr/bin/nodejs dest=/usr/bin/node
-  when: has_node.stat.exists == False
+- name: Add NodeJS sources
+  copy:
+    src: nodesource.list
+    dest: /etc/apt/sources.list.d/nodesource.list
+    mode: "u=rw,g=r,o=r"
+  remote_user: root
+
+- name: Install NodeJS
+  package:
+    name: nodejs
+    state: present
+    update_cache: yes
+  remote_user: root
