@@ -1,0 +1,13 @@
+---
+
+- name: Deploy Sentry error monitoring
+  hosts: production
+  remote_user: root
+
+  vars_files:
+    - vars/sentry.yml
+    - vars/ssl.yml
+
+  roles:
+    - geerlingguy.docker
+    - sentry

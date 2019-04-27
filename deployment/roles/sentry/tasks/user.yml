@@ -1,0 +1,14 @@
+---
+
+# Unprivileged user
+
+- name: Create the local user
+  user:
+    name: "{{ sentry_user }}"
+    shell: /bin/bash
+
+- name: Allow ssh login
+  authorized_key:
+    user: "{{ sentry_user }}"
+    key: "{{ pub_key }}"
+  when: pub_key is defined

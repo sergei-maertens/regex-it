@@ -1,0 +1,38 @@
+---
+
+# Ensure peripheral containers run
+
+- name: Ensure PostgreSQL container runs
+  docker_container:
+    name: sentry-db
+    image: postgres:11-alpine
+    hostname: postgres
+    state: started
+    restart: no
+    restart_policy: always
+    networks:
+      - name: "{{ sentry_network }}"
+    volumes:
+      - "{{ sentry_db_volume }}:/var/lib/postgresql/data"
+    env:
+      POSTGRES_PASSWORD: "{{ sentry_db_password }}"
+      POSTGRES_USER: "{{ sentry_db_user }}"
+
+- name: Ensure Redis runs
+  docker_container:
+    name: sentry-redis
+    image: redis:3.2-alpine
+    hostname: redis
+    state: started
+    restart: no
+    restart_policy: always
+    networks:
+      - name: "{{ sentry_network }}"
+
+- name: Ensure outbound e-mail can be sent
+  docker_container:
+    name: sentry-smtp
+    image: tianon/exim4:latest
+    hostname: smtp
+    networks:
+      - name: "{{ sentry_network }}"

@@ -1,0 +1,14 @@
+---
+
+# Docker network & volumes
+
+- name: Ensure a separate network exists
+  docker_network:
+    name: "{{ sentry_network }}"
+
+- name: Ensure volumes exist
+  docker_volume:
+    name: "{{ item }}"
+  with_items:
+    - "{{ sentry_data_volume }}"
+    - "{{ sentry_db_volume }}"

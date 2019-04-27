@@ -1,0 +1,64 @@
+---
+
+# Sentry services
+
+- name: Ensure Sentry Web runs
+  docker_container:
+    name: sentry-web
+    image: "{{ sentry_image }}"
+    hostname: web
+    state: started
+    restart: no
+    restart_policy: always
+    networks:
+      - name: "{{ sentry_network }}"
+    volumes:
+      - "{{ sentry_data_volume }}:/var/lib/sentry/files"
+    env:
+      SENTRY_SECRET_KEY: "{{ sentry_secret_key }}"
+      SENTRY_REDIS_HOST: sentry-redis
+      SENTRY_POSTGRES_HOST: sentry-db
+      SENTRY_EMAIL_HOST: sentry-smtp
+      SENTRY_DB_PASSWORD: "{{ sentry_db_password }}"
+    published_ports:
+      - "127.0.0.1:{{ sentry_port }}:9000"
+
+- name: Ensure Sentry worker runs
+  docker_container:
+    name: sentry-worker
+    image: "{{ sentry_image }}"
+    hostname: worker
+    state: started
+    restart: no
+    restart_policy: always
+    networks:
+      - name: "{{ sentry_network }}"
+    volumes:
+      - "{{ sentry_data_volume }}:/var/lib/sentry/files"
+    env:
+      SENTRY_SECRET_KEY: "{{ sentry_secret_key }}"
+      SENTRY_REDIS_HOST: sentry-redis
+      SENTRY_POSTGRES_HOST: sentry-db
+      SENTRY_EMAIL_HOST: sentry-smtp
+      SENTRY_DB_PASSWORD: "{{ sentry_db_password }}"
+    command: run worker
+
+- name: Ensure Sentry cron runs
+  docker_container:
+    name: sentry-cron
+    image: "{{ sentry_image }}"
+    hostname: cron
+    state: started
+    restart: no
+    restart_policy: always
+    networks:
+      - name: "{{ sentry_network }}"
+    volumes:
+      - "{{ sentry_data_volume }}:/var/lib/sentry/files"
+    env:
+      SENTRY_SECRET_KEY: "{{ sentry_secret_key }}"
+      SENTRY_REDIS_HOST: sentry-redis
+      SENTRY_POSTGRES_HOST: sentry-db
+      SENTRY_EMAIL_HOST: sentry-smtp
+      SENTRY_DB_PASSWORD: "{{ sentry_db_password }}"
+    command: run cron
