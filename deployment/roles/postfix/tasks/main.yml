@@ -2,7 +2,7 @@
 
 - name: Ensure mailname is set correctly
   copy:
-    path: /etc/mailname
+    dest: /etc/mailname
     backup: yes
     content: "{{ postfix_mydomain }}"
 
@@ -10,23 +10,24 @@
   package:
     name:
     - postfix
-    # - dovecot-core
-    # - dovecot-imapd
     - postfix-pgsql
-    - dovecot-pgsql
 
-    # - dovecot-lmtpd
+- name: Create dir for pgsql configs
+  file:
+    path: /etc/postfix/pgsql
+    state: directory
 
-# - name: Set up the forwards
-#   template:
-#     src: virtual.j2
-#     dest: /etc/postfix/virtual
-#   notify:
-#     - postmap virtual
+- name: Template out the PGSQL virtal aliases
+  template:
+    src: "{{ item }}.cf.j2"
+    dest: "/etc/postfix/pgsql/{{ item }}.cf"
+  with_items:
+    - virtual_alias_domains
+    - virtual_alias_map
 
 - name: Set up the postfix config
   template:
     src: main.cf
     dest: /etc/postfix/main.cf
-  notify:
-    - reload postfix
+#   notify:
+#     - reload postfix
