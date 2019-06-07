@@ -27,7 +27,18 @@
 
 - name: Set up the postfix config
   template:
-    src: main.cf
-    dest: /etc/postfix/main.cf
-#   notify:
-#     - reload postfix
+    src: "{{ item }}"
+    dest: "/etc/postfix/{{ item }}"
+  with_items:
+    - main.cf
+    - master.cf
+  notify:
+    - reload postfix
+
+- name: Open firewall ports
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+  with_items:
+    - smtp
+    - 587
