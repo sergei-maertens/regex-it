@@ -1,0 +1,5 @@
+---
+
+dovecot_user: vmail
+
+dovecot_mail_basedir: /var/mail/domains/

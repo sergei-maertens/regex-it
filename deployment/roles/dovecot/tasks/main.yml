@@ -1,0 +1,52 @@
+---
+
+- name: Install packages
+  apt:
+    name:
+    - dovecot-core
+    - dovecot-common
+    - dovecot-pgsql
+    - dovecot-pop3d
+    - dovecot-imapd
+
+- name: Create the dovecot user group
+  group:
+    name: "{{ dovecot_user }}"
+    state: present
+
+- name: Create the mail user
+  user:
+    name: "{{ dovecot_user }}"
+    group: "{{ dovecot_user }}"
+    shell: /usr/sbin/nologin
+    create_home: yes
+    home: "{{ dovecot_mail_basedir }}"
+
+- name: Ensure basedir exists and has correct permissions
+  file:
+    path: "{{ dovecot_mail_basedir }}"
+    state: directory
+    owner: "{{ dovecot_user }}"
+    group: "{{ dovecot_user }}"
+    mode: u=rwx,g=rwx,o=
+
+- name: Configure dovecot
+  template:
+    src: "conf.d/{{ item }}"
+    dest: "/etc/dovecot/conf.d/{{ item }}"
+  with_items:
+    - 10-auth.conf
+    - 10-master.conf
+    - 10-ssl.conf
+  notify:
+    - reload dovecot
+
+- name: Open firewall ports
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+  with_items:
+    - pop3
+    - imap
+    - pop3s
+    - imaps
