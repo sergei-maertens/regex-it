@@ -18,10 +18,10 @@
     nginx_hostname: postfixer.regex-it.nl
 
   roles:
-    # - geerlingguy.docker
-    # - postgres
-    # - postfixer
-    # - ssl
-    # - nginx
+    - geerlingguy.docker
+    - postgres
+    - postfixer
+    - ssl
+    - nginx
     - postfix
     - dovecot

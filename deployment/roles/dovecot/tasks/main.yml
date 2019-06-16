@@ -4,6 +4,7 @@
   apt:
     name:
     - dovecot-core
+    - dovecot-common
     - dovecot-pgsql
     - dovecot-pop3d
     - dovecot-imapd
@@ -35,7 +36,10 @@
     dest: "/etc/dovecot/conf.d/{{ item }}"
   with_items:
     - 10-auth.conf
+    - 10-master.conf
     - 10-ssl.conf
+  notify:
+    - reload dovecot
 
 - name: Open firewall ports
   ufw:
