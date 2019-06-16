@@ -29,10 +29,13 @@
     group: "{{ dovecot_user }}"
     mode: u=rwx,g=rwx,o=
 
-- name: Configure auth
+- name: Configure dovecot
   template:
-    src: conf.d/10-auth.conf
-    dest: /etc/dovecot/conf.d/10-auth.conf
+    src: "conf.d/{{ item }}"
+    dest: "/etc/dovecot/conf.d/{{ item }}"
+  with_items:
+    - 10-auth.conf
+    - 10-ssl.conf
 
 - name: Open firewall ports
   ufw:

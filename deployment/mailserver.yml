@@ -24,4 +24,4 @@
     # - ssl
     # - nginx
     - postfix
-    # - dovecot
+    - dovecot
