@@ -1,0 +1,24 @@
+---
+
+- name: Install PostgreSQL
+  package:
+    name: "{{ postgresql_packages }}"
+  when: postgresql_enabled
+
+# Set up PostgreSQL auth properly
+
+- name: Install correct pg_hba.conf rules for postgres user
+  lineinfile:
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf"
+    regexp: '^local   all             (all|postgres)                                \s*(peer|ident)'
+    line: 'local   all             postgres                                ident'
+  notify:
+    - restart postgres
+
+- name: Enforce password auth for local postgres connections
+  lineinfile:
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf"
+    insertafter: 'local   all             postgres                                ident'
+    line: 'local   all             all                                     md5'
+  notify:
+    - restart postgres

@@ -1,0 +1,10 @@
+---
+
+- name: Mount bigstorage
+  mount:
+    name: "{{ bigstorage_mount_path }}"
+    src: "{{ bigstorage_device }}"
+    state: mounted
+    fstype: xfs
+    dump: 0
+    passno: 0

@@ -1,0 +1,37 @@
+---
+
+admin_email: root@localhost
+
+# firewall
+firewall_open_ports:
+  - http
+  - https
+  - "{{ ssh_port | default('ssh') }}"
+
+# big storage (Tansip)
+bigstorage: no
+bigstorage_device: /dev/vdb1
+bigstorage_mount_path: /mnt/bigstorage
+
+# databases
+postgresql_enabled: yes
+postgresql_version: 10
+postgresql_packages:
+  - postgresql
+  - postgresql-client
+  # python bindings
+  - python-dev
+  - libpq-dev
+  - python-psycopg2
+
+# webservers
+apache_enabled: no
+nginx_enabled: yes
+
+# cache servers
+redis_enabled: yes
+memcached_enabled: no
+
+# NodeJS
+nodejs_enabled: false
+nodejs_version: 10

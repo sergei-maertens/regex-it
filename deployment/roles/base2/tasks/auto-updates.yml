@@ -1,0 +1,16 @@
+---
+
+# Enables automatic security updates
+
+- name: Install package for unattended-upgrades
+  package:
+    name: unattended-upgrades
+    state: present
+
+
+- name: Set up periodic config file for unattended upgrades
+  copy:
+    src: 10periodic
+    dest: /etc/apt/apt.conf.d/10periodic
+
+# Defaults are ok for /etc/apt/apt.conf.d/50unattended-upgrades

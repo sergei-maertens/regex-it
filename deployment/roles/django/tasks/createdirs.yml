@@ -1,4 +1,19 @@
 ---
 
+- name: Create deployment directories
+  file:
+    dest: "{{ item }}"
+    state: "directory"
+    owner: "{{ application_user }}"
+    group: "{{ application_user }}"
+    mode: "0754"
+  with_items:
+    - "{{ project_home }}"
+    - "{{ venv }}"
+  remote_user: root
+
+
 - name: Create log directory
-  file: name="{{ project_home }}/log" state=directory
+  file:
+    name: "{{ project_home }}/log"
+    state: directory

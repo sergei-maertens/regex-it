@@ -1,0 +1,21 @@
+---
+
+
+# node_Release_file: https://deb.nodesource.com/node_6.x/dists/jessie/Release
+
+- name: Add apt-key for (recent) NodeJS
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+
+- name: Add NodeJS sources
+  apt_repository:
+    repo: "{{ item }} https://deb.nodesource.com/node_{{ nodejs_version }}.x {{ ansible_distribution_release }} main"
+  with_items:
+    - deb
+    - deb-src
+
+- name: Install NodeJS
+  package:
+    name: nodejs
+    state: present
+    update_cache: yes

@@ -1,0 +1,35 @@
+---
+
+# Restrict ssh access
+
+- name: SSH | Disable root password login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#?PermitRootLogin '
+    line: 'PermitRootLogin without-password'
+  notify:
+    - reload ssh
+
+- name: SSH | Disable emtpy password login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#?PermitEmptyPasswords '
+    line: 'PermitEmptyPasswords no'
+  notify:
+    - reload ssh
+
+- name: SSH | Disable password login (instead of pubkey)
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication '
+    line: 'PasswordAuthentication no'
+  notify:
+    - reload ssh
+
+- name: SSH | Disable response auth challenge
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#?ChallengeResponseAuthentication '
+    line: 'ChallengeResponseAuthentication no'
+  notify:
+    - reload ssh
