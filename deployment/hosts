@@ -3,3 +3,6 @@ staging.regex-it.nl
 
 [production]
 regex-it.nl ansible_python_interpreter=/usr/bin/python3
+
+[backup]
+backups.regex-it.nl

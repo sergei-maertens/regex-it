@@ -14,6 +14,7 @@
     line: 'local   all             postgres                                ident'
   notify:
     - restart postgres
+  when: postgresql_enabled
 
 - name: Enforce password auth for local postgres connections
   lineinfile:
@@ -22,3 +23,4 @@
     line: 'local   all             all                                     md5'
   notify:
     - restart postgres
+  when: postgresql_enabled

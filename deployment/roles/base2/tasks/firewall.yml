@@ -20,9 +20,9 @@
 - name: Open ports
   ufw:
     proto: tcp
-    direction: incoming
+    direction: in
     rule: allow
-    port: "{{ item.port }}"
+    port: "{{ item }}"
   with_items: "{{ firewall_open_ports }}"
   notify:
     - restart ufw

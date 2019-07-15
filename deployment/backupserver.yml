@@ -1,0 +1,17 @@
+---
+
+- name: Deploy backup server
+  hosts: backup
+  remote_user: root
+
+  vars:
+    firewall_open_ports:
+      - "{{ ssh_port | default('ssh') }}"
+      - '25565'
+    postgresql_enabled: false
+    nginx_enabled: false
+    redis_enabled: false
+    nodejs_enabled: false
+
+  roles:
+    - base2
