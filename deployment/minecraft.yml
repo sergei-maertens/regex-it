@@ -1,19 +1,20 @@
 ---
 
-- name: Deploy backup server
+- name: Deploy minecraft server
   hosts: backup
   remote_user: root
 
   vars:
+    firewall_open_ports:
+      - '25565'
     postgresql_enabled: false
     nginx_enabled: false
     redis_enabled: false
     nodejs_enabled: false
     django_enabled: false
 
-    application_user: barman
+    application_user: minecraft
 
   roles:
     - base
     - app_user
-    - barman
