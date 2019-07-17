@@ -11,7 +11,6 @@ src/regex/conf/uwsgi.ini
 /media/
 /private_media/
 /src/static/css
-/src/static/bower_components
 node_modules
 
 # testing

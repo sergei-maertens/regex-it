@@ -17,6 +17,15 @@
   notify:
     - restart ufw
 
+- name: Always allow SSH
+  ufw:
+    proto: tcp
+    direction: in
+    rule: allow
+    port: "{{ ssh_port | default('ssh') }}"
+  notify:
+    - restart ufw
+
 - name: Open ports
   ufw:
     proto: tcp

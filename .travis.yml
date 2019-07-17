@@ -19,9 +19,8 @@ install:
 before_script:
   - mkdir log
   - export DJANGO_SETTINGS_MODULE=regex.conf.settings.test
-  - npm install bower grunt-cli -g
+  - npm install grunt-cli -g
   - npm install
-  - bower install
   - src/manage.py collectstatic --noinput --link
   - grunt sass:dist
 

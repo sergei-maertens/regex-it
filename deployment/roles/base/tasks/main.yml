@@ -1,5 +1,31 @@
 ---
-# Set up the base system
+# Set up the base system: security settings, basic system packages...
 
-- include: packages.yml
-- include: users.yml
+- include_tasks: build-tools.yml
+
+- include_tasks: auto-updates.yml
+
+- include_tasks: sshd.yml
+
+- include_tasks: firewall.yml
+
+- include_tasks: fail2ban.yml
+
+- include_tasks: bigstorage.yml
+  when: bigstorage
+
+- include_tasks: logwatch.yml
+
+- include_tasks: databases.yml
+
+- include_tasks: webservers.yml
+
+- include_tasks: caches.yml
+
+- include_tasks: vcs.yml
+
+- include_tasks: nodejs.yml
+  when: nodejs_enabled
+
+- include_tasks: django.yml
+  when: django_enabled

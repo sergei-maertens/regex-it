@@ -9,6 +9,11 @@
     - vars/ssl.yml
 
   vars:
+    application_user: sentry
+    postgresql_enabled: no
+    nginx_enabled: yes
+    redis_enabled: no
+
     # nginx role overrides
     prefix: sentry
     nginx_vhost_template: proxy.conf.j2
@@ -19,6 +24,8 @@
     nginx_hostname: sentry.regex-it.nl
 
   roles:
+    - base
+    - app_user
     - geerlingguy.docker
     - sentry
     - ssl

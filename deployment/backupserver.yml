@@ -6,12 +6,15 @@
 
   vars:
     firewall_open_ports:
-      - "{{ ssh_port | default('ssh') }}"
       - '25565'
     postgresql_enabled: false
     nginx_enabled: false
     redis_enabled: false
     nodejs_enabled: false
+    django_enabled: false
+
+    application_user: minecraft
 
   roles:
-    - base2
+    - base
+    - app_user

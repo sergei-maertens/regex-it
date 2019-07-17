@@ -6,7 +6,6 @@ admin_email: root@localhost
 firewall_open_ports:
   - http
   - https
-  - "{{ ssh_port | default('ssh') }}"
 
 # big storage (Tansip)
 bigstorage: no
@@ -35,3 +34,25 @@ memcached_enabled: no
 # NodeJS
 nodejs_enabled: false
 nodejs_version: 10
+
+# Django
+django_enabled: false
+django_packages:
+  - python3-dev
+  - python3-setuptools
+  - python3-pip
+  - python-virtualenv
+  # lxml depend on these
+  - libxml2
+  - libxml2-dev
+  - libxslt1.1
+  - libxslt1-dev
+  # Pillow
+  - swig
+  - libjpeg-dev
+  # weasyprint
+  - libcairo2
+  - libpango1.0-0
+  - libgdk-pixbuf2.0-0
+  - libffi-dev
+  - shared-mime-info
