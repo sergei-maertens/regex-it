@@ -8,6 +8,12 @@
     - vars/mailserver.yml
 
   vars:
+    firewall_open_ports:
+      - pop3
+      - imap
+      - pop3s
+      - imaps
+
     # nginx role overrides
     prefix: postfixer
     nginx_vhost_template: proxy.conf.j2
@@ -18,6 +24,7 @@
     nginx_hostname: postfixer.regex-it.nl
 
   roles:
+    - base
     - geerlingguy.docker
     - postgres
     - postfixer

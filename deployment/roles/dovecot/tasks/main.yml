@@ -40,13 +40,3 @@
     - 10-ssl.conf
   notify:
     - reload dovecot
-
-- name: Open firewall ports
-  ufw:
-    rule: allow
-    port: "{{ item }}"
-  with_items:
-    - pop3
-    - imap
-    - pop3s
-    - imaps

@@ -1,0 +1,26 @@
+---
+
+- name: Create the application user group
+  group:
+    name: "{{ application_user }}"
+    state: present
+
+- name: Create the application user
+  user:
+    name: "{{ application_user }}"
+    group: "{{ application_user }}"
+    shell: /bin/bash
+    generate_ssh_key: yes
+
+- name: Set application user password
+  user:
+    name: "{{ application_user }}"
+    password: "{{ crypted_password }}"
+  when: crypted_password is defined
+
+- name: Install public keys to authorized_keys.
+  authorized_key:
+    user: "{{ application_user }}"
+    key: "{{ item }}"
+    state: present
+  with_items: "{{ users_url_pubkeys }}"

@@ -1,0 +1,12 @@
+---
+
+- name: Install fail2ban
+  package:
+    name: fail2ban
+    state: present
+
+- name: Enable fail2ban
+  service:
+    name: fail2ban
+    enabled: yes
+    state: started

@@ -1,0 +1,44 @@
+---
+
+# Set up the firewall configuration
+
+- name: Install ufw
+  package:
+    name: ufw
+    state: present
+
+- name: Configure ufw defaults
+  ufw:
+    direction: "{{ item.direction }}"
+    policy: "{{ item.policy }}"
+  with_items:
+    - { direction: 'incoming', policy: 'deny' }
+    - { direction: 'outgoing', policy: 'allow' }
+  notify:
+    - restart ufw
+
+- name: Always allow SSH
+  ufw:
+    proto: tcp
+    direction: in
+    rule: allow
+    port: "{{ ssh_port | default('ssh') }}"
+  notify:
+    - restart ufw
+
+- name: Open ports
+  ufw:
+    proto: tcp
+    direction: in
+    rule: allow
+    port: "{{ item }}"
+  with_items: "{{ firewall_open_ports }}"
+  notify:
+    - restart ufw
+
+- name: Enable ufw with logging
+  ufw:
+    logging: on
+    state: enabled
+  notify:
+    - restart ufw
