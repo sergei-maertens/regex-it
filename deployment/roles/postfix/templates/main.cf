@@ -40,7 +40,10 @@ smtpd_sasl_path = private/auth
 # See /usr/share/doc/postfix/TLS_README.gz in the postfix-doc package for
 # information on enabling SSL in the smtp client.
 
-smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+smtpd_relay_restrictions =
+    permit_mynetworks
+    permit_sasl_authenticated
+    defer_unauth_destination
 myhostname = {{ postfix_mydomain }}
 mydomain = {{ postfix_mydomain }}
 alias_maps = hash:/etc/aliases
@@ -48,11 +51,23 @@ alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
 mydestination = {{ fqdn }}, localhost.{{ postfix_mydomain }}, localhost
 relayhost =
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+mynetworks = 127.0.0.0/8 172.17.0.1/16 [::ffff:127.0.0.0]/104 [::1]/128
 mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = all
 inet_protocols = ipv4
 
-virtual_alias_domains = pgsql:/etc/postfix/pgsql/virtual_alias_domains.cf
+# Virtual aliases (=forwarders)
+# can't use virtual_alias_domains together with virtual_mailbox_domains?
+# virtual_alias_domains = pgsql:/etc/postfix/pgsql/virtual_alias_domains.cf
 virtual_alias_maps = pgsql:/etc/postfix/pgsql/virtual_alias_map.cf
+
+# Virtual mailboxes (=local delivery)
+virtual_mailbox_domains = pgsql:/etc/postfix/pgsql/virtual_mailbox_domains.cf
+virtual_mailbox_maps = pgsql:/etc/postfix/pgsql/virtual_mailbox_maps.cf
+
+# FIXME - variables across roles = bad idea
+virtual_mailbox_base = {{ dovecot_mail_basedir }}
+virtual_minimum_uid = 1000
+virtual_uid_maps = static:{{ dovecot_user_uid }}
+virtual_gid_maps = static:{{ dovecot_user_uid }}

@@ -12,11 +12,13 @@
 - name: Create the dovecot user group
   group:
     name: "{{ dovecot_user }}"
+    gid: "{{ dovecot_user_uid }}"
     state: present
 
 - name: Create the mail user
   user:
     name: "{{ dovecot_user }}"
+    uid: "{{ dovecot_user_uid }}"
     group: "{{ dovecot_user }}"
     shell: /usr/sbin/nologin
     create_home: yes
