@@ -30,5 +30,7 @@
     - postfixer
     - ssl
     - nginx
-    - postfix
+    - role: postfix
+      tags:
+        - mail
     - dovecot

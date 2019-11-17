@@ -24,6 +24,8 @@
   with_items:
     - virtual_alias_domains
     - virtual_alias_map
+    - virtual_mailbox_domains
+    - virtual_mailbox_maps
 
 - name: Set up the postfix config
   template:

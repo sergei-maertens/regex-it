@@ -1,9 +1,9 @@
 ---
 
 - name: Define log format
-  copy:
-    src: logformat.conf
-    dest: /etc/nginx/conf.d/logformat.conf
+  file:
+    path: logformat.conf
+    state: absent
   remote_user: root
 
 - name: make sure the log dir exists

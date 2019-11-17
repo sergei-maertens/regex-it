@@ -14,7 +14,8 @@
 - name: Ensure web container runs
   docker_container:
     name: postfixer-web
-    image: "sergeimaertens/postfixer:1.0"
+    image: "{{ postfixer_image }}"
+    pull: yes
     hostname: postfixer-django
     state: started
     restart: no

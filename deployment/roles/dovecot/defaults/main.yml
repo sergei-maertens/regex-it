@@ -1,5 +1,6 @@
 ---
 
 dovecot_user: vmail
+dovecot_user_uid: 1005
 
 dovecot_mail_basedir: /var/mail/domains/
