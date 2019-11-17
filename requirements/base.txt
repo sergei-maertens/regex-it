@@ -4,7 +4,6 @@
 #
 #    pip-compile --no-index requirements/base.in
 #
-babel==2.5.1              # via django-phonenumber-field
 cairocffi==0.8.0          # via cairosvg, weasyprint
 cairosvg==2.0.3           # via weasyprint
 cffi==1.11.0              # via cairocffi, weasyprint
@@ -19,7 +18,6 @@ django-choices==1.7.0
 django-compressor==1.6
 django-countries==5.5
 django-import-export==1.2.0
-django-phonenumber-field==3.0.1
 django-sendfile==0.3.10
 django-sniplates==0.3.2
 django==2.2.7

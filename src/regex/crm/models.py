@@ -6,7 +6,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from autoslug.fields import AutoSlugField
-from phonenumber_field.modelfields import PhoneNumberField
 from django_countries.fields import CountryField
 from djchoices import DjangoChoices, ChoiceItem
 
@@ -20,7 +19,7 @@ class Contact(models.Model):
     label = models.CharField(_('label'), max_length=50)
     name = models.CharField(_('name'), max_length=255)
     email = models.EmailField(_('email'))
-    phone = PhoneNumberField()
+    phone = models.CharField(_("phone number"), max_length=100, blank=True)
     address = models.CharField(_('address'), max_length=255, blank=True)
     postal_code = models.CharField(_('postal code'), max_length=10, blank=True)
     city = models.CharField(_('city'), max_length=255, blank=True)
@@ -46,7 +45,7 @@ class Client(models.Model):
 
     # global company contact details
     email = models.EmailField(_('email'))
-    phone = PhoneNumberField()
+    phone = models.CharField(_("phone number"), max_length=100, blank=True)
     address = models.CharField(_('address'), max_length=255)
     city = models.CharField(_('city'), max_length=255)
     country = CountryField(default=settings.DEFAULT_COUNTRY, verbose_name=_('Country'))
