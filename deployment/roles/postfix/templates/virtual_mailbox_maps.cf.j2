@@ -14,4 +14,7 @@ password = {{ db_password }}
 # The database name on the servers.
 dbname = {{ db_name }}
 
-query = SELECT CONCAT("mail_virtualmailbox"."domain_part", CONCAT('/', CONCAT("mail_virtualmailbox"."user_part", '/'))) AS "maildir" FROM "mail_virtualmailbox" WHERE ("mail_virtualmailbox"."active" = True AND CONCAT("mail_virtualmailbox"."user_part", CONCAT('@', "mail_virtualmailbox"."domain_part")) = '%s')
+query =
+    SELECT CONCAT("mail_virtualmailbox"."domain_part", CONCAT('/', CONCAT("mail_virtualmailbox"."user_part", '/'))) AS "maildir"
+    FROM "mail_virtualmailbox"
+    WHERE ("mail_virtualmailbox"."active" = True AND CONCAT("mail_virtualmailbox"."user_part", CONCAT('@', "mail_virtualmailbox"."domain_part")) = '%s')

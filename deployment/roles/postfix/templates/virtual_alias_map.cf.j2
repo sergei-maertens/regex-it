@@ -14,4 +14,7 @@ password = {{ db_password }}
 # The database name on the servers.
 dbname = {{ db_name }}
 
-query = SELECT "mail_forward"."destination" FROM "mail_forward" WHERE ("mail_forward"."active" = True AND "mail_forward"."source" = '%s')
+query =
+    SELECT array_to_string("mail_forward"."destinations", ' ')
+    FROM "mail_forward"
+    WHERE ("mail_forward"."active" = True AND CONCAT("mail_forward"."user_part", CONCAT('@', "mail_forward"."domain_part")) = '%s')
