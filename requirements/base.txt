@@ -15,7 +15,7 @@ django-admin-sortable2==0.6.6
 django-allauth==0.29.0
 django-appconf==1.0.1
 django-autoslug==1.9.3
-django-choices==1.4.2
+django-choices==1.7.0
 django-compressor==1.6
 django-countries==5.5
 django-import-export==0.5.1
@@ -32,18 +32,18 @@ odfpy==1.3.5              # via tablib
 openpyxl==2.4.8           # via tablib
 phonenumbers==8.8.2       # via django-phonenumber-field
 pillow==3.0.0
-psycopg2==2.8.2
+psycopg2==2.8.4
 pycparser==2.18           # via cffi
 pyphen==0.9.4             # via weasyprint
 python-dateutil==2.4.2
 python-magic==0.4.10
 python3-openid==3.1.0     # via django-allauth
-pytz==2015.7
+pytz==2019.3
 pyyaml==3.12              # via tablib
 requests-oauthlib==0.8.0  # via django-allauth
 requests==2.8.1           # via django-allauth, requests-oauthlib
-rules==1.0
-six==1.11.0               # via django-appconf, django-choices, django-countries, html5lib, python-dateutil
+rules==2.1
+six==1.11.0               # via django-appconf, django-countries, html5lib, python-dateutil
 tablib==0.12.1            # via django-import-export
 tinycss2==0.6.0           # via weasyprint
 tinycss==0.4              # via cairosvg
