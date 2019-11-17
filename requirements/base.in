@@ -5,6 +5,7 @@ psycopg2
 python-magic
 python-dateutil
 rules
+pytz
 
 WeasyPrint==0.38
 
@@ -17,13 +18,5 @@ django-compressor
 django-countries
 django-import-export
 django-phonenumber-field
-# django-rosetta
 django-sendfile
 django-sniplates
-django-systemjs
-djangorestframework
-
-celery
-pytz
-redis
-requests
