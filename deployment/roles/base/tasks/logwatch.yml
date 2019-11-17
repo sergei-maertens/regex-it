@@ -1,0 +1,14 @@
+---
+
+- name: Install logwatch
+  package:
+    name: logwatch
+    state: present
+
+- name: Setup logwatch config
+  template:
+    src: logwatch.conf.j2
+    dest: /etc/logwatch/conf/01main.conf
+    owner: root
+    group: root
+    mode: "0600"

@@ -1,8 +1,0 @@
----
-
-- name: Provisioning - mailing infrastructure
-  apt: name={{ item }} state=present
-  with_items:
-    - postfix
-    - dovecot-imap
-    - dovecot-pop3

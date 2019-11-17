@@ -8,8 +8,8 @@ from dateutil.relativedelta import relativedelta
 
 
 class WorkEntry(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    project = models.ForeignKey('crm.Project')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    project = models.ForeignKey('crm.Project', on_delete=models.CASCADE)
     start = models.DateTimeField(_('start'))
     end = models.DateTimeField(_('end'))
 

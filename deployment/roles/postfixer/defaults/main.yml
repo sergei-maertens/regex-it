@@ -1,0 +1,5 @@
+---
+
+postfixer_port: 9010
+
+postfixer_image: regexit/postfixer:latest

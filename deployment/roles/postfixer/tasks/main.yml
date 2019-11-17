@@ -1,0 +1,39 @@
+---
+
+# Deploy the postfixer app with docker
+
+
+- name: Ensure a separate network exists
+  docker_network:
+    name: "postfixer"
+
+- name: Create a volume for the logs
+  docker_volume:
+    name: postfixer-logs
+
+- name: Ensure web container runs
+  docker_container:
+    name: postfixer-web
+    image: "{{ postfixer_image }}"
+    pull: yes
+    hostname: postfixer-django
+    state: started
+    restart: no
+    restart_policy: always
+    networks:
+      - name: "postfixer"
+    volumes:
+      # mount postgresql socket
+      - "/var/run/postgresql:/var/run/postgresql"
+      # logs
+      - "postfixer-logs:/app/log"
+    env:
+      SECRET_KEY: "{{ postfixer_secret_key }}"
+      ALLOWED_HOSTS: postfixer.regex-it.nl
+      DB_HOST: "/var/run/postgresql/"  # uses socket
+      DB_USER: "{{ db_user }}"
+      DB_PASSWORD: "{{ db_password }}"
+      DB_NAME: "{{ db_name }}"
+
+    published_ports:
+      - "127.0.0.1:{{ postfixer_port }}:8000"

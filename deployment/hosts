@@ -2,8 +2,7 @@
 staging.regex-it.nl
 
 [production]
-# regex-it.nl
-37.97.137.78
+regex-it.nl ansible_python_interpreter=/usr/bin/python3
 
-[localhost]
-localhost
+[backup]
+backups.regex-it.nl ansible_python_interpreter=/usr/bin/python3

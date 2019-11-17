@@ -1,0 +1,6 @@
+---
+
+- name: Install Django system packages
+  package:
+    name: "{{ django_packages }}"
+  when: django_enabled

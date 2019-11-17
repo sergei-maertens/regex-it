@@ -1,0 +1,36 @@
+---
+
+- name: Set up mail server
+  hosts: production
+  remote_user: root
+
+  vars_files:
+    - vars/mailserver.yml
+
+  vars:
+    firewall_open_ports:
+      - pop3
+      - imap
+      - pop3s
+      - imaps
+
+    # nginx role overrides
+    prefix: postfixer
+    nginx_vhost_template: proxy.conf.j2
+    application_user: root
+
+    # template specific vars
+    nginx_proxy_port: "{{ postfixer_port }}"
+    nginx_hostname: postfixer.regex-it.nl
+
+  roles:
+    - base
+    - geerlingguy.docker
+    - postgres
+    - postfixer
+    - ssl
+    - nginx
+    - role: postfix
+      tags:
+        - mail
+    - dovecot

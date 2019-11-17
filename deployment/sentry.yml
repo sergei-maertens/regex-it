@@ -1,0 +1,32 @@
+---
+
+- name: Deploy Sentry error monitoring
+  hosts: production
+  remote_user: root
+
+  vars_files:
+    - vars/sentry.yml
+    - vars/ssl.yml
+
+  vars:
+    application_user: sentry
+    postgresql_enabled: no
+    nginx_enabled: yes
+    redis_enabled: no
+
+    # nginx role overrides
+    prefix: sentry
+    nginx_vhost_template: proxy.conf.j2
+    application_user: root
+
+    # template specific vars
+    nginx_proxy_port: 9000
+    nginx_hostname: sentry.regex-it.nl
+
+  roles:
+    - base
+    - app_user
+    - geerlingguy.docker
+    - sentry
+    - ssl
+    - nginx

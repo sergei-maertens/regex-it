@@ -7,16 +7,19 @@
 
 - name: Send private ssl keys
   copy:
-    content="{{ ssl_private_key }}"
-    dest=/etc/ssl/private/wildcard.{{ project_name }}.key
-    mode=0640
+    content: "{{ ssl_private_key }}"
+    dest: "/etc/ssl/private/wildcard.regex.key"
+    mode: 0640
   no_log: true
 
 - name: Copy ssl keys and certs
-  copy: src=wildcard.{{ project_name }}.crt dest=/etc/ssl/certs/{{ project_name }}.crt
+  copy:
+    src: "wildcard.regex.crt"
+    dest: "/etc/ssl/certs/regex.crt"
 
 - name: Check if custom DH cert exists
-  stat: path=/etc/ssl/certs/dhparam.pem
+  stat:
+    path: /etc/ssl/certs/dhparam.pem
   register: has_custom_dh_cert
 
 - name: Generate custom DH cert

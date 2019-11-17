@@ -7,19 +7,14 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^accounts/', include('regex.accounts.urls', namespace='accounts')),
-    url(r'^invoices/', include('regex.invoices.urls', namespace='invoices')),
-    url(r'^portfolio/', include('regex.portfolio.urls', namespace='portfolio')),
-    url(r'^work_entries/', include('regex.work_entries.urls', namespace='work_entries')),
-    url(r'^', include('regex.homepage.urls', namespace='home')),
+    url(r'^accounts/', include('regex.accounts.urls')),
+    url(r'^invoices/', include('regex.invoices.urls')),
+    url(r'^portfolio/', include('regex.portfolio.urls')),
+    url(r'^work_entries/', include('regex.work_entries.urls')),
+    url(r'^', include('regex.homepage.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)
-
-if 'rosetta' in settings.INSTALLED_APPS:
-    urlpatterns += [
-        url(r'^admin/rosetta/', include('rosetta.urls')),
-    ]
 
 if settings.DEBUG:
     import debug_toolbar

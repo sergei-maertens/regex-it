@@ -1,0 +1,8 @@
+---
+
+# Integrations for docker
+
+- name: Ensure docker package is available
+  pip:
+    name: docker
+    state: present

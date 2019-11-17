@@ -1,6 +1,6 @@
 from functools import wraps
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 def get_urlname(obj):

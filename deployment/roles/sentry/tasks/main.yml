@@ -1,0 +1,7 @@
+---
+
+- import_tasks: user.yml
+- import_tasks: packages.yml
+- import_tasks: volumes.yml
+- import_tasks: ext_containers.yml
+- import_tasks: sentry_containers.yml

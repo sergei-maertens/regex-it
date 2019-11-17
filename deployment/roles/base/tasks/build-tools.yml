@@ -1,0 +1,7 @@
+---
+
+- name: Install OS build tools
+  package:
+    name:
+    - apt-transport-https
+    - build-essential

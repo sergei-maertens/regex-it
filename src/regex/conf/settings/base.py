@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 from django.contrib.messages import constants as message_constants
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 # Automatically figure out the ROOT_DIR and PROJECT_DIR.
@@ -51,7 +51,7 @@ LANGUAGES = [
     ('nl', _('Dutch')),
     ('nl_BE', _('Dutch (Belgium)')),
 ]
-LANGUAGE_CODE = 'nl_BE'
+LANGUAGE_CODE = 'nl-NL'
 
 DEFAULT_COUNTRY = 'NL'
 SITE_COUNTRY = 'NL'
@@ -117,13 +117,12 @@ TEMPLATES = [
     },
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

@@ -1,0 +1,36 @@
+---
+
+- name: restart ufw
+  service:
+    name: ufw
+    state: restarted
+
+- name: restart fail2ban
+  service:
+    name: fail2ban
+    state: restarted
+
+- name: reload apache
+  service:
+    name: apache2
+    state: reloaded
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: restart postgres
+  service:
+    name: postgresql
+    state: restarted
+
+- name: reload ssh
+  service:
+    name: sshd
+    state: reloaded
+
+- name: restart redis
+  service:
+    name: redis
+    state: restarted

@@ -57,9 +57,8 @@ CSRF_COOKIE_SECURE = False
 #
 INSTALLED_APPS += [
     'debug_toolbar',
-    'rosetta',
 ]
-MIDDLEWARE_CLASSES += [
+MIDDLEWARE += [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 INTERNAL_IPS = ('127.0.0.1',)
