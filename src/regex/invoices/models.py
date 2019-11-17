@@ -4,7 +4,7 @@ from datetime import datetime, time, timedelta
 
 from django.conf import settings
 from django.core import validators
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models, transaction
 from django.db.models import F, Sum, Max
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -24,7 +24,7 @@ RE_INVOICE_NUMBER = re.compile(r'(?P<year>20\d{2})\d{5}$')
 
 
 class Invoice(models.Model):
-    client = models.ForeignKey('crm.Client')
+    client = models.ForeignKey('crm.Client', on_delete=models.PROTECT)
     date = models.DateField(_('date'), help_text=_('Include work up to (including) this day.'))
 
     generated = models.DateTimeField(editable=False, null=True)
@@ -146,8 +146,8 @@ class Invoice(models.Model):
 
 
 class InvoiceItem(models.Model):
-    invoice = models.ForeignKey(Invoice)
-    project = models.ForeignKey('crm.Project', null=True, blank=True)
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    project = models.ForeignKey('crm.Project', null=True, blank=True, on_delete=models.SET_NULL)
 
     rate = models.DecimalField(_('rate'), max_digits=10, decimal_places=2)
     amount = models.DecimalField(_('amount'), max_digits=10, decimal_places=2)
@@ -156,7 +156,7 @@ class InvoiceItem(models.Model):
         choices=TaxRates.choices, default=TaxRates.high
     )
 
-    content_type = models.ForeignKey('contenttypes.ContentType', blank=True, null=True)
+    content_type = models.ForeignKey('contenttypes.ContentType', blank=True, null=True, on_delete=models.SET_NULL)
     object_id = models.IntegerField(blank=True, null=True)
     source_object = GenericForeignKey()
     remarks = models.TextField(_('remarks'), blank=True)
