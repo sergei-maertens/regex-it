@@ -16,11 +16,6 @@ urlpatterns = [
     url(r'^', include('regex.homepage.urls', namespace='home')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)
 
-if 'rosetta' in settings.INSTALLED_APPS:
-    urlpatterns += [
-        url(r'^admin/rosetta/', include('rosetta.urls')),
-    ]
-
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += [
