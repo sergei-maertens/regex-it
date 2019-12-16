@@ -29,12 +29,11 @@ with your favourite package manager.
 
 Next, install the global build tools if not present yet:
 
-    npm install grunt-cli bower -g
+    npm install grunt-cli -g
 
 And install the project dev dependencies:
 
     npm install
-    bower install
 
 To watch the sass files and recompile sass to css on the fly, run:
 
