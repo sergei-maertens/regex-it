@@ -2,15 +2,8 @@ from django.contrib import admin
 from django.db.models import Sum
 
 from privates.admin import PrivateMediaMixin
-from regex.utils.views.private_media import PrivateMediaView
 
 from .models import Deduction
-
-
-class DeductionPrivateMediaView(PrivateMediaView):
-    model = Deduction
-    permission_required = 'invoices.can_view_invoice'
-    file_field = 'receipt'
 
 
 @admin.register(Deduction)
