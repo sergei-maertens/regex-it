@@ -19,3 +19,4 @@ django-countries
 django-import-export
 django-sendfile
 django-sniplates
+django-privates
