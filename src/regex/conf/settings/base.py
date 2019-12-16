@@ -157,6 +157,7 @@ INSTALLED_APPS = [
     # Project applications.
     'regex.accounts',
     'regex.crm',
+    'regex.deductions',
     'regex.homepage',
     'regex.invoices',
     'regex.portfolio',
