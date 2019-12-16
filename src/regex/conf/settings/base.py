@@ -153,6 +153,7 @@ INSTALLED_APPS = [
     'django_countries',
     'import_export',
     'sniplates',
+    'privates',
 
     # Project applications.
     'regex.accounts',
