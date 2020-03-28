@@ -4,7 +4,16 @@
   hosts: monitoring
   remote_user: root
 
+  pre_tasks:
+    - name: Ensure pip is installed
+      package:
+        name: python3-pip
+
+    - name: Ensure Docker bindings are installed
+      pip:
+        name: docker
+
   roles:
     # - role: geerlingguy.docker
-    - role: geerlingguy.postgresql
-    # - role: zabbix
+    # - role: geerlingguy.postgresql
+    - role: zabbix

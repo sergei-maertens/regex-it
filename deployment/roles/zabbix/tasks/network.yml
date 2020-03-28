@@ -1,0 +1,5 @@
+---
+
+- name: Create Zabbix network
+  docker_network:
+    name: zabbix
