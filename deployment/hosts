@@ -8,7 +8,7 @@ regex-it.nl ansible_python_interpreter=/usr/bin/python3
 backups.regex-it.nl ansible_python_interpreter=/usr/bin/python3
 
 [monitoring]
-zabbix.regex-it.nl
+zabbix.regex-it.nl ansible_python_interpreter=/usr/bin/python3
 
 [monitored]
 sparky.regex-it.nl  # main server

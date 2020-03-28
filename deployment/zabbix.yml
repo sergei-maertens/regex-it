@@ -1,0 +1,10 @@
+---
+
+- name: Set up Zabbix for monitoring
+  hosts: monitoring
+  remote_user: root
+
+  roles:
+    # - role: geerlingguy.docker
+    - role: geerlingguy.postgresql
+    # - role: zabbix
