@@ -2,3 +2,4 @@
 
 - import_tasks: network.yml
 - import_tasks: server.yml
+- import_tasks: frontend.yml

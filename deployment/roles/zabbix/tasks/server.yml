@@ -10,16 +10,18 @@
     restart: no
     restart_policy: always
     stop_timeout: 30
+
+    purge_networks: yes
+    networks_cli_compatible: yes
     networks:
       - name: zabbix
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /var/run/postgresql:/var/run/postgresql
 
     env:
-      DB_SERVER_HOST: /var/run/postgresql
-      POSTGRES_DB: zabbix
+      DB_SERVER_HOST: "{{ zabbix_db_host }}"
+      POSTGRES_DB: "{{ zabbix_db_name }}"
       POSTGRES_USER: "{{ zabbix_db_user }}"
       POSTGRES_PASSWORD: "{{ zabbix_db_password }}"
 

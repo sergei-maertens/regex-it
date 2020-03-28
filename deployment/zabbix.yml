@@ -15,5 +15,5 @@
 
   roles:
     # - role: geerlingguy.docker
-    # - role: geerlingguy.postgresql
+    - role: geerlingguy.postgresql
     - role: zabbix
