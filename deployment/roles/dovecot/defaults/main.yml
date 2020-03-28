@@ -3,10 +3,10 @@
 dovecot_user: vmail
 dovecot_user_uid: 1005
 
-dovecot_mail_basedir: /var/mail/domains/
+dovecot_mail_basedir: /var/mail/domains
 dovecot_home_basedir: /var/mail/home/
 
-dovecot_db_host: ''
-dovecot_db_name: ''
-dovecot_db_user: ''
-dovecot_db_password: ''
+dovecot_db_host: localhost
+dovecot_db_name: postfix
+dovecot_db_user: postfix
+dovecot_db_password: postfix

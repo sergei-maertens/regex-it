@@ -24,7 +24,7 @@
     uid: "{{ dovecot_user_uid }}"
     group: "{{ dovecot_user }}"
     shell: /usr/sbin/nologin
-    create_home: yes
+    createhome: yes
     home: "{{ dovecot_mail_basedir }}"
 
 - name: Ensure basedirs exists and have correct permissions
@@ -34,6 +34,7 @@
     owner: "{{ dovecot_user }}"
     group: "{{ dovecot_user }}"
     mode: u=rwx,g=rwx,o=
+    follow: yes
   with_items:
     - "{{ dovecot_mail_basedir }}"
     - "{{ dovecot_home_basedir }}"
@@ -48,6 +49,6 @@
     - conf.d/10-master.conf
     - conf.d/10-ssl.conf
     - conf.d/auth-sql.conf.ext
-    - dovecot-sql.conf
+    - dovecot-sql.conf.ext
   notify:
     - reload dovecot
