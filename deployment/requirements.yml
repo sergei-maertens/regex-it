@@ -1,2 +1,4 @@
 - src: geerlingguy.docker
 - src: geerlingguy.postgresql
+- src: geerlingguy.certbot
+- src: nginxinc.nginx
