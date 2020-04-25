@@ -11,12 +11,12 @@ class PDFTemplateResponse(TemplateResponse):
     url_fetcher_class = UrlFetcher
 
     def __init__(self, filename=None, *args, **kwargs):
-        kwargs['content_type'] = "application/pdf"
+        kwargs["content_type"] = "application/pdf"
         super(PDFTemplateResponse, self).__init__(*args, **kwargs)
         if filename:
-            self['Content-Disposition'] = 'attachment; filename="%s"' % filename
+            self["Content-Disposition"] = 'attachment; filename="%s"' % filename
         else:
-            self['Content-Disposition'] = 'attachment'
+            self["Content-Disposition"] = "attachment"
 
     def get_url_fetcher(self, base_url):
         return self.url_fetcher_class(self._request, base_url=base_url)
@@ -48,7 +48,7 @@ class PDFTemplateResponseMixin(TemplateResponseMixin):
         """
         Returns a response, giving the filename parameter to PDFTemplateResponse.
         """
-        kwargs['filename'] = self.get_filename()
+        kwargs["filename"] = self.get_filename()
         return super(PDFTemplateResponseMixin, self).render_to_response(*args, **kwargs)
 
 

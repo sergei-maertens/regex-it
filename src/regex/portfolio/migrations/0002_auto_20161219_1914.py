@@ -8,13 +8,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('portfolio', '0001_initial'),
+        ("portfolio", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='entry',
-            name='image',
-            field=models.ImageField(blank=True, upload_to='portfolio', verbose_name='image'),
+            model_name="entry",
+            name="image",
+            field=models.ImageField(
+                blank=True, upload_to="portfolio", verbose_name="image"
+            ),
         ),
     ]

@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load i18n staticfiles compress invoices %}
+<!DOCTYPE html>{% load i18n staticfiles compress invoices solo_tags%}
 <html>
     <head>
         <meta charset="utf-8">
@@ -59,10 +59,12 @@
                 {% filter urlize %}info@regex-it.nl{% endfilter %}
                 </address>
 
+                {% get_solo 'config.CompanyConfig' as config %}
+
                 <address>
-                KvK: {% company_field 'KVK' %}
+                KvK: {{ config.coc }}
                 <br>
-                BTW: {% company_field 'TAX_IDENTIFIER' %}
+                BTW: {{ config.tax_identifier }}
                 </address>
 
             </div>

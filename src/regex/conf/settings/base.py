@@ -19,14 +19,14 @@ ROOT_DIR = DJANGO_PROJECT_DIR.parent.parent
 DEBUG = False
 
 SITE_ID = 1
-PROJECT_NAME = 'Regex IT'
+PROJECT_NAME = "Regex IT"
 
 ADMINS = [
-    ('Admin', 'info@regex-it.nl'),
+    ("Admin", "info@regex-it.nl"),
 ]
 MANAGERS = ADMINS
 
-DEFAULT_FROM_EMAIL = 'info@regex-it.nl'
+DEFAULT_FROM_EMAIL = "info@regex-it.nl"
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # https://docs.djangoproject.com/en/1.7/ref/settings/#allowed-hosts
@@ -34,10 +34,10 @@ ALLOWED_HOSTS = []
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
-TIME_ZONE = 'Europe/Amsterdam'
+TIME_ZONE = "Europe/Amsterdam"
 
 LOCALE_PATHS = [
-    str(DJANGO_PROJECT_DIR / 'locale'),
+    str(DJANGO_PROJECT_DIR / "locale"),
 ]
 
 USE_I18N = True
@@ -47,124 +47,132 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGES = [
-    ('en', _('English')),
-    ('nl', _('Dutch')),
-    ('nl_BE', _('Dutch (Belgium)')),
+    ("en", _("English")),
+    ("nl", _("Dutch")),
+    ("nl_BE", _("Dutch (Belgium)")),
 ]
-LANGUAGE_CODE = 'nl-NL'
+LANGUAGE_CODE = "nl-NL"
 
-DEFAULT_COUNTRY = 'NL'
-SITE_COUNTRY = 'NL'
+DEFAULT_COUNTRY = "NL"
+SITE_COUNTRY = "NL"
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": "localhost",
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT = str(ROOT_DIR / 'static')
+STATIC_ROOT = str(ROOT_DIR / "static")
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 # Additional locations of static files
 STATICFILES_DIRS = [
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    str(SRC_DIR / 'static'),
-    str(SRC_DIR / 'sass'),
-    ('jquery', str(ROOT_DIR / 'node_modules' / 'jquery')),
-    ('normalize.css', str(ROOT_DIR / 'node_modules' / 'normalize.css')),
-    ('font-awesome', str(ROOT_DIR / 'node_modules' / 'font-awesome')),
+    str(SRC_DIR / "static"),
+    str(SRC_DIR / "sass"),
+    ("jquery", str(ROOT_DIR / "node_modules" / "jquery")),
+    ("normalize.css", str(ROOT_DIR / "node_modules" / "normalize.css")),
+    ("font-awesome", str(ROOT_DIR / "node_modules" / "font-awesome")),
 ]
 
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 ]
 
-MEDIA_ROOT = str(ROOT_DIR / 'media')
-PRIVATE_MEDIA_ROOT = str(ROOT_DIR / 'private_media')
+MEDIA_ROOT = str(ROOT_DIR / "media")
+PRIVATE_MEDIA_ROOT = str(ROOT_DIR / "private_media")
 
-MEDIA_URL = '/media/'
-PRIVATE_MEDIA_URL = '/protected/'
+MEDIA_URL = "/media/"
+PRIVATE_MEDIA_URL = "/protected/"
 
-SENDFILE_BACKEND = 'sendfile.backends.nginx'
+SENDFILE_BACKEND = "sendfile.backends.nginx"
 SENDFILE_ROOT = PRIVATE_MEDIA_ROOT
 SENDFILE_URL = PRIVATE_MEDIA_URL[:-1]
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = os.environ.get('SECRET_KEY') or '2tb%e$$k)0+9zv5d!#_m_c4#x1tkk7)va+o0&#d2=pokzf287='
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'APP_DIRS': True,
-        'DIRS': [
-            str(DJANGO_PROJECT_DIR / 'templates'),
-        ],
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
-                'regex.utils.context_processors.settings',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "APP_DIRS": True,
+        "DIRS": [str(DJANGO_PROJECT_DIR / "templates"),],
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.request",
+                "regex.utils.context_processors.settings",
             ]
-        }
+        },
     },
 ]
 
 MIDDLEWARE = [
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'regex.urls'
+ROOT_URLCONF = "regex.urls"
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = "wsgi.application"
 
 INSTALLED_APPS = [
-
     # Note: contenttypes should be first, see Django ticket #10827
-    'django.contrib.contenttypes',
-    'django.contrib.auth',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
+    "django.contrib.contenttypes",
+    "django.contrib.auth",
+    "django.contrib.sessions",
+    "django.contrib.sites",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.postgres",
     # Optional applications.
-    'django.contrib.admin',
-
+    "django.contrib.admin",
     # External applications.
-    'adminsortable2',
-    'allauth',
-    'allauth.account',
-    'compressor',
-    'django_countries',
-    'import_export',
-    'sniplates',
-
+    "adminsortable2",
+    "allauth",
+    "allauth.account",
+    "compressor",
+    "django_countries",
+    "import_export",
+    "sniplates",
+    "privates",
+    "solo",
     # Project applications.
-    'regex.accounts',
-    'regex.crm',
-    'regex.homepage',
-    'regex.invoices',
-    'regex.portfolio',
-    'regex.work_entries',
-    'regex.utils',
+    "regex.accounts",
+    "regex.config",
+    "regex.crm",
+    "regex.homepage",
+    "regex.invoices",
+    "regex.portfolio",
+    "regex.work_entries",
+    "regex.utils",
 ]
 
-LOGGING_DIR = ROOT_DIR / 'log'
+LOGGING_DIR = ROOT_DIR / "log"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -172,84 +180,65 @@ LOGGING_DIR = ROOT_DIR / 'log'
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '%(asctime)s %(levelname)s %(name)s %(module)s %(process)d %(thread)d  %(message)s'
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(asctime)s %(levelname)s %(name)s %(module)s %(process)d %(thread)d  %(message)s"
         },
-        'timestamped': {
-            'format': '%(asctime)s %(levelname)s %(name)s  %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s  %(message)s'
-        },
-        'performance': {
-            'format': '%(asctime)s %(process)d | %(thread)d | %(message)s',
+        "timestamped": {"format": "%(asctime)s %(levelname)s %(name)s  %(message)s"},
+        "simple": {"format": "%(levelname)s  %(message)s"},
+        "performance": {
+            "format": "%(asctime)s %(process)d | %(thread)d | %(message)s",
         },
     },
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
+    "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},},
+    "handlers": {
+        "mail_admins": {
+            "level": "ERROR",
+            "filters": ["require_debug_false"],
+            "class": "django.utils.log.AdminEmailHandler",
+        },
+        "null": {"level": "DEBUG", "class": "logging.NullHandler",},
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "timestamped",
+        },
+        "django": {
+            "level": "DEBUG",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": str(LOGGING_DIR / "django.log"),
+            "formatter": "verbose",
+            "maxBytes": 1024 * 1024 * 10,  # 10 MB
+            "backupCount": 10,
+        },
+        "project": {
+            "level": "DEBUG",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": str(LOGGING_DIR / "mijke.log"),
+            "formatter": "verbose",
+            "maxBytes": 1024 * 1024 * 10,  # 10 MB
+            "backupCount": 10,
+        },
+        "performance": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": str(LOGGING_DIR / "performance.log"),
+            "formatter": "performance",
+            "maxBytes": 1024 * 1024 * 10,  # 10 MB
+            "backupCount": 10,
         },
     },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'timestamped'
-        },
-        'django': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': str(LOGGING_DIR / 'django.log'),
-            'formatter': 'verbose',
-            'maxBytes': 1024 * 1024 * 10,  # 10 MB
-            'backupCount': 10
-        },
-        'project': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': str(LOGGING_DIR / 'mijke.log'),
-            'formatter': 'verbose',
-            'maxBytes': 1024 * 1024 * 10,  # 10 MB
-            'backupCount': 10
-        },
-        'performance': {
-            'level': 'INFO',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': str(LOGGING_DIR / 'performance.log'),
-            'formatter': 'performance',
-            'maxBytes': 1024 * 1024 * 10,  # 10 MB
-            'backupCount': 10
+    "loggers": {
+        "regex": {"handlers": ["project"], "level": "INFO", "propagate": True,},
+        "weasyprint": {"handlers": ["project"], "level": "ERROR", "propgate": False,},
+        "django.request": {
+            "handlers": ["mail_admins"],
+            "level": "ERROR",
+            "propagate": True,
         },
     },
-    'loggers': {
-        'regex': {
-            'handlers': ['project'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-        'weasyprint': {
-            'handlers': ['project'],
-            'level': 'ERROR',
-            'propgate': False,
-        },
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
 }
 
 #
@@ -257,20 +246,19 @@ LOGGING = {
 # Enable these when using HTTPS
 #
 
-# SESSION_COOKIE_SECURE = True
-# SESSION_COOKIE_HTTPONLY = True
-# CSRF_COOKIE_SECURE = True
-# X_FRAME_OPTIONS = 'DENY'
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = "DENY"
 
 MESSAGE_TAGS = {
-    message_constants.DEBUG: 'debug',
-    message_constants.INFO: 'info',
-    message_constants.SUCCESS: 'success',
-    message_constants.WARNING: 'warning',
-    message_constants.ERROR: 'danger'
+    message_constants.DEBUG: "debug",
+    message_constants.INFO: "info",
+    message_constants.SUCCESS: "success",
+    message_constants.WARNING: "warning",
+    message_constants.ERROR: "danger",
 }
 
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 ENVIRONMENT = None
 SHOW_ALERT = True
 
@@ -285,16 +273,16 @@ AXES_COOLOFF_TIME = 1  # One hour
 #
 # Auth
 #
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = "accounts.User"
 AUTHENTICATION_BACKENDS = [
-    'rules.permissions.ObjectPermissionBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-    'django.contrib.auth.backends.ModelBackend',
+    "rules.permissions.ObjectPermissionBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
 
-LOGIN_REDIRECT_URL = reverse_lazy('accounts:dashboard')
+LOGIN_REDIRECT_URL = reverse_lazy("accounts:dashboard")

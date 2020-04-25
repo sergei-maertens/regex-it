@@ -33,4 +33,11 @@
     - role: postfix
       tags:
         - mail
-    - dovecot
+    - role: dovecot
+      vars:
+        dovecot_db_host: "localhost"
+        dovecot_db_name: "{{ db_name }}"
+        dovecot_db_user: "{{ db_user }}"
+        dovecot_db_password: "{{ db_password }}"
+      tags:
+        - mail

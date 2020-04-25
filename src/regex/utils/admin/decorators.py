@@ -5,7 +5,7 @@ from django.urls import reverse
 
 def get_urlname(obj):
     app_label, model_name = obj._meta.app_label, obj._meta.model_name
-    return u'admin:{}_{}_change'.format(app_label, model_name)
+    return u"admin:{}_{}_change".format(app_label, model_name)
 
 
 def link_list(urlname=None, short_description=None):
@@ -26,6 +26,7 @@ def link_list(urlname=None, short_description=None):
 
     The ModelAdmin method then returns a comma-separated list of clickable links.
     """
+
     def decorator(method):
         method.allow_tags = True
         if short_description:
@@ -34,10 +35,15 @@ def link_list(urlname=None, short_description=None):
         @wraps(method)
         def f(*args, **kwargs):
             related_qs = method(*args, **kwargs)
-            return u', '.join(
-                    [u'<a href="{}">{}</a>'.format(
-                        reverse(urlname or get_urlname(rel), args=[rel.pk]),
-                        rel
-                    ) for rel in related_qs])
+            return u", ".join(
+                [
+                    u'<a href="{}">{}</a>'.format(
+                        reverse(urlname or get_urlname(rel), args=[rel.pk]), rel
+                    )
+                    for rel in related_qs
+                ]
+            )
+
         return f
+
     return decorator
