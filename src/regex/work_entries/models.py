@@ -9,21 +9,21 @@ from dateutil.relativedelta import relativedelta
 
 class WorkEntry(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    project = models.ForeignKey('crm.Project', on_delete=models.CASCADE)
-    start = models.DateTimeField(_('start'))
-    end = models.DateTimeField(_('end'))
+    project = models.ForeignKey("crm.Project", on_delete=models.CASCADE)
+    start = models.DateTimeField(_("start"))
+    end = models.DateTimeField(_("end"))
 
     notes = models.TextField(blank=True)
 
     class Meta:
-        verbose_name = _('work entry')
-        verbose_name_plural = _('work entries')
-        ordering = ('-start',)
+        verbose_name = _("work entry")
+        verbose_name_plural = _("work entries")
+        ordering = ("-start",)
 
     # TODO: date validation...
 
     def __str__(self):
-        return '{project} - {start} - {end}'.format(
+        return "{project} - {start} - {end}".format(
             project=self.project, start=self.start, end=self.end
         )
 
@@ -37,11 +37,13 @@ class WorkEntry(models.Model):
         timedelta = self.end - self.start
         delta = relativedelta(seconds=timedelta.total_seconds())
 
-        total_minutes = delta.days * 24 * 60 + delta.hours * 60 + delta.minutes + delta.seconds / 60
+        total_minutes = (
+            delta.days * 24 * 60 + delta.hours * 60 + delta.minutes + delta.seconds / 60
+        )
         if round:
             remainder = total_minutes % 15
             if remainder > 7.5:
-                total_minutes += (15 - remainder)
+                total_minutes += 15 - remainder
             else:
                 total_minutes -= remainder
         total_hours = total_minutes / 60

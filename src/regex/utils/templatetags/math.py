@@ -9,4 +9,4 @@ def percentage(value):
     """
     Format value (which is a number) as percentage.
     """
-    return _('{value} %').format(value=100*value)
+    return _("{value} %").format(value=100 * value)

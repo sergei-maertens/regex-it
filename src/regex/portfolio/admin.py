@@ -7,6 +7,6 @@ from .models import Entry
 
 @admin.register(Entry)
 class EntryAdmin(SortableAdminMixin, admin.ModelAdmin):
-    list_display = ('name', 'published')
-    list_filter = ('published',)
-    search_fields = ('name',)
+    list_display = ("name", "published")
+    list_filter = ("published",)
+    search_fields = ("name",)

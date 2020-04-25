@@ -9,22 +9,22 @@ from .base import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-WSGI_APPLICATION = 'mijke.wsgi.wsgi_test.application'
-ENVIRONMENT = 'test'
+WSGI_APPLICATION = "mijke.wsgi.wsgi_test.application"
+ENVIRONMENT = "test"
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'regex',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-        'TEST_NAME': 'test_regex_{0}'.format(time.time())
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "regex",
+        "USER": "postgres",
+        "PASSWORD": "",
+        "HOST": "",
+        "PORT": "",
+        "TEST_NAME": "test_regex_{0}".format(time.time()),
     }
 }
 
@@ -32,15 +32,11 @@ DATABASES = {
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
 
-LOGGING['loggers'].update({
-    'django': {
-        'handlers': ['django'],
-        'level': 'WARNING',
-        'propagate': True,
-    },
-})
+LOGGING["loggers"].update(
+    {"django": {"handlers": ["django"], "level": "WARNING", "propagate": True,},}
+)
 
 
 MEDIA_ROOT = tempfile.mkdtemp()
 PRIVATE_MEDIA_ROOT = tempfile.mkdtemp()
-SENDFILE_BACKEND = 'sendfile.backends.development'
+SENDFILE_BACKEND = "sendfile.backends.development"
