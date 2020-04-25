@@ -16,3 +16,6 @@ class Deduction(models.Model):
     class Meta:
         verbose_name = _('deduction')
         verbose_name_plural = _('deductions')
+
+    def __str__(self):
+        return self.name
