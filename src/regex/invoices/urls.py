@@ -1,7 +1,6 @@
 from django.conf.urls import url
 
-from .views import InvoiceDetailView, InvoiceDetailPDFView
-
+from .views import InvoiceDetailPDFView, InvoiceDetailView
 
 app_name = "invoices"
 

@@ -1,6 +1,7 @@
 from django import forms
 
 from regex.utils.admin.widgets import PrivateFileWidget
+
 from .models import Invoice
 
 

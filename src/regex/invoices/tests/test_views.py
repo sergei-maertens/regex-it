@@ -6,8 +6,9 @@ from django.urls import reverse
 from django_webtest import WebTest
 from freezegun import freeze_time
 
-from regex.accounts.tests.factories import UserFactory, SuperUserFactory
-from regex.crm.tests.factories import ProjectFactory, ContactFactory
+from regex.accounts.tests.factories import SuperUserFactory, UserFactory
+from regex.crm.tests.factories import ContactFactory, ProjectFactory
+
 from .factories import InvoiceFactory, InvoiceItemFactory
 
 

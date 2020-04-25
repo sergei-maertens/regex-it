@@ -1,5 +1,5 @@
-import time
 import tempfile
+import time
 
 from .base import *
 

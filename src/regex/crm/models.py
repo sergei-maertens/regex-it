@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from autoslug.fields import AutoSlugField
 from django_countries.fields import CountryField
-from djchoices import DjangoChoices, ChoiceItem
+from djchoices import ChoiceItem, DjangoChoices
 
 
 class Contact(models.Model):

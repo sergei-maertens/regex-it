@@ -6,8 +6,9 @@ from django.test import RequestFactory, TestCase
 from freezegun import freeze_time
 
 from regex.crm.tests.factories import ProjectFactory
-from .factories import InvoiceFactory, InvoiceItemFactory
+
 from ..utils import render_invoice_pdf
+from .factories import InvoiceFactory, InvoiceItemFactory
 
 
 class InvoiceUtilsTests(TestCase):

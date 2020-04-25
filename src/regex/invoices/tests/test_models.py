@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import date, datetime
 from decimal import Decimal
 
 from django.test import TestCase, override_settings
@@ -8,6 +8,7 @@ from freezegun import freeze_time
 
 from regex.crm.tests.factories import ClientFactory, ProjectFactory
 from regex.work_entries.tests.factories import WorkEntryFactory
+
 from ..models import InvoiceItem
 from .factories import InvoiceFactory, InvoiceItemFactory
 

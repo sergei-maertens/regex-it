@@ -5,7 +5,7 @@ from io import BytesIO
 
 from django.conf import settings
 from django.contrib.staticfiles import finders
-from django.contrib.staticfiles.storage import staticfiles_storage, FileSystemStorage
+from django.contrib.staticfiles.storage import FileSystemStorage, staticfiles_storage
 
 import weasyprint
 
