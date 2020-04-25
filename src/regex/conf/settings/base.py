@@ -165,6 +165,7 @@ INSTALLED_APPS = [
     "regex.accounts",
     "regex.config",
     "regex.crm",
+    "regex.deductions",
     "regex.homepage",
     "regex.invoices",
     "regex.portfolio",
