@@ -17,7 +17,7 @@ def set_values_from_env(apps, _):
 
     CompanyConfig = apps.get_model("config", "CompanyConfig")
 
-    config = CompanyConfig.objects.get_or_create(
+    config, created = CompanyConfig.objects.get_or_create(
         pk=RealCompanyConfig.singleton_instance_id
     )
     for field, value in VALUES.items():

@@ -1,7 +1,6 @@
 from django import template
-from django.conf import settings
 
-from ..conf import InvoicesConf
+from regex.config.models import CompanyConfig
 
 register = template.Library()
 
@@ -20,11 +19,11 @@ def company_details(client=None):
             "company_tax_identifier": client.vat,
         }
 
-    config_keys = InvoicesConf._meta.names.items()
-    return {name.lower(): getattr(settings, setting) for name, setting in config_keys}
-
-
-@register.simple_tag
-def company_field(prop):
-    key = "INVOICES_COMPANY_%s" % prop
-    return getattr(settings, key)
+    config = CompanyConfig.get_solo()
+    return {
+        "company_name": config.company_name,
+        "company_address": config.company_address,
+        "company_tax_identifier": config.tax_identifier,
+        "company_coc": config.coc,
+        "company_iban": config.iban,
+    }

@@ -7,4 +7,4 @@ class InvoicesConfig(AppConfig):
     verbose_name = _("Invoices")
 
     def ready(self):
-        from . import conf, rules  # NOQA
+        from . import rules  # noqa
