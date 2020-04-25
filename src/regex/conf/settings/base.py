@@ -56,6 +56,16 @@ LANGUAGE_CODE = "nl-NL"
 DEFAULT_COUNTRY = "NL"
 SITE_COUNTRY = "NL"
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": "localhost",
+    }
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_ROOT = str(ROOT_DIR / "static")
@@ -94,9 +104,7 @@ SENDFILE_ROOT = PRIVATE_MEDIA_ROOT
 SENDFILE_URL = PRIVATE_MEDIA_URL[:-1]
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = (
-    os.environ.get("SECRET_KEY") or "2tb%e$$k)0+9zv5d!#_m_c4#x1tkk7)va+o0&#d2=pokzf287="
-)
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 TEMPLATES = [
@@ -140,6 +148,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
     # Optional applications.
     "django.contrib.admin",
     # External applications.
@@ -154,6 +163,7 @@ INSTALLED_APPS = [
     "solo",
     # Project applications.
     "regex.accounts",
+    "regex.config",
     "regex.crm",
     "regex.homepage",
     "regex.invoices",
@@ -236,10 +246,10 @@ LOGGING = {
 # Enable these when using HTTPS
 #
 
-# SESSION_COOKIE_SECURE = True
-# SESSION_COOKIE_HTTPONLY = True
-# CSRF_COOKIE_SECURE = True
-# X_FRAME_OPTIONS = 'DENY'
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = "DENY"
 
 MESSAGE_TAGS = {
     message_constants.DEBUG: "debug",
@@ -249,7 +259,6 @@ MESSAGE_TAGS = {
     message_constants.ERROR: "danger",
 }
 
-TEST_RUNNER = "django.test.runner.DiscoverRunner"
 ENVIRONMENT = None
 SHOW_ALERT = True
 

@@ -1,4 +1,13 @@
-from .base import *
+import os
+
+os.environ.setdefault("DB_NAME", "regex")
+os.environ.setdefault("DB_USER", "regex")
+os.environ.setdefault("DB_PASSWORD", "regex")
+os.environ.setdefault(
+    "SECRET_KEY", "2tb%e$$k)0+9zv5d!#_m_c4#x1tkk7)va+o0&#d2=pokzf287="
+)
+
+from .base import *  # noqa isort:skip
 
 #
 # Standard Django settings.
@@ -14,15 +23,6 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 MANAGERS = ADMINS
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "regex",
-        "USER": "regex",
-        "PASSWORD": "regex",
-    }
-}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
