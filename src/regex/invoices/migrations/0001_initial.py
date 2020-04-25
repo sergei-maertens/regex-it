@@ -5,7 +5,7 @@ import django.core.validators
 from django.db import migrations, models
 import django.db.models.deletion
 import re
-import regex.utils.storages
+from privates.fields import PrivateMediaFileField
 
 
 class Migration(migrations.Migration):
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('generated', models.DateTimeField(editable=False, null=True)),
                 ('invoice_number', models.CharField(blank=True, default=None, max_length=50, null=True, unique=True, validators=[django.core.validators.RegexValidator(re.compile('(?P<year>20\\d{2})\\d{5}$'))], verbose_name='invoice number')),
                 ('due_date', models.DateTimeField(blank=True, null=True, verbose_name='due date')),
-                ('pdf', models.FileField(blank=True, storage=regex.utils.storages.PrivateMediaFileSystemStorage(), upload_to='invoices/%Y/%m', verbose_name='pdf')),
+                ('pdf', PrivateMediaFileField(blank=True, upload_to='invoices/%Y/%m', verbose_name='pdf')),
                 ('received', models.DateTimeField(blank=True, null=True, verbose_name='received')),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True, null=True)),

@@ -17,5 +17,6 @@ django-choices
 django-compressor
 django-countries
 django-import-export
-django-sendfile
+django-solo
 django-sniplates
+django-privates

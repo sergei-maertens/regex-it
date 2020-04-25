@@ -1,10 +1,10 @@
 from django.contrib import admin
-from django.conf.urls import url
 from django.urls import reverse
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
+from django.utils.html import format_html
 
-from regex.utils.views.private_media import PrivateMediaView
+from privates.admin import PrivateMediaMixin
 
 from .forms import AdminInvoiceForm
 from .models import Invoice, InvoiceItem
@@ -14,28 +14,27 @@ from .utils import render_invoice_pdf
 def generate_invoices(modeladmin, request, queryset):
     for invoice in queryset:
         invoice.generate()
+
+
 generate_invoices.short_description = _("Generate invoice details")
 
 
 def render_pdf(modeladmin, request, queryset):
     for invoice in queryset:
         render_invoice_pdf(request, invoice)
+
+
 render_pdf.short_description = _("Generate invoice pdfs")
 
 
 class InvoiceItemInline(admin.TabularInline):
     model = InvoiceItem
     extra = 0
-
-
-class InvoicePrivateMediaView(PrivateMediaView):
-    model = Invoice
-    permission_required = 'invoices.can_view_invoice'
-    file_field = 'pdf'
+    raw_id_fields = ("project",)
 
 
 @admin.register(Invoice)
-class InvoiceAdmin(admin.ModelAdmin):
+class InvoiceAdmin(PrivateMediaMixin, admin.ModelAdmin):
     form = AdminInvoiceForm
     list_display = ('client', 'date', 'due_date', 'received', 'invoice_number',
                     'created', 'n_items', 'generated', 'invoice_items')
@@ -43,9 +42,12 @@ class InvoiceAdmin(admin.ModelAdmin):
     search_fields = ('invoice_number',)
     inlines = [InvoiceItemInline]
     actions = [generate_invoices, render_pdf]
+    private_media_fields = ("pdf",)
+    private_media_permission_required = "invoices.can_view_invoice"
 
     def get_queryset(self, request=None):
-        return super().get_queryset(request=request).annotate(n_items=Count('invoiceitem'))
+        qs = super().get_queryset(request=request)
+        return qs.annotate(n_items=Count('invoiceitem'))
 
     def n_items(self, obj):
         return obj.n_items
@@ -53,19 +55,13 @@ class InvoiceAdmin(admin.ModelAdmin):
 
     def invoice_items(self, obj):
         url = reverse('admin:invoices_invoiceitem_changelist')
-        return '<a href="{}?invoice={}">{}</a>'.format(url, obj.pk, _('invoice items'))
+        return format_html(
+            '<a href="{}?invoice={}">{}</a>',
+            url,
+            obj.pk,
+            _('invoice items'),
+        )
     invoice_items.short_description = _('invoice items')
-    invoice_items.allow_tags = True
-
-    def get_urls(self):
-        extra = [
-            url(
-                r'^(?P<pk>.*)/pdf/$',
-                self.admin_site.admin_view(InvoicePrivateMediaView.as_view()),
-                name='invoices_invoice_pdf'
-            ),
-        ]
-        return extra + super(InvoiceAdmin, self).get_urls()
 
 
 @admin.register(InvoiceItem)
