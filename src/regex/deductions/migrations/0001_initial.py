@@ -10,23 +10,46 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Deduction',
+            name="Deduction",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='name')),
-                ('notes', models.TextField(blank=True, null=True, verbose_name='notes')),
-                ('receipt', privates.fields.PrivateMediaFileField(blank=True, storage=privates.storages.PrivateMediaFileSystemStorage(), upload_to='receipts/%Y/%m', verbose_name='receipt')),
-                ('date', models.DateField(default=datetime.date.today, verbose_name='date')),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='amount')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="name")),
+                (
+                    "notes",
+                    models.TextField(blank=True, null=True, verbose_name="notes"),
+                ),
+                (
+                    "receipt",
+                    privates.fields.PrivateMediaFileField(
+                        blank=True,
+                        storage=privates.storages.PrivateMediaFileSystemStorage(),
+                        upload_to="receipts/%Y/%m",
+                        verbose_name="receipt",
+                    ),
+                ),
+                (
+                    "date",
+                    models.DateField(default=datetime.date.today, verbose_name="date"),
+                ),
+                (
+                    "amount",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=10, verbose_name="amount"
+                    ),
+                ),
             ],
-            options={
-                'verbose_name': 'deduction',
-                'verbose_name_plural': 'deductions',
-            },
+            options={"verbose_name": "deduction", "verbose_name_plural": "deductions",},
         ),
     ]
