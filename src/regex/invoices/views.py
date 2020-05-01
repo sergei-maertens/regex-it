@@ -20,7 +20,7 @@ class InvoiceDetailView(PermissionRequiredMixin, DetailView):
         tax_rates = self.object.invoiceitem_set.values('tax_rate').annotate(num=Count('tax_rate'))
         context.update({
             'tax_rates': tax_rates,
-            'items': self.object.invoiceitem_set.select_related('project').order_by('project', 'tax_rate')
+            'items': self.object.invoiceitem_set.select_related('project').order_by('date', 'project', 'tax_rate')
         })
         return context
 
