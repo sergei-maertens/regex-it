@@ -1,29 +1,29 @@
 from django import template
-from django.conf import settings
 
-from ..conf import InvoicesConf
+from regex.config.models import CompanyConfig
 
 register = template.Library()
 
 
-@register.inclusion_tag('invoices/tags/address.html')
+@register.inclusion_tag("invoices/tags/address.html")
 def company_details(client=None):
     if client is not None:
         return {
-            'client': client,
-            'company_name': client.name,
-            'company_address': [client.address, client.city, client.get_country_display()],
-            'company_tax_identifier': client.vat,
+            "client": client,
+            "company_name": client.name,
+            "company_address": [
+                client.address,
+                client.city,
+                client.get_country_display(),
+            ],
+            "company_tax_identifier": client.vat,
         }
 
-    config_keys = InvoicesConf._meta.names.items()
+    config = CompanyConfig.get_solo()
     return {
-        name.lower(): getattr(settings, setting)
-        for name, setting in config_keys
+        "company_name": config.company_name,
+        "company_address": config.company_address,
+        "company_tax_identifier": config.tax_identifier,
+        "company_coc": config.coc,
+        "company_iban": config.iban,
     }
-
-
-@register.simple_tag
-def company_field(prop):
-    key = 'INVOICES_COMPANY_%s' % prop
-    return getattr(settings, key)

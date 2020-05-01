@@ -4,7 +4,6 @@ from .models import WorkEntry
 
 
 class WorkEntryResource(resources.ModelResource):
-
     class Meta:
         model = WorkEntry
-        fields = ('user', 'project', 'start', 'end', 'notes')
+        fields = ("user", "project", "start", "end", "notes")

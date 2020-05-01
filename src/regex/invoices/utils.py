@@ -15,7 +15,7 @@ from regex.utils.pdf import UrlFetcher
 from regex.utils.views.pdf import PDFTemplateResponse, PDFTemplateResponseMixin
 
 
-def render_invoice_pdf(request, invoice, template_name='invoices/invoice_detail.html'):
+def render_invoice_pdf(request, invoice, template_name="invoices/invoice_detail.html"):
     # render the invoice in the client's language
     lang_code = invoice.client.language
     translation.activate(lang_code)
@@ -25,12 +25,16 @@ def render_invoice_pdf(request, invoice, template_name='invoices/invoice_detail.
     else:
         template = loader.get_template(template_name)
 
-    tax_rates = invoice.invoiceitem_set.values('tax_rate').annotate(num=Count('tax_rate'))
+    tax_rates = invoice.invoiceitem_set.values("tax_rate").annotate(
+        num=Count("tax_rate")
+    )
     context = {
-        'invoice': invoice,
-        'tax_rates': tax_rates,
-        'items': invoice.invoiceitem_set.select_related('project').order_by('project', 'tax_rate'),
-        'request': request,
+        "invoice": invoice,
+        "tax_rates": tax_rates,
+        "items": invoice.invoiceitem_set.select_related("project").order_by(
+            "project", "tax_rate"
+        ),
+        "request": request,
     }
     html = template.render(context)
     base_url = request.build_absolute_uri("/")
@@ -39,18 +43,17 @@ def render_invoice_pdf(request, invoice, template_name='invoices/invoice_detail.
     # pdf as bytes
     buffer = BytesIO()
     wp.write_pdf(target=buffer)
-    filename = '{}.pdf'.format(invoice.invoice_number)
+    filename = "{}.pdf".format(invoice.invoice_number)
     invoice.pdf.save(filename, File(buffer))
 
     # go back to the previous language
-    if hasattr(request, 'LANGUAGE_CODE'):
+    if hasattr(request, "LANGUAGE_CODE"):
         translation.activate(request.LANGUAGE_CODE)
     else:
         translation.deactivate()
 
 
 class InvoicePDFTemplateResponse(PDFTemplateResponse):
-
     def __init__(self, invoice=None, *args, **kwargs):
         self.invoice = invoice
         super(InvoicePDFTemplateResponse, self).__init__(*args, **kwargs)
@@ -63,7 +66,9 @@ class InvoicePDFTemplateResponse(PDFTemplateResponse):
         assert self.invoice is not None
 
         if not self.invoice.pdf:
-            render_invoice_pdf(self._request, self.invoice, template_name=self.template_name)
+            render_invoice_pdf(
+                self._request, self.invoice, template_name=self.template_name
+            )
         return self.invoice.pdf.read()
 
 
@@ -75,8 +80,12 @@ class InvoicePDFTemplateResponseMixin(PDFTemplateResponseMixin):
         # if the pdf exists, use sendfile
         if self.object.pdf:
             return sendfile(
-                self.request, self.object.pdf.path,
-                attachment=True, attachment_filename=self.get_filename()
+                self.request,
+                self.object.pdf.path,
+                attachment=True,
+                attachment_filename=self.get_filename(),
             )
-        kwargs['invoice'] = self.object
-        return super(InvoicePDFTemplateResponseMixin, self).render_to_response(*args, **kwargs)
+        kwargs["invoice"] = self.object
+        return super(InvoicePDFTemplateResponseMixin, self).render_to_response(
+            *args, **kwargs
+        )

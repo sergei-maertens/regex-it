@@ -8,11 +8,11 @@
 hosts = localhost
 
 # The user name and password to log into the pgsql server.
-user = {{ db_user }}
-password = {{ db_password }}
+user = {{ postfix_db_user }}
+password = {{ postfix_db_password }}
 
 # The database name on the servers.
-dbname = {{ db_name }}
+dbname = {{ postfix_db_name }}
 
 query =
     SELECT array_to_string("mail_forward"."destinations", ' ')

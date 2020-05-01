@@ -518,7 +518,7 @@ msgstr ""
 
 #: invoices/templates/invoices/tags/address.html:13
 #, python-format
-msgid "KVK: %(company_kvk)s"
+msgid "KVK: %(company_coc)s"
 msgstr ""
 
 #: invoices/templates/invoices/tags/address.html:14

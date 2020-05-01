@@ -1,1 +1,1 @@
-default_app_config = 'regex.invoices.apps.InvoicesConfig'
+default_app_config = "regex.invoices.apps.InvoicesConfig"

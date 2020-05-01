@@ -1,51 +1,45 @@
-from .base import *
+import os
+
+os.environ.setdefault("DB_NAME", "regex")
+os.environ.setdefault("DB_USER", "regex")
+os.environ.setdefault("DB_PASSWORD", "regex")
+os.environ.setdefault(
+    "SECRET_KEY", "2tb%e$$k)0+9zv5d!#_m_c4#x1tkk7)va+o0&#d2=pokzf287="
+)
+
+from .base import *  # noqa isort:skip
 
 #
 # Standard Django settings.
 #
 
 DEBUG = True
-TEMPLATES[0]['OPTIONS']['debug'] = True
+TEMPLATES[0]["OPTIONS"]["debug"] = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ENVIRONMENT = 'development'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+ENVIRONMENT = "development"
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'regex',
-        'USER': 'regex',
-        'PASSWORD': 'regex',
-    }
-}
-
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
-LOGGING['loggers'].update({
-    'regex': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-        'propagate': True,
-    },
-    'django': {
-        'handlers': ['django'],
-        'level': 'DEBUG',
-        'propagate': True,
-    },
-    'performance': {
-        'handlers': ['performance'],
-        'level': 'INFO',
-        'propagate': True,
-    },
-})
+LOGGING["loggers"].update(
+    {
+        "regex": {"handlers": ["console"], "level": "DEBUG", "propagate": True,},
+        "django": {"handlers": ["django"], "level": "DEBUG", "propagate": True,},
+        "performance": {
+            "handlers": ["performance"],
+            "level": "INFO",
+            "propagate": True,
+        },
+    }
+)
 
 # Additional Django settings
 SESSION_COOKIE_SECURE = False
@@ -56,18 +50,18 @@ CSRF_COOKIE_SECURE = False
 # Django debug toolbar
 #
 INSTALLED_APPS += [
-    'debug_toolbar',
+    "debug_toolbar",
 ]
 MIDDLEWARE += [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
-INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ("127.0.0.1",)
 DEBUG_TOOLBAR_CONFIG = {
-    'JQUERY_URL': '',
+    "JQUERY_URL": "",
 }
 
 
-SENDFILE_BACKEND = 'sendfile.backends.development'
+SENDFILE_BACKEND = "sendfile.backends.development"
 
 #
 # Skip migrations in Django 1.7

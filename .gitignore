@@ -20,3 +20,5 @@ node_modules
 
 # deployment
 *.retry
+
+.idea/
