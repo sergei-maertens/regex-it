@@ -26,7 +26,7 @@ class InvoiceDetailView(PermissionRequiredMixin, DetailView):
             {
                 "tax_rates": tax_rates,
                 "items": self.object.invoiceitem_set.select_related("project").order_by(
-                    "date", "project", "tax_rate"
+                    "project", "date", "tax_rate"
                 ),
             }
         )
