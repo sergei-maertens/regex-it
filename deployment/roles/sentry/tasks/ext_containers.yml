@@ -28,11 +28,3 @@
     restart_policy: always
     networks:
       - name: "{{ sentry_network }}"
-
-- name: Ensure outbound e-mail can be sent
-  docker_container:
-    name: sentry-smtp
-    image: tianon/exim4:latest
-    hostname: smtp
-    networks:
-      - name: "{{ sentry_network }}"

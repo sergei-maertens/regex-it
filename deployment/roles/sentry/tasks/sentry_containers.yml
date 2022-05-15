@@ -18,7 +18,7 @@
       SENTRY_SECRET_KEY: "{{ sentry_secret_key }}"
       SENTRY_REDIS_HOST: sentry-redis
       SENTRY_POSTGRES_HOST: sentry-db
-      SENTRY_EMAIL_HOST: sentry-smtp
+      SENTRY_EMAIL_HOST: "{{ sentry_mail_host }}"
       SENTRY_DB_PASSWORD: "{{ sentry_db_password }}"
     published_ports:
       - "127.0.0.1:{{ sentry_port }}:9000"
@@ -39,7 +39,7 @@
       SENTRY_SECRET_KEY: "{{ sentry_secret_key }}"
       SENTRY_REDIS_HOST: sentry-redis
       SENTRY_POSTGRES_HOST: sentry-db
-      SENTRY_EMAIL_HOST: sentry-smtp
+      SENTRY_EMAIL_HOST: "{{ sentry_mail_host }}"
       SENTRY_DB_PASSWORD: "{{ sentry_db_password }}"
     command: run worker
 
@@ -59,6 +59,6 @@
       SENTRY_SECRET_KEY: "{{ sentry_secret_key }}"
       SENTRY_REDIS_HOST: sentry-redis
       SENTRY_POSTGRES_HOST: sentry-db
-      SENTRY_EMAIL_HOST: sentry-smtp
+      SENTRY_EMAIL_HOST: "{{ sentry_mail_host }}"
       SENTRY_DB_PASSWORD: "{{ sentry_db_password }}"
     command: run cron

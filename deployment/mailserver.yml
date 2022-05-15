@@ -24,12 +24,12 @@
     nginx_hostname: postfixer.regex-it.nl
 
   roles:
-    - base
-    - geerlingguy.docker
-    - postgres
+    # - base
+    # - geerlingguy.docker
+    # - postgres
     - postfixer
-    - ssl
-    - nginx
+    # - ssl
+    # - nginx
     - role: postfix
       tags:
         - mail

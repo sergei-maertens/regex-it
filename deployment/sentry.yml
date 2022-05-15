@@ -24,9 +24,6 @@
     nginx_hostname: sentry.regex-it.nl
 
   roles:
-    - base
     - app_user
     - geerlingguy.docker
     - sentry
-    - ssl
-    - nginx
