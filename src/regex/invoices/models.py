@@ -40,7 +40,11 @@ class Invoice(models.Model):
         validators=[validators.RegexValidator(RE_INVOICE_NUMBER)],
     )
     due_date = models.DateTimeField(_("due date"), null=True, blank=True)
-    pdf = PrivateMediaFileField(_("pdf"), blank=True, upload_to="invoices/%Y/%m",)
+    pdf = PrivateMediaFileField(
+        _("pdf"),
+        blank=True,
+        upload_to="invoices/%Y/%m",
+    )
 
     received = models.DateTimeField(_("received"), null=True, blank=True)
 

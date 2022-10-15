@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('deductions', '0001_initial'),
+        ("deductions", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='deduction',
-            name='notes',
-            field=models.TextField(blank=True, default='', verbose_name='notes'),
+            model_name="deduction",
+            name="notes",
+            field=models.TextField(blank=True, default="", verbose_name="notes"),
             preserve_default=False,
         ),
     ]

@@ -114,7 +114,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    'django.middleware.locale.LocaleMiddleware',
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -151,7 +151,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "regex.wsgi.application"
 
 # Translations
-LOCALE_PATHS = (DJANGO_PROJECT_DIR / "conf" / "locale", )
+LOCALE_PATHS = (DJANGO_PROJECT_DIR / "conf" / "locale",)
 
 #
 # SERVING of static and media files

@@ -1,7 +1,7 @@
 import logging
 from typing import TypeVar, Union, cast
 
-from decouple import Csv, config as _config, undefined, Undefined
+from decouple import Csv, Undefined, config as _config, undefined
 from sentry_sdk.integrations import DidNotEnable, django, redis
 
 logger = logging.getLogger(__name__)

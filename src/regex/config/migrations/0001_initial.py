@@ -53,6 +53,8 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"verbose_name": "company config",},
+            options={
+                "verbose_name": "company config",
+            },
         ),
     ]

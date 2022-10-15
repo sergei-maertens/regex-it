@@ -66,7 +66,10 @@ class InvoiceAdmin(PrivateMediaMixin, admin.ModelAdmin):
     def invoice_items(self, obj):
         url = reverse("admin:invoices_invoiceitem_changelist")
         return format_html(
-            '<a href="{}?invoice={}">{}</a>', url, obj.pk, _("invoice items"),
+            '<a href="{}?invoice={}">{}</a>',
+            url,
+            obj.pk,
+            _("invoice items"),
         )
 
     invoice_items.short_description = _("invoice items")
