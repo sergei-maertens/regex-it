@@ -4,6 +4,9 @@
   "license": "MIT",
   "repository": "https://github.com/sergei-maertens/regex-it.git",
   "version": "0.3.2",
+  "scripts": {
+    "build": "echo 'TODO' && exit 0"
+  },
   "dependencies": {
     "font-awesome": "^4.4.0",
     "normalize.css": "^3.0.3"
