@@ -4,11 +4,11 @@ import os
 from django.db import migrations
 
 VALUES = {
-    "company_name": os.getenv("COMPANY_NAME"),
+    "company_name": os.getenv("COMPANY_NAME") or "",
     "company_address": (os.getenv("COMPANY_ADDRESS") or "").split(","),
-    "tax_identifier": os.getenv("COMPANY_TAX_IDENTIFIER"),
-    "coc": os.getenv("COMPANY_KVK"),
-    "iban": os.getenv("COMPANY_IBAN"),
+    "tax_identifier": os.getenv("COMPANY_TAX_IDENTIFIER") or "",
+    "coc": os.getenv("COMPANY_KVK") or "",
+    "iban": os.getenv("COMPANY_IBAN") or "",
 }
 
 
