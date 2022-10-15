@@ -1,0 +1,17 @@
+---
+
+- name: Set up Zabbix for monitoring
+  hosts: production
+  remote_user: root
+
+  vars:
+    # certbot vars
+    certbot_install_from_source: yes
+    certbot_admin_email: info@regex-it.nl
+    certbot_create_if_missing: true
+    certbot_create_standalone_stop_services: []
+    # certbot_create_standalone_stop_services: ['nginx']
+    certbot_certs: []
+
+  roles:
+    - role: geerlingguy.certbot
