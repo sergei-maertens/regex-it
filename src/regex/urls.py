@@ -1,18 +1,25 @@
+from django.apps import apps
 from django.conf import settings
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    url(r"^admin/", admin.site.urls),
-    url(r"^portfolio/", include("regex.portfolio.urls")),
-    url(r"^", include("regex.homepage.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)
+    path("admin/", admin.site.urls),
+    path("portfolio/", include("regex.portfolio.urls")),
+    path("", include("regex.homepage.urls")),
+]
 
-if settings.DEBUG:
+# NOTE: The staticfiles_urlpatterns also discovers static files (ie. no need to run collectstatic). Both the static
+# folder and the media folder are only served via Django if DEBUG = True.
+urlpatterns += staticfiles_urlpatterns() + static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True
+)
+
+if settings.DEBUG and apps.is_installed("debug_toolbar"):
     import debug_toolbar
 
-    urlpatterns += [
-        url(r"^__debug__/", include(debug_toolbar.urls)),
-    ]
+    urlpatterns = [
+        path("__debug__/", include(debug_toolbar.urls)),
+    ] + urlpatterns
