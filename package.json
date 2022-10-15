@@ -4,10 +4,8 @@
   "license": "MIT",
   "repository": "https://github.com/sergei-maertens/regex-it.git",
   "version": "0.3.2",
-  "devDependencies": {},
   "dependencies": {
     "font-awesome": "^4.4.0",
-    "jquery": "^2.1.4",
     "normalize.css": "^3.0.3"
   }
 }

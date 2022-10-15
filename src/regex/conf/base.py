@@ -174,7 +174,6 @@ STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [
     DJANGO_PROJECT_DIR / "static",
     DJANGO_PROJECT_DIR / "sass",
-    ("jquery", BASE_DIR / "node_modules" / "jquery"),
     ("normalize.css", BASE_DIR / "node_modules" / "normalize.css"),
     ("font-awesome", BASE_DIR / "node_modules" / "font-awesome"),
 ]
