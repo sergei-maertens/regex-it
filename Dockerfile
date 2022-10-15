@@ -28,18 +28,17 @@ FROM node:16-bullseye AS frontend-build
 WORKDIR /app
 
 # copy configuration/build files
-# COPY ./build /app/build/
-COPY ./*.json /app/
-# COPY ./*.json ./*.js ./.babelrc /app/
+COPY ./*.json ./*.js /app/
 
 # install WITH dev tooling
-RUN npm ci
+RUN npm ci \
+    && mkdir -p src/regex/static/bundles/
 
-# # copy source code
-# COPY ./src /app/src
+# copy source code
+COPY ./src/sass /app/src/sass
 
 # # build frontend
-# RUN npm run build
+RUN npm run build
 
 
 # Stage 3 - Build docker image suitable for production
@@ -81,7 +80,7 @@ COPY --from=backend-build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
 # copy frontend build statics
 COPY --from=frontend-build /app/node_modules/normalize.css /app/node_modules/normalize.css
 COPY --from=frontend-build /app/node_modules/font-awesome /app/node_modules/font-awesome
-# COPY --from=frontend-build /app/src/regex/static /app/src/regex/static
+COPY --from=frontend-build /app/src/regex/static/bundles /app/src/regex/static/bundles
 
 # copy source code
 COPY ./src /app/src
