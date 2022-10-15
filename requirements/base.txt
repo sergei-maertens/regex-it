@@ -8,6 +8,8 @@ asgiref==3.5.2
     # via django
 brotli==1.0.9
     # via fonttools
+certifi==2022.9.24
+    # via sentry-sdk
 cffi==1.15.1
     # via weasyprint
 cssselect2==0.7.0
@@ -64,6 +66,10 @@ pyphen==0.13.0
     # via weasyprint
 python-dateutil==2.8.2
     # via -r requirements/base.in
+python-decouple==3.6
+    # via -r requirements/base.in
+python-dotenv==0.21.0
+    # via -r requirements/base.in
 pytz==2022.4
     # via
     #   -r requirements/base.in
@@ -71,6 +77,8 @@ pytz==2022.4
 pyyaml==6.0
     # via tablib
 rules==3.3
+    # via -r requirements/base.in
+sentry-sdk==1.9.10
     # via -r requirements/base.in
 six==1.16.0
     # via
@@ -87,6 +95,10 @@ tinycss2==1.1.1
     #   weasyprint
 typing-extensions==4.4.0
     # via django-countries
+urllib3==1.26.12
+    # via sentry-sdk
+uwsgi==2.0.20
+    # via -r requirements/base.in
 weasyprint==56.1
     # via -r requirements/base.in
 webencodings==0.5.1

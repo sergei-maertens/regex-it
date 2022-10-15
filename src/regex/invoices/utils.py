@@ -9,7 +9,7 @@ from django.template import loader
 from django.utils import translation
 
 import weasyprint
-from sendfile import sendfile
+from django_sendfile import sendfile
 
 from regex.utils.pdf import UrlFetcher
 from regex.utils.views.pdf import PDFTemplateResponse, PDFTemplateResponseMixin

@@ -1,16 +1,23 @@
-Django~=3.2
-
-Pillow
-psycopg2
+# Core python libraries
+Pillow  # handle images
+psycopg2  # database driver
+pytz  # handle timezones
+python-dotenv  # environment variables for secrets
+python-decouple  # processing of envvar configs
 python-dateutil
 rules
-pytz
-
 WeasyPrint
 
+# Framework libraries
+Django~=3.2
 django-autoslug
 django-choices
 django-countries
 django-import-export
 django-solo
 django-privates
+
+# WSGI servers & monitoring - production oriented
+uwsgi
+sentry-sdk  # error monitoring
+# elastic-apm  # Elastic APM integration
