@@ -25,7 +25,7 @@ footer {
   address {
     font-size: $base-font-size / 1.125;
     display: block;
-    @include span-columns(6);
+    width: 50%;
 
     a {
       color: white;

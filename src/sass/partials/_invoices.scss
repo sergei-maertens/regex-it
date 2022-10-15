@@ -1,7 +1,9 @@
+@use "sass:math";
+
 body.invoice {
 
     @media print {
-        font-size: 1em/$minor-second;
+        font-size: math.div(1em, $minor-second);
 
         th, td {
             padding-left: 0.5em;
@@ -24,18 +26,20 @@ body.invoice {
 
     header,
     main {
-        @include outer-container(52em);
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 52em;
     }
 
     header {
         background-color: white;
         margin-top: $base-spacing;
-        @include align-items(flex-start);
+        align-items: flex-start;
         border-bottom: none;
 
         address {
-            font-size: 1em/$minor-second;
-            @include span-columns(6);
+            font-size: math.div(1em, $minor-second);
+            width: 50%;
 
             &:last-child {
                 text-align: right;
@@ -52,16 +56,16 @@ body.invoice {
     summary {
         section {
             @include margin($base-spacing null);
-            @include row;
+            display: flex;
 
             > h3, > div {
-                @include span-columns(6);
+                width: 50%;
             }
         }
     }
 
     .invoice-end {
-        font-size: 1em/$minor-second;
+        font-size: math.div(1em, $minor-second);
     }
 
     table {

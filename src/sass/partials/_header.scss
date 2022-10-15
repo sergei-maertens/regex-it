@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $header-height: 50px;
 
 body > header {
@@ -7,14 +9,13 @@ body > header {
   box-shadow: 0px 0px 15px 0px $dark-gray;
 
   .container {
-    @include row;
-    @include display(flex);
-    @include align-items(center);
+    display: flex;
+    align-items: center;;
   }
 
   .main-logo {
     @include margin(1em null);
-    @include span-columns(3);
+    width: 25%;
 
     > span {
       display: block;
@@ -25,7 +26,7 @@ body > header {
   }
 
   nav {
-    @include span-columns(8);
+    width: math.div(8, 12);
     line-height: $header-height;
     font-weight: bold;
 
@@ -37,12 +38,12 @@ body > header {
 
 
 ul[role="menu"] {
-  @include display(flex);
-  @include align-items(center);
-  @include justify-content(space-between);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   > li {
-    @include flex(1);
+    flex: 1;
     text-align: center;
   }
 }
