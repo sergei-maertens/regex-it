@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load i18n staticfiles compress invoices solo_tags%}
+<!DOCTYPE html>{% load i18n static solo_tags %}
 <html>
     <head>
         <meta charset="utf-8">
@@ -6,11 +6,9 @@
 
         <title>{% trans "Regex-IT portal" %}</title>
 
-        {% compress css %}
         <link href="{% static "normalize.css/normalize.css" %}" media="screen, projection, print" rel="stylesheet">
         <link href="{% static "font-awesome/css/font-awesome.min.css" %}" media="screen, projection, print" rel="stylesheet">
         <link href="{% static "css/screen.css" %}" media="screen, projection, print" rel="stylesheet">
-        {% endcompress %}
         {% block extrastyle %}{% endblock %}
     </head>
 
