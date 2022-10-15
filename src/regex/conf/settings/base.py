@@ -89,7 +89,6 @@ STATICFILES_DIRS = [
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    "compressor.finders.CompressorFinder",
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 ]
 
@@ -152,13 +151,8 @@ INSTALLED_APPS = [
     # Optional applications.
     "django.contrib.admin",
     # External applications.
-    "adminsortable2",
-    "allauth",
-    "allauth.account",
-    "compressor",
     "django_countries",
     "import_export",
-    "sniplates",
     "privates",
     "solo",
     # Project applications.
@@ -277,7 +271,6 @@ AXES_COOLOFF_TIME = 1  # One hour
 AUTH_USER_MODEL = "accounts.User"
 AUTHENTICATION_BACKENDS = [
     "rules.permissions.ObjectPermissionBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 

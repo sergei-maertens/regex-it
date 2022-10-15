@@ -26,19 +26,6 @@
                         <li><a href="{% url 'home:home' %}">{% trans "home" %}</a></li>
                         <li><a href="{% url 'portfolio:list' %}">{% trans "portfolio" %}</a></li>
                         <li><a href="{% url 'home:contact' %}">{% trans "contact" context 'menu' %}</a></li>
-                        {% if not user.is_authenticated %}
-                            <li>
-                                <a href="{% url 'account_login' %}">
-                                    <i class="fa fa-lock"></i> {% trans "login" %}
-                                </a>
-                            </li>
-                        {% else %}
-                            <li>
-                                <a href="{% url 'accounts:dashboard' %}">
-                                    {% trans "dashboard" %}
-                                </a>
-                            </li>
-                        {% endif %}
                     </ul>
                 </nav>
                 {% endblock %}

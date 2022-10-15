@@ -1,22 +1,16 @@
-Django<3.0
+Django~=3.2
 
 Pillow
 psycopg2
-python-magic
 python-dateutil
 rules
 pytz
 
-WeasyPrint==0.38
+WeasyPrint
 
-django-admin-sortable2
-django-appconf
 django-autoslug
-django-allauth
 django-choices
-django-compressor
 django-countries
 django-import-export
 django-solo
-django-sniplates
 django-privates
