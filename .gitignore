@@ -8,6 +8,7 @@ src/regex/conf/uwsgi.ini
 
 # collection directories
 /log/
+!/log/.gitkeep
 /static/
 /media/
 /private_media/
