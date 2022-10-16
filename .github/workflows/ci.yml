@@ -13,6 +13,8 @@ on:
 env:
   IMAGE_NAME: regexit/website
   DJANGO_SETTINGS_MODULE: regex.conf.ci
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
 
 jobs:
   tests:
