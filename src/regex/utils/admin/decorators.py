@@ -5,7 +5,7 @@ from django.urls import reverse
 
 def get_urlname(obj):
     app_label, model_name = obj._meta.app_label, obj._meta.model_name
-    return u"admin:{}_{}_change".format(app_label, model_name)
+    return "admin:{}_{}_change".format(app_label, model_name)
 
 
 def link_list(urlname=None, short_description=None):
@@ -35,9 +35,9 @@ def link_list(urlname=None, short_description=None):
         @wraps(method)
         def f(*args, **kwargs):
             related_qs = method(*args, **kwargs)
-            return u", ".join(
+            return ", ".join(
                 [
-                    u'<a href="{}">{}</a>'.format(
+                    '<a href="{}">{}</a>'.format(
                         reverse(urlname or get_urlname(rel), args=[rel.pk]), rel
                     )
                     for rel in related_qs

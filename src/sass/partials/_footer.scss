@@ -22,10 +22,16 @@ footer {
   border-top: solid 2px $palette-dark;
   color: white;
 
+  .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+  }
+
   address {
     font-size: $base-font-size / 1.125;
     display: block;
-    @include span-columns(6);
+    width: 50%;
 
     a {
       color: white;

@@ -1,0 +1,45 @@
+# Inspired by https://docs.docker.com/compose/django/
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - ./docker-init-db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - db:/var/lib/postgresql/data
+
+  # redis:
+  #   image: redis:6
+
+  busybox:
+    image: busybox
+    command: /bin/chown -R 1000 /private-media
+    volumes:
+      - private_media:/private-media
+
+  web:
+    build: &web_build
+      context: .
+      args:
+        RELEASE: ${TAG:-latest}
+    image: regexit/website:${TAG:-latest}
+    environment:
+      - DJANGO_SETTINGS_MODULE=regex.conf.docker
+      - SECRET_KEY=${SECRET_KEY:-2tb%euik)0+9zv5d!#_m_c4#x1tkk7)va+o0&#d2=pokzf287=}
+      - ALLOWED_HOSTS=*
+      - DB_NAME=regex
+      - DB_USER=regex
+      - DB_HOST=db
+      - CACHE_DEFAULT=redis:6379/0
+    volumes:
+      - private_media:/app/private-media
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+volumes:
+  db:
+  private_media:

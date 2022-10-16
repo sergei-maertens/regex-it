@@ -1,4 +1,1 @@
 -r base.txt
-
-raven==5.8.1
-uwsgi==2.0.18

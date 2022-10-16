@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
-import regex.accounts.models
 import django.utils.timezone
+from django.db import migrations, models
+
+import regex.accounts.models
 
 
 class Migration(migrations.Migration):
@@ -103,7 +104,12 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"verbose_name": "user", "verbose_name_plural": "users",},
-            managers=[("objects", regex.accounts.models.UserManager()),],
+            options={
+                "verbose_name": "user",
+                "verbose_name_plural": "users",
+            },
+            managers=[
+                ("objects", regex.accounts.models.UserManager()),
+            ],
         ),
     ]

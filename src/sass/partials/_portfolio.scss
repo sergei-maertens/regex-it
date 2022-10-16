@@ -1,15 +1,19 @@
 body.portfolio {
 
   .grid-container {
-    @include row;
-
+    display: flex;
+    gap: 2em;
     margin-bottom: $base-spacing;
+
+    // @include media($mobile) {
+    //   flex-wrap: wrap;
+    //   gap: 0;
+    // }
   }
 
   .grid-item {
-
-    @include span-columns(4);
-    @include omega( 3n );
+    width: 100%;
+    flex: 1 1 33%;
 
     .hover-tile-hidden {
       background: transparentize($palette-dark, 0.05);
@@ -19,12 +23,9 @@ body.portfolio {
       }
     }
 
-    @include media($mobile) {
-      @include span-columns(12);
-      @include omega();
-      margin-bottom: $base-spacing;
-    }
+    // @include media($mobile) {
+    //   flex-basis: 100%;
+    //   margin-bottom: $base-spacing;
+    // }
   }
-
-
 }

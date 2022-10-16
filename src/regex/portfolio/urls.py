@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import path
 
 from .views import EntryList
 
 app_name = "portfolio"
 
 urlpatterns = [
-    url(r"^$", EntryList.as_view(), name="list"),
+    path("", EntryList.as_view(), name="list"),
 ]

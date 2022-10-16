@@ -4,13 +4,14 @@ __pycache__
 # deployment
 src/regex/conf/uwsgi.ini
 .vault_password
+.env
 
 # collection directories
 /log/
 /static/
 /media/
 /private_media/
-/src/static/css
+/src/regex/static/bundles/
 node_modules
 
 # testing

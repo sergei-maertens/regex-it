@@ -70,5 +70,5 @@ picture {
 
 .text-center {
   text-align: center;
-  @include justify-content(center);
+  justify-content: center;
 }

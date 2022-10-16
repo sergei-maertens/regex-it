@@ -1,9 +1,14 @@
-@media print {
-    body.pdf {
+body.pdf {
 
-      .page-break {
-        page-break-before: always;
-      }
+  .container {
+    display: flex;
+  }
 
-    }
+  .page-break {
+    page-break-before: always;
+  }
+
+  .pull-right {
+    float: right;
+  }
 }
