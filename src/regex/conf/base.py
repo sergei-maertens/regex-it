@@ -105,6 +105,7 @@ INSTALLED_APPS = [
     "regex.crm",
     "regex.deductions",
     "regex.homepage",
+    "regex.expenses",
     "regex.invoices",
     "regex.portfolio",
     "regex.work_entries",
