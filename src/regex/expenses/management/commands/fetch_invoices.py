@@ -4,7 +4,7 @@ from django.core.management import BaseCommand, CommandError
 
 from dateutil.relativedelta import relativedelta
 
-from ...transip import fetch_invoices
+from ...transip.service import fetch_invoices
 
 
 class Command(BaseCommand):
@@ -49,3 +49,7 @@ class Command(BaseCommand):
         all_invoices += fetch_invoices(start_date, end_date)
 
         # TODO - ensure duplicates are not stored again
+        # TODO - store creditor per provider in admin/config and assign here
+        import bpdb
+
+        bpdb.set_trace()

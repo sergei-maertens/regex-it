@@ -171,6 +171,10 @@ pycparser==2.21
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   cffi
+pydantic==1.10.2
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 pydyf==0.5.0
     # via
     #   -c requirements/base.txt
@@ -264,6 +268,7 @@ typing-extensions==4.4.0
     #   -r requirements/base.txt
     #   astroid
     #   django-countries
+    #   pydantic
     #   pylint
 urllib3==1.26.12
     # via

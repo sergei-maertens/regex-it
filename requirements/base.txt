@@ -70,6 +70,8 @@ psycopg2==2.9.4
     # via -r requirements/base.in
 pycparser==2.21
     # via cffi
+pydantic==1.10.2
+    # via -r requirements/base.in
 pydyf==0.5.0
     # via weasyprint
 pyphen==0.13.0
@@ -106,7 +108,9 @@ tinycss2==1.1.1
     #   cssselect2
     #   weasyprint
 typing-extensions==4.4.0
-    # via django-countries
+    # via
+    #   django-countries
+    #   pydantic
 urllib3==1.26.12
     # via
     #   requests
