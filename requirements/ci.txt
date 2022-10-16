@@ -28,6 +28,7 @@ cffi==1.15.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+    #   cryptography
     #   weasyprint
 charset-normalizer==2.1.1
     # via
@@ -36,6 +37,10 @@ charset-normalizer==2.1.1
     #   requests
 coverage==4.5.4
     # via -r requirements/test-tools.in
+cryptography==38.0.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 cssselect==1.1.0
     # via pyquery
 cssselect2==0.7.0

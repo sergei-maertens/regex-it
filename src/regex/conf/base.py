@@ -366,6 +366,15 @@ SITE_COUNTRY = "NL"
 
 BASE_URL = config("BASE_URL", "https://regex-it.nl")
 
+#
+# Transip integration
+#
+_transip_private_key_file = config(
+    "TRANSIP_PRIVATE_KEY_FILE", default=BASE_DIR / "transip.privkey.pem"
+)
+TRANSIP_PRIVATE_KEY = _transip_private_key_file.read_bytes()
+TRANSIP_AUTH_USERNAME = config("TRANSIP_AUTH_USERNAME", default="")
+
 ##############################
 #                            #
 # 3RD PARTY LIBRARY SETTINGS #
