@@ -57,8 +57,10 @@ body.invoice {
         section {
             @include margin($base-spacing null);
             display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
 
-            > h3, > div {
+            > h3, > table {
                 width: 50%;
             }
         }
@@ -75,21 +77,20 @@ body.invoice {
 
         th {
             vertical-align: top;
+            border-bottom: solid 1px $light-gray;
+            padding: .5em;
         }
 
         td {
             border-bottom: none;
+            padding: .5em;
         }
-    }
-
-    main > footer {
-        @include position(fixed, 100% null null null);
     }
 
     .highlight {
         background-color: $light-gray;
-        @include margin($base-spacing (-$base-spacing));
-        @include padding(null $base-spacing);
+        padding: 5mm;
+        margin: 0 -5mm 0 -5mm;
     }
 
     span.total {

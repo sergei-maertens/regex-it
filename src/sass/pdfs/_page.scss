@@ -1,0 +1,12 @@
+@page {
+  size: A4;
+  margin-bottom: 10mm;
+  margin-top: 12mm;
+
+  @bottom-right {
+    // content: var(--page-counter-content);
+    font-size: 0.75em;
+    margin-bottom: 3mm;
+    margin-right: 3mm;
+  }
+}

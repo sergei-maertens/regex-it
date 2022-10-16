@@ -1,7 +1,8 @@
 """
 Utility functions for invoices.
 """
-from django.core.files import File
+from io import BytesIO
+
 from django.db.models import Count
 from django.utils import translation
 
@@ -11,11 +12,7 @@ from regex.utils.pdf import render_to_pdf
 from regex.utils.views.pdf import PDFTemplateResponse, PDFTemplateResponseMixin
 
 
-def render_invoice_pdf(request, invoice, template_name="invoices/invoice_detail.html"):
-    # render the invoice in the client's language
-    lang_code = invoice.client.language
-    translation.activate(lang_code)
-
+def get_invoice_context(invoice, **extra):
     tax_rates = invoice.invoiceitem_set.values("tax_rate").annotate(
         num=Count("tax_rate")
     )
@@ -25,12 +22,20 @@ def render_invoice_pdf(request, invoice, template_name="invoices/invoice_detail.
         "items": invoice.invoiceitem_set.select_related("project").order_by(
             "project", "tax_rate"
         ),
-        "request": request,
+        **extra,
     }
+    return context
 
+
+def render_invoice_pdf(request, invoice, template_name="invoices/invoice_detail.html"):
+    # render the invoice in the client's language
+    lang_code = invoice.client.language
+    translation.activate(lang_code)
+
+    context = get_invoice_context(invoice, request=request)
     pdf = render_to_pdf(template_name, context)[1]
     filename = "{}.pdf".format(invoice.invoice_number)
-    invoice.pdf.save(filename, File(pdf))
+    invoice.pdf.save(filename, BytesIO(pdf))
 
     # go back to the previous language
     if hasattr(request, "LANGUAGE_CODE"):

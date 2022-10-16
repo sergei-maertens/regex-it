@@ -1,6 +1,8 @@
 // Bourbon bootstrap
 @import "bourbon";
-// @import "neat";
+
+// Vendor
+@import 'paper-css/paper.css';
 
 // base styles
 @import "bitters/base";
@@ -20,3 +22,6 @@
 @import "partials/homepage";
 @import "partials/contact";
 @import "partials/portfolio";
+
+// PDF styling
+@import "pdfs";
