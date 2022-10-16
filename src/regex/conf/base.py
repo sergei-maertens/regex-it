@@ -363,6 +363,8 @@ RELEASE = config("RELEASE", GIT_SHA)
 DEFAULT_COUNTRY = "NL"
 SITE_COUNTRY = "NL"
 
+BASE_URL = config("BASE_URL", "https://regex-it.nl")
+
 ##############################
 #                            #
 # 3RD PARTY LIBRARY SETTINGS #

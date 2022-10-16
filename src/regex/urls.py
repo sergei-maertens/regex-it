@@ -5,6 +5,8 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 
+from regex.invoices.dev_views import InvoicePDFTestView
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("portfolio/", include("regex.portfolio.urls")),
@@ -23,3 +25,12 @@ if settings.DEBUG and apps.is_installed("debug_toolbar"):
     urlpatterns = [
         path("__debug__/", include(debug_toolbar.urls)),
     ] + urlpatterns
+
+if settings.DEBUG:
+    urlpatterns += [
+        path(
+            "dev/invoices/<int:pk>/pdf/",
+            InvoicePDFTestView.as_view(),
+            name="dev-invoice-pdf",
+        ),
+    ]

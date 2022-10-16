@@ -1,17 +1,13 @@
 """
 Utility functions for invoices.
 """
-from io import BytesIO
-
 from django.core.files import File
 from django.db.models import Count
-from django.template import loader
 from django.utils import translation
 
-import weasyprint
 from django_sendfile import sendfile
 
-from regex.utils.pdf import UrlFetcher
+from regex.utils.pdf import render_to_pdf
 from regex.utils.views.pdf import PDFTemplateResponse, PDFTemplateResponseMixin
 
 
@@ -19,11 +15,6 @@ def render_invoice_pdf(request, invoice, template_name="invoices/invoice_detail.
     # render the invoice in the client's language
     lang_code = invoice.client.language
     translation.activate(lang_code)
-
-    if isinstance(template_name, (list, tuple)):
-        template = loader.select_template(template_name)
-    else:
-        template = loader.get_template(template_name)
 
     tax_rates = invoice.invoiceitem_set.values("tax_rate").annotate(
         num=Count("tax_rate")
@@ -36,15 +27,10 @@ def render_invoice_pdf(request, invoice, template_name="invoices/invoice_detail.
         ),
         "request": request,
     }
-    html = template.render(context)
-    base_url = request.build_absolute_uri("/")
-    url_fetcher = UrlFetcher(request, base_url)
-    wp = weasyprint.HTML(string=html, base_url=base_url, url_fetcher=url_fetcher)
-    # pdf as bytes
-    buffer = BytesIO()
-    wp.write_pdf(target=buffer)
+
+    pdf = render_to_pdf(template_name, context)[1]
     filename = "{}.pdf".format(invoice.invoice_number)
-    invoice.pdf.save(filename, File(buffer))
+    invoice.pdf.save(filename, File(pdf))
 
     # go back to the previous language
     if hasattr(request, "LANGUAGE_CODE"):
