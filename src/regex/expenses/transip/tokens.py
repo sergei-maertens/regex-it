@@ -63,7 +63,8 @@ def get_access_token():
     claims = json.loads(payload.decode("utf-8"))
     expiry = datetime.fromtimestamp(claims["exp"])
     AccessToken.objects.create(
-        token=token, expires=timezone.make_aware(expiry, timezone=timezone.utc)
+        token=token,
+        expires=timezone.make_aware(expiry),
     )
     return token
 

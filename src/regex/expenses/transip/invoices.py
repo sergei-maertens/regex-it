@@ -1,6 +1,10 @@
+from base64 import b64decode
 from datetime import date
 from decimal import Decimal
+from io import BytesIO
 from typing import List, Literal, Tuple
+
+from django.core.files.uploadedfile import TemporaryUploadedFile
 
 from pydantic import BaseModel
 from requests import Session
@@ -27,12 +31,13 @@ class TransipInvoice(BaseModel):
     class Config:
         alias_generator = to_camel
 
-    def as_django_invoice(self) -> Invoice:
+    def as_django_invoice(self, pdf: TemporaryUploadedFile) -> Invoice:
         assert self.currency == "EUR"
         return Invoice(
             identifier=self.invoice_number,
             date=self.creation_date,
             amount=Decimal(self.total_amount) / 100,
+            pdf=pdf,
         )
 
 
@@ -49,6 +54,25 @@ def _get_invoice_list(
     return invoices, next_page
 
 
+def download_pdf(
+    session: Session, auth: TransipAuth, invoice: TransipInvoice
+) -> TemporaryUploadedFile:
+    response = session.get(
+        build_url(f"invoices/{invoice.invoice_number}/pdf"),
+        auth=auth,
+    )
+    response.raise_for_status()
+    pdf_b64 = response.json()["pdf"].encode("ascii")
+
+    content = b64decode(pdf_b64 + b"==")
+    temp_file = TemporaryUploadedFile(
+        f"{invoice.invoice_number}.pdf", "application/pdf", len(content), charset=None
+    )
+    temp_file.write(content)
+    temp_file.seek(0)
+    return temp_file
+
+
 def fetch_invoices(start_date: date, end_date: date) -> List[Invoice]:
     auth = TransipAuth()
 
@@ -63,6 +87,8 @@ def fetch_invoices(start_date: date, end_date: date) -> List[Invoice]:
             next_page_invoices, next_page = _get_invoice_list(next_page, session, auth)
             invoices += next_page_invoices
 
-    # TODO: download PDFs for relevant invoices
     invoices = [invoice for invoice in invoices if _check_relevancy(invoice)]
-    return [invoice.as_django_invoice() for invoice in invoices]
+    temp_files = [download_pdf(session, auth, invoice) for invoice in invoices]
+    return [
+        invoice.as_django_invoice(pdf) for invoice, pdf in zip(invoices, temp_files)
+    ]
