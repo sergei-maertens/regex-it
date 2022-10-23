@@ -1,3 +1,3 @@
-from .invoices import fetch_invoices
+from .invoices import InvoiceFetcher
 
-__all__ = ["fetch_invoices"]
+__all__ = ["InvoiceFetcher"]

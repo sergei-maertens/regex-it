@@ -5,8 +5,8 @@ from django.db import transaction
 
 from dateutil.relativedelta import relativedelta
 
-from ...models import Invoice
-from ...transip.service import fetch_invoices as fetch_transip_invoices
+from ...models import ExpensesConfiguration, Invoice
+from ...transip.service import InvoiceFetcher as TransipInvoiceFetcher
 
 
 class Command(BaseCommand):
@@ -49,30 +49,30 @@ class Command(BaseCommand):
             )
             end_date = start_date + relativedelta(months=3, days=-1)
 
-        all_invoices, _files = [], []
-        # TODO - store creditor per provider in admin/config and assign here
-        all_invoices += fetch_transip_invoices(start_date, end_date, _files)
-
-        # only keep invoices that don't exist yet
-        _identifiers = [invoice.identifier for invoice in all_invoices]
-        existing_identifiers = set(
-            Invoice.objects.filter(identifier__in=_identifiers).values_list(
-                "identifier", flat=True
-            )
-        )
-
-        # finally, save the invoices
+        config = ExpensesConfiguration.get_solo()
+        fetchers = [TransipInvoiceFetcher]
         counter = 0
-        try:
-            for invoice in all_invoices:
-                if invoice.identifier in existing_identifiers:
-                    continue
-                invoice.save()
-                counter += 1
 
-        finally:
-            for file in _files:
-                file.close()
+        for fetcher_cls in fetchers:
+            fetcher = fetcher_cls(
+                config=config, start_date=start_date, end_date=end_date
+            )
+            with fetcher:
+                _creditor = fetcher.get_default_creditor()
+                invoices = fetcher()
+                # only keep invoices that don't exist yet
+                _identifiers = [invoice.identifier for invoice in invoices]
+                existing_identifiers = set(
+                    Invoice.objects.filter(identifier__in=_identifiers).values_list(
+                        "identifier", flat=True
+                    )
+                )
+                for invoice in invoices:
+                    if invoice.identifier in existing_identifiers:
+                        continue
+                    invoice.creditor = _creditor
+                    invoice.save()
+                    counter += 1
 
         if counter == 0:
             self.stdout.write("No new invoices saved.")

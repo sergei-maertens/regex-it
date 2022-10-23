@@ -8,6 +8,7 @@ from django.core.files.uploadedfile import TemporaryUploadedFile
 from pydantic import BaseModel
 from requests import Session
 
+from ..fetcher import BaseInvoiceFetcher
 from ..models import Invoice
 from .tokens import TransipAuth
 from .utils import build_url
@@ -72,24 +73,29 @@ def download_pdf(
     return temp_file
 
 
-def fetch_invoices(start_date: date, end_date: date, files) -> List[Invoice]:
-    auth = TransipAuth()
+class InvoiceFetcher(BaseInvoiceFetcher):
+    default_creditor_field = "transip_creditor"
 
-    def _check_relevancy(invoice: TransipInvoice) -> bool:
-        return start_date <= invoice.creation_date <= end_date
+    def __call__(self) -> List[Invoice]:
+        auth = TransipAuth()
 
-    with Session() as session:
-        invoices, next_page = _get_invoice_list(build_url("invoices"), session, auth)
+        def _check_relevancy(invoice: TransipInvoice) -> bool:
+            return self.start_date <= invoice.creation_date <= self.end_date
 
-        # check if we need to fetch the next page
-        while invoices and next_page and _check_relevancy(invoices[-1]):
-            next_page_invoices, next_page = _get_invoice_list(next_page, session, auth)
-            invoices += next_page_invoices
+        with Session() as session:
+            invoices, next_page = _get_invoice_list(
+                build_url("invoices"), session, auth
+            )
 
-    invoices = [invoice for invoice in invoices if _check_relevancy(invoice)]
-    temp_files = [download_pdf(session, auth, invoice) for invoice in invoices]
-    for temp_file in temp_files:
-        files.append(temp_file)
-    return [
-        invoice.as_django_invoice(pdf) for invoice, pdf in zip(invoices, temp_files)
-    ]
+            # check if we need to fetch the next page
+            while invoices and next_page and _check_relevancy(invoices[-1]):
+                next_page_invoices, next_page = _get_invoice_list(
+                    next_page, session, auth
+                )
+                invoices += next_page_invoices
+
+        invoices = [invoice for invoice in invoices if _check_relevancy(invoice)]
+        self.files = [download_pdf(session, auth, invoice) for invoice in invoices]
+        return [
+            invoice.as_django_invoice(pdf) for invoice, pdf in zip(invoices, self.files)
+        ]
