@@ -1,7 +1,6 @@
 from base64 import b64decode
 from datetime import date
 from decimal import Decimal
-from io import BytesIO
 from typing import List, Literal, Tuple
 
 from django.core.files.uploadedfile import TemporaryUploadedFile
@@ -36,7 +35,7 @@ class TransipInvoice(BaseModel):
         return Invoice(
             identifier=self.invoice_number,
             date=self.creation_date,
-            amount=Decimal(self.total_amount) / 100,
+            amount=Decimal(self.total_amount_incl_vat) / 100,
             pdf=pdf,
         )
 
@@ -73,7 +72,7 @@ def download_pdf(
     return temp_file
 
 
-def fetch_invoices(start_date: date, end_date: date) -> List[Invoice]:
+def fetch_invoices(start_date: date, end_date: date, files) -> List[Invoice]:
     auth = TransipAuth()
 
     def _check_relevancy(invoice: TransipInvoice) -> bool:
@@ -89,6 +88,8 @@ def fetch_invoices(start_date: date, end_date: date) -> List[Invoice]:
 
     invoices = [invoice for invoice in invoices if _check_relevancy(invoice)]
     temp_files = [download_pdf(session, auth, invoice) for invoice in invoices]
+    for temp_file in temp_files:
+        files.append(temp_file)
     return [
         invoice.as_django_invoice(pdf) for invoice, pdf in zip(invoices, temp_files)
     ]

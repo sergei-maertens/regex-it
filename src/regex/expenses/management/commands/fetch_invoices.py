@@ -1,14 +1,17 @@
 from datetime import date
 
 from django.core.management import BaseCommand, CommandError
+from django.db import transaction
 
 from dateutil.relativedelta import relativedelta
 
-from ...transip.service import fetch_invoices
+from ...models import Invoice
+from ...transip.service import fetch_invoices as fetch_transip_invoices
 
 
 class Command(BaseCommand):
     help = "Fetch the invoices for the specified date range"
+    output_transaction = True
 
     def add_arguments(self, parser) -> None:
         parser.add_argument("--current-quarter", action="store_true")
@@ -23,6 +26,7 @@ class Command(BaseCommand):
             help="Fetch invoices dated until (and including) this date.",
         )
 
+    @transaction.atomic()
     def handle(self, **options) -> None:
         start_date = options["start_date"]
         end_date = options["end_date"]
@@ -45,11 +49,32 @@ class Command(BaseCommand):
             )
             end_date = start_date + relativedelta(months=3, days=-1)
 
-        all_invoices = []
-        all_invoices += fetch_invoices(start_date, end_date)
-
-        # TODO - ensure duplicates are not stored again
+        all_invoices, _files = [], []
         # TODO - store creditor per provider in admin/config and assign here
-        import bpdb
+        all_invoices += fetch_transip_invoices(start_date, end_date, _files)
 
-        bpdb.set_trace()
+        # only keep invoices that don't exist yet
+        _identifiers = [invoice.identifier for invoice in all_invoices]
+        existing_identifiers = set(
+            Invoice.objects.filter(identifier__in=_identifiers).values_list(
+                "identifier", flat=True
+            )
+        )
+
+        # finally, save the invoices
+        counter = 0
+        try:
+            for invoice in all_invoices:
+                if invoice.identifier in existing_identifiers:
+                    continue
+                invoice.save()
+                counter += 1
+
+        finally:
+            for file in _files:
+                file.close()
+
+        if counter == 0:
+            self.stdout.write("No new invoices saved.")
+        else:
+            self.stdout.write(self.style.SUCCESS(f"Saved {counter} invoice(s)."))
