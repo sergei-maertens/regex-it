@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from privates.fields import PrivateMediaFileField
+from solo.models import SingletonModel
 
 
 class Creditor(models.Model):
@@ -36,3 +37,24 @@ class Invoice(models.Model):
 
     def __str__(self):
         return self.identifier
+
+
+class ExpensesConfigurationManager(models.Manager):
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.select_related(
+            "transip_creditor",
+        )
+
+
+class ExpensesConfiguration(SingletonModel):
+    transip_creditor = models.OneToOneField(
+        Creditor,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name=_("TransIP creditor"),
+    )
+
+    objects = ExpensesConfigurationManager()
