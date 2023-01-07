@@ -5,6 +5,7 @@ __pycache__
 src/regex/conf/uwsgi.ini
 .vault_password
 .env
+/transip.privkey.pem
 
 # collection directories
 /log/
