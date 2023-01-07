@@ -1,8 +1,0 @@
----
-
-- name: Run database migrations
-  django_manage: app_path={{ project_home }}/src/
-                 command=migrate
-                 settings={{ settings_module }}
-                 virtualenv={{ venv }}
-  environment: "{{ django_env }}"

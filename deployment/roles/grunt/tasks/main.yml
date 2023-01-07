@@ -1,7 +1,0 @@
----
-
-- name: Install Grunt CLI (as root)
-  npm: name=grunt-cli path={{ project_home }} global=yes
-  remote_user: root
-
-- include: compile_sass.yml

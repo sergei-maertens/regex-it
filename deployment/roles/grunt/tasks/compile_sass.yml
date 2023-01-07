@@ -1,4 +1,0 @@
----
-
-- name: Compile sass to css
-  shell: grunt sass:dist chdir={{ project_home }}

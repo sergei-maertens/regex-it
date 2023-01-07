@@ -28,7 +28,6 @@
     # - geerlingguy.docker
     # - postgres
     - postfixer
-    # - ssl
     # - nginx
     - role: postfix
       tags:

@@ -1,12 +1,139 @@
 ---
 
 - name: Update the application to the latest version
-  hosts: "{{ target|default('staging') }}"
-  remote_user: regex
+  hosts: "{{ target_env|default('production') }}"
+  remote_user: root
+
+  vars_files:
+    - vars/certbot.yml
+
+  vars:
+    provision: false # set to true when deploying to new server
+    provision_db_users: false # set to true when deploying a new customer (target)
+
+    # generic stuff
+    application_user: regex
+    secrets_dir: "/home/{{ application_user }}/{{ target }}/secrets"
+
+    # nginx
+    nginx_hostnames:
+      - "{{ inventory_hostname }}"
+      - "www.{{ inventory_hostname }}"
+    nginx_prefix: "{{ application_user + '_' + target }}"
+    nginx_vhost_template: vhost.j2
+
+    # certbot
+    certbot_certs:
+      - domains: "{{ nginx_hostnames }}"
+
+  collections:
+    - maykinmedia.commonground
+
+  pre_tasks:
+
+    - name: Run provisioning roles
+      block:
+        - import_role:
+            name: geerlingguy.pip
+        - import_role:
+            name: geerlingguy.docker
+        - name: set vm swapiness to 10
+          ansible.posix.sysctl:
+            name: vm.swappiness
+            value: '10'
+            state: present
+      when: provision
+
+    - import_role:
+        name: geerlingguy.postgresql
+      when: provision or provision_db_users
+
+    - name: Provision secrets - create directory
+      ansible.builtin.file:
+        path: "{{ secrets_dir }}"
+        state: directory
+        owner: "1000"
+        group: "{{ application_user }}"
+        mode: u=rwx,g=rwx,o=
+
+    - name: Provision secrets - set up files
+      ansible.builtin.copy:
+        content: "{{ transip_privkey }}"
+        dest: "{{ secrets_dir }}/transip_privkey.pem"
+        owner: "1000"
+        group: "{{ application_user }}"
+        mode: u=rwx,g=rwx,o=
+
   roles:
-    - env
-    - npm
-    - grunt
-    - django
-    - supervisor
-    - nginx
+
+    - name: Deploy django app docker containers
+      role: maykinmedia.commonground.django_app_docker
+      vars:
+        # Outgoing e-mail configuration
+        django_app_docker_mail: true
+
+        django_app_docker_mail_host: 172.17.0.1  # docker0 interface
+        django_app_docker_mail_port: '25'
+        django_app_docker_mail_use_tls: 'no'
+        django_app_docker_mail_default_from: "{{ default_from_email }}"
+
+        # Application
+        django_app_docker_name_prefix: regex-{{ target }}
+        django_app_docker_domain: "{{ inventory_hostname }}"
+        django_app_docker_package_name: regex
+        django_app_docker_https: true
+        django_app_docker_secret_key: "{{ secret_key }}"
+        django_app_docker_sentry_dsn: 'https://d2b2b8150ead4c1282d188c50c4c9647@sentry.maykinmedia.nl/266'
+
+        # DB
+        django_app_docker_db_host: /var/run/postgresql/
+        django_app_docker_db_name: "{{ db_name }}"
+        django_app_docker_db_username: "{{ db_user }}"
+        django_app_docker_db_password: "{{ db_password }}"
+
+        # Application version
+        django_app_docker_image_name: regexit/website
+        django_app_docker_version: latest
+        django_app_docker_image_always_pull: true
+        django_app_docker_container_user: sergei
+
+        django_app_docker_volumes:
+          - name: "{{ django_app_docker_name_prefix }}-media"
+            mount: "/app/media"
+            mode: "rw"
+            owner: 1000
+            group: 1001  # regex
+            recurse: false
+          - name: "{{ django_app_docker_name_prefix }}-private_media"
+            mount: "/app/private_media"
+            mode: "rw"
+            owner: 1000
+            group: 1001  # regex
+            recurse: false
+          - name: "{{ django_app_docker_name_prefix }}-log"
+            mount: "/app/log"
+            mode: "rw"
+            owner: 1000
+            group: 1001  # regex
+            recurse: false
+          - name: "{{ django_app_docker_name_prefix }}-secrets"
+            mount: "/app/secrets"
+            hostPath: "{{ secrets_dir }}"
+            mode: "ro"
+
+        django_app_docker_extra_env:
+          ENVIRONMENT: "{{ target }}"
+          BASE_URL: "https://{{ django_app_docker_domain }}"
+          TRANSIP_AUTH_USERNAME: "{{ transip_username }}"
+          TRANSIP_PRIVATE_KEY_FILE: "/app/secrets/transip_privkey.pem"
+
+    - name: Install Let's Encrypt Certificates
+      role: geerlingguy.certbot
+
+    - name: Update nginx config
+      role: nginx
+      vars:
+        django_app_nginx_extra_directives: []
+        django_app_nginx_include_templates:
+          - templates/nginx-includes.conf.j2
+

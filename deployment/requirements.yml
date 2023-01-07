@@ -1,4 +1,11 @@
-- src: geerlingguy.docker
-- src: geerlingguy.postgresql
-- src: geerlingguy.certbot
-- src: nginxinc.nginx
+collections:
+  - name: git@github.com:maykinmedia/commonground-ansible.git
+    type: git
+    version: main
+
+roles:
+  - name: geerlingguy.pip
+  - name: geerlingguy.docker
+  - name: geerlingguy.postgresql
+  - name: nginxinc.nginx
+  - name: geerlingguy.certbot

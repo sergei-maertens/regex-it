@@ -1,28 +1,5 @@
 ---
 
-- name: Install Apache to listen on localhost
-  package:
-    name: apache2
-    state: present
-  when: apache_enabled
-
-- name: Disable the default site
-  file:
-    path: /etc/apache2/sites-enabled/000-default.conf
-    state: absent
-  notify:
-    - reload apache
-  when: apache_enabled
-
-- name: Don't listen on ports 80 and 443
-  copy:
-    src: apache/ports.conf
-    dest: /etc/apache2/ports.conf
-  notify:
-    - reload apache
-  when: apache_enabled
-
-
 - name: Install nginx
   package:
     name: nginx

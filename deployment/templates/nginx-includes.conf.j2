@@ -1,0 +1,16 @@
+# location /static/ {
+#     expires max;
+#     access_log  /var/log/nginx/static.{{ nginx_prefix }}.access.log;
+# }
+
+location /media/ {
+    expires 30d;
+    access_log  /var/log/nginx/media.{{ nginx_prefix }}.access.log;
+    alias {{ _django_app_docker_volumes.results[0].volume.Mountpoint }}/;
+}
+
+location /protected/ {
+    internal;
+    access_log  /var/log/nginx/private.{{ nginx_prefix }}.access.log;
+    alias {{ _django_app_docker_volumes.results[1].volume.Mountpoint }}/;
+}

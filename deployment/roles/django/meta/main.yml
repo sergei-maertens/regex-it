@@ -1,6 +1,0 @@
----
-
-dependencies:
-  - { role: env }
-  - { role: git }
-  - { role: supervisor }
