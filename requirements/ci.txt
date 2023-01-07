@@ -13,6 +13,8 @@ astroid==2.12.11
     # via pylint
 beautifulsoup4==4.11.1
     # via webtest
+black==22.12.0
+    # via -r requirements/test-tools.in
 brotli==1.0.9
     # via
     #   -c requirements/base.txt
@@ -35,6 +37,8 @@ charset-normalizer==2.1.1
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   requests
+click==8.1.3
+    # via black
 coverage==4.5.4
     # via -r requirements/test-tools.in
 cryptography==38.0.1
@@ -129,7 +133,9 @@ idna==3.4
     #   -r requirements/base.txt
     #   requests
 isort==5.10.1
-    # via pylint
+    # via
+    #   -r requirements/test-tools.in
+    #   pylint
 lazy-object-proxy==1.7.1
     # via astroid
 lxml==4.9.1
@@ -143,6 +149,8 @@ mccabe==0.7.0
     # via
     #   flake8
     #   pylint
+mypy-extensions==0.4.3
+    # via black
 odfpy==1.4.1
     # via
     #   -c requirements/base.txt
@@ -153,13 +161,17 @@ openpyxl==3.0.10
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   tablib
+pathspec==0.10.3
+    # via black
 pillow==9.2.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   weasyprint
 platformdirs==2.5.2
-    # via pylint
+    # via
+    #   black
+    #   pylint
 psycopg2==2.9.4
     # via
     #   -c requirements/base.txt
@@ -259,7 +271,9 @@ tinycss2==1.1.1
     #   cssselect2
     #   weasyprint
 tomli==2.0.1
-    # via pylint
+    # via
+    #   black
+    #   pylint
 tomlkit==0.11.5
     # via pylint
 typing-extensions==4.4.0
@@ -267,6 +281,7 @@ typing-extensions==4.4.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   astroid
+    #   black
     #   django-countries
     #   pydantic
     #   pylint
