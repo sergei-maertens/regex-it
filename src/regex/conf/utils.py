@@ -1,8 +1,10 @@
 import logging
 from typing import TypeVar, Union, cast
 
+from django.utils.module_loading import import_string
+
 from decouple import Csv, Undefined, config as _config, undefined
-from sentry_sdk.integrations import DidNotEnable, django, redis
+from sentry_sdk.integrations import DidNotEnable, django
 
 logger = logging.getLogger(__name__)
 
@@ -30,21 +32,24 @@ def config(option: str, default: Union[T, Undefined] = undefined, *args, **kwarg
     return cast(T, _config(option, default=default, *args, **kwargs))
 
 
+SENTRY_EXTRAS = [
+    "sentry_sdk.integrations.celery.CeleryIntegration",
+    # "sentry_sdk.integrations.redis.RedisIntegration",
+]
+
+
 def get_sentry_integrations() -> list:
     """
     Determine which Sentry SDK integrations to enable.
     """
-    default = [
-        django.DjangoIntegration(),
-        redis.RedisIntegration(),
-    ]
+    default = [django.DjangoIntegration()]
     extra = []
 
-    try:
-        from sentry_sdk.integrations import celery
-    except DidNotEnable:  # happens if the celery import fails by the integration
-        pass
-    else:
-        extra.append(celery.CeleryIntegration())
+    for _extra in SENTRY_EXTRAS:
+        try:
+            integration_cls = import_string(_extra)
+        except DidNotEnable:  # happens if the celery import fails by the integration
+            continue
+        extra.append(integration_cls())
 
     return [*default, *extra]

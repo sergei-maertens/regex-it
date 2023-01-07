@@ -1,5 +1,0 @@
----
-# Handlers to be run on notify
-
-- name: touch wsgi file
-  file: path="{{ project_home }}/src/wsgi.py" state=touch

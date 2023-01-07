@@ -1,4 +1,1 @@
 ---
-
-root: "{{ project_home }}"
-home_ip: "163.158.230.128"

@@ -1,8 +1,0 @@
----
-# Main tasks file to distribute the subtasks
-
-- include: createdirs.yml
-- include: dependencies.yml
-- include: migrate.yml
-- include: collectstatic.yml
-# - include: cronjobs.yml

@@ -19,13 +19,3 @@
 - include_tasks: databases.yml
 
 - include_tasks: webservers.yml
-
-- include_tasks: caches.yml
-
-- include_tasks: vcs.yml
-
-- include_tasks: nodejs.yml
-  when: nodejs_enabled
-
-- include_tasks: django.yml
-  when: django_enabled

@@ -1,0 +1,6 @@
+certbot_install_method: snap
+certbot_auto_renew: false
+certbot_create_if_missing: false
+certbot_create_method: standalone
+certbot_create_standalone_stop_services: []  # prevent hooks from being setup, we do that ourselves
+certbot_admin_email: info@regex-it.nl

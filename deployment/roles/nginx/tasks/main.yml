@@ -4,30 +4,22 @@
   file:
     path: logformat.conf
     state: absent
-  remote_user: root
 
 - name: make sure the log dir exists
   file:
-    path: "/var/log/nginx/{{ prefix }}"
+    path: "/var/log/nginx/{{ nginx_prefix }}"
     state: directory
-  remote_user: root
 
 - name: Create the nginx vhost
   template:
     src: "{{ nginx_vhost_template }}"
-    dest: /etc/nginx/sites-available/{{ prefix }}.conf
-    owner: "{{ application_user }}"
-    group: "{{ application_user }}"
+    dest: /etc/nginx/sites-available/{{ nginx_prefix }}.conf
     mode: 0644
-  remote_user: root
   notify: reload nginx
 
 - name: Enable the virtual host
   file:
-    src: /etc/nginx/sites-available/{{ prefix }}.conf
-    dest: /etc/nginx/sites-enabled/{{ prefix }}.conf
-    owner: "{{ application_user }}"
-    group: "{{ application_user }}"
+    src: /etc/nginx/sites-available/{{ nginx_prefix }}.conf
+    dest: /etc/nginx/sites-enabled/{{ nginx_prefix }}.conf
     state: link
-  remote_user: root
   notify: reload nginx

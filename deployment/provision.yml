@@ -11,10 +11,8 @@
     redis_enabled: yes
     memcached_enabled: no
     nodejs_enabled: yes
-    django_enabled: yes
   roles:
     - base
     - app_user
     - postgres
-    - ssl
     - nginx

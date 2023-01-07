@@ -1,74 +1,69 @@
-upstream {{ prefix }}_django {
-    server 127.0.0.1:{{ uwsgi_port }};
+# {{ ansible_managed }}
+
+upstream {{ nginx_prefix }}_django {
+{% for replica in backend_ports.results %}
+    server 127.0.0.1:{{ replica.container['HostConfig']['PortBindings']['8000/tcp'][0]['HostPort'] }};
+{% endfor %}
 }
 
 # redirect non-ssl to ssl
 server {
     listen 80;
-    server_name {{ hostnames|join(' ') }};
-    return 301 https://{{ hostnames[0] }}$request_uri;
+    server_name {{ nginx_hostnames|join(' ') }};
+    server_tokens off;
+    return 301 https://{{ nginx_hostnames[0] }}$request_uri;
 }
 
 
 # ssl
 server {
-    listen       443;
-    server_name  {{ hostnames|join(' ') }};
-    error_log /var/log/nginx/{{ prefix }}/error.log warn;
-    access_log  /var/log/nginx/{{ prefix }}/access.log main;
+    listen       443 http2 ssl;
+    server_name  {{ nginx_hostnames|join(' ') }};
+    server_tokens off;
+    error_log /var/log/nginx/{{ nginx_prefix }}/error.log warn;
+    access_log  /var/log/nginx/{{ nginx_prefix }}/access.log main;
 
     charset utf-8;
-    root {{ root }};
 
-    ssl on;
-    ssl_certificate /etc/ssl/certs/{{ project_name }}.crt;
-    ssl_certificate_key /etc/ssl/private/wildcard.{{ project_name }}.key;
-    ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:SSL:50m;
+    ssl_session_tickets off;
+
+    ssl_ciphers "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384";
+    ssl_prefer_server_ciphers off;
     ssl_dhparam /etc/ssl/certs/dhparam.pem;
-    ssl_prefer_server_ciphers on;
-    ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4 ";
 
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+    ssl_certificate /etc/letsencrypt/live/{{ nginx_hostnames[0] }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ nginx_hostnames[0] }}/privkey.pem;
 
-    set $maintenance off;
-    if (-f $document_root/maintenance.html ) {
-        set $maintenance on;
-    }
-    if ($remote_addr = "{{ home_ip }}") {
-        set $maintenance off;
-    }
-    if ($maintenance = on) {
-        return 503;
-    }
+    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains";
+
+{% for extra in django_app_nginx_extra_directives %}
+    {{ extra }};
+{% endfor %}
 
     location ~ /\.ht {
         deny all;
     }
 
     location / {
-        uwsgi_pass {{ prefix }}_django;
-        include uwsgi_params;
+        proxy_pass_header Server;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_set_header X-Scheme $scheme;
+        proxy_connect_timeout 300s;
+        proxy_read_timeout 300s;
+
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_pass_request_headers on;
+        proxy_pass http://{{ nginx_prefix }}_django;
     }
 
-    location /static/ {
-        expires max;
-        access_log  /var/log/nginx/static.{{ prefix }}.access.log;
-    }
-
-    location /media/ {
-        expires 30d;
-        access_log  /var/log/nginx/media.{{ prefix }}.access.log;
-    }
-
-    location /protected {
-        internal;
-        access_log  /var/log/nginx/private.{{ prefix }}.access.log;
-        alias {{ root }}private_media;
-    }
-
-    error_page 503 @maintenance;
-    location @maintenance {
-        rewrite ^(.*)$ /maintenance.html break;
-        internal;
-    }
+{% for tpl in django_app_nginx_include_templates %}
+    {% include tpl %}
+{% endfor %}
 }
