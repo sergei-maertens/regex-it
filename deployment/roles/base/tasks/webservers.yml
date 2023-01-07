@@ -11,7 +11,7 @@
     src: "nginx/{{ item }}"
     dest: "/etc/nginx/{{ item }}"
   with_items:
-    - nginx.conf
+    - conf.d/http.conf
     - conf.d/client_body.conf
     - conf.d/proxy.conf
   notify:

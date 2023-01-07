@@ -12,15 +12,14 @@ server {
 
 # ssl
 server {
-    listen       443;
+    listen       443 http2 ssl;
     server_name  {{ nginx_hostname }};
 
     error_log /var/log/nginx/{{ nginx_prefix }}/error.log warn;
-    access_log  /var/log/nginx/{{ nginx_prefix }}/access.log main;
+    access_log  /var/log/nginx/{{ nginx_prefix }}/access.log;
 
     charset utf-8;
 
-    ssl on;
     ssl_certificate /etc/ssl/certs/regex.crt;
     ssl_certificate_key /etc/ssl/private/wildcard.regex.key;
     ssl_protocols TLSv1.2 TLSv1.1 TLSv1;

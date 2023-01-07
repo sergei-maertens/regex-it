@@ -14,7 +14,7 @@ bigstorage_mount_path: /mnt/bigstorage
 
 # databases
 postgresql_enabled: yes
-postgresql_version: 10
+postgresql_version: 12
 postgresql_packages:
   - postgresql
   - postgresql-client

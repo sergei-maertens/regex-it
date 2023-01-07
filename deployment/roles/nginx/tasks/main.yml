@@ -1,10 +1,5 @@
 ---
 
-- name: Define log format
-  file:
-    path: logformat.conf
-    state: absent
-
 - name: make sure the log dir exists
   file:
     path: "/var/log/nginx/{{ nginx_prefix }}"

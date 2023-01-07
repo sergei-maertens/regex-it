@@ -1,5 +1,7 @@
 ---
 
+# TODO: replace roles with https://github.com/sergei-maertens/ansible-collection-mailservers
+
 - name: Set up mail server
   hosts: production
   remote_user: root

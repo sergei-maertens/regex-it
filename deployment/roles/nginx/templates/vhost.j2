@@ -21,7 +21,7 @@ server {
     server_name  {{ nginx_hostnames|join(' ') }};
     server_tokens off;
     error_log /var/log/nginx/{{ nginx_prefix }}/error.log warn;
-    access_log  /var/log/nginx/{{ nginx_prefix }}/access.log main;
+    access_log  /var/log/nginx/{{ nginx_prefix }}/access.log;
 
     charset utf-8;
 

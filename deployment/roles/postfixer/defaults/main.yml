@@ -12,4 +12,4 @@ postfixer_db_password: postfix
 
 postfixer_hostname: postfixer.example.com
 
-postfixer_postgresql_version: 10
+postfixer_postgresql_version: 12
