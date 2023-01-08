@@ -61,7 +61,15 @@ DATABASES = {
         "PASSWORD": config("DB_PASSWORD", "regex"),
         "HOST": config("DB_HOST", "localhost"),
         "PORT": config("DB_PORT", 5432),
-    }
+    },
+    "mysql-replica": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": config("MYSQL_REPLICA_DB_NAME", ""),
+        "USER": config("MYSQL_REPLICA_DB_USER", "mysql"),
+        "PASSWORD": config("MYSQL_REPLICA_DB_PASSWORD", "mysql"),
+        "HOST": config("MYSQL_REPLICA_DB_HOST", "localhost"),
+        "PORT": config("MYSQL_REPLICA_DB_PORT", 3306),
+    },
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
