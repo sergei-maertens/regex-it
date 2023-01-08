@@ -1,5 +1,6 @@
 # Core python libraries
 cryptography
+mysqlclient
 Pillow  # handle images
 psycopg2  # database driver
 pydantic

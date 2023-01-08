@@ -151,6 +151,10 @@ mccabe==0.7.0
     #   pylint
 mypy-extensions==0.4.3
     # via black
+mysqlclient==2.1.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 odfpy==1.4.1
     # via
     #   -c requirements/base.txt

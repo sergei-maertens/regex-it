@@ -231,6 +231,10 @@ mypy-extensions==0.4.3
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   black
+mysqlclient==2.1.1
+    # via
+    #   -c requirements/ci.txt
+    #   -r requirements/ci.txt
 odfpy==1.4.1
     # via
     #   -c requirements/ci.txt
