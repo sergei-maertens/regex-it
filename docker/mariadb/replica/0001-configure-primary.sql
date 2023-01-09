@@ -1,0 +1,8 @@
+CHANGE MASTER TO
+  MASTER_HOST='primary',
+  MASTER_USER='replication_user',
+  MASTER_PASSWORD='supersecret',
+  MASTER_PORT=3306,
+  MASTER_CONNECT_RETRY=10;
+
+START SLAVE;
