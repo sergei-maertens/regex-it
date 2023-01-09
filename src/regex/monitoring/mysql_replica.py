@@ -12,12 +12,12 @@ def _get_cursor():
 
 
 class ReplicaStatus(BaseModel):
-    Slave_IO_State: str
+    Slave_IO_State: Optional[str]
     Master_Host: str
     Master_Log_File: str
     Read_Master_Log_Pos: int
-    Slave_IO_Running: Literal["Yes", "No"]
-    Slave_SQL_Running: Literal["Yes", "No"]
+    Slave_IO_Running: Literal["Yes", "No", "Preparing"]
+    Slave_SQL_Running: Literal["Yes", "No", "Preparing"]
     Seconds_Behind_Master: Optional[int]
     Last_Errno: int
     Last_Error: str
@@ -37,9 +37,8 @@ def get_replica_status() -> ReplicaStatus:
         cursor.execute("show slave status")
         columns = [col[0] for col in cursor.description]
         row = cursor.fetchone()
-    return ReplicaStatus(
-        **dict(zip(columns, row)),
-    )
+    kwargs = dict(zip(columns, row))
+    return ReplicaStatus(**kwargs)
 
 
 class ReplicaStatusView(View):
