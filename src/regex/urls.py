@@ -10,6 +10,7 @@ from regex.invoices.dev_views import InvoicePDFTestView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("portfolio/", include("regex.portfolio.urls")),
+    path("_monitoring/", include("regex.monitoring.urls")),
     path("", include("regex.homepage.urls")),
 ]
 

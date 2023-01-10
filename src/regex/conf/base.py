@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 import sentry_sdk
 
+from .mysql import get_mysql_db_config
 from .utils import config, get_sentry_integrations
 
 # Build paths inside the project, so further paths can be defined relative to
@@ -61,10 +62,15 @@ DATABASES = {
         "PASSWORD": config("DB_PASSWORD", "regex"),
         "HOST": config("DB_HOST", "localhost"),
         "PORT": config("DB_PORT", 5432),
-    }
+    },
+    **get_mysql_db_config(),
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+DATABASE_ROUTERS = [
+    "regex.db_router.MariadbReplicaRouter",
+]
 
 # CACHES = {
 #     "default": {

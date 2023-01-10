@@ -41,6 +41,14 @@ jobs:
         with:
           python-version: '3.9'
 
+      - name: Bring up external services
+        run: |
+          docker-compose -f docker-compose.mariadb.yml up -d
+          until mysql -h 127.0.0.1 -P 3308 -u root -psupersecret  -e ";" ; do
+            sleep 2
+          done
+          echo "mariadb replica up"
+
       - name: Install OS dependencies
         run: |
           sudo apt-get update
@@ -68,6 +76,10 @@ jobs:
           SECRET_KEY: dummy
           DB_USER: postgres
           DB_PASSWORD: ''
+          MYSQL_REPLICA_DB_USER: root
+          MYSQL_REPLICA_DB_PASSWORD: supersecret
+          MYSQL_REPLICA_DB_HOST: 127.0.0.1
+          MYSQL_REPLICA_DB_PORT: '3308'
 
       - name: Publish coverage report
         uses: codecov/codecov-action@v1

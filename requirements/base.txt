@@ -58,6 +58,8 @@ idna==3.4
     # via requests
 markuppy==1.14
     # via tablib
+mysqlclient==2.1.1
+    # via -r requirements/base.in
 odfpy==1.4.1
     # via tablib
 openpyxl==3.0.10
