@@ -15,8 +15,13 @@ HOST_REPLICA = "localhost:3308"  # see docker-compose.mariadb.yml
 if "mysql-replica" in settings.DATABASES:
 
     class ReplicaHealtCheckTests(TestCase):
-        databases = {"mysql-replica"}
+        databases = {"default", "mysql-replica"}
         url = reverse_lazy("monitoring:mysql-replica-status")
+
+        def setUp(self):
+            super().setUp()
+            user = UserFactory.create()
+            self.client.force_login(user=user)
 
         def test_replica_up_and_running(self):
             response = self.client.get(self.url)

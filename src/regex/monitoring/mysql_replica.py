@@ -1,5 +1,6 @@
 from typing import Literal, Optional
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import connections
 from django.http import HttpRequest, JsonResponse
 from django.views import View
@@ -41,7 +42,9 @@ def get_replica_status() -> ReplicaStatus:
     return ReplicaStatus(**kwargs)
 
 
-class ReplicaStatusView(View):
+class ReplicaStatusView(LoginRequiredMixin, View):
+    raise_exception = True
+
     def get(self, request: HttpRequest):
         replica_status = get_replica_status()
         status_code = 200 if replica_status.healthy else 503
