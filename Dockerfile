@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         pkg-config \
         build-essential \
         libpq-dev \
+        libmariadb-dev-compat \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -51,6 +52,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         vim \
         mime-support \
         postgresql-client \
+        mariadb-client \
         gettext \
         # weasyprint deps
         libcairo2 \
