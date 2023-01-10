@@ -1,5 +1,7 @@
+from base64 import b64decode
 from typing import Literal, Optional
 
+from django.contrib.auth import authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import connections
 from django.http import HttpRequest, JsonResponse
@@ -44,6 +46,17 @@ def get_replica_status() -> ReplicaStatus:
 
 class ReplicaStatusView(LoginRequiredMixin, View):
     raise_exception = True
+
+    def dispatch(self, request: HttpRequest):
+        if auth_header := self.request.headers.get("Authorization"):
+            auth = auth_header.split()
+            if auth and auth[0].lower() == "basic" and len(auth) == 2:
+                auth_decoded = b64decode(auth[1].encode("utf-8")).decode("utf-8")
+                userid, _, password = auth_decoded.partition(":")
+                user = authenticate(request=request, username=userid, password=password)
+                if user is not None:
+                    request.user = user
+        return super().dispatch(request)
 
     def get(self, request: HttpRequest):
         replica_status = get_replica_status()
