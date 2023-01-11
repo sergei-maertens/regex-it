@@ -64,6 +64,14 @@
         group: "{{ application_user }}"
         mode: u=rwx,g=rwx,o=
 
+    # Note: MySQL must be bound to 0.0.0.0 for this to work
+    - name: Allow containers to connect to MySQL
+      community.general.ufw:
+        rule: allow
+        direction: in
+        src: 172.0.0.0/11
+        to_port: '3306'
+
   roles:
 
     - name: Deploy django app docker containers
@@ -120,12 +128,20 @@
             mount: "/app/secrets"
             hostPath: "{{ secrets_dir }}"
             mode: "ro"
+          - name: "{{ django_app_docker_name_prefix }}-mysqlsocket"
+            mount: "/var/run/mysqld/"
+            hostPath: "/var/run/mysqld/"
+            mode: "rw"
 
         django_app_docker_extra_env:
           ENVIRONMENT: "{{ target }}"
           BASE_URL: "https://{{ django_app_docker_domain }}"
           TRANSIP_AUTH_USERNAME: "{{ transip_username }}"
           TRANSIP_PRIVATE_KEY_FILE: "/app/secrets/transip_privkey.pem"
+          MYSQL_REPLICA_DB_NAME: ""
+          MYSQL_REPLICA_DB_USER: "{{ mysql_replica.username }}"
+          MYSQL_REPLICA_DB_PASSWORD: "{{ mysql_replica.password }}"
+          MYSQL_REPLICA_DB_HOST: "172.17.0.1"  # docker0 interface
 
     - name: Install Let's Encrypt Certificates
       role: geerlingguy.certbot
