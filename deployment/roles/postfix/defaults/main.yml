@@ -1,6 +1,6 @@
 ---
 
-postfix_mydomain: "{{ ansible_hostname }}"
+postfix_mydomain: "{{ inventory_hostname }}"
 postfix_extra_local_networks: []
 postfix_inet_interfaces:
   - all
