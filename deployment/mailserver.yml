@@ -25,14 +25,14 @@
     nginx_proxy_port: "{{ postfixer_port }}"
     nginx_hostname: postfixer.regex-it.nl
 
-  collections:
-    - sergei_maertens.mailservers
+  # collections:
+  #   - sergei_maertens.mailservers
 
   roles:
     # - base
     # - geerlingguy.docker
     # - postgres
-    - postfixer
+    # - postfixer
     # - nginx
     - role: postfix
       tags:
