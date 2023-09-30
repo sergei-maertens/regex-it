@@ -1,5 +1,10 @@
 ---
 
+# DISCLAIMER
+#
+# This is outdated. Please see the regexit-infra repository instead.
+#
+
 - name: Set up Zabbix for monitoring
   hosts: monitoring
   remote_user: root

@@ -25,23 +25,25 @@
     nginx_proxy_port: "{{ postfixer_port }}"
     nginx_hostname: postfixer.regex-it.nl
 
-  # collections:
-  #   - sergei_maertens.mailservers
+  collections:
+    - sergei_maertens.mailservers
 
   roles:
     # - base
     # - geerlingguy.docker
     # - postgres
-    # - postfixer
-    # - nginx
-    - role: postfix
-      tags:
-        - mail
-    - role: dovecot
+    - role: postfixer
       vars:
-        dovecot_db_host: "localhost"
-        dovecot_db_name: "{{ db_name }}"
-        dovecot_db_user: "{{ db_user }}"
-        dovecot_db_password: "{{ db_password }}"
-      tags:
-        - mail
+        postfixer_port: 9010
+    # - nginx
+    # - role: postfix
+    #   tags:
+    #     - mail
+    # - role: dovecot
+    #   vars:
+    #     dovecot_db_host: "localhost"
+    #     dovecot_db_name: "{{ db_name }}"
+    #     dovecot_db_user: "{{ db_user }}"
+    #     dovecot_db_password: "{{ db_password }}"
+    #   tags:
+    #     - mail
