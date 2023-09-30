@@ -2,6 +2,7 @@
 cryptography
 mysqlclient
 Pillow  # handle images
+playwright
 psycopg2  # database driver
 pydantic
 pytz  # handle timezones

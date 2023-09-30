@@ -122,6 +122,11 @@ fonttools[woff]==4.37.4
     #   weasyprint
 freezegun==1.2.2
     # via -r requirements/test-tools.in
+greenlet==2.0.2
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   playwright
 html5lib==1.1
     # via
     #   -c requirements/base.txt
@@ -176,6 +181,10 @@ platformdirs==2.5.2
     # via
     #   black
     #   pylint
+playwright==1.38.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 psycopg2==2.9.4
     # via
     #   -c requirements/base.txt
@@ -196,6 +205,11 @@ pydyf==0.5.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   weasyprint
+pyee==9.0.4
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   playwright
 pyflakes==2.5.0
     # via flake8
 pylint==2.15.4
@@ -288,6 +302,7 @@ typing-extensions==4.4.0
     #   black
     #   django-countries
     #   pydantic
+    #   pyee
     #   pylint
 urllib3==1.26.12
     # via
