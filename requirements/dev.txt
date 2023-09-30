@@ -37,7 +37,7 @@ build==0.8.0
     # via pip-tools
 bump2version==1.0.1
     # via -r requirements/dev.in
-certifi==2022.9.24
+certifi==2023.7.22
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -66,7 +66,7 @@ coverage==4.5.4
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-cryptography==38.0.1
+cryptography==41.0.4
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -97,7 +97,7 @@ dill==0.3.5.1
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   pylint
-django==3.2.16
+django==3.2.21
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -179,7 +179,7 @@ freezegun==1.2.2
     #   -r requirements/ci.txt
 gitdb==4.0.9
     # via gitpython
-gitpython==3.1.29
+gitpython==3.1.37
     # via -r requirements/dev.in
 html5lib==1.1
     # via
@@ -256,7 +256,7 @@ pathspec==0.10.3
     #   black
 pep517==0.13.0
     # via build
-pillow==9.2.0
+pillow==10.0.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -442,7 +442,7 @@ urllib3==1.26.12
     #   -r requirements/ci.txt
     #   requests
     #   sentry-sdk
-uwsgi==2.0.20
+uwsgi==2.0.22
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
