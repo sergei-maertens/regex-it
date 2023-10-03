@@ -180,7 +180,7 @@ playwright==1.38.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-psycopg2==2.9.4
+psycopg2==2.9.9
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt

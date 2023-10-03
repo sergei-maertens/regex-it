@@ -273,7 +273,7 @@ playwright==1.38.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-psycopg2==2.9.4
+psycopg2==2.9.9
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
