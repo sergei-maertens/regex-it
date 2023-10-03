@@ -6,7 +6,7 @@
 #
 alabaster==0.7.12
     # via sphinx
-asgiref==3.5.2
+asgiref==3.7.2
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -98,7 +98,7 @@ dill==0.3.5.1
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   pylint
-django==3.2.21
+django==4.2.5
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -343,7 +343,6 @@ pytz==2022.4
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   babel
-    #   django
 pyyaml==6.0
     # via
     #   -c requirements/ci.txt
@@ -440,6 +439,7 @@ typing-extensions==4.4.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
+    #   asgiref
     #   astroid
     #   black
     #   django-countries

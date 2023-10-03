@@ -14,7 +14,7 @@ rules
 WeasyPrint
 
 # Framework libraries
-Django~=3.2
+Django~=4.2
 django-autoslug
 django-countries
 django-import-export

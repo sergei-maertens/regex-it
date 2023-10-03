@@ -10,7 +10,7 @@ from django.db.models import F, Max, Sum
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from privates.fields import PrivateMediaFileField
 

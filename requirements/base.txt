@@ -4,7 +4,7 @@
 #
 #    ./bin/compile_dependencies.sh
 #
-asgiref==3.5.2
+asgiref==3.7.2
     # via
     #   django
     #   django-countries
@@ -28,7 +28,7 @@ defusedxml==0.7.1
     # via odfpy
 diff-match-patch==20200713
     # via django-import-export
-django==3.2.21
+django==4.2.5
     # via
     #   -r requirements/base.in
     #   django-import-export
@@ -90,9 +90,7 @@ python-decouple==3.6
 python-dotenv==0.21.0
     # via -r requirements/base.in
 pytz==2022.4
-    # via
-    #   -r requirements/base.in
-    #   django
+    # via -r requirements/base.in
 pyyaml==6.0
     # via tablib
 requests==2.31.0
@@ -115,6 +113,7 @@ tinycss2==1.1.1
     #   weasyprint
 typing-extensions==4.4.0
     # via
+    #   asgiref
     #   django-countries
     #   pydantic
     #   pyee
