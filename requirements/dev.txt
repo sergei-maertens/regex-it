@@ -451,7 +451,7 @@ typing-extensions==4.4.0
     #   pydantic
     #   pyee
     #   pylint
-urllib3==1.26.12
+urllib3==2.0.6
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -487,7 +487,7 @@ webtest==3.0.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   django-webtest
-wheel==0.37.1
+wheel==0.41.2
     # via pip-tools
 wrapt==1.14.1
     # via

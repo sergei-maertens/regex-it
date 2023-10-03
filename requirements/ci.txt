@@ -304,7 +304,7 @@ typing-extensions==4.4.0
     #   pydantic
     #   pyee
     #   pylint
-urllib3==1.26.12
+urllib3==2.0.6
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt

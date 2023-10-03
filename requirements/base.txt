@@ -120,7 +120,7 @@ typing-extensions==4.4.0
     #   django-countries
     #   pydantic
     #   pyee
-urllib3==1.26.12
+urllib3==2.0.6
     # via
     #   requests
     #   sentry-sdk
