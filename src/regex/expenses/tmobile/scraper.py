@@ -45,7 +45,9 @@ async def browser_page():
             await browser.close()
 
 
-async def login(page: Page, email: str, password: str, on_mfa_prompt: Callable[[], str]):
+async def login(
+    page: Page, email: str, password: str, on_mfa_prompt: Callable[[], str]
+):
     await page.goto(LOGIN_URL)
     decline_cookie_btn = page.get_by_role(
         "button", name="Nee, ik wil geen optimale ervaring"
