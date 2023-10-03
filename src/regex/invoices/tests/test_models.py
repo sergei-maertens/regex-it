@@ -1,8 +1,8 @@
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from decimal import Decimal
 
 from django.test import TestCase, override_settings
-from django.utils import timezone
+from django.utils.timezone import now
 
 from freezegun import freeze_time
 
@@ -112,7 +112,7 @@ class InvoiceTests(TestCase):
             invoice1.generate_invoice_number()
             invoice2.generate_invoice_number()
 
-            this_year = str(timezone.now().year)
+            this_year = str(now().year)
 
         self.assertEqual(invoice1.invoice_number, "201500001".format(this_year))
         self.assertEqual(invoice2.invoice_number, "201500002".format(this_year))

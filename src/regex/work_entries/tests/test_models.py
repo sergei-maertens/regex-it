@@ -1,8 +1,7 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from decimal import Decimal
 
 from django.test import TestCase
-from django.utils import timezone
 
 from .factories import WorkEntryFactory
 
