@@ -5,7 +5,9 @@
 #    ./bin/compile_dependencies.sh
 #
 asgiref==3.5.2
-    # via django
+    # via
+    #   django
+    #   django-countries
 brotli==1.0.9
     # via fonttools
 certifi==2023.7.22
@@ -33,17 +35,17 @@ django==3.2.21
     #   django-privates
     #   django-sendfile2
     #   django-solo
-django-autoslug==1.9.8
+django-autoslug==1.9.9
     # via -r requirements/base.in
-django-countries==7.4.2
+django-countries==7.5.1
     # via -r requirements/base.in
-django-import-export==2.9.0
+django-import-export==3.3.1
     # via -r requirements/base.in
-django-privates==1.4.0
+django-privates==2.0.0.post0
     # via -r requirements/base.in
 django-sendfile2==0.7.0
     # via django-privates
-django-solo==2.0.0
+django-solo==2.1.0
     # via -r requirements/base.in
 et-xmlfile==1.1.0
     # via openpyxl
@@ -105,7 +107,7 @@ six==1.16.0
     #   python-dateutil
 sqlparse==0.4.4
     # via django
-tablib[html,ods,xls,xlsx,yaml]==3.2.1
+tablib[html,ods,xls,xlsx,yaml]==3.5.0
     # via django-import-export
 tinycss2==1.1.1
     # via

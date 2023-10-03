@@ -9,6 +9,7 @@ asgiref==3.5.2
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   django
+    #   django-countries
 astroid==2.12.11
     # via pylint
 beautifulsoup4==4.11.1
@@ -72,19 +73,19 @@ django==3.2.21
     #   django-privates
     #   django-sendfile2
     #   django-solo
-django-autoslug==1.9.8
+django-autoslug==1.9.9
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-django-countries==7.4.2
+django-countries==7.5.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-django-import-export==2.9.0
+django-import-export==3.3.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-django-privates==1.4.0
+django-privates==2.0.0.post0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -93,7 +94,7 @@ django-sendfile2==0.7.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   django-privates
-django-solo==2.0.0
+django-solo==2.1.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -269,7 +270,7 @@ sqlparse==0.4.4
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   django
-tablib[html,ods,xls,xlsx,yaml]==3.2.1
+tablib[html,ods,xls,xlsx,yaml]==3.5.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
