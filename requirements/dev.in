@@ -12,7 +12,6 @@ isort[colors]
 
 # Debug tooling
 django-debug-toolbar
-ddt-api-calls
 django-extensions
 
 # Documentation
