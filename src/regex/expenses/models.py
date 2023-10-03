@@ -1,4 +1,6 @@
 import hashlib
+from contextlib import nullcontext
+from typing import BinaryIO
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -44,11 +46,18 @@ class Invoice(models.Model):
     def __str__(self):
         return self.identifier
 
+    @staticmethod
+    def calculate_hash(filelike: BinaryIO) -> str:
+        return hashlib.md5(filelike.read()).hexdigest()
+
     def save(self, *args, **kwargs):
-        if not self.md5_hash:
-            with self.pdf.open("rb") as file:
-                self.md5_hash = hashlib.md5(file.read()).hexdigest()
-        super().save(*args, **kwargs)
+        cm = self.pdf.open("rb") if not self.md5_hash else nullcontext()
+        with cm as file:
+            if not self.md5_hash:
+                assert file is not None
+                self.md5_hash = self.calculate_hash(file)
+
+            super().save(*args, **kwargs)
 
 
 class ExpensesConfigurationManager(models.Manager):

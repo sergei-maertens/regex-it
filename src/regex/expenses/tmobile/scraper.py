@@ -1,18 +1,33 @@
-#!/usr/bin/env python
 import asyncio
 import os
 from contextlib import asynccontextmanager
+from pathlib import Path
+from typing import Callable, Protocol
 
 from playwright.async_api import Page, async_playwright, expect
 
 HEADLESS = "PLAYWRIGHT_NO_HEADLESS" not in os.environ
-EMAIL = os.getenv("EMAIL", "")
-PASSWORD = os.getenv("PASSWORD", "")
 
 BASE = "https://www.odido.nl"
 LOGIN_URL = f"{BASE}/login"
 INVOICES_URL = f"{BASE}/my/facturen"
 OVERVIEW_URL = f"{BASE}/my/abonnement-overzicht"
+
+
+class OnInvoiceDownload(Protocol):
+    async def __call__(self, filepath: Path, comments: str) -> None:  # pragma: no cover
+        ...
+
+
+async def main(
+    email: str,
+    password: str,
+    on_mfa_prompt: Callable[[], str],
+    on_invoice_download: OnInvoiceDownload,
+):
+    async with browser_page() as page:
+        await login(page, email, password, on_mfa_prompt)
+        await download_invoices(page, on_invoice_download)
 
 
 @asynccontextmanager
@@ -30,7 +45,7 @@ async def browser_page():
             await browser.close()
 
 
-async def login(page: Page):
+async def login(page: Page, email: str, password: str, on_mfa_prompt: Callable[[], str]):
     await page.goto(LOGIN_URL)
     decline_cookie_btn = page.get_by_role(
         "button", name="Nee, ik wil geen optimale ervaring"
@@ -40,9 +55,9 @@ async def login(page: Page):
 
     # fill out credentials
     email_input = page.get_by_label("E-mailadres")
-    await email_input.fill(EMAIL)
+    await email_input.fill(email)
     password_input = page.get_by_label("Wachtwoord", exact=True)
-    await password_input.fill(PASSWORD)
+    await password_input.fill(password)
 
     # hit login button and prompt for 2FA code
     await page.get_by_role("button", name="Inloggen", exact=True).click()
@@ -52,7 +67,7 @@ async def login(page: Page):
 
     mfa_textboxes = page.locator('input[name="verification-code"]')
     await expect(mfa_textboxes).to_have_count(4)
-    mfa_code = input("Enter MFA code: ").strip()
+    mfa_code = on_mfa_prompt().strip()
     for textbox, number in zip(await mfa_textboxes.all(), mfa_code):
         await textbox.fill(number)
 
@@ -65,7 +80,7 @@ def clean_text(text: str) -> str:
     return "\n".join(cleaned_parts)
 
 
-async def go_to_invoices(page: Page):
+async def download_invoices(page: Page, on_invoice_download: OnInvoiceDownload) -> None:
     await page.goto(INVOICES_URL)
     await expect(page.get_by_text("Betaalde facturen")).to_be_visible(timeout=30_000)
 
@@ -79,15 +94,6 @@ async def go_to_invoices(page: Page):
         async with page.expect_download() as download_info:
             await download_link.click()
         download = await download_info.value
-        print(invoice_comments)
-        await download.save_as("/tmp/" + download.suggested_filename)
-
-
-async def main():
-    async with browser_page() as page:
-        await login(page)
-        await go_to_invoices(page)
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
+        download_path = await download.path()
+        assert download_path
+        await on_invoice_download(download_path, invoice_comments)

@@ -6,6 +6,7 @@ from django.db import transaction
 from dateutil.relativedelta import relativedelta
 
 from ...models import ExpensesConfiguration, Invoice
+from ...tmobile.service import InvoiceFetcher as TMobileInvoiceFetcher
 from ...transip.service import InvoiceFetcher as TransipInvoiceFetcher
 
 
@@ -14,6 +15,7 @@ class Command(BaseCommand):
     output_transaction = True
 
     def add_arguments(self, parser) -> None:
+        parser.add_argument("--previous-quarter", action="store_true")
         parser.add_argument("--current-quarter", action="store_true")
         parser.add_argument(
             "--start-date",
@@ -30,27 +32,45 @@ class Command(BaseCommand):
     def handle(self, **options) -> None:
         start_date = options["start_date"]
         end_date = options["end_date"]
+        previous_quarter = options["previous_quarter"]
         current_quarter = options["current_quarter"]
 
-        if current_quarter and (start_date or end_date):
+        if (current_quarter or previous_quarter) and (start_date or end_date):
             raise CommandError(
-                "--current-quarter is mutually exclusive with start or end date."
+                "--current-quarter/--previousquarter is mutually exclusive with "
+                "start or end date."
             )
-        elif not current_quarter and not (start_date and end_date):
+        elif not (current_quarter or previous_quarter) and not (
+            start_date and end_date
+        ):
             raise CommandError(
                 "Both --start-date and --end-date are required if one option is used."
             )
 
-        if current_quarter:
-            today = date.today()
+        today = date.today()
+        if previous_quarter:
+            months_to_subtract = (today.month - 1) % 3 + 3
+            start_date = (today - relativedelta(months=months_to_subtract)).replace(
+                day=1
+            )
+            end_date = start_date + relativedelta(months=3, days=-1)
+        elif current_quarter:
             months_to_subtract = (today.month - 1) % 3
             start_date = (today - relativedelta(months=months_to_subtract)).replace(
                 day=1
             )
             end_date = start_date + relativedelta(months=3, days=-1)
 
+        self.stdout.write(
+            f"Looking for invoices between {start_date.isoformat()} "
+            f"and {end_date.isoformat()}"
+        )
+
         config = ExpensesConfiguration.get_solo()
-        fetchers = [TransipInvoiceFetcher]
+        fetchers = [
+            TransipInvoiceFetcher,
+            TMobileInvoiceFetcher,
+        ]
         counter = 0
 
         for fetcher_cls in fetchers:
@@ -59,6 +79,8 @@ class Command(BaseCommand):
             )
             with fetcher:
                 _creditor = fetcher.get_default_creditor()
+                self.stdout.write(f"Getting invoices for: {_creditor}")
+
                 invoices = fetcher()
                 # only keep invoices that don't exist yet
                 _identifiers = [invoice.identifier for invoice in invoices]
@@ -71,7 +93,12 @@ class Command(BaseCommand):
                     if invoice.identifier in existing_identifiers:
                         continue
                     invoice.creditor = _creditor
-                    invoice.save()
+                    try:
+                        invoice.save()
+                    except Exception:
+                        import bpdb
+
+                        bpdb.set_trace()
                     counter += 1
 
         if counter == 0:
