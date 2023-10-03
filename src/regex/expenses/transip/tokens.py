@@ -27,7 +27,7 @@ def create_access_token(expiration: str = "30 minutes") -> str:
         "nonce": nonce,
         "read_only": True,
         "expiration_time": expiration,
-        "label": f"website-expenses-integration-{get_random_string()}",
+        "label": f"website-expenses-integration-{get_random_string(length=12)}",
         "global_key": True,
     }
 
