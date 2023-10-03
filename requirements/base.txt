@@ -29,14 +29,11 @@ diff-match-patch==20200713
 django==3.2.21
     # via
     #   -r requirements/base.in
-    #   django-choices
     #   django-import-export
     #   django-privates
     #   django-sendfile2
     #   django-solo
 django-autoslug==1.9.8
-    # via -r requirements/base.in
-django-choices==1.7.2
     # via -r requirements/base.in
 django-countries==7.4.2
     # via -r requirements/base.in
@@ -104,7 +101,6 @@ sentry-sdk==1.31.0
     # via -r requirements/base.in
 six==1.16.0
     # via
-    #   django-choices
     #   html5lib
     #   python-dateutil
 sqlparse==0.4.4

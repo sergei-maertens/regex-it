@@ -7,7 +7,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from autoslug.fields import AutoSlugField
 from django_countries.fields import CountryField
-from djchoices import ChoiceItem, DjangoChoices
 
 
 class Contact(models.Model):
@@ -74,9 +73,9 @@ class Client(models.Model):
         return self.name
 
 
-class TaxRates(DjangoChoices):
-    low = ChoiceItem(Decimal("0.06"), _("low"))
-    high = ChoiceItem(Decimal("0.21"), _("high"))
+class TaxRates(Decimal, models.Choices):
+    low = Decimal("0.06"), _("low")
+    high = Decimal("0.21"), _("high")
 
 
 class Project(models.Model):

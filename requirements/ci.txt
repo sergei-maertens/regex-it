@@ -68,16 +68,11 @@ django==3.2.21
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-    #   django-choices
     #   django-import-export
     #   django-privates
     #   django-sendfile2
     #   django-solo
 django-autoslug==1.9.8
-    # via
-    #   -c requirements/base.txt
-    #   -r requirements/base.txt
-django-choices==1.7.2
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -264,7 +259,6 @@ six==1.16.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-    #   django-choices
     #   html5lib
     #   python-dateutil
     #   requests-mock

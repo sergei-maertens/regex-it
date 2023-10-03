@@ -102,7 +102,6 @@ django==3.2.21
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   ddt-api-calls
-    #   django-choices
     #   django-debug-toolbar
     #   django-extensions
     #   django-import-export
@@ -110,10 +109,6 @@ django==3.2.21
     #   django-sendfile2
     #   django-solo
 django-autoslug==1.9.8
-    # via
-    #   -c requirements/ci.txt
-    #   -r requirements/ci.txt
-django-choices==1.7.2
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -377,7 +372,6 @@ six==1.16.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-    #   django-choices
     #   html5lib
     #   python-dateutil
     #   requests-mock

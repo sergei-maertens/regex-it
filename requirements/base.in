@@ -16,7 +16,6 @@ WeasyPrint
 # Framework libraries
 Django~=3.2
 django-autoslug
-django-choices
 django-countries
 django-import-export
 django-solo
