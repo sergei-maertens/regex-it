@@ -14,7 +14,11 @@ class CreditorAdmin(admin.ModelAdmin):
 
 @admin.register(Invoice)
 class InvoiceAdmin(PrivateMediaMixin, admin.ModelAdmin):
-    list_display = ("identifier", "date", "amount", "creditor")
+    list_display = ("identifier", "date", "amount", "creditor", "review_required")
+    list_filter = (
+        "review_required",
+        "creditor",
+    )
     list_select_related = ("creditor",)
     search_fields = ("identifier",)
     date_hierarchy = "date"

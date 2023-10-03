@@ -1,3 +1,7 @@
+import hashlib
+from contextlib import nullcontext
+from typing import BinaryIO
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -30,6 +34,10 @@ class Invoice(models.Model):
         on_delete=models.SET_NULL,
         verbose_name=_("creditor"),
     )
+    # for automatic generation -> post processing & metadata
+    md5_hash = models.CharField(_("MD5 file hash"), max_length=32, blank=True)
+    notes = models.TextField(_("notes"), blank=True)
+    review_required = models.BooleanField(_("manual review required"), default=False)
 
     class Meta:
         verbose_name = _("invoice")
@@ -37,6 +45,19 @@ class Invoice(models.Model):
 
     def __str__(self):
         return self.identifier
+
+    @staticmethod
+    def calculate_hash(filelike: BinaryIO) -> str:
+        return hashlib.md5(filelike.read()).hexdigest()
+
+    def save(self, *args, **kwargs):
+        cm = self.pdf.open("rb") if not self.md5_hash else nullcontext()
+        with cm as file:
+            if not self.md5_hash:
+                assert file is not None
+                self.md5_hash = self.calculate_hash(file)
+
+            super().save(*args, **kwargs)
 
 
 class ExpensesConfigurationManager(models.Manager):
@@ -55,6 +76,14 @@ class ExpensesConfiguration(SingletonModel):
         null=True,
         blank=True,
         verbose_name=_("TransIP creditor"),
+    )
+    tmobile_creditor = models.OneToOneField(
+        Creditor,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name=_("T-Mmobile creditor"),
     )
 
     objects = ExpensesConfigurationManager()

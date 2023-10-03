@@ -386,6 +386,12 @@ TRANSIP_PRIVATE_KEY = (
 )
 TRANSIP_AUTH_USERNAME = config("TRANSIP_AUTH_USERNAME", default="")
 
+#
+# TMobile integration
+#
+TMOBILE_EMAIL = config("TMOBILE_EMAIL", default="")
+TMOBILE_PASSWORD = config("TMOBILE_PASSWORD", default="")
+
 ##############################
 #                            #
 # 3RD PARTY LIBRARY SETTINGS #
