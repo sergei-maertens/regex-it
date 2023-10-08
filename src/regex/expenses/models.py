@@ -85,5 +85,13 @@ class ExpensesConfiguration(SingletonModel):
         blank=True,
         verbose_name=_("T-Mmobile creditor"),
     )
+    kpn_creditor = models.OneToOneField(
+        Creditor,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name=_("KPN creditor"),
+    )
 
     objects = ExpensesConfigurationManager()

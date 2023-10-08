@@ -5,6 +5,7 @@ from django.db import transaction
 
 from dateutil.relativedelta import relativedelta
 
+from ...kpn.service import InvoiceFetcher as KPNInvoiceFetcher
 from ...models import ExpensesConfiguration, Invoice
 from ...tmobile.service import InvoiceFetcher as TMobileInvoiceFetcher
 from ...transip.service import InvoiceFetcher as TransipInvoiceFetcher
@@ -68,8 +69,9 @@ class Command(BaseCommand):
 
         config = ExpensesConfiguration.get_solo()
         fetchers = [
-            TransipInvoiceFetcher,
-            TMobileInvoiceFetcher,
+            # TransipInvoiceFetcher,
+            # TMobileInvoiceFetcher,
+            KPNInvoiceFetcher,
         ]
         counter = 0
 
