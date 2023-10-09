@@ -2,9 +2,15 @@
 
 
 {% block content %}
-<form action="." method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" />
-</form>
+<div style="padding: 1em;">
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+
+        <p>
+            <br>
+            <input type="submit" />
+        </p>
+    </form>
+</div>
 {% endblock %}
