@@ -69,8 +69,8 @@ class Command(BaseCommand):
 
         config = ExpensesConfiguration.get_solo()
         fetchers = [
-            # TransipInvoiceFetcher,
-            # TMobileInvoiceFetcher,
+            TransipInvoiceFetcher,
+            TMobileInvoiceFetcher,
             KPNInvoiceFetcher,
         ]
         counter = 0
