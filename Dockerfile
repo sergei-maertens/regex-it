@@ -76,8 +76,11 @@ VOLUME ["/app/log", "/app/media"]
 # copy backend build deps
 COPY --from=backend-build /usr/local/lib/python3.11 /usr/local/lib/python3.11
 COPY --from=backend-build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
+COPY --from=backend-build /usr/local/bin/playwright /usr/local/bin/playwright
 # Uncomment if you use celery
 # COPY --from=backend-build /usr/local/bin/celery /usr/local/bin/celery
+
+RUN playwright install --with-deps chromium
 
 # copy frontend build statics
 COPY --from=frontend-build /app/node_modules/normalize.css /app/node_modules/normalize.css

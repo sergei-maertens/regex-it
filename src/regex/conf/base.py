@@ -392,6 +392,12 @@ TRANSIP_AUTH_USERNAME = config("TRANSIP_AUTH_USERNAME", default="")
 TMOBILE_EMAIL = config("TMOBILE_EMAIL", default="")
 TMOBILE_PASSWORD = config("TMOBILE_PASSWORD", default="")
 
+#
+# KPN integration
+#
+KPN_EMAIL = config("KPN_EMAIL", default="")
+KPN_PASSWORD = config("KPN_PASSWORD", default="")
+
 ##############################
 #                            #
 # 3RD PARTY LIBRARY SETTINGS #
