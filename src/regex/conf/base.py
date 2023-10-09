@@ -107,6 +107,7 @@ INSTALLED_APPS = [
     "solo",
     # Project applications.
     "regex.accounts",
+    "regex.administration",
     "regex.config",
     "regex.crm",
     "regex.deductions",

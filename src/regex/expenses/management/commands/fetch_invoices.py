@@ -3,7 +3,11 @@ from datetime import date
 from django.core.management import BaseCommand, CommandError
 from django.db import transaction
 
-from dateutil.relativedelta import relativedelta
+from regex.administration.utils import (
+    DateRange,
+    get_current_quarter,
+    get_previous_quarter,
+)
 
 from ...kpn.service import InvoiceFetcher as KPNInvoiceFetcher
 from ...models import ExpensesConfiguration, Invoice
@@ -48,23 +52,16 @@ class Command(BaseCommand):
                 "Both --start-date and --end-date are required if one option is used."
             )
 
-        today = date.today()
         if previous_quarter:
-            months_to_subtract = (today.month - 1) % 3 + 3
-            start_date = (today - relativedelta(months=months_to_subtract)).replace(
-                day=1
-            )
-            end_date = start_date + relativedelta(months=3, days=-1)
+            date_range = get_previous_quarter()
         elif current_quarter:
-            months_to_subtract = (today.month - 1) % 3
-            start_date = (today - relativedelta(months=months_to_subtract)).replace(
-                day=1
-            )
-            end_date = start_date + relativedelta(months=3, days=-1)
+            date_range = get_current_quarter()
+        else:
+            date_range = DateRange(start=start_date, end=end_date)
 
         self.stdout.write(
-            f"Looking for invoices between {start_date.isoformat()} "
-            f"and {end_date.isoformat()}"
+            f"Looking for invoices between {date_range.start.isoformat()} "
+            f"and {date_range.end.isoformat()}"
         )
 
         config = ExpensesConfiguration.get_solo()
@@ -77,7 +74,7 @@ class Command(BaseCommand):
 
         for fetcher_cls in fetchers:
             fetcher = fetcher_cls(
-                config=config, start_date=start_date, end_date=end_date
+                config=config, start_date=date_range.start, end_date=date_range.end
             )
             with fetcher:
                 _creditor = fetcher.get_default_creditor()
