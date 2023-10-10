@@ -43,6 +43,7 @@ class ExportAdministrationForm(forms.Form):
         help_text=_("Which quarter to export."),
         choices=lambda: ExportQuarterChoices.choices,
         required=False,
+        initial="previous",
     )
     start = forms.DateField(
         label=_("Start"),
@@ -60,8 +61,8 @@ class ExportAdministrationForm(forms.Form):
         start = self.cleaned_data.get("start")
         end = self.cleaned_data.get("end")
 
-        if not quarter or quarter == "none":
-            if not start or not end:
+        if not quarter:
+            if not (start and end):
                 raise forms.ValidationError(
                     _("Specify a quarter or start and end date")
                 )
@@ -71,8 +72,12 @@ class ExportAdministrationForm(forms.Form):
                 date_range = get_previous_quarter()
             case "current":
                 date_range = get_current_quarter()
-            case "none":
+            case "":
+                assert start
+                assert end
                 date_range = DateRange(start=start, end=end)
+            case _:  # pragma: no cover
+                raise ValueError("Invalid date range specified")
 
         self.cleaned_data["date_range"] = date_range
 

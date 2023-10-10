@@ -9,6 +9,7 @@ from .forms import ExportAdministrationForm
 
 class SuperUserRequired(UserPassesTestMixin):
     request: HttpRequest
+    raise_exception = True
 
     def test_func(self) -> bool:
         return self.request.user.is_superuser
