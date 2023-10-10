@@ -27,7 +27,6 @@ def set_values_from_env(apps, _):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("config", "0001_initial"),
     ]

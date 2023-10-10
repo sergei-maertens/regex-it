@@ -10,7 +10,6 @@ class EntryQueryset(models.QuerySet):
 
 
 class Entry(models.Model):
-
     name = models.CharField(_("name"), max_length=255)
     slug = AutoSlugField(_("slug"), populate_from="name", unique=True)
     image = models.ImageField(_("image"), blank=True, upload_to="portfolio")

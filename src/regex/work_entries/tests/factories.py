@@ -7,7 +7,6 @@ from ..models import WorkEntry
 
 
 class WorkEntryFactory(factory.django.DjangoModelFactory):
-
     user = factory.SubFactory(UserFactory)
     project = factory.SubFactory(ProjectFactory)
 

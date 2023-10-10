@@ -13,7 +13,6 @@ class SimpleSequence(factory.Sequence):
 
 
 class ClientFactory(factory.django.DjangoModelFactory):
-
     name = SimpleSequence("Client {}")
     email = SimpleSequence("client-{}@regex-it.nl")
     city = SimpleSequence("City-{}")
@@ -24,7 +23,6 @@ class ClientFactory(factory.django.DjangoModelFactory):
 
 
 class ProjectFactory(factory.django.DjangoModelFactory):
-
     client = factory.SubFactory(ClientFactory)
     name = SimpleSequence("Project {}")
 
@@ -35,7 +33,6 @@ class ProjectFactory(factory.django.DjangoModelFactory):
 
 
 class ContactFactory(factory.django.DjangoModelFactory):
-
     label = SimpleSequence("Contact {}")
     name = SimpleSequence("Contact {}")
     email = SimpleSequence("contact-{}@regex-it.nl")

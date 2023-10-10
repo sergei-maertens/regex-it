@@ -2,13 +2,12 @@
 
 # Dependencies only relevant for (unit) testing
 black
-coverage < 5.0
+coverage
 django-webtest
 factory-boy
 freezegun
 flake8
 isort
-pylint
 pyquery  # integrates with webtest
 requests-mock
 tblib
