@@ -15,7 +15,6 @@ def set_hashes(apps, _):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("expenses", "0003_auto_20231002_0906"),
     ]

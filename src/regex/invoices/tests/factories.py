@@ -16,7 +16,6 @@ def _generate_invoice_pdf(invoice: Invoice, create, extracted, **kwargs):
 
 
 class InvoiceFactory(factory.django.DjangoModelFactory):
-
     client = factory.SubFactory(ClientFactory)
 
     class Meta:
@@ -37,7 +36,6 @@ class InvoiceFactory(factory.django.DjangoModelFactory):
 
 
 class InvoiceItemFactory(factory.django.DjangoModelFactory):
-
     invoice = factory.SubFactory(InvoiceFactory)
 
     class Meta:

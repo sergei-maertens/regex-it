@@ -64,7 +64,6 @@ class InvoicePDFTemplateResponse(PDFTemplateResponse):
 
 
 class InvoicePDFTemplateResponseMixin(PDFTemplateResponseMixin):
-
     response_class = InvoicePDFTemplateResponse
 
     def render_to_response(self, *args, **kwargs):

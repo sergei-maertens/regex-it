@@ -40,7 +40,6 @@ class Contact(models.Model):
 
 
 class Client(models.Model):
-
     name = models.CharField(_("name"), max_length=255)
     slug = AutoSlugField(_("slug"), populate_from="name", unique=True)
 

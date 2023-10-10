@@ -7,7 +7,6 @@ from ..pdf import UrlFetcher
 
 
 class PDFTemplateResponse(TemplateResponse):
-
     url_fetcher_class = UrlFetcher
 
     def __init__(self, filename=None, *args, **kwargs):
