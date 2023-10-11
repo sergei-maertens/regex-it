@@ -80,8 +80,6 @@ COPY --from=backend-build /usr/local/bin/playwright /usr/local/bin/playwright
 # Uncomment if you use celery
 # COPY --from=backend-build /usr/local/bin/celery /usr/local/bin/celery
 
-RUN playwright install --with-deps chromium
-
 # copy frontend build statics
 COPY --from=frontend-build /app/node_modules/normalize.css /app/node_modules/normalize.css
 COPY --from=frontend-build /app/node_modules/font-awesome /app/node_modules/font-awesome
@@ -90,11 +88,14 @@ COPY --from=frontend-build /app/src/regex/static/bundles /app/src/regex/static/b
 # copy source code
 COPY ./src /app/src
 
-RUN useradd -M -u 1000 regex
-RUN chown -R regex:regex /app
+RUN playwright install-deps chromium\
+    && useradd -m -u 1000 regex \
+    && chown -R regex:regex /app
 
 # drop privileges
 USER regex
+
+RUN playwright install chromium
 
 ARG COMMIT_HASH
 ARG RELEASE=latest
