@@ -1,7 +1,0 @@
----
-
-# Deploy the postfixer app with docker
-
-
-- import_tasks: db.yml
-- import_tasks: app.yml

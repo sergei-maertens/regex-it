@@ -1,6 +1,0 @@
----
-
-- name: reload dovecot
-  service:
-    name: dovecot
-    state: reloaded
