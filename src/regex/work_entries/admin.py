@@ -13,7 +13,7 @@ class WorkEntryAdmin(ImportExportActionModelAdmin):
     list_display = ("start", "end", "project", "notes")
     list_filter = ("project__client", "project", "start")
     search_fields = ("notes",)
-    change_list_template = "admin/work_entries/workentry/change_list.html"
+    import_export_change_list_template = "admin/work_entries/workentry/change_list.html"
 
     def changelist_view(self, request, extra_context=None):
         response = super().changelist_view(request, extra_context=None)
