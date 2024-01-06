@@ -91,7 +91,7 @@
         django_app_docker_package_name: regex
         django_app_docker_https: true
         django_app_docker_secret_key: "{{ secret_key }}"
-        django_app_docker_sentry_dsn: 'https://d2b2b8150ead4c1282d188c50c4c9647@sentry.maykinmedia.nl/266'
+        django_app_docker_sentry_dsn: "{{ sentry_dsn }}"
 
         # DB
         django_app_docker_db_host: /var/run/postgresql/
