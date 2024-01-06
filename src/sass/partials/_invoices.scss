@@ -66,6 +66,19 @@ body.invoice {
         }
     }
 
+    .invoice-meta {
+      th {
+        padding: 0 20px 0 0;
+        text-align: left;
+        vertical-align: baseline;
+        border: none;
+      }
+      td {
+        padding: 0;
+        vertical-align: baseline;
+      }
+    }
+
     .invoice-end {
         font-size: math.div(1em, $minor-second);
     }

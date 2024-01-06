@@ -1,12 +1,14 @@
 import logging
 import re
 from datetime import datetime, time, timedelta
+from decimal import Decimal
 
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.core import validators
 from django.db import models, transaction
 from django.db.models import F, Max, Sum
+from django.db.models.functions import Coalesce
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -25,6 +27,9 @@ RE_INVOICE_NUMBER = re.compile(r"(?P<year>20\d{2})\d{5}$")
 
 class Invoice(models.Model):
     client = models.ForeignKey("crm.Client", on_delete=models.PROTECT)
+    cost_center = models.CharField(_("cost center"), max_length=100, blank=True)
+    cost_type = models.CharField(_("cost type"), max_length=100, blank=True)
+
     date = models.DateField(
         _("date"), help_text=_("Include work up to (including) this day.")
     )
@@ -136,16 +141,20 @@ class Invoice(models.Model):
 
     def get_totals(self):
         totals = self.invoiceitem_set.annotate(
-            base=F("rate") * F("amount"), tax=F("rate") * F("amount") * F("tax_rate")
-        ).aggregate(Sum("base"), Sum("tax"))
+            base=F("rate") * F("amount"),
+            tax=F("rate") * F("amount") * F("tax_rate"),
+        ).aggregate(
+            base__sum=Coalesce(Sum("base"), Decimal(0)),
+            tax__sum=Coalesce(Sum("tax"), Decimal(0)),
+        )
         return totals
 
     @property
-    def total_no_vat(self):
+    def total_no_vat(self) -> Decimal:
         return self.get_totals()["base__sum"]
 
     @property
-    def total_vat(self):
+    def total_vat(self) -> Decimal:
         return self.get_totals()["tax__sum"]
 
     @property

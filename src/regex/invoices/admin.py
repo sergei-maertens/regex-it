@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from django.contrib import admin
 from django.db.models import Count
 from django.urls import reverse
@@ -45,6 +47,7 @@ class InvoiceAdmin(PrivateMediaMixin, admin.ModelAdmin):
         "created",
         "n_items",
         "generated",
+        "pdf_link",
         "invoice_items",
     )
     list_filter = ("client", "date", "due_date", "received")
@@ -73,6 +76,16 @@ class InvoiceAdmin(PrivateMediaMixin, admin.ModelAdmin):
         )
 
     invoice_items.short_description = _("invoice items")
+
+    @admin.display(description=_("PDF"))
+    def pdf_link(self, obj: Invoice):
+        if not obj.pdf:
+            return "-"
+        return format_html(
+            '<a href="{}">{}</a>',
+            reverse("admin:invoices_invoice_pdf", args=(obj.pk,)),
+            Path(obj.pdf.name).name,
+        )
 
 
 @admin.register(InvoiceItem)

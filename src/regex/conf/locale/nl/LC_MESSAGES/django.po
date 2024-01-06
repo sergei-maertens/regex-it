@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 09:10+0100\n"
+"POT-Creation-Date: 2024-01-06 17:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,127 +22,182 @@ msgstr ""
 msgid "Personal info"
 msgstr ""
 
-#: accounts/admin.py:17
+#: accounts/admin.py:18
 msgid "Permissions"
 msgstr ""
 
-#: accounts/admin.py:19
+#: accounts/admin.py:29
 msgid "Important dates"
 msgstr ""
 
-#: accounts/models.py:32
+#: accounts/models.py:40
 msgid "first name"
 msgstr ""
 
-#: accounts/models.py:33
+#: accounts/models.py:41
 msgid "last name"
 msgstr ""
 
-#: accounts/models.py:34
+#: accounts/models.py:42
 msgid "email address"
 msgstr ""
 
-#: accounts/models.py:36
+#: accounts/models.py:44
 msgid "staff status"
 msgstr ""
 
-#: accounts/models.py:37
+#: accounts/models.py:46
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: accounts/models.py:40
+#: accounts/models.py:49
 msgid "active"
 msgstr ""
 
-#: accounts/models.py:41
+#: accounts/models.py:52
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: accounts/models.py:44
+#: accounts/models.py:56
 msgid "date joined"
 msgstr ""
 
-#: accounts/models.py:52
+#: accounts/models.py:64
 msgid "user"
 msgstr ""
 
-#: accounts/models.py:53
+#: accounts/models.py:65
 msgid "users"
 msgstr ""
 
-#: accounts/templates/accounts/dashboard.html:18 crm/models.py:91
-#: invoices/templates/invoices/invoice_detail.html:85
-msgid "flat fee"
+#: administration/forms.py:17
+msgid "Previous"
 msgstr ""
 
-#: accounts/templates/accounts/dashboard.html:20
-msgid "hourly rate"
+#: administration/forms.py:18
+msgid "Current"
 msgstr ""
 
-#: accounts/templates/accounts/dashboard.html:25
-#, python-format
-msgid "%(count)s work entries logged"
+#: administration/forms.py:19
+msgid "None"
 msgstr ""
 
-#: conf/settings/base.py:51
+#: administration/forms.py:42
+msgid "Quarter"
+msgstr ""
+
+#: administration/forms.py:43
+msgid "Which quarter to export."
+msgstr ""
+
+#: administration/forms.py:49
+msgid "Start"
+msgstr ""
+
+#: administration/forms.py:50
+msgid "Export from this date."
+msgstr ""
+
+#: administration/forms.py:54
+msgid "End"
+msgstr ""
+
+#: administration/forms.py:55
+msgid "Export until (including) this date."
+msgstr ""
+
+#: administration/forms.py:67
+msgid "Specify a quarter or start and end date"
+msgstr ""
+
+#: conf/base.py:38
 msgid "English"
 msgstr ""
 
-#: conf/settings/base.py:52
+#: conf/base.py:39
 msgid "Dutch"
 msgstr ""
 
-#: conf/settings/base.py:53
+#: conf/base.py:40
 msgid "Dutch (Belgium)"
 msgstr ""
 
-#: crm/admin.py:17 crm/models.py:66
+#: config/models.py:10
+msgid "company name"
+msgstr ""
+
+#: config/models.py:13
+msgid "company address"
+msgstr ""
+
+#: config/models.py:16
+msgid "tax identifier"
+msgstr ""
+
+#: config/models.py:17
+msgid "chamber of commerce number"
+msgstr ""
+
+#: config/models.py:18
+msgid "bank account number"
+msgstr ""
+
+#: config/models.py:21
+msgid "company config"
+msgstr ""
+
+#: crm/admin.py:18 crm/models.py:69
 msgid "clients"
 msgstr ""
 
-#: crm/admin.py:33 crm/models.py:36
+#: crm/admin.py:34 crm/models.py:36
 msgid "contacts"
 msgstr ""
 
-#: crm/admin.py:37 crm/models.py:99
+#: crm/admin.py:38 crm/models.py:109
 msgid "projects"
 msgstr ""
 
-#: crm/models.py:20
+#: crm/models.py:18
 msgid "label"
 msgstr ""
 
-#: crm/models.py:21 crm/models.py:44 portfolio/models.py:15
+#: crm/models.py:19 crm/models.py:43 deductions/models.py:10
+#: expenses/models.py:13 portfolio/models.py:13
 msgid "name"
 msgstr ""
 
-#: crm/models.py:22 crm/models.py:48
+#: crm/models.py:20 crm/models.py:47
 msgid "email"
 msgstr ""
 
-#: crm/models.py:24 crm/models.py:50
+#: crm/models.py:21 crm/models.py:48
+msgid "phone number"
+msgstr ""
+
+#: crm/models.py:22 crm/models.py:49
 msgid "address"
 msgstr ""
 
-#: crm/models.py:25
+#: crm/models.py:23
 msgid "postal code"
 msgstr ""
 
-#: crm/models.py:26 crm/models.py:51
+#: crm/models.py:24 crm/models.py:50
 msgid "city"
 msgstr ""
 
-#: crm/models.py:27 crm/models.py:52
+#: crm/models.py:25 crm/models.py:51
 msgid "Country"
 msgstr ""
 
-#: crm/models.py:31 crm/models.py:61
+#: crm/models.py:31 crm/models.py:64
 msgid "created"
 msgstr ""
 
-#: crm/models.py:32 crm/models.py:62
+#: crm/models.py:32 crm/models.py:65
 msgid "modified"
 msgstr ""
 
@@ -150,7 +205,7 @@ msgstr ""
 msgid "contact"
 msgstr ""
 
-#: crm/models.py:45 portfolio/models.py:16
+#: crm/models.py:44 portfolio/models.py:14
 msgid "slug"
 msgstr ""
 
@@ -158,56 +213,133 @@ msgstr ""
 msgid "language"
 msgstr ""
 
-#: crm/models.py:56
+#: crm/models.py:58
 msgid "registration number"
 msgstr ""
 
-#: crm/models.py:56
+#: crm/models.py:58
 msgid "KvK number"
 msgstr ""
 
-#: crm/models.py:57
+#: crm/models.py:60
 msgid "VAT number"
 msgstr ""
 
-#: crm/models.py:65
+#: crm/models.py:68
 msgid "client"
 msgstr ""
 
-#: crm/models.py:73
+#: crm/models.py:76
 msgid "low"
 msgstr ""
 
-#: crm/models.py:74
+#: crm/models.py:77
 msgid "high"
 msgstr ""
 
-#: crm/models.py:90
+#: crm/models.py:94
 msgid "hourly base rate"
 msgstr ""
 
-#: crm/models.py:93 invoices/models.py:155
-#: invoices/templates/invoices/invoice_detail.html:86
-msgid "tax rate"
-msgstr ""
+#: crm/models.py:97 invoices/templates/invoices/invoice_detail.html:123
+msgid "flat fee"
+msgstr "vast bedrag"
 
-#: crm/models.py:98
+#: crm/models.py:100 invoices/models.py:179
+#: invoices/templates/invoices/invoice_detail.html:124
+msgid "tax rate"
+msgstr "BTW-tarief"
+
+#: crm/models.py:108
 msgid "project"
 msgstr ""
 
-#: crm/models.py:116
+#: crm/models.py:124
 msgid "Provide a base hourly rate or a flat fee."
 msgstr ""
 
-#: homepage/templates/homepage/base.html:7
+#: deductions/models.py:11 expenses/models.py:39
+msgid "notes"
+msgstr ""
+
+#: deductions/models.py:13
+msgid "receipt"
+msgstr ""
+
+#: deductions/models.py:15 expenses/models.py:25 invoices/models.py:34
+msgid "date"
+msgstr ""
+
+#: deductions/models.py:16 expenses/models.py:26 invoices/models.py:177
+#: invoices/templates/invoices/invoice_detail.html:121
+msgid "amount"
+msgstr "aantal"
+
+#: deductions/models.py:19
+msgid "deduction"
+msgstr ""
+
+#: deductions/models.py:20
+msgid "deductions"
+msgstr ""
+
+#: expenses/models.py:16 expenses/models.py:35
+msgid "creditor"
+msgstr ""
+
+#: expenses/models.py:17
+msgid "creditors"
+msgstr ""
+
+#: expenses/models.py:24
+msgid "identifier"
+msgstr ""
+
+#: expenses/models.py:25
+msgid "Invoice (creation) date"
+msgstr ""
+
+#: expenses/models.py:28 invoices/models.py:49
+msgid "pdf"
+msgstr ""
+
+#: expenses/models.py:38
+msgid "MD5 file hash"
+msgstr ""
+
+#: expenses/models.py:40
+msgid "manual review required"
+msgstr ""
+
+#: expenses/models.py:43
+msgid "invoice"
+msgstr ""
+
+#: expenses/models.py:44
+msgid "invoices"
+msgstr ""
+
+#: expenses/models.py:78
+msgid "TransIP creditor"
+msgstr ""
+
+#: expenses/models.py:86
+msgid "T-Mmobile creditor"
+msgstr ""
+
+#: expenses/models.py:94
+msgid "KPN creditor"
+msgstr ""
+
+#: homepage/templates/homepage/base.html:6
 msgid "Freelance web development"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:20
+#: homepage/templates/homepage/base.html:19
 msgid "Websites"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:23
+#: homepage/templates/homepage/base.html:22
 msgid ""
 "\n"
 "                    <p>Your product needs a decent website, maybe even a "
@@ -223,11 +355,11 @@ msgid ""
 "                    "
 msgstr ""
 
-#: homepage/templates/homepage/base.html:42
+#: homepage/templates/homepage/base.html:41
 msgid "Internal tooling"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:45
+#: homepage/templates/homepage/base.html:44
 msgid ""
 "\n"
 "                    <p>Lots of people perform lots of repetitive tasks. Us - "
@@ -250,11 +382,11 @@ msgid ""
 "                    "
 msgstr ""
 
-#: homepage/templates/homepage/base.html:72
+#: homepage/templates/homepage/base.html:71
 msgid "Extra manpower"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:75
+#: homepage/templates/homepage/base.html:74
 msgid ""
 "\n"
 "                    <p>Sometimes you're just short a pair of hands to work "
@@ -272,41 +404,41 @@ msgid ""
 "                    "
 msgstr ""
 
-#: homepage/templates/homepage/base.html:93
+#: homepage/templates/homepage/base.html:92
 msgid "Favourite technology"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:101
+#: homepage/templates/homepage/base.html:100
 msgid "Python/Django"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:102
+#: homepage/templates/homepage/base.html:101
 msgid ""
 "Django is a high-level web framework written in Python, aimed on "
 "'perfectionists with deadlines'."
 msgstr ""
 
-#: homepage/templates/homepage/base.html:111
+#: homepage/templates/homepage/base.html:110
 msgid "PostgreSQL"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:112
+#: homepage/templates/homepage/base.html:111
 msgid ""
 "PostgreSQL is an excellent, performant relational database, my first choice "
 "to handle your data with excellent integrity."
 msgstr ""
 
-#: homepage/templates/homepage/base.html:121
+#: homepage/templates/homepage/base.html:120
 msgid "Git"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:122
+#: homepage/templates/homepage/base.html:121
 msgid ""
 "Every serious project needs serious tooling. Git is the preferred VCS, and "
 "Github is the popular repository hosting choice."
 msgstr ""
 
-#: homepage/templates/homepage/base.html:127
+#: homepage/templates/homepage/base.html:126
 msgid ""
 "\n"
 "        <p>This is the basic set of tool that would probably be used with "
@@ -320,11 +452,11 @@ msgid ""
 "        "
 msgstr ""
 
-#: homepage/templates/homepage/base.html:138
+#: homepage/templates/homepage/base.html:137
 msgid "Consultancy"
 msgstr ""
 
-#: homepage/templates/homepage/base.html:139
+#: homepage/templates/homepage/base.html:138
 msgid ""
 "\n"
 "    <p>Need help figuring out <strong>performance</strong> issues? Or are "
@@ -365,19 +497,19 @@ msgstr ""
 msgid "On the web"
 msgstr ""
 
-#: invoices/admin.py:17
+#: invoices/admin.py:19
 msgid "Generate invoice details"
 msgstr ""
 
-#: invoices/admin.py:23
+#: invoices/admin.py:27
 msgid "Generate invoice pdfs"
 msgstr ""
 
-#: invoices/admin.py:52
+#: invoices/admin.py:64
 msgid "# invoice items"
 msgstr ""
 
-#: invoices/admin.py:56 invoices/admin.py:57 invoices/models.py:166
+#: invoices/admin.py:72 invoices/admin.py:75 invoices/models.py:195
 msgid "invoice items"
 msgstr ""
 
@@ -385,136 +517,149 @@ msgstr ""
 msgid "Invoices"
 msgstr ""
 
-#: invoices/models.py:28
-msgid "date"
-msgstr ""
+#: invoices/models.py:30
+msgid "cost center"
+msgstr "kostenplaats"
 
-#: invoices/models.py:28
+#: invoices/models.py:31
+msgid "cost type"
+msgstr "kostensoort"
+
+#: invoices/models.py:34
 msgid "Include work up to (including) this day."
 msgstr ""
 
-#: invoices/models.py:32
+#: invoices/models.py:39
 msgid "invoice number"
 msgstr ""
 
-#: invoices/models.py:36
+#: invoices/models.py:47
 msgid "due date"
 msgstr ""
 
-#: invoices/models.py:38
-msgid "pdf"
-msgstr ""
-
-#: invoices/models.py:42
+#: invoices/models.py:54
 msgid "received"
 msgstr ""
 
-#: invoices/models.py:152 invoices/templates/invoices/invoice_detail.html.py:32
+#: invoices/models.py:176 invoices/templates/invoices/invoice_detail.html:67
 msgid "rate"
-msgstr ""
+msgstr "tarief"
 
-#: invoices/models.py:153 invoices/templates/invoices/invoice_detail.html.py:83
-msgid "amount"
-msgstr ""
-
-#: invoices/models.py:162 invoices/templates/invoices/invoice_detail.html.py:82
+#: invoices/models.py:191 invoices/templates/invoices/invoice_detail.html:120
 msgid "remarks"
-msgstr ""
+msgstr "opmerkingen"
 
-#: invoices/models.py:165
+#: invoices/models.py:194
 msgid "invoice item"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:14
-#, python-format
-msgid ""
-"\n"
-"        Invoice %(number)s <small class=\"pull-right\">%(date)s</small>\n"
-"        "
+#: invoices/templates/invoices/invoice_detail.html:8 templates/base.html:7
+msgid "Regex-IT portal"
 msgstr ""
 
-#: invoices/templates/invoices/invoice_detail.html:20 work_entries/models.py:13
-msgid "start"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:20
-#, python-format
-msgid ""
-"\n"
-"            Invoice for 1 item, spanning %(prev)s until %(date)s.\n"
-"        "
-msgid_plural ""
-"\n"
-"            Invoice for %(n_items)s items, spanning %(prev)s until "
-"%(date)s.\n"
-"        "
-msgstr[0] ""
-msgstr[1] ""
-
-#: invoices/templates/invoices/invoice_detail.html:29
-msgid "Applied tax rates"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:33
-msgid "number of times applied"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:49
-msgid "Totals"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:53
-msgid "total (with VAT shifted)"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:60
-msgid "total (excl. tax)"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:61
-msgid "total tax"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:62
-msgid "total (incl. tax)"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:73
-#, python-format
-msgid "Please transfer the total sum by %(due_date)s."
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:78
-msgid "Invoice details"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:84
-msgid "rate (€ / hour)"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:93
-#, python-format
-msgid "%(proj)s"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:99
-#: invoices/templates/invoices/invoice_detail.html:100
-msgid "n/a"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:111
-msgid "Note: vat shift is applied to this invoice."
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:114
-msgid "End of invoice"
-msgstr ""
-
-#: invoices/templates/invoices/invoice_detail.html:123
+#: invoices/templates/invoices/invoice_detail.html:15
 #, python-format
 msgid ""
 "Invoice %(number)s - %(date)s - Page \" counter(page) \" of \" counter(pages)"
 msgstr ""
+
+#: invoices/templates/invoices/invoice_detail.html:32
+msgid "Cost center"
+msgstr "Kostenplaats"
+
+#: invoices/templates/invoices/invoice_detail.html:38
+msgid "Cost type"
+msgstr "Kostensoort"
+
+#: invoices/templates/invoices/invoice_detail.html:48
+#, python-format
+msgid ""
+"\n"
+"                    Invoice %(number)s <small class=\"pull-right\">%(date)s</"
+"small>\n"
+"                    "
+msgstr "\nFactuur %(number)s <small class=\"pull-right\">%(date)s</"
+"small>"
+
+#: invoices/templates/invoices/invoice_detail.html:54 work_entries/models.py:13
+msgid "start"
+msgstr "begin"
+
+#: invoices/templates/invoices/invoice_detail.html:54
+#, python-format
+msgid ""
+"\n"
+"                        Invoice for 1 item, spanning %(prev)s until "
+"%(date)s.\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        Invoice for %(n_items)s items, spanning %(prev)s "
+"until %(date)s.\n"
+"                    "
+msgstr[0] ""
+"\nFactuur voor 1 item, van %(prev)s tot %(date)s."
+msgstr[1] ""
+"\nFactuur voor %(n_items)s items, van %(prev)s tot %(date)s."
+
+#: invoices/templates/invoices/invoice_detail.html:63
+msgid "Applied tax rates"
+msgstr "Toegepaste BTW-tarieven"
+
+#: invoices/templates/invoices/invoice_detail.html:68
+msgid "number of times applied"
+msgstr "aantal keer toegepast"
+
+#: invoices/templates/invoices/invoice_detail.html:84
+msgid "Totals"
+msgstr "Totaal"
+
+#: invoices/templates/invoices/invoice_detail.html:88
+msgid "total (with VAT shifted)"
+msgstr "totaal (BTW verlegd)"
+
+#: invoices/templates/invoices/invoice_detail.html:95
+msgid "total (excl. tax)"
+msgstr "totaal (excl. BTW)"
+
+#: invoices/templates/invoices/invoice_detail.html:96
+msgid "total tax"
+msgstr "totaal BTW"
+
+#: invoices/templates/invoices/invoice_detail.html:97
+msgid "total (incl. tax)"
+msgstr "totaal (incl. BTW)"
+
+#: invoices/templates/invoices/invoice_detail.html:108
+#, python-format
+msgid "Please transfer the total sum by %(due_date)s."
+msgstr "Gelieve het totaalbedrag voor %(due_date)s over te maken."
+
+#: invoices/templates/invoices/invoice_detail.html:116
+msgid "Invoice details"
+msgstr "Factuurregels"
+
+#: invoices/templates/invoices/invoice_detail.html:122
+msgid "rate (€ / hour)"
+msgstr "tarief (€ / uur)"
+
+#: invoices/templates/invoices/invoice_detail.html:131
+#, python-format
+msgid "%(proj)s"
+msgstr "%(proj)s"
+
+#: invoices/templates/invoices/invoice_detail.html:137
+#: invoices/templates/invoices/invoice_detail.html:138
+msgid "n/a"
+msgstr "n.v.t."
+
+#: invoices/templates/invoices/invoice_detail.html:149
+msgid "Note: vat shift is applied to this invoice."
+msgstr "Opmerking: BTW verlegd."
+
+#: invoices/templates/invoices/invoice_detail.html:152
+msgid "End of invoice"
+msgstr "Einde factuur"
 
 #: invoices/templates/invoices/tags/address.html:13
 #, python-format
@@ -524,30 +669,30 @@ msgstr ""
 #: invoices/templates/invoices/tags/address.html:14
 #, python-format
 msgid "TAX: %(company_tax_identifier)s"
-msgstr ""
+msgstr "BTW: %(company_tax_identifier)s"
 
 #: invoices/templates/invoices/tags/address.html:15
 #, python-format
 msgid "IBAN: %(company_iban)s"
 msgstr ""
 
-#: portfolio/models.py:17
+#: portfolio/models.py:15
 msgid "image"
 msgstr ""
 
-#: portfolio/models.py:19
+#: portfolio/models.py:17
 msgid "description"
 msgstr ""
 
-#: portfolio/models.py:22
+#: portfolio/models.py:20
 msgid "published"
 msgstr ""
 
-#: portfolio/models.py:27
+#: portfolio/models.py:25
 msgid "portfolio entry"
 msgstr ""
 
-#: portfolio/models.py:28
+#: portfolio/models.py:26
 msgid "portfolio entries"
 msgstr ""
 
@@ -555,40 +700,20 @@ msgstr ""
 msgid "Portfolio"
 msgstr ""
 
-#: templates/account/login.html:8
-msgid "Sign In"
-msgstr ""
-
-#: templates/account/login.html:19
-msgid "Sign in"
-msgstr ""
-
-#: templates/base.html:7
-msgid "Regex-IT portal"
-msgstr ""
-
-#: templates/base.html:26
+#: templates/base.html:24
 msgid "home"
 msgstr ""
 
-#: templates/base.html:27
+#: templates/base.html:25
 msgid "portfolio"
 msgstr ""
 
-#: templates/base.html:28
+#: templates/base.html:26
 msgctxt "menu"
 msgid "contact"
 msgstr ""
 
-#: templates/base.html:32
-msgid "login"
-msgstr ""
-
-#: templates/base.html:38
-msgid "dashboard"
-msgstr ""
-
-#: utils/templatetags/math.py:13
+#: utils/templatetags/math.py:12
 #, python-brace-format
 msgid "{value} %"
 msgstr ""

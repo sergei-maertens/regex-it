@@ -17,7 +17,6 @@
             }
         </style>
     </head>
-
     <body class="pdf invoice A4">
         <section class="sheet padding-10mm">
             <header>
@@ -25,6 +24,23 @@
                     {% company_details invoice.client %}
                     {% company_details %}
                 </div>
+
+                {% if invoice.cost_center or invoice.cost_type %}
+                    <table class="invoice-meta">
+                        {% if invoice.cost_center %}
+                            <tr>
+                                <th>{% trans "Cost center" %}</th>
+                                <td>{{ invoice.cost_center }}</td>
+                            </tr>
+                        {% endif %}
+                        {% if invoice.cost_type %}
+                            <tr>
+                                <th>{% trans "Cost type" %}</th>
+                                <td>{{ invoice.cost_type }}</td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                {% endif %}
             </header>
 
             <article>
