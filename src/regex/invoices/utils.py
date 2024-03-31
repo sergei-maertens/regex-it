@@ -1,6 +1,7 @@
 """
 Utility functions for invoices.
 """
+
 from io import BytesIO
 
 from django.db.models import Count

@@ -10,7 +10,6 @@ from django_countries.fields import CountryField
 
 
 class Contact(models.Model):
-
     """
     Contact details for a single contact.
     """
@@ -78,7 +77,6 @@ class TaxRates(Decimal, models.Choices):
 
 
 class Project(models.Model):
-
     """
     Logical entity to group work entities under.
 
