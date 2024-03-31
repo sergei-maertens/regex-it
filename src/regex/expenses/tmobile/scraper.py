@@ -53,7 +53,6 @@ async def login(
         "button", name="Nee, ik wil geen optimale ervaring"
     )
     await decline_cookie_btn.click()
-    await page.get_by_role("button", name="Inloggen bij Odido").click()
 
     # fill out credentials
     email_input = page.get_by_label("E-mailadres")
