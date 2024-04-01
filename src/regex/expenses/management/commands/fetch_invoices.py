@@ -14,6 +14,12 @@ from ...models import ExpensesConfiguration, Invoice
 from ...tmobile.service import InvoiceFetcher as TMobileInvoiceFetcher
 from ...transip.service import InvoiceFetcher as TransipInvoiceFetcher
 
+FETCHERS = [
+    TransipInvoiceFetcher,
+    TMobileInvoiceFetcher,
+    KPNInvoiceFetcher,
+]
+
 
 class Command(BaseCommand):
     help = "Fetch the invoices for the specified date range"
@@ -32,13 +38,24 @@ class Command(BaseCommand):
             type=date.fromisoformat,
             help="Fetch invoices dated until (and including) this date.",
         )
+        parser.add_argument(
+            "--creditor",
+            nargs="*",
+            help=(
+                "Fetch invoices only for these creditors. Possible values are: "
+                + ", ".join(
+                    field for f in FETCHERS if (field := f.default_creditor_field)
+                )
+            ),
+        )
 
     @transaction.atomic()
-    def handle(self, **options) -> None:
+    def handle(self, *args, **options) -> None:
         start_date = options["start_date"]
         end_date = options["end_date"]
         previous_quarter = options["previous_quarter"]
         current_quarter = options["current_quarter"]
+        creditors = options["creditor"]
 
         if (current_quarter or previous_quarter) and (start_date or end_date):
             raise CommandError(
@@ -65,14 +82,11 @@ class Command(BaseCommand):
         )
 
         config = ExpensesConfiguration.get_solo()
-        fetchers = [
-            TransipInvoiceFetcher,
-            TMobileInvoiceFetcher,
-            KPNInvoiceFetcher,
-        ]
         counter = 0
 
-        for fetcher_cls in fetchers:
+        for fetcher_cls in FETCHERS:
+            if creditors and fetcher_cls.default_creditor_field not in creditors:
+                continue
             fetcher = fetcher_cls(
                 config=config, start_date=date_range.start, end_date=date_range.end
             )
@@ -92,12 +106,7 @@ class Command(BaseCommand):
                     if invoice.identifier in existing_identifiers:
                         continue
                     invoice.creditor = _creditor
-                    try:
-                        invoice.save()
-                    except Exception:
-                        import bpdb
-
-                        bpdb.set_trace()
+                    invoice.save()
                     counter += 1
 
         if counter == 0:
