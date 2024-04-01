@@ -1,23 +1,25 @@
+import asyncio
 import os
 from contextlib import asynccontextmanager
 from datetime import date
 from decimal import Decimal
-from pathlib import Path
-from typing import Protocol
+from io import BytesIO
+from typing import BinaryIO, Protocol
 
 from dateutil.parser import parse, parserinfo
-from playwright.async_api import Page, async_playwright, expect
+from playwright.async_api import Page, Route, async_playwright, expect
 
 HEADLESS = "PLAYWRIGHT_NO_HEADLESS" not in os.environ
 
 BASE = "https://mijn.kpn.com/"
 INVOICES_URL = f"{BASE}#/facturen"
+API_URL_INVOICE = f"{BASE}api/documents/v1/document/**"
 
 
 class OnInvoiceDownload(Protocol):
     async def __call__(
         self,
-        filepath: Path,
+        invoice_file: BinaryIO,
         invoice_date: date,
         amount: Decimal,
     ) -> None:  # pragma: no cover
@@ -112,13 +114,28 @@ async def download_invoices(
         assert amount
         invoice_amount = Decimal(amount.replace(",", ".").replace("€", "").strip())
 
-        async with page.expect_download() as download_info:
-            await item.click()
-        download = await download_info.value
-        download_path = await download.path()
-        assert download_path
-        await on_invoice_download(
-            download_path,
-            invoice_date=invoice_date,
-            amount=invoice_amount,
-        )
+        # trigger and intercept the window.fetch download
+
+        download_future = asyncio.Future()
+
+        async def handle_invoice_download(route: Route) -> None:
+            # download the invoice
+            response = await route.fetch()
+            binary_content = await response.body()
+            await on_invoice_download(
+                BytesIO(binary_content),
+                invoice_date=invoice_date,
+                amount=invoice_amount,
+            )
+
+            # let the browser continue as normal
+            await route.continue_()
+
+            # finally, signal we're done
+            download_future.set_result(True)
+
+        await page.route(API_URL_INVOICE, handle_invoice_download)
+        await item.click()
+        # remove handler again so that the next element is handled properly
+        await page.unroute("**/*")
+        await download_future
