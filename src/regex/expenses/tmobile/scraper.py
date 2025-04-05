@@ -23,11 +23,12 @@ async def main(
     email: str,
     password: str,
     on_mfa_prompt: Callable[[], str],
+    subscription_label: str,
     on_invoice_download: OnInvoiceDownload,
 ):
     async with browser_page() as page:
         await login(page, email, password, on_mfa_prompt)
-        await download_invoices(page, on_invoice_download)
+        await download_invoices(page, subscription_label, on_invoice_download)
 
 
 @asynccontextmanager
@@ -49,9 +50,7 @@ async def login(
     page: Page, email: str, password: str, on_mfa_prompt: Callable[[], str]
 ):
     await page.goto(LOGIN_URL)
-    decline_cookie_btn = page.get_by_role(
-        "button", name="Nee, ik wil geen optimale ervaring"
-    )
+    decline_cookie_btn = page.get_by_role("button", name="Weigeren")
     await decline_cookie_btn.click()
 
     # fill out credentials
@@ -81,8 +80,18 @@ def clean_text(text: str) -> str:
     return "\n".join(cleaned_parts)
 
 
-async def download_invoices(page: Page, on_invoice_download: OnInvoiceDownload) -> None:
+async def download_invoices(
+    page: Page, subscription_label: str, on_invoice_download: OnInvoiceDownload
+) -> None:
     await page.goto(INVOICES_URL)
+
+    subscription_locator = (
+        page.get_by_role("main")
+        .get_by_role("listitem")
+        .filter(has=page.get_by_text(subscription_label, exact=True))
+    )
+    await subscription_locator.get_by_role("button").click()
+
     await expect(page.get_by_text("Betaalde facturen")).to_be_visible(timeout=30_000)
 
     invoice_entries = page.get_by_role("listitem").filter(

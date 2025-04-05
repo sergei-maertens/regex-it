@@ -55,6 +55,7 @@ class InvoiceFetcher(BaseInvoiceFetcher):
                 email=settings.TMOBILE_EMAIL,
                 password=settings.TMOBILE_PASSWORD,
                 on_mfa_prompt=lambda: input("Enter Odido MFA code: "),
+                subscription_label=settings.TMOBILE_SUBSCRIPTION_LABEL,
                 on_invoice_download=handle_invoice_download,
             )
         )
