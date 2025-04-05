@@ -41,6 +41,7 @@ async def main(
 @asynccontextmanager
 async def browser_page():
     async with async_playwright() as p:
+        p.selectors.set_test_id_attribute("data-test")
         try:
             browser = await p.chromium.launch(headless=HEADLESS)
             context = await browser.new_context(
@@ -56,13 +57,16 @@ async def browser_page():
 async def login(page: Page, email: str, password: str) -> None:
     await page.goto(BASE)
     await page.wait_for_url("https://inloggen.kpn.com/**")
-    decline_cookie_btn = page.get_by_role("button", name="Nee, liever niet")
+    decline_cookie_btn = page.get_by_role("alertdialog").get_by_role(
+        "button", name="Nee"
+    )
     await decline_cookie_btn.click()
 
     # fill out credentials
-    email_input = page.get_by_label("E-mailadres", exact=True)
+    loginform = page.get_by_test_id("loginForm")
+    email_input = loginform.get_by_label("E-mailadres", exact=True)
     await email_input.fill(email)
-    password_input = page.get_by_label("Wachtwoord", exact=True)
+    password_input = loginform.get_by_label("Wachtwoord", exact=True)
     await password_input.fill(password)
 
     # hit login button

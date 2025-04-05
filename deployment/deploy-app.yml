@@ -144,6 +144,7 @@
           MYSQL_REPLICA_DB_HOST: "172.17.0.1"  # docker0 interface
           TMOBILE_EMAIL: "{{ tmobile_email }}"
           TMOBILE_PASSWORD: "{{ tmobile_password }}"
+          TMOBILE_SUBSCRIPTION_LABEL: "{{ tmobile_subscription_label }}"
           KPN_EMAIL: "{{ kpn_email }}"
           KPN_PASSWORD: "{{ kpn_password }}"
 

@@ -399,6 +399,7 @@ TRANSIP_AUTH_USERNAME = config("TRANSIP_AUTH_USERNAME", default="")
 #
 TMOBILE_EMAIL = config("TMOBILE_EMAIL", default="")
 TMOBILE_PASSWORD = config("TMOBILE_PASSWORD", default="")
+TMOBILE_SUBSCRIPTION_LABEL = config("TMOBILE_SUBSCRIPTION_LABEL", default="")
 
 #
 # KPN integration
