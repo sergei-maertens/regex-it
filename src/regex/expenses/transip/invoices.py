@@ -1,7 +1,7 @@
 from base64 import b64decode
 from datetime import date
 from decimal import Decimal
-from typing import List, Literal, Tuple
+from typing import Literal
 
 from django.core.files.uploadedfile import TemporaryUploadedFile
 
@@ -43,7 +43,7 @@ class TransipInvoice(BaseModel):
 
 def _get_invoice_list(
     url: str, session: Session, auth: TransipAuth
-) -> Tuple[List[TransipInvoice], str]:
+) -> tuple[list[TransipInvoice], str]:
     response = session.get(url, params={"pageSize": 18}, auth=auth)
     response.raise_for_status()
     data = response.json()
@@ -76,7 +76,7 @@ def download_pdf(
 class InvoiceFetcher(BaseInvoiceFetcher):
     default_creditor_field = "transip_creditor"
 
-    def __call__(self) -> List[Invoice]:
+    def __call__(self) -> list[Invoice]:
         auth = TransipAuth()
 
         def _check_relevancy(invoice: TransipInvoice) -> bool:

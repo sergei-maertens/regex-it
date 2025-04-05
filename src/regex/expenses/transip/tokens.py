@@ -10,7 +10,7 @@ import requests
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPrivateKey
-from requests import Request
+from requests import PreparedRequest
 from requests.auth import AuthBase
 
 from .models import AccessToken
@@ -61,8 +61,7 @@ def get_access_token():
     token = create_access_token()
     # just accept whatever is in the payload - I'm not sure we can even validate
     # the signature?
-    payload = b64decode(token.split(".")[1].encode("ascii") + b"==")
-    claims = json.loads(payload.decode("utf-8"))
+    claims = json.loads(b64decode(token.split(".")[1] + "=="))
     expiry = datetime.fromtimestamp(claims["exp"])
     AccessToken.objects.create(
         token=token,
@@ -72,7 +71,7 @@ def get_access_token():
 
 
 class TransipAuth(AuthBase):
-    def __call__(self, request: Request):
+    def __call__(self, request: PreparedRequest):
         token = get_access_token()
         request.headers["Authorization"] = f"Bearer {token}"
         return request
