@@ -9,6 +9,7 @@ from django.utils.crypto import get_random_string
 import requests
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives.asymmetric.rsa import RSAPrivateKey
 from requests import Request
 from requests.auth import AuthBase
 
@@ -21,6 +22,7 @@ def create_access_token(expiration: str = "30 minutes") -> str:
         settings.TRANSIP_PRIVATE_KEY,
         password=None,
     )
+    assert isinstance(private_key, RSAPrivateKey)
     nonce = get_random_string(length=16)
     data = {
         "login": settings.TRANSIP_AUTH_USERNAME,
