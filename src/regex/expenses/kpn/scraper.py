@@ -70,7 +70,7 @@ async def login(page: Page, email: str, password: str) -> None:
     await password_input.fill(password)
 
     # hit login button
-    await page.get_by_role("button", name="Inloggen", exact=True).click()
+    await loginform.get_by_role("button", name="Inloggen").click()
     await page.wait_for_url(f"{BASE}#/overzicht")
 
 
