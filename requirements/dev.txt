@@ -25,7 +25,7 @@ brotli==1.0.9
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
     #   fonttools
-certifi==2024.2.2
+certifi==2025.1.31
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -271,7 +271,7 @@ rules==3.3
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
-sentry-sdk==1.31.0
+sentry-sdk==2.25.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt

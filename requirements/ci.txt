@@ -20,7 +20,7 @@ brotli==1.0.9
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   fonttools
-certifi==2024.2.2
+certifi==2025.1.31
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -226,7 +226,7 @@ rules==3.3
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-sentry-sdk==1.31.0
+sentry-sdk==2.25.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
