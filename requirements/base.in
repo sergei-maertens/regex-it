@@ -5,7 +5,6 @@ Pillow  # handle images
 playwright
 psycopg2  # database driver
 pydantic
-pytz  # handle timezones
 python-dotenv  # environment variables for secrets
 python-decouple  # processing of envvar configs
 python-dateutil

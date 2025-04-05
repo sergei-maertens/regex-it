@@ -17,6 +17,32 @@ env:
   COMPOSE_DOCKER_CLI_BUILD: 1
 
 jobs:
+  setup:
+    name: Set up the build variables
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.vars.outputs.tag }}
+      git_hash: ${{ steps.vars.outputs.git_hash }}
+
+    steps:
+      - name: Extract version information
+        id: vars
+        run: |
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Strip "v" prefix from tag name (if present at all)
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "main" ] && VERSION=latest
+
+          # PRs result in version 'merge' -> transform that into 'latest'
+          [ "$VERSION" == "merge" ] && VERSION=latest
+
+          echo "tag=${VERSION}" >> $GITHUB_OUTPUT
+          echo "git_hash=${GITHUB_SHA}" >> $GITHUB_OUTPUT
+
   tests:
     name: Run the Django test suite
     runs-on: ubuntu-latest
@@ -36,14 +62,14 @@ jobs:
         ports:
           - 6379:6379
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Bring up external services
         run: |
-          docker-compose -f docker-compose.mariadb.yml up -d
+          docker compose -f docker-compose.mariadb.yml up -d
           until mysql -h 127.0.0.1 -P 3308 -u root -psupersecret  -e ";" ; do
             sleep 2
           done
@@ -54,7 +80,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install gettext
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
 
@@ -87,86 +113,15 @@ jobs:
   docker_build:
     name: Build Docker image
     runs-on: ubuntu-latest
+
+    needs:
+      - setup
+
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Set tag
-        id: vars
-        run: |
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          # Strip "v" prefix from tag name (if present at all)
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
-
-          # PRs result in version 'merge' -> transform that into 'latest'
-          [ "$VERSION" == "merge" ] && VERSION=latest
-
-          echo ::set-output name=tag::${VERSION}
-          echo ::set-output name=git_hash::${GITHUB_SHA}
-
+      - uses: actions/checkout@v4
       - name: Build the production Docker image
         run: |
           docker build . \
-            --tag $IMAGE_NAME:$RELEASE_VERSION \
-            --build-arg COMMIT_HASH=${{ steps.vars.outputs.git_hash }} \
-            --build-arg RELEASE=${{ steps.vars.outputs.tag }} \
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-
-      - run: docker image save -o image.tar $IMAGE_NAME:${{ steps.vars.outputs.tag }}
-      - name: Store image artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: docker-image
-          path: image.tar
-          retention-days: 1
-
-  # docker_push:
-  #   needs:
-  #     - tests
-  #     - docker_build
-
-  #   name: Push Docker image
-  #   runs-on: ubuntu-latest
-  #   if: github.event_name == 'push' # Exclude PRs
-
-  #   steps:
-  #     # This will include the updated OAS (if updated) from the update-oas job.
-  #     - uses: actions/checkout@v3
-
-  #     - name: Download built image
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: docker-image
-
-  #     - name: Set tag
-  #       id: vars
-  #       run: |
-  #         # Strip git ref prefix from version
-  #         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-  #         # Strip "v" prefix from tag name (if present at all)
-  #         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-  #         # Use Docker `latest` tag convention
-  #         [ "$VERSION" == "master" ] && VERSION=latest
-
-  #         echo ::set-output name=tag::${VERSION}
-
-  #     - name: Load image
-  #       run: |
-  #         docker image load -i image.tar
-
-  #     - name: Log into registry
-  #       run:
-  #         echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u ${{ secrets.DOCKER_USERNAME }}
-  #         --password-stdin
-
-  #     - name: Push the Docker image (production)
-  #       env:
-  #         RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-  #       run: docker push $IMAGE_NAME:$RELEASE_VERSION
+            --tag $IMAGE_NAME:${{ needs.setup.outputs.tag }} \
+            --build-arg COMMIT_HASH=${{ needs.setup.outputs.git_hash }} \
+            --build-arg RELEASE=${{ needs.setup.outputs.tag }} \

@@ -7,17 +7,7 @@ on:
       - master
     tags:
       - '*'
-    paths:
-      - '**.py'
-      - '**.json'
-      - '**.yaml'
-      - '**.in'
   pull_request:
-    paths:
-      - '**.py'
-      - '**.json'
-      - '**.yaml'
-      - '**.in'
   workflow_dispatch:
 
 jobs:
@@ -26,14 +16,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - uses: isort/isort-action@v0.1.0
+          python-version: '3.12'
+      - uses: isort/isort-action@v1
         with:
-          requirementsFiles: requirements/ci.txt
-          sortPaths: 'src'
+          requirements-files: requirements/ci.txt
+          sort-paths: 'src'
           configuration: '--check-only --diff'
 
   black:
@@ -41,10 +31,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
       - name: Install dependencies
         run: |
           pip install -r requirements/ci.txt
