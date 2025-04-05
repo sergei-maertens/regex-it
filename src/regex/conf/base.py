@@ -110,7 +110,6 @@ INSTALLED_APPS = [
     "regex.administration",
     "regex.config",
     "regex.crm",
-    "regex.deductions",
     "regex.homepage",
     "regex.expenses",
     "regex.expenses.transip",
