@@ -7,3 +7,7 @@ django-webtest
 factory-boy
 freezegun
 tblib
+
+# Code formatting
+black
+isort[colors]

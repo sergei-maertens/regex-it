@@ -13,6 +13,8 @@ asgiref==3.7.2
     #   django-countries
 beautifulsoup4==4.11.1
     # via webtest
+black==25.1.0
+    # via -r requirements/test-tools.in
 brotli==1.0.9
     # via
     #   -c requirements/base.txt
@@ -35,6 +37,10 @@ charset-normalizer==2.1.1
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   requests
+click==8.1.8
+    # via black
+colorama==0.4.6
+    # via isort
 coverage==7.3.2
     # via -r requirements/test-tools.in
 cryptography==44.0.2
@@ -122,11 +128,15 @@ idna==3.10
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   requests
+isort==6.0.1
+    # via -r requirements/test-tools.in
 markuppy==1.14
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   tablib
+mypy-extensions==1.0.0
+    # via black
 mysqlclient==2.1.1
     # via
     #   -c requirements/base.txt
@@ -141,11 +151,17 @@ openpyxl==3.0.10
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   tablib
+packaging==24.2
+    # via black
+pathspec==0.12.1
+    # via black
 pillow==11.1.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   weasyprint
+platformdirs==4.3.7
+    # via black
 playwright==1.51.0
     # via
     #   -c requirements/base.txt

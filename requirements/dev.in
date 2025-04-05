@@ -4,10 +4,6 @@
 # Helpers
 gitpython
 
-# Code formatting
-black
-isort[colors]
-
 # Debug tooling
 django-debug-toolbar
 django-extensions
