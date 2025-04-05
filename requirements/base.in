@@ -19,6 +19,7 @@ django-countries
 django-import-export
 django-solo
 django-privates
+maykin-2fa
 
 # WSGI servers & monitoring - production oriented
 uwsgi

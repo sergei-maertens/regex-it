@@ -6,8 +6,12 @@ asgiref==3.7.2
     # via
     #   django
     #   django-countries
+asn1crypto==1.5.1
+    # via webauthn
 brotli==1.0.9
     # via fonttools
+cbor2==5.6.5
+    # via webauthn
 certifi==2025.1.31
     # via
     #   requests
@@ -19,7 +23,10 @@ cffi==1.17.1
 charset-normalizer==2.1.1
     # via requests
 cryptography==44.0.2
-    # via -r requirements/base.in
+    # via
+    #   -r requirements/base.in
+    #   pyopenssl
+    #   webauthn
 cssselect2==0.7.0
     # via weasyprint
 defusedxml==0.7.1
@@ -29,22 +36,35 @@ diff-match-patch==20200713
 django==4.2.20
     # via
     #   -r requirements/base.in
+    #   django-formtools
     #   django-import-export
+    #   django-otp
+    #   django-phonenumber-field
     #   django-privates
     #   django-sendfile2
     #   django-solo
+    #   django-two-factor-auth
+    #   maykin-2fa
 django-autoslug==1.9.9
     # via -r requirements/base.in
 django-countries==7.6.1
     # via -r requirements/base.in
+django-formtools==2.5.1
+    # via django-two-factor-auth
 django-import-export==3.3.1
     # via -r requirements/base.in
+django-otp==1.6.0
+    # via django-two-factor-auth
+django-phonenumber-field==8.0.0
+    # via django-two-factor-auth
 django-privates==2.0.0.post0
     # via -r requirements/base.in
 django-sendfile2==0.7.0
     # via django-privates
 django-solo==2.1.0
     # via -r requirements/base.in
+django-two-factor-auth==1.17.0
+    # via maykin-2fa
 et-xmlfile==1.1.0
     # via openpyxl
 fonttools==4.50.0
@@ -57,12 +77,16 @@ idna==3.10
     # via requests
 markuppy==1.14
     # via tablib
+maykin-2fa==1.0.2
+    # via -r requirements/base.in
 mysqlclient==2.1.1
     # via -r requirements/base.in
 odfpy==1.4.1
     # via tablib
 openpyxl==3.0.10
     # via tablib
+phonenumberslite==8.13.55
+    # via django-two-factor-auth
 pillow==11.1.0
     # via
     #   -r requirements/base.in
@@ -81,8 +105,12 @@ pydyf==0.9.0
     # via weasyprint
 pyee==12.1.1
     # via playwright
+pyopenssl==25.0.0
+    # via webauthn
 pyphen==0.13.0
     # via weasyprint
+pypng==0.20220715.0
+    # via qrcode
 python-dateutil==2.8.2
     # via -r requirements/base.in
 python-decouple==3.6
@@ -91,6 +119,8 @@ python-dotenv==0.21.0
     # via -r requirements/base.in
 pyyaml==6.0.2
     # via tablib
+qrcode==7.4.2
+    # via django-two-factor-auth
 requests==2.32.3
     # via -r requirements/base.in
 rules==3.3
@@ -115,6 +145,8 @@ typing-extensions==4.13.1
     #   pydantic
     #   pydantic-core
     #   pyee
+    #   pyopenssl
+    #   qrcode
     #   typing-inspection
 typing-inspection==0.4.0
     # via pydantic
@@ -126,6 +158,8 @@ uwsgi==2.0.28
     # via -r requirements/base.in
 weasyprint==61.2
     # via -r requirements/base.in
+webauthn==2.5.2
+    # via django-two-factor-auth
 webencodings==0.5.1
     # via
     #   cssselect2

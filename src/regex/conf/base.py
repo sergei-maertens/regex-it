@@ -105,6 +105,12 @@ INSTALLED_APPS = [
     "import_export",
     "privates",
     "solo",
+    "django_otp",
+    "django_otp.plugins.otp_static",
+    "django_otp.plugins.otp_totp",
+    "two_factor",
+    "two_factor.plugins.webauthn",
+    "maykin_2fa",
     # Project applications.
     "regex.accounts",
     "regex.administration",
@@ -126,6 +132,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "maykin_2fa.middleware.OTPMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -341,7 +348,6 @@ FIXTURE_DIRS = (DJANGO_PROJECT_DIR / "fixtures",)
 PROJECT_NAME = "Regex IT"
 ENVIRONMENT = config("ENVIRONMENT", "")
 SHOW_ALERT = True
-ENABLE_ADMIN_NAV_SIDEBAR = config("ENABLE_ADMIN_NAV_SIDEBAR", default=False)
 
 # This setting is used by the csrf_failure view (accounts app).
 # You can specify any path that should match the request.path
@@ -405,6 +411,12 @@ KPN_PASSWORD = config("KPN_PASSWORD", default="")
 # 3RD PARTY LIBRARY SETTINGS #
 #                            #
 ##############################
+
+#
+# django-two-factor
+#
+TWO_FACTOR_PATCH_ADMIN = False
+TWO_FACTOR_WEBAUTHN_RP_NAME = f"Regex IT - {ENVIRONMENT or 'prod'}"
 
 #
 # django-privates

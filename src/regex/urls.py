@@ -5,9 +5,16 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 
+from maykin_2fa import monkeypatch_admin
+from maykin_2fa.urls import urlpatterns, webauthn_urlpatterns
+
 from regex.invoices.dev_views import InvoicePDFTestView
 
+monkeypatch_admin()
+
 urlpatterns = [
+    path("admin/", include((urlpatterns, "maykin_2fa"))),
+    path("admin/", include((webauthn_urlpatterns, "two_factor"))),
     path("admin/", admin.site.urls),
     path("administration/", include("regex.administration.urls")),
     path("portfolio/", include("regex.portfolio.urls")),

@@ -11,6 +11,11 @@ asgiref==3.7.2
     #   -r requirements/base.txt
     #   django
     #   django-countries
+asn1crypto==1.5.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   webauthn
 beautifulsoup4==4.11.1
     # via webtest
 black==25.1.0
@@ -20,6 +25,11 @@ brotli==1.0.9
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   fonttools
+cbor2==5.6.5
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   webauthn
 certifi==2025.1.31
     # via
     #   -c requirements/base.txt
@@ -47,6 +57,8 @@ cryptography==44.0.2
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+    #   pyopenssl
+    #   webauthn
 cssselect2==0.7.0
     # via
     #   -c requirements/base.txt
@@ -66,10 +78,15 @@ django==4.2.20
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+    #   django-formtools
     #   django-import-export
+    #   django-otp
+    #   django-phonenumber-field
     #   django-privates
     #   django-sendfile2
     #   django-solo
+    #   django-two-factor-auth
+    #   maykin-2fa
 django-autoslug==1.9.9
     # via
     #   -c requirements/base.txt
@@ -78,10 +95,25 @@ django-countries==7.6.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+django-formtools==2.5.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   django-two-factor-auth
 django-import-export==3.3.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+django-otp==1.6.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   django-two-factor-auth
+django-phonenumber-field==8.0.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   django-two-factor-auth
 django-privates==2.0.0.post0
     # via
     #   -c requirements/base.txt
@@ -95,6 +127,11 @@ django-solo==2.1.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+django-two-factor-auth==1.17.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   maykin-2fa
 django-webtest==1.9.11
     # via -r requirements/test-tools.in
 et-xmlfile==1.1.0
@@ -135,6 +172,10 @@ markuppy==1.14
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   tablib
+maykin-2fa==1.0.2
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 mypy-extensions==1.0.0
     # via black
 mysqlclient==2.1.1
@@ -155,6 +196,11 @@ packaging==24.2
     # via black
 pathspec==0.12.1
     # via black
+phonenumberslite==8.13.55
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   django-two-factor-auth
 pillow==11.1.0
     # via
     #   -c requirements/base.txt
@@ -194,11 +240,21 @@ pyee==12.1.1
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   playwright
+pyopenssl==25.0.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   webauthn
 pyphen==0.13.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   weasyprint
+pypng==0.20220715.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   qrcode
 python-dateutil==2.8.2
     # via
     #   -c requirements/base.txt
@@ -218,6 +274,11 @@ pyyaml==6.0.2
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   tablib
+qrcode==7.4.2
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   django-two-factor-auth
 requests==2.32.3
     # via
     #   -c requirements/base.txt
@@ -264,6 +325,8 @@ typing-extensions==4.13.1
     #   pydantic
     #   pydantic-core
     #   pyee
+    #   pyopenssl
+    #   qrcode
     #   typing-inspection
 typing-inspection==0.4.0
     # via
@@ -286,6 +349,11 @@ weasyprint==61.2
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+webauthn==2.5.2
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   django-two-factor-auth
 webencodings==0.5.1
     # via
     #   -c requirements/base.txt
