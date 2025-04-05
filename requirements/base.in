@@ -3,7 +3,7 @@ cryptography
 mysqlclient
 Pillow  # handle images
 playwright
-psycopg2  # database driver
+psycopg  # database driver
 pydantic
 python-dotenv  # environment variables for secrets
 python-decouple  # processing of envvar configs
@@ -13,7 +13,7 @@ rules
 WeasyPrint
 
 # Framework libraries
-Django~=4.2
+Django~=5.2
 django-autoslug
 django-countries
 django-import-export
