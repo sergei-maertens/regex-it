@@ -17,7 +17,7 @@
     # nginx role overrides
     prefix: sentry
     nginx_vhost_template: proxy.conf.j2
-    application_user: root
+    # application_user: root
 
     # template specific vars
     nginx_proxy_port: 9000

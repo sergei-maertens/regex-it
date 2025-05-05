@@ -8,7 +8,7 @@ sentry_data_volume: sentry-data
 
 sentry_db_volume: sentry-db
 
-sentry_image: sentry:9.1
+sentry_image: sentry:9.1.2
 
 sentry_db_user: postgres
 

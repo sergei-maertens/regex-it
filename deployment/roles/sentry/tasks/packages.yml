@@ -3,6 +3,6 @@
 # Integrations for docker
 
 - name: Ensure docker package is available
-  pip:
-    name: docker
+  package:
+    name: python3-docker
     state: present
