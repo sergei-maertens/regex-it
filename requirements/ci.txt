@@ -69,7 +69,7 @@ diff-match-patch==20241021
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   django-import-export
-django==5.2
+django==5.2.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -305,7 +305,7 @@ typing-inspection==0.4.0
     #   pydantic
 tzdata==2025.2
     # via faker
-urllib3==2.3.0
+urllib3==2.4.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
