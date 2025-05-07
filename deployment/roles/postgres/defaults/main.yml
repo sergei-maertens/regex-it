@@ -1,5 +1,0 @@
----
-
-postgresql_version: 12
-
-db_user: "{{ application_user + '-' + target_env }}"
