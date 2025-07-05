@@ -94,12 +94,15 @@ async def download_invoices(
 
     await expect(page.get_by_text("Betaalde facturen")).to_be_visible(timeout=30_000)
 
+    # expand all items
     invoice_entries = page.get_by_role("listitem").filter(
-        has=page.get_by_role("link", name="Factuur", exact=True)
+        has=page.get_by_role("button", name="Toon meer facturen", exact=True)
     )
     for item in await invoice_entries.all():
         texts = await item.all_text_contents()
+        await item.get_by_role("button", name="Toon meer facturen", exact=True).click()
         download_link = item.get_by_role("link", name="Factuur", exact=True)
+        await download_link.wait_for(state="visible")
         invoice_comments = "".join([clean_text(text) for text in texts])
         async with page.expect_download() as download_info:
             await download_link.click()
