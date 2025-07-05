@@ -31,7 +31,7 @@ cssselect2==0.8.0
     # via weasyprint
 diff-match-patch==20241021
     # via django-import-export
-django==5.2.1
+django==5.2.4
     # via
     #   -r requirements/base.in
     #   django-formtools
@@ -107,7 +107,7 @@ python-dotenv==1.1.0
     # via -r requirements/base.in
 qrcode==7.4.2
     # via django-two-factor-auth
-requests==2.32.3
+requests==2.32.4
     # via -r requirements/base.in
 rules==3.5
     # via -r requirements/base.in
@@ -137,7 +137,7 @@ typing-extensions==4.13.1
     #   typing-inspection
 typing-inspection==0.4.0
     # via pydantic
-urllib3==2.4.0
+urllib3==2.5.0
     # via
     #   requests
     #   sentry-sdk
