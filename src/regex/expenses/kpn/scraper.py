@@ -57,9 +57,9 @@ async def browser_page():
 async def login(page: Page, email: str, password: str) -> None:
     await page.goto(BASE)
     await page.wait_for_url("https://inloggen.kpn.com/**")
-    decline_cookie_btn = page.get_by_role("alertdialog").get_by_role(
-        "button", name="Nee"
-    )
+    dialog = page.get_by_role("dialog")
+    await expect(dialog).to_be_visible()
+    decline_cookie_btn = dialog.get_by_role("button", name="Nee")
     await decline_cookie_btn.click()
 
     # fill out credentials
@@ -70,7 +70,9 @@ async def login(page: Page, email: str, password: str) -> None:
     await password_input.fill(password)
 
     # hit login button
-    await loginform.get_by_role("button", name="Inloggen").click()
+    login_button = loginform.get_by_test_id("submit")
+    await expect(login_button).to_be_visible()
+    await login_button.click()
     await page.wait_for_url(f"{BASE}#/overzicht")
 
 
