@@ -12,8 +12,8 @@ from playwright.async_api import Page, Route, async_playwright, expect
 
 HEADLESS = "PLAYWRIGHT_NO_HEADLESS" not in os.environ
 
-BASE = "https://mijn.kpn.com/"
-INVOICES_URL = f"{BASE}#/facturen"
+BASE = "https://www.kpn.com/"
+INVOICES_URL = f"{BASE}mijn/facturen"
 API_URL_INVOICE = f"{BASE}api/documents/v1/document/**"
 
 
@@ -59,7 +59,7 @@ async def browser_page():
 async def login(
     page: Page, email: str, password: str, on_mfa_prompt: Callable[[], str]
 ) -> None:
-    await page.goto(BASE)
+    await page.goto("https://mijn.kpn.com/")
     await page.wait_for_url("https://inloggen.kpn.com/**")
     dialog = page.get_by_role("dialog")
     await expect(dialog).to_be_visible()
@@ -84,14 +84,11 @@ async def login(
     for textbox, number in zip(await mfa_textboxes.all(), mfa_code):
         await textbox.fill(number)
 
-    mfa_modal = page.get_by_test_id("loginRegister")
-    login_button = mfa_modal.get_by_test_id("submit")
-    await expect(login_button).to_be_visible()
-    await login_button.click()
+    mfa_button = page.get_by_test_id("mfaForm").get_by_test_id("submit")
+    await expect(mfa_button).to_be_visible()
+    await mfa_button.click()
 
-    breakpoint()
-
-    await page.wait_for_url(f"{BASE}#/overzicht")
+    await page.wait_for_url("https://www.kpn.com")
 
 
 class nl_parserinfo(parserinfo):
@@ -123,7 +120,6 @@ async def download_invoices(
 ) -> None:
     # navigate to invoices
     await page.goto(INVOICES_URL)
-    await page.get_by_text("Thuis").click()
 
     await expect(page.get_by_text("Facturen")).to_be_visible()
 
