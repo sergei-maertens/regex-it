@@ -24,4 +24,3 @@ maykin-2fa
 # WSGI servers & monitoring - production oriented
 uwsgi
 sentry-sdk  # error monitoring
-# elastic-apm  # Elastic APM integration

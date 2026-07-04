@@ -8,21 +8,21 @@ asgiref==3.8.1
     #   django-countries
 asn1crypto==1.5.1
     # via webauthn
-brotli==1.1.0
+brotli==1.2.0
     # via fonttools
-cbor2==5.6.5
+cbor2==6.1.3
     # via webauthn
 certifi==2025.1.31
     # via
     #   requests
     #   sentry-sdk
-cffi==1.17.1
+cffi==2.0.0
     # via
     #   cryptography
     #   weasyprint
 charset-normalizer==3.4.1
     # via requests
-cryptography==44.0.2
+cryptography==49.0.0
     # via
     #   -r requirements/base.in
     #   pyopenssl
@@ -31,7 +31,7 @@ cssselect2==0.8.0
     # via weasyprint
 diff-match-patch==20241021
     # via django-import-export
-django==5.2.4
+django==5.2.15
     # via
     #   -r requirements/base.in
     #   django-formtools
@@ -63,7 +63,7 @@ django-solo==2.4.0
     # via -r requirements/base.in
 django-two-factor-auth==1.17.0
     # via maykin-2fa
-fonttools==4.57.0
+fonttools==4.63.0
     # via weasyprint
 greenlet==3.1.1
     # via playwright
@@ -75,11 +75,11 @@ mysqlclient==2.2.7
     # via -r requirements/base.in
 phonenumberslite==8.13.55
     # via django-two-factor-auth
-pillow==11.1.0
+pillow==12.3.0
     # via
     #   -r requirements/base.in
     #   weasyprint
-playwright==1.51.0
+playwright==1.61.0
     # via -r requirements/base.in
 psycopg==3.2.6
     # via -r requirements/base.in
@@ -91,9 +91,9 @@ pydantic-core==2.33.1
     # via pydantic
 pydyf==0.11.0
     # via weasyprint
-pyee==12.1.1
+pyee==13.0.1
     # via playwright
-pyopenssl==25.0.0
+pyopenssl==26.3.0
     # via webauthn
 pyphen==0.17.2
     # via weasyprint
@@ -107,7 +107,7 @@ python-dotenv==1.1.0
     # via -r requirements/base.in
 qrcode==7.4.2
     # via django-two-factor-auth
-requests==2.32.4
+requests==2.34.2
     # via -r requirements/base.in
 rules==3.5
     # via -r requirements/base.in
@@ -115,11 +115,11 @@ sentry-sdk==2.25.1
     # via -r requirements/base.in
 six==1.17.0
     # via python-dateutil
-sqlparse==0.5.3
+sqlparse==0.5.5
     # via django
 tablib==3.8.0
     # via django-import-export
-tinycss2==1.4.0
+tinycss2==1.5.1
     # via
     #   cssselect2
     #   weasyprint
@@ -137,13 +137,13 @@ typing-extensions==4.13.1
     #   typing-inspection
 typing-inspection==0.4.0
     # via pydantic
-urllib3==2.5.0
+urllib3==2.7.0
     # via
     #   requests
     #   sentry-sdk
-uwsgi==2.0.28
+uwsgi==2.0.31
     # via -r requirements/base.in
-weasyprint==65.0
+weasyprint==69.0
     # via -r requirements/base.in
 webauthn==2.5.2
     # via django-two-factor-auth
