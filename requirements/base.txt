@@ -67,7 +67,7 @@ fonttools==4.63.0
     # via weasyprint
 greenlet==3.1.1
     # via playwright
-idna==3.10
+idna==3.18
     # via requests
 maykin-2fa==1.0.2
     # via -r requirements/base.in
@@ -103,7 +103,7 @@ python-dateutil==2.9.0.post0
     # via -r requirements/base.in
 python-decouple==3.8
     # via -r requirements/base.in
-python-dotenv==1.1.0
+python-dotenv==1.2.2
     # via -r requirements/base.in
 qrcode==7.4.2
     # via django-two-factor-auth

@@ -145,7 +145,7 @@ greenlet==3.1.1
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   playwright
-idna==3.10
+idna==3.18
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -234,7 +234,7 @@ python-decouple==3.8
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-python-dotenv==1.1.0
+python-dotenv==1.2.2
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -335,7 +335,7 @@ webencodings==0.5.1
     #   cssselect2
     #   tinycss2
     #   tinyhtml5
-webob==1.8.9
+webob==1.8.10
     # via webtest
 webtest==3.0.4
     # via django-webtest
