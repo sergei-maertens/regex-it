@@ -63,7 +63,7 @@ async def login(
     await page.get_by_role("button", name="Inloggen", exact=True).click()
 
     await asyncio.sleep(1)
-    await expect(page.get_by_text("Tweestapsverificatie")).to_be_visible()
+    await expect(page.get_by_text("4-cijferige verificatiecode")).to_be_visible()
 
     mfa_textboxes = page.locator('input[name="verification-code"]')
     await expect(mfa_textboxes).to_have_count(4)
