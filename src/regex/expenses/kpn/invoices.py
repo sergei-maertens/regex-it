@@ -58,6 +58,7 @@ class InvoiceFetcher(BaseInvoiceFetcher):
                 password=settings.KPN_PASSWORD,
                 start=self.start_date,
                 end=self.end_date,
+                on_mfa_prompt=lambda: input("Enter KPN MFA code: "),
                 on_invoice_download=handle_invoice_download,
             )
         )

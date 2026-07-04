@@ -1,5 +1,6 @@
 import asyncio
 import os
+from collections.abc import Callable
 from contextlib import asynccontextmanager
 from datetime import date
 from decimal import Decimal
@@ -31,10 +32,11 @@ async def main(
     password: str,
     start: date,
     end: date,
+    on_mfa_prompt: Callable[[], str],
     on_invoice_download: OnInvoiceDownload,
 ):
     async with browser_page() as page:
-        await login(page, email, password)
+        await login(page, email, password, on_mfa_prompt)
         await download_invoices(page, start, end, on_invoice_download)
 
 
@@ -54,7 +56,9 @@ async def browser_page():
             await browser.close()
 
 
-async def login(page: Page, email: str, password: str) -> None:
+async def login(
+    page: Page, email: str, password: str, on_mfa_prompt: Callable[[], str]
+) -> None:
     await page.goto(BASE)
     await page.wait_for_url("https://inloggen.kpn.com/**")
     dialog = page.get_by_role("dialog")
@@ -73,6 +77,20 @@ async def login(page: Page, email: str, password: str) -> None:
     login_button = loginform.get_by_test_id("submit")
     await expect(login_button).to_be_visible()
     await login_button.click()
+
+    mfa_textboxes = page.locator('input[autocomplete="one-time-code"]')
+    await expect(mfa_textboxes).to_have_count(5)
+    mfa_code = on_mfa_prompt().strip()
+    for textbox, number in zip(await mfa_textboxes.all(), mfa_code):
+        await textbox.fill(number)
+
+    mfa_modal = page.get_by_test_id("loginRegister")
+    login_button = mfa_modal.get_by_test_id("submit")
+    await expect(login_button).to_be_visible()
+    await login_button.click()
+
+    breakpoint()
+
     await page.wait_for_url(f"{BASE}#/overzicht")
 
 
